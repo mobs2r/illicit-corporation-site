@@ -64,7 +64,6 @@
     .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
     .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
     .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
-    .product-build { color:#aab4bf; font-size:10px; font-weight:800; letter-spacing:.1em; white-space:nowrap; }
     .mushroom-icon { width:21px; height:21px; fill:currentColor; }
     .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
     .product p { margin:0; color:#b5bdc5; font-size:12px; }
@@ -100,7 +99,6 @@
     :root[data-theme="light"] .action:hover { border-color:#5d7894; background:#eaf1f8; }
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
-    :root[data-theme="light"] .product-build { color:#526478; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
     :root[data-theme="light"] .product p,:root[data-theme="light"] .world p { color:#415267; }
     :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
@@ -133,12 +131,12 @@
     </div></section>
     <section class="section shell" id="platform">
       <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span><span class="product-build" data-build="platform">Build #ed8ddb9</span></div><h3>Illicit API</h3><p>Server-side contracts for accounts, integrations, and auditable actions.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span><span class="product-build" data-build="platform">Build #ed8ddb9</span></div><h3>Illicit AC</h3><p>Game-integrity signals kept separate from payment eligibility.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="product-build" data-build="platform">Build #ed8ddb9</span></div><h3>Resupply Locker</h3><p>Installation kits and server adapters for connected games.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="product-build" data-build="platform">Build #ed8ddb9</span></div><h3>Faked ID</h3><p>Linked identities and scoped claims for participating products.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="product-build" data-build="platform">Build #ed8ddb9</span></div><h3>Faked CC</h3><p>A developing payment and entitlement layer, separate from game coins.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span><span class="product-build" data-build="platform">Build #ed8ddb9</span></div><h3>Mushroom</h3><p>Analytics for Omerta, Atlantis, and Vandam(e)bash; opt-in for third-party forks and used to train Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>A shared server API for accounts and integrations, with actions that can be traced and reviewed.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Anti-cheat signals for connected games. It does not determine payment eligibility.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Installable packages and server adapters that connect games to the Illicit platform.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Links identities across participating products without merging their separate accounts.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>In development: connects real-money payments to product access, separate from in-game coins.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushroom</h3><p>Processes analytics from Omerta, Atlantis, and Vandam(e)bash to train Illicit API. Third-party forks can opt in.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds">
@@ -332,12 +330,12 @@
           const response = await fetch('./builds.json', { cache: 'no-store' });
           if (!response.ok) return;
           const builds = await response.json();
-          for (const scope of ['platform', 'omerta', 'atlantis']) {
+          for (const scope of ['omerta', 'atlantis']) {
             const commit = String(builds?.[scope] || '');
             if (!/^[a-f0-9]{7,40}$/i.test(commit)) continue;
             for (const label of document.querySelectorAll(`[data-build="${scope}"]`)) {
               label.textContent = `Build #${commit.slice(0, 7)}`;
-              label.setAttribute('aria-label', scope === 'platform' ? `Corporate catalog build ${commit}` : `${scope} deployed commit ${commit}`);
+              label.setAttribute('aria-label', `${scope} deployed commit ${commit}`);
             }
           }
         } catch {}
