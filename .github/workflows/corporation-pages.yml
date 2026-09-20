@@ -6,8 +6,12 @@ on:
     paths:
       - index.html
       - manifest.webmanifest
+      - builds.json
+      - support/refresh-builds.cjs
       - .github/workflows/corporation-pages.yml
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -33,6 +37,8 @@ jobs:
           mkdir -p _site
           cp index.html manifest.webmanifest _site/
           touch _site/.nojekyll
+      - name: Read deployed Omerta and Atlantis builds
+        run: node support/refresh-builds.cjs _site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

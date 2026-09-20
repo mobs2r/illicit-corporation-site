@@ -7,6 +7,14 @@
   <meta name="theme-color" content="#101318">
   <link rel="manifest" href="./manifest.webmanifest">
   <title>Illicit Corporation — One foundation, many worlds</title>
+  <script>
+    (() => {
+      let saved = '';
+      try { saved = localStorage.getItem('illicit-corporation-theme') || ''; } catch {}
+      document.documentElement.dataset.theme = saved === 'light' || saved === 'dark'
+        ? saved : (window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    })();
+  </script>
   <style>
     :root { color-scheme: dark; --bg:#101318; --surface:#171b21; --raised:#1e242c; --line:#343b45; --text:#f2f0eb; --muted:#aab2bc; --red:#f1857d; --blue:#88bcf0; --gold:#f1cc86; --green:#92d7b1; }
     * { box-sizing:border-box; }
@@ -31,6 +39,9 @@
     .site-nav a:hover,.site-nav a[aria-current="page"] { color:#fff; }
     .header-link { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:1px solid #6a7d88; border-radius:9px; font-size:12px; font-weight:800; text-decoration:none; white-space:nowrap; }
     .header-link:hover { background:#ffffff12; }
+    .header-tools { display:flex; align-items:center; gap:8px; }
+    .theme-toggle { display:grid; place-items:center; width:38px; height:38px; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); cursor:pointer; font-size:19px; }
+    .theme-toggle:hover { background:#ffffff12; }
     .hero { position:relative; overflow:hidden; isolation:isolate; padding:94px 0 80px; border-bottom:1px solid #ffffff12; }
     .hero::before { position:absolute; z-index:-2; inset:0; content:""; background:linear-gradient(90deg,#101318 13%,#101318d0 55%,#10131844 100%),linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px); background-size:auto,54px 54px,54px 54px; mask-image:linear-gradient(#000 75%,transparent); }
     .hero::after { position:absolute; z-index:-1; top:5%; right:-20%; width:min(75vw,850px); aspect-ratio:1; border:1px solid #aab2bc22; border-radius:50%; content:""; box-shadow:0 0 0 70px #9fc4ea09,0 0 0 150px #f1857d06,inset 0 0 100px #8bb9ed0c; }
@@ -68,8 +79,9 @@
     .world:hover { transform:translateY(-3px); border-color:#9daab8; }
     .world.omerta { background:radial-gradient(circle at 83% 48%,#8f302c55,transparent 35%),linear-gradient(110deg,#2b1c1d,#17191e); }
     .world.atlantis { background:radial-gradient(circle at 84% 50%,#2e73b055,transparent 35%),linear-gradient(110deg,#1b2532,#17191e); }
-    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif; font-size:72px; line-height:1; opacity:.85; }
+    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif; font-variant-emoji:text; font-size:72px; line-height:1; text-shadow:0 0 18px currentColor; }
     .omerta .world-sigil { color:var(--red); }.atlantis .world-sigil { color:var(--blue); }
+    .world .build-label { color:var(--gold); text-transform:none; }
     .world .label { color:#d9dadb; }
     .world h3 { position:relative; margin:49px 0 5px; font-size:29px; letter-spacing:-.055em; }
     .world p { position:relative; max-width:280px; margin:0; color:#bec5cc; font-size:12px; }
@@ -105,8 +117,45 @@
     .footer p { max-width:360px; margin:10px 0 0; color:var(--muted); font-size:11px; }
     .footer-links { display:flex; flex-wrap:wrap; justify-content:end; gap:12px 20px; font-size:11px; }
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
+    :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; }
+    :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
+    :root[data-theme="light"] .site-nav a { color:#536171; }
+    :root[data-theme="light"] .site-nav a:hover,:root[data-theme="light"] .site-nav a[aria-current="page"] { color:#172332; }
+    :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
+    :root[data-theme="light"] .header-link:hover,:root[data-theme="light"] .theme-toggle:hover { background:#e9f0f7; }
+    :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; }
+    :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 13%,#f5f7fad9 55%,#f5f7fa44 100%),linear-gradient(#25486910 1px,transparent 1px),linear-gradient(90deg,#25486910 1px,transparent 1px); background-size:auto,54px 54px,54px 54px; }
+    :root[data-theme="light"] .hero::after { border-color:#39699427; box-shadow:0 0 0 70px #5d9bd10b,0 0 0 150px #a6333e09,inset 0 0 100px #5d9bd10b; }
+    :root[data-theme="light"] .hero-intro,:root[data-theme="light"] .section-head p { color:#405063; }
+    :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; }
+    :root[data-theme="light"] .action:hover { border-color:#5d7894; background:#eaf1f8; }
+    :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
+    :root[data-theme="light"] .action-primary:hover { background:#16558d; }
+    :root[data-theme="light"] .hero-meta,:root[data-theme="light"] .product-tag { color:#526478; }
+    :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
+    :root[data-theme="light"] .product p,:root[data-theme="light"] .world p,:root[data-theme="light"] .dev-copy p { color:#415267; }
+    :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#c7463c22,transparent 36%),linear-gradient(110deg,#fff6f4,#f3f6f9); }
+    :root[data-theme="light"] .world.atlantis { background:radial-gradient(circle at 84% 50%,#337eba24,transparent 36%),linear-gradient(110deg,#f1f7fd,#f3f6f9); }
+    :root[data-theme="light"] .world:hover { border-color:#7b91a8; }
+    :root[data-theme="light"] .world .label { color:#425269; }
+    :root[data-theme="light"] .world .build-label { color:var(--gold); }
+    :root[data-theme="light"] .developer { border-color:#dce4ed; background:#ecf2f8; }
+    :root[data-theme="light"] .dev-list { color:#263b50; }
+    :root[data-theme="light"] .tool { border-color:#afc0d0; background:#fff; box-shadow:0 18px 45px #24415b16; }
+    :root[data-theme="light"] .tool-heading { border-bottom-color:#dce4ed; }
+    :root[data-theme="light"] .tool-heading small,:root[data-theme="light"] .tool-body label,:root[data-theme="light"] .tool-note,:root[data-theme="light"] .tool-footer { color:#506275; }
+    :root[data-theme="light"] select { border-color:#a9b8c8; background:#f7fafd; color:#172332; }
+    :root[data-theme="light"] .request-preview { border-color:#c2d0de; background:#f4f8fc; }
+    :root[data-theme="light"] .request-preview code { color:#203247; }
+    :root[data-theme="light"] .method { background:#e5f3eb; color:#176448; }
+    :root[data-theme="light"] .tool-actions button,:root[data-theme="light"] .tool-actions a { border-color:#a9b8c8; background:#f5f8fb; color:#172332; }
+    :root[data-theme="light"] .tool-actions button:hover,:root[data-theme="light"] .tool-actions a:hover { background:#e5eef7; }
+    :root[data-theme="light"] .principle { border-top-color:#8ba6bf; background:#eaf0f6; }
+    :root[data-theme="light"] .footer { border-top-color:#d5dee8; }
+    :root[data-theme="light"] .footer-links a { color:#344a60; }
+    :root[data-theme="light"] .footer-links a:hover { color:#172332; }
     @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.site-nav { gap:13px; }.site-nav a { font-size:10px; }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product,.product:nth-last-child(2):nth-child(4),.product:last-child:nth-child(5) { grid-column:auto; }.dev-layout { grid-template-columns:1fr; }.dev-copy { padding:0 0 8px; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.site-nav { gap:9px; }.site-nav a { font-size:9px; }.site-nav a:nth-child(2) { display:none; }.hero { padding:69px 0 51px; }.hero-meta { margin-top:45px; }.section { padding:57px 0; }.section-head { display:block; }.section-head p { margin-top:12px; }.product-grid,.world-grid,.principles { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.tool-inputs { grid-template-columns:1fr; }.footer { display:block; }.footer-links { justify-content:start; margin-top:23px; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.site-nav { gap:9px; }.site-nav a { font-size:9px; }.site-nav a:nth-child(2) { display:none; }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.hero-meta { margin-top:45px; }.section { padding:57px 0; }.section-head { display:block; }.section-head p { margin-top:12px; }.product-grid,.world-grid,.principles { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.tool-inputs { grid-template-columns:1fr; }.footer { display:block; }.footer-links { justify-content:start; margin-top:23px; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; } }
   </style>
 </head>
@@ -115,7 +164,7 @@
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
       <nav class="site-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="?developers#developers" id="nav-developers">Developers</a></nav>
-      <a class="header-link" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Source &amp; docs <span aria-hidden="true">↗</span></a>
+      <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Docs <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
   <main>
@@ -139,8 +188,8 @@
     <section class="section worlds shell" id="worlds">
       <div class="section-head"><div><span class="label">Connected worlds</span><h2>Different communities. Their own rules.</h2></div></div>
       <div class="world-grid">
-        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label">Experimental social arcade</span><span class="world-sigil" aria-hidden="true">⚡️</span><h3>Omerta Chat</h3><p>Play, collect, and connect in the original Illicit world.</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label">All-ages community</span><span class="world-sigil" aria-hidden="true">🔱</span><h3>Atlantis Chat</h3><p>A distinct, PG world with its own identity and economy.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true">⚡︎</span><h3>Omerta Chat</h3><p>One coin, many worlds...</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="atlantis">Build #f21cd57</span><span class="world-sigil" aria-hidden="true">🔱︎</span><h3>Atlantis Chat</h3><p>Play, collect, connect...</p><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
     <section class="section developer" id="developers"><div class="shell dev-layout">
@@ -156,6 +205,38 @@
   <footer class="shell footer"><div><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a><p>Illicit Corporation builds independent worlds on deliberate shared infrastructure. This page is the platform entry point, not an Omerta or Atlantis account portal.</p></div><div class="footer-links"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="?developers#developers">Developers</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></div></footer>
   <script>
     (() => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const applyTheme = theme => {
+        document.documentElement.dataset.theme = theme;
+        themeToggle.textContent = theme === 'dark' ? '☀' : '☾';
+        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#101318' : '#f5f7fa';
+      };
+      applyTheme(document.documentElement.dataset.theme || 'dark');
+      themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        try { localStorage.setItem('illicit-corporation-theme', next); } catch {}
+      });
+      const updateBuilds = async () => {
+        try {
+          const response = await fetch('./builds.json', { cache: 'no-store' });
+          if (!response.ok) return;
+          const builds = await response.json();
+          for (const world of ['omerta', 'atlantis']) {
+            const commit = String(builds?.[world] || '');
+            if (!/^[a-f0-9]{7,40}$/i.test(commit)) continue;
+            const label = document.querySelector(`[data-build="${world}"]`);
+            if (label) {
+              label.textContent = `Build #${commit.slice(0, 7)}`;
+              label.setAttribute('aria-label', `${world} deployed commit ${commit}`);
+            }
+          }
+        } catch {}
+      };
+      updateBuilds();
+      window.setInterval(updateBuilds, 15 * 60 * 1000);
       const world = document.getElementById('world-select');
       const endpoint = document.getElementById('endpoint-select');
       const downloadOption = document.getElementById('download-option');
