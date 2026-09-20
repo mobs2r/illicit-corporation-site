@@ -53,8 +53,9 @@
     .section-head h2 { max-width:780px; margin:7px 0 0; font-size:clamp(27px,3.2vw,46px); line-height:1.09; letter-spacing:-.045em; }
     .section-head p { max-width:360px; margin:0; color:var(--muted); font-size:13px; }
     .label { color:var(--gold); font-size:10px; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
-    .product-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-    .product { display:flex; flex-direction:column; min-height:202px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .product-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+    .product { display:flex; grid-column:span 2; flex-direction:column; min-height:202px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .product:nth-last-child(2):nth-child(4),.product:last-child:nth-child(5) { grid-column:span 3; }
     .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
     .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
     .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
@@ -67,7 +68,7 @@
     .world:hover { transform:translateY(-3px); border-color:#9daab8; }
     .world.omerta { background:radial-gradient(circle at 83% 48%,#8f302c55,transparent 35%),linear-gradient(110deg,#2b1c1d,#17191e); }
     .world.atlantis { background:radial-gradient(circle at 84% 50%,#2e73b055,transparent 35%),linear-gradient(110deg,#1b2532,#17191e); }
-    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font-size:72px; line-height:1; opacity:.6; }
+    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif; font-size:72px; line-height:1; opacity:.85; }
     .omerta .world-sigil { color:var(--red); }.atlantis .world-sigil { color:var(--blue); }
     .world .label { color:#d9dadb; }
     .world h3 { position:relative; margin:49px 0 5px; font-size:29px; letter-spacing:-.055em; }
@@ -104,7 +105,7 @@
     .footer p { max-width:360px; margin:10px 0 0; color:var(--muted); font-size:11px; }
     .footer-links { display:flex; flex-wrap:wrap; justify-content:end; gap:12px 20px; font-size:11px; }
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
-    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.site-nav { gap:13px; }.site-nav a { font-size:10px; }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.dev-layout { grid-template-columns:1fr; }.dev-copy { padding:0 0 8px; }.hero { padding:75px 0 63px; } }
+    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.site-nav { gap:13px; }.site-nav a { font-size:10px; }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product,.product:nth-last-child(2):nth-child(4),.product:last-child:nth-child(5) { grid-column:auto; }.dev-layout { grid-template-columns:1fr; }.dev-copy { padding:0 0 8px; }.hero { padding:75px 0 63px; } }
     @media (max-width:620px) { .header-inner { min-height:65px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.site-nav { gap:9px; }.site-nav a { font-size:9px; }.site-nav a:nth-child(2) { display:none; }.hero { padding:69px 0 51px; }.hero-meta { margin-top:45px; }.section { padding:57px 0; }.section-head { display:block; }.section-head p { margin-top:12px; }.product-grid,.world-grid,.principles { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.tool-inputs { grid-template-columns:1fr; }.footer { display:block; }.footer-links { justify-content:start; margin-top:23px; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; } }
   </style>
@@ -122,25 +123,24 @@
       <span class="eyebrow">Independent digital infrastructure</span>
       <h1>One foundation.<em>Many worlds.</em></h1>
       <p class="hero-intro">Illicit Corporation builds the connective tissue behind communities, games, identity, and creator tools—so each world can keep its own character.</p>
-      <div class="actions"><a class="action action-primary" href="#platform">Explore the platform <span aria-hidden="true">↗</span></a><a class="action" href="?developers#developers">Build with Illicit <span aria-hidden="true">→</span></a></div>
+      <div class="actions"><a class="action action-primary" href="#platform">Explore <span aria-hidden="true">↗</span></a><a class="action" href="?developers#developers">Build <span aria-hidden="true">→</span></a></div>
       <div class="hero-meta"><span>Identity first</span><span>Separate worlds</span><span>Practical integrations</span></div>
     </div></section>
     <section class="section shell" id="platform">
       <div class="section-head"><div><span class="label">Platform map</span><h2>Shared infrastructure, clear boundaries.</h2></div><p>The platform connects products without collapsing their accounts, economies, or policies into one indistinct service.</p></div>
       <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="product-tag">Identity</span></div><h3>Illicit ID</h3><p>Linked identities and scoped claims for participating products.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="product-tag">Identity</span></div><h3>Faked ID</h3><p>Linked identities and scoped claims for participating products.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span><span class="product-tag">Backbone</span></div><h3>Illicit API</h3><p>Server-side contracts for accounts, integrations, and auditable actions.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="product-tag">Commerce</span></div><h3>Faked CC</h3><p>A developing payment and entitlement layer, separate from game coins.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="product-tag">Connectors</span></div><h3>Resupply Locker</h3><p>Installation kits and server adapters for connected games.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">⌁</span><span class="product-tag">Extensions</span></div><h3>LockLink</h3><p>A home for carefully scoped integrations and future plugin work.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span><span class="product-tag">Trust</span></div><h3>Illicit AC</h3><p>Game-integrity signals kept separate from payment eligibility.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds">
       <div class="section-head"><div><span class="label">Connected worlds</span><h2>Different communities. Their own rules.</h2></div></div>
       <div class="world-grid">
-        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label">Experimental social arcade</span><span class="world-sigil" aria-hidden="true">ϟ</span><h3>Omerta Chat</h3><p>Play, collect, and connect in the original Illicit world.</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label">All-ages community</span><span class="world-sigil" aria-hidden="true">♆</span><h3>Atlantis Chat</h3><p>A distinct, PG world with its own identity and economy.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label">Experimental social arcade</span><span class="world-sigil" aria-hidden="true">⚡️</span><h3>Omerta Chat</h3><p>Play, collect, and connect in the original Illicit world.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label">All-ages community</span><span class="world-sigil" aria-hidden="true">🔱</span><h3>Atlantis Chat</h3><p>A distinct, PG world with its own identity and economy.</p><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
     <section class="section developer" id="developers"><div class="shell dev-layout">
