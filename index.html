@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Illicit Corporation builds identity, community, and developer infrastructure for connected worlds.">
+  <meta name="theme-color" content="#101318">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <title>Illicit Corporation — One foundation, many worlds</title>
+  <style>
+    :root { color-scheme: dark; --bg:#101318; --surface:#171b21; --raised:#1e242c; --line:#343b45; --text:#f2f0eb; --muted:#aab2bc; --red:#f1857d; --blue:#88bcf0; --gold:#f1cc86; --green:#92d7b1; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    button,select { font:inherit; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+    a { color:inherit; }
+    a:focus-visible,button:focus-visible,select:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
+    .shell { width:min(1260px,calc(100% - 64px)); margin:auto; }
+    .site-header { position:sticky; z-index:20; top:0; border-bottom:1px solid #ffffff16; background:#101318e9; backdrop-filter:blur(18px); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:77px; }
+    .brand { display:inline-flex; align-items:center; gap:13px; text-decoration:none; white-space:nowrap; }
+    .brand-mark { position:relative; display:grid; place-items:center; width:38px; height:38px; border:1px solid #67717d; border-radius:10px; font-size:20px; font-weight:900; letter-spacing:-.09em; }
+    .brand-mark::before,.brand-mark::after { position:absolute; content:""; width:5px; height:5px; border-radius:50%; }
+    .brand-mark::before { top:-3px; right:-3px; background:var(--red); box-shadow:0 0 12px var(--red); }
+    .brand-mark::after { bottom:-3px; left:-3px; background:var(--blue); box-shadow:0 0 12px var(--blue); }
+    .brand-copy { display:flex; flex-direction:column; font-size:14px; font-weight:850; letter-spacing:.12em; line-height:1.1; text-transform:uppercase; }
+    .brand-copy small { margin-top:4px; color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.27em; }
+    .site-nav { display:flex; gap:23px; align-items:center; }
+    .site-nav a { color:#c3c9cf; font-size:12px; font-weight:750; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+    .site-nav a:hover,.site-nav a[aria-current="page"] { color:#fff; }
+    .header-link { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:1px solid #6a7d88; border-radius:9px; font-size:12px; font-weight:800; text-decoration:none; white-space:nowrap; }
+    .header-link:hover { background:#ffffff12; }
+    .hero { position:relative; overflow:hidden; isolation:isolate; padding:94px 0 80px; border-bottom:1px solid #ffffff12; }
+    .hero::before { position:absolute; z-index:-2; inset:0; content:""; background:linear-gradient(90deg,#101318 13%,#101318d0 55%,#10131844 100%),linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px); background-size:auto,54px 54px,54px 54px; mask-image:linear-gradient(#000 75%,transparent); }
+    .hero::after { position:absolute; z-index:-1; top:5%; right:-20%; width:min(75vw,850px); aspect-ratio:1; border:1px solid #aab2bc22; border-radius:50%; content:""; box-shadow:0 0 0 70px #9fc4ea09,0 0 0 150px #f1857d06,inset 0 0 100px #8bb9ed0c; }
+    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--gold); font-size:11px; font-weight:850; letter-spacing:.18em; text-transform:uppercase; }
+    .eyebrow::before { width:7px; height:7px; border-radius:50%; background:currentColor; box-shadow:0 0 12px currentColor; content:""; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { max-width:820px; margin:20px 0 19px; font-size:clamp(48px,7.2vw,108px); font-weight:850; line-height:.98; letter-spacing:-.072em; }
+    h1 em { display:block; color:var(--blue); font-style:normal; }
+    .hero-intro { max-width:590px; margin-bottom:31px; color:#ccd2d8; font-size:clamp(16px,1.5vw,19px); }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; }
+    .action { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:43px; padding:10px 16px; border:1px solid #596676; border-radius:9px; background:#ffffff06; font-size:13px; font-weight:780; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
+    .action:hover { transform:translateY(-2px); border-color:#b1c3d6; background:#ffffff12; }
+    .action-primary { border-color:#aec8e5; background:#b9d5ef; color:#101820; }
+    .action-primary:hover { background:#d4e7f8; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap:8px 25px; margin-top:64px; color:#9ca6b0; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .hero-meta span::before { display:inline-block; width:5px; height:5px; margin:0 9px 2px 0; border-radius:50%; background:var(--green); content:""; }
+    section { scroll-margin-top:100px; }
+    .section { padding:83px 0; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:25px; }
+    .section-head h2 { max-width:780px; margin:7px 0 0; font-size:clamp(27px,3.2vw,46px); line-height:1.09; letter-spacing:-.045em; }
+    .section-head p { max-width:360px; margin:0; color:var(--muted); font-size:13px; }
+    .label { color:var(--gold); font-size:10px; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
+    .product-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .product { display:flex; flex-direction:column; min-height:202px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
+    .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
+    .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
+    .product-tag { color:#87929d; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
+    .product p { margin:0; color:#b5bdc5; font-size:12px; }
+    .worlds { padding-top:0; }
+    .world-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .world { position:relative; min-height:230px; overflow:hidden; padding:27px; border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
+    .world:hover { transform:translateY(-3px); border-color:#9daab8; }
+    .world.omerta { background:radial-gradient(circle at 83% 48%,#8f302c55,transparent 35%),linear-gradient(110deg,#2b1c1d,#17191e); }
+    .world.atlantis { background:radial-gradient(circle at 84% 50%,#2e73b055,transparent 35%),linear-gradient(110deg,#1b2532,#17191e); }
+    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font-size:72px; line-height:1; opacity:.6; }
+    .omerta .world-sigil { color:var(--red); }.atlantis .world-sigil { color:var(--blue); }
+    .world .label { color:#d9dadb; }
+    .world h3 { position:relative; margin:49px 0 5px; font-size:29px; letter-spacing:-.055em; }
+    .world p { position:relative; max-width:280px; margin:0; color:#bec5cc; font-size:12px; }
+    .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
+    .developer { border-top:1px solid #ffffff14; border-bottom:1px solid #ffffff14; background:#141920; }
+    .dev-layout { display:grid; grid-template-columns:1fr 1.18fr; gap:16px; }
+    .dev-copy { padding:28px 14% 20px 0; }
+    .dev-copy h2 { margin:10px 0 15px; font-size:clamp(30px,3.5vw,52px); line-height:1.06; letter-spacing:-.055em; }
+    .dev-copy p { color:#b9c2cb; font-size:14px; }
+    .dev-list { display:grid; gap:13px; margin:28px 0 0; padding:0; list-style:none; color:#d9e0e6; font-size:12px; }
+    .dev-list li { display:flex; gap:11px; align-items:center; }
+    .dev-list li::before { display:block; width:5px; height:5px; border-radius:50%; background:var(--blue); content:""; }
+    .tool { border:1px solid #55606e; border-radius:16px; background:#1b222b; box-shadow:0 20px 65px #0002; }
+    .tool-heading { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:17px 19px; border-bottom:1px solid #ffffff17; }
+    .tool-heading strong { font-size:13px; }.tool-heading small { color:var(--muted); font-size:10px; }
+    .tool-body { padding:20px; }
+    .tool-body label { display:block; margin-bottom:6px; color:#bcc6d0; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .tool-inputs { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+    select { width:100%; min-height:40px; padding:7px 10px; border:1px solid #596574; border-radius:8px; background:#12181f; color:var(--text); }
+    .tool-note { margin:13px 0 0; color:#a9b3bd; font-size:11px; }
+    .request-preview { display:flex; gap:13px; align-items:flex-start; margin-top:18px; padding:14px; border:1px solid #4a5563; border-radius:9px; background:#0e1319; }
+    .method { padding:3px 5px; border-radius:4px; background:#14382e; color:var(--green); font:800 10px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .request-preview code { overflow-wrap:anywhere; color:#e4ebf1; font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .tool-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .tool-actions button,.tool-actions a { display:inline-flex; justify-content:center; align-items:center; min-height:35px; padding:7px 11px; border:1px solid #6b7988; border-radius:7px; background:#ffffff0c; color:var(--text); cursor:pointer; font-size:11px; font-weight:750; text-decoration:none; }
+    .tool-actions button:hover,.tool-actions a:hover { background:#ffffff1d; }
+    .tool-footer { padding:0 20px 18px; color:#9ca7b2; font-size:10px; }
+    .principles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .principle { padding:23px; border-top:1px solid #8d9eb0; background:#ffffff05; }
+    .principle b { display:block; margin-bottom:7px; font-size:13px; }
+    .principle p { margin:0; color:var(--muted); font-size:12px; }
+    .footer { display:flex; align-items:start; justify-content:space-between; gap:30px; padding:37px 0 44px; border-top:1px solid #ffffff15; }
+    .footer p { max-width:360px; margin:10px 0 0; color:var(--muted); font-size:11px; }
+    .footer-links { display:flex; flex-wrap:wrap; justify-content:end; gap:12px 20px; font-size:11px; }
+    .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
+    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.site-nav { gap:13px; }.site-nav a { font-size:10px; }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.dev-layout { grid-template-columns:1fr; }.dev-copy { padding:0 0 8px; }.hero { padding:75px 0 63px; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.site-nav { gap:9px; }.site-nav a { font-size:9px; }.site-nav a:nth-child(2) { display:none; }.hero { padding:69px 0 51px; }.hero-meta { margin-top:45px; }.section { padding:57px 0; }.section-head { display:block; }.section-head p { margin-top:12px; }.product-grid,.world-grid,.principles { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.tool-inputs { grid-template-columns:1fr; }.footer { display:block; }.footer-links { justify-content:start; margin-top:23px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
+      <nav class="site-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="?developers#developers" id="nav-developers">Developers</a></nav>
+      <a class="header-link" href="https://github.com/mobs2r/crabcoin-api" target="_blank" rel="noopener noreferrer">Source &amp; docs <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home"><div class="shell">
+      <span class="eyebrow">Independent digital infrastructure</span>
+      <h1>One foundation.<em>Many worlds.</em></h1>
+      <p class="hero-intro">Illicit Corporation builds the connective tissue behind communities, games, identity, and creator tools—so each world can keep its own character.</p>
+      <div class="actions"><a class="action action-primary" href="#platform">Explore the platform <span aria-hidden="true">↗</span></a><a class="action" href="?developers#developers">Build with Illicit <span aria-hidden="true">→</span></a></div>
+      <div class="hero-meta"><span>Identity first</span><span>Separate worlds</span><span>Practical integrations</span></div>
+    </div></section>
+    <section class="section shell" id="platform">
+      <div class="section-head"><div><span class="label">Platform map</span><h2>Shared infrastructure, clear boundaries.</h2></div><p>The platform connects products without collapsing their accounts, economies, or policies into one indistinct service.</p></div>
+      <div class="product-grid">
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="product-tag">Identity</span></div><h3>Illicit ID</h3><p>Linked identities and scoped claims for participating products.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span><span class="product-tag">Backbone</span></div><h3>Illicit API</h3><p>Server-side contracts for accounts, integrations, and auditable actions.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="product-tag">Commerce</span></div><h3>Faked CC</h3><p>A developing payment and entitlement layer, separate from game coins.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="product-tag">Connectors</span></div><h3>Resupply Locker</h3><p>Installation kits and server adapters for connected games.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">⌁</span><span class="product-tag">Extensions</span></div><h3>LockLink</h3><p>A home for carefully scoped integrations and future plugin work.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span><span class="product-tag">Trust</span></div><h3>Illicit AC</h3><p>Game-integrity signals kept separate from payment eligibility.</p></article>
+      </div>
+    </section>
+    <section class="section worlds shell" id="worlds">
+      <div class="section-head"><div><span class="label">Connected worlds</span><h2>Different communities. Their own rules.</h2></div></div>
+      <div class="world-grid">
+        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label">Experimental social arcade</span><span class="world-sigil" aria-hidden="true">ϟ</span><h3>Omerta Chat</h3><p>Play, collect, and connect in the original Illicit world.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label">All-ages community</span><span class="world-sigil" aria-hidden="true">♆</span><h3>Atlantis Chat</h3><p>A distinct, PG world with its own identity and economy.</p><span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    <section class="section developer" id="developers"><div class="shell dev-layout">
+      <div class="dev-copy"><span class="label">Developer desk</span><h2>Start at the boundary, then build outward.</h2><p>Explore public endpoints and integration packages without mixing browser code with server credentials. This desk is a starting point; protected API calls belong on your server.</p><ul class="dev-list"><li>Choose the world you are integrating with.</li><li>Inspect a public endpoint or download manifest.</li><li>Keep private keys out of pages, widgets, and clients.</li></ul></div>
+      <div class="tool" aria-label="Public API link builder">
+        <div class="tool-heading"><strong>Public API link builder</strong><small>No sign-in or key required</small></div>
+        <div class="tool-body"><div class="tool-inputs"><div><label for="world-select">World</label><select id="world-select"><option value="omerta">Omerta Chat</option><option value="atlantis">Atlantis Chat</option></select></div><div><label for="endpoint-select">Endpoint</label><select id="endpoint-select"><option value="/health">Application health</option><option id="download-option" value="/api/integrations/downloads">Integration packages (Omerta)</option></select></div></div><p class="tool-note">Endpoints describe the selected live instance, not a shared account or database.</p><div class="request-preview"><span class="method">GET</span><code id="request-url">https://illicit.up.railway.app/health</code></div><div class="tool-actions"><a id="open-endpoint" href="https://illicit.up.railway.app/health" target="_blank" rel="noopener noreferrer">Open endpoint ↗</a><button id="copy-url" type="button">Copy URL</button><button id="copy-curl" type="button">Copy curl</button></div></div>
+        <div class="tool-footer" id="tool-feedback" role="status" aria-live="polite">Protected operations require documented, server-side credentials.</div>
+      </div>
+    </div></section>
+    <section class="section shell" id="principles"><div class="section-head"><div><span class="label">How we build</span><h2>Small promises. Strong foundations.</h2></div></div><div class="principles"><div class="principle"><b>Truthful release status</b><p>A downloadable kit is not the same as a live-tested integration.</p></div><div class="principle"><b>Identity without oversharing</b><p>Products receive only the claims needed for their own job.</p></div><div class="principle"><b>Commerce without confusion</b><p>Money, entitlements, and earned game currency are separate records.</p></div></div></section>
+  </main>
+  <footer class="shell footer"><div><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a><p>Illicit Corporation builds independent worlds on deliberate shared infrastructure. This page is the platform entry point, not an Omerta or Atlantis account portal.</p></div><div class="footer-links"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="?developers#developers">Developers</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></div></footer>
+  <script>
+    (() => {
+      const world = document.getElementById('world-select');
+      const endpoint = document.getElementById('endpoint-select');
+      const downloadOption = document.getElementById('download-option');
+      const preview = document.getElementById('request-url');
+      const open = document.getElementById('open-endpoint');
+      const feedback = document.getElementById('tool-feedback');
+      const bases = { omerta: 'https://illicit.up.railway.app', atlantis: 'https://ill.up.railway.app' };
+      const currentUrl = () => new URL(endpoint.value, bases[world.value]).href;
+      const update = () => { downloadOption.disabled = world.value === 'atlantis'; if (downloadOption.disabled && endpoint.value === downloadOption.value) endpoint.value = '/health'; const url = currentUrl(); preview.textContent = url; open.href = url; feedback.textContent = 'Protected operations require documented, server-side credentials.'; };
+      const copy = async value => { try { await navigator.clipboard.writeText(value); feedback.textContent = 'Copied to clipboard.'; } catch { feedback.textContent = 'Clipboard unavailable here. Select and copy the address above.'; } };
+      world.addEventListener('change', update);
+      endpoint.addEventListener('change', update);
+      document.getElementById('copy-url').addEventListener('click', () => copy(currentUrl()));
+      document.getElementById('copy-curl').addEventListener('click', () => copy(`curl --fail --show-error '${currentUrl()}'`));
+      if (new URLSearchParams(location.search).has('developers')) document.getElementById('nav-developers').setAttribute('aria-current', 'page');
+      update();
+    })();
+  </script>
+</body>
+</html>
