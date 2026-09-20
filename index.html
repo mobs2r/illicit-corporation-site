@@ -59,14 +59,14 @@
     section { scroll-margin-top:100px; }
     .section { padding:83px 0; }
     .label { color:var(--gold); font-size:10px; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
-    .product-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
-    .product { display:flex; grid-column:span 2; flex-direction:column; min-height:202px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .product-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .product { display:flex; flex-direction:column; min-height:180px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
     .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
     .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
     .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
     .mushroom-icon { width:21px; height:21px; fill:currentColor; }
     .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
-    .product p { margin:0; color:#b5bdc5; font-size:12px; }
+    .product p { margin:0; color:#b5bdc5; font-size:11px; letter-spacing:-.012em; line-height:1.4; }
     .worlds { padding-top:0; }
     .world-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     .world { position:relative; min-height:230px; overflow:hidden; padding:27px; border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
@@ -131,12 +131,12 @@
     </div></section>
     <section class="section shell" id="platform">
       <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>A shared server API for accounts and integrations, with actions that can be traced and reviewed.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Anti-cheat signals for connected games. It does not determine payment eligibility.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Installable packages and server adapters that connect games to the Illicit platform.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Links identities across participating products without merging their separate accounts.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>In development: connects real-money payments to product access, separate from in-game coins.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushroom</h3><p>Processes analytics from Omerta, Atlantis, and Vandam(e)bash to train Illicit API. Third-party forks can opt in.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Resupply Locker is a game modification suite aiming to enable third-party games on Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushroom</h3><p>Mushroom is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds">
