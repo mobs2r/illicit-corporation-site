@@ -68,6 +68,7 @@
     .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
     .product-zap { width:18px; height:24px; fill:var(--omerta-mark); }
     .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
+    .product-icon.atlantis-logo { font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif; font-variant-emoji:text; }
     .product-tag { color:#87929d; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
     .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
     .product p { margin:0; color:#b5bdc5; font-size:12px; }
@@ -91,6 +92,8 @@
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
     :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
     :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
+    :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
+    :root[data-theme="light"] .brand-mark::after { background:var(--gold); box-shadow:0 0 12px var(--gold); }
     :root[data-theme="light"] .site-nav a { color:#536171; }
     :root[data-theme="light"] .site-nav a:hover,:root[data-theme="light"] .site-nav a[aria-current="page"] { color:#172332; }
     :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
@@ -105,9 +108,13 @@
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
     :root[data-theme="light"] .hero-meta,:root[data-theme="light"] .product-tag { color:#526478; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
+    :root[data-theme="light"] .product-icon.omerta-logo { color:var(--green); }
+    :root[data-theme="light"] .product-icon.atlantis-logo { color:var(--gold); }
     :root[data-theme="light"] .product p,:root[data-theme="light"] .world p { color:#415267; }
-    :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#c7463c22,transparent 36%),linear-gradient(110deg,#fff6f4,#f3f6f9); }
-    :root[data-theme="light"] .world.atlantis { background:radial-gradient(circle at 84% 50%,#337eba24,transparent 36%),linear-gradient(110deg,#f1f7fd,#f3f6f9); }
+    :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
+    :root[data-theme="light"] .world.atlantis { background:radial-gradient(circle at 84% 50%,#d2a13c2b,transparent 36%),linear-gradient(110deg,#fffaf0,#f3f6f9); }
+    :root[data-theme="light"] .omerta .world-sigil { color:var(--green); }
+    :root[data-theme="light"] .atlantis .world-sigil { color:var(--gold); }
     :root[data-theme="light"] .world:hover { border-color:#7b91a8; }
     :root[data-theme="light"] .world .label { color:#425269; }
     :root[data-theme="light"] .world .build-label { color:var(--gold); }
@@ -142,8 +149,8 @@
         <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="product-tag">Commerce</span></div><h3>Faked CC</h3><p>A developing payment and entitlement layer, separate from game coins.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="product-tag">Connectors</span></div><h3>Resupply Locker</h3><p>Installation kits and server adapters for connected games.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span><span class="product-tag">Trust</span></div><h3>Illicit AC</h3><p>Game-integrity signals kept separate from payment eligibility.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true"><svg class="product-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><span class="product-tag">Community</span></div><h3>Omerta Chat</h3><p>The original social world, with its own accounts, arcade, and economy.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">🔱</span><span class="product-tag">Community</span></div><h3>Atlantis Chat</h3><p>A separate, all-ages community with its own identity and game progress.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red omerta-logo" aria-hidden="true"><svg class="product-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><span class="product-tag">Community</span></div><h3>Omerta Chat</h3><p>The original social world, with its own accounts, arcade, and economy.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue atlantis-logo" aria-hidden="true">🔱︎</span><span class="product-tag">Community</span></div><h3>Atlantis Chat</h3><p>A separate, all-ages community with its own identity and game progress.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◉</span><span class="product-tag">Games</span></div><h3>Arcade</h3><p>Playable modes and rewards inside each world, under that world’s rules.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">▣</span><span class="product-tag">Discovery</span></div><h3>Games Library</h3><p>Curated game pages, media, and launch links in Omerta Chat.</p></article>
       </div>
