@@ -13,6 +13,8 @@ const worlds = {
 
 async function main() {
   const builds = { ...fallback };
+  const siteCommit = String(process.env.GITHUB_SHA || '');
+  if (/^[a-f0-9]{40}$/i.test(siteCommit)) builds.platform = siteCommit.toLowerCase();
   await Promise.all(Object.entries(worlds).map(async ([world, url]) => {
     try {
       const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
