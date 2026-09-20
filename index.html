@@ -35,9 +35,6 @@
     @keyframes brand-orbit { from { offset-distance:0%; } to { offset-distance:100%; } }
     .brand-copy { display:flex; flex-direction:column; font-size:14px; font-weight:850; letter-spacing:.12em; line-height:1.1; text-transform:uppercase; }
     .brand-copy small { margin-top:4px; color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.27em; }
-    .site-nav { display:flex; gap:23px; align-items:center; }
-    .site-nav a { color:#c3c9cf; font-size:12px; font-weight:750; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
-    .site-nav a:hover,.site-nav a[aria-current="page"] { color:#fff; }
     .header-link { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:1px solid #6a7d88; border-radius:9px; font-size:12px; font-weight:800; text-decoration:none; white-space:nowrap; }
     .header-link:hover { background:#ffffff12; }
     .header-tools { display:flex; align-items:center; gap:8px; }
@@ -71,21 +68,14 @@
     .action:hover { transform:translateY(-2px); border-color:#b1c3d6; background:#ffffff12; }
     .action-primary { border-color:#aec8e5; background:#b9d5ef; color:#101820; }
     .action-primary:hover { background:#d4e7f8; }
-    .hero-meta { display:flex; flex-wrap:wrap; gap:8px 25px; margin-top:64px; color:#9ca6b0; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-    .hero-meta span::before { display:inline-block; width:5px; height:5px; margin:0 9px 2px 0; border-radius:50%; background:var(--green); content:""; }
     section { scroll-margin-top:100px; }
     .section { padding:83px 0; }
-    .section-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:25px; }
-    .section-head h2 { max-width:780px; margin:7px 0 0; font-size:clamp(27px,3.2vw,46px); line-height:1.09; letter-spacing:-.045em; }
-    .section-head p { max-width:360px; margin:0; color:var(--muted); font-size:13px; }
     .label { color:var(--gold); font-size:10px; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
     .product-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
     .product { display:flex; grid-column:span 2; flex-direction:column; min-height:202px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
     .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
     .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
-    .product-zap { width:18px; height:24px; fill:var(--omerta-mark); }
     .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
-    .product-icon.atlantis-logo { font-family:"Segoe UI Symbol","Noto Sans Symbols 2",sans-serif; font-variant-emoji:text; }
     .product-tag { color:#87929d; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
     .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
     .product p { margin:0; color:#b5bdc5; font-size:12px; }
@@ -103,30 +93,38 @@
     .world h3 { position:relative; margin:49px 0 5px; font-size:29px; letter-spacing:-.055em; }
     .world p { position:relative; max-width:280px; margin:0; color:#bec5cc; font-size:12px; }
     .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
-    .footer { display:flex; flex-direction:column; align-items:flex-start; gap:18px; padding:37px 0 44px; border-top:1px solid #ffffff15; }
+    .footer { padding:37px 0 44px; border-top:1px solid #ffffff15; }
+    .footer-main { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:32px 60px; }
+    .footer-identity { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
     .footer .brand-copy { font-size:16px; }
     .footer-links { display:flex; flex-wrap:wrap; justify-content:start; gap:12px 20px; font-size:11px; }
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
+    .footer-contact { display:flex; flex-wrap:wrap; gap:22px 44px; }
+    .footer-address { color:var(--muted); font-size:12px; font-style:normal; line-height:1.65; }
+    .footer-address strong { display:block; color:var(--text); font-size:11px; letter-spacing:.11em; text-transform:uppercase; }
+    .footer-reach { display:flex; flex-direction:column; align-items:flex-start; gap:13px; }
+    .footer-email { color:var(--text); font-size:12px; text-decoration:none; }.footer-email:hover { text-decoration:underline; }
+    .footer-social { display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
+    .footer-social-title { margin-right:4px; color:var(--muted); font-size:11px; }
+    .footer-social a { display:grid; place-items:center; width:32px; height:32px; border:1px solid var(--line); border-radius:8px; color:var(--text); text-decoration:none; transition:background .18s ease,border-color .18s ease; }
+    .footer-social a:hover { border-color:var(--blue); background:var(--raised); }
+    .footer-social svg { width:16px; height:16px; fill:currentColor; }
     :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
     :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
     :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
     :root[data-theme="light"] .brand-mark::after { background:var(--gold); box-shadow:0 0 12px var(--gold); }
-    :root[data-theme="light"] .site-nav a { color:#536171; }
-    :root[data-theme="light"] .site-nav a:hover,:root[data-theme="light"] .site-nav a[aria-current="page"] { color:#172332; }
     :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
     :root[data-theme="light"] .header-link:hover,:root[data-theme="light"] .theme-toggle:hover { background:#e9f0f7; }
     :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; }
     :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 13%,#f5f7fad9 55%,#f5f7fa44 100%),linear-gradient(#25486910 1px,transparent 1px),linear-gradient(90deg,#25486910 1px,transparent 1px); background-size:auto,54px 54px,54px 54px; }
     :root[data-theme="light"] .hero::after { border-color:#39699427; box-shadow:0 0 0 70px #5d9bd10b,0 0 0 150px #a6333e09,inset 0 0 100px #5d9bd10b; }
-    :root[data-theme="light"] .hero-intro,:root[data-theme="light"] .section-head p { color:#405063; }
+    :root[data-theme="light"] .hero-intro { color:#405063; }
     :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; }
     :root[data-theme="light"] .action:hover { border-color:#5d7894; background:#eaf1f8; }
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
-    :root[data-theme="light"] .hero-meta,:root[data-theme="light"] .product-tag { color:#526478; }
+    :root[data-theme="light"] .product-tag { color:#526478; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
-    :root[data-theme="light"] .product-icon.omerta-logo { color:var(--green); }
-    :root[data-theme="light"] .product-icon.atlantis-logo { color:var(--gold); }
     :root[data-theme="light"] .product p,:root[data-theme="light"] .world p { color:#415267; }
     :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
     :root[data-theme="light"] .world.atlantis { background:radial-gradient(circle at 84% 50%,#d2a13c2b,transparent 36%),linear-gradient(110deg,#fffaf0,#f3f6f9); }
@@ -138,8 +136,8 @@
     :root[data-theme="light"] .footer { border-top-color:#d5dee8; }
     :root[data-theme="light"] .footer-links a { color:#344a60; }
     :root[data-theme="light"] .footer-links a:hover { color:#172332; }
-    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.site-nav { gap:13px; }.site-nav a { font-size:10px; }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.site-nav { gap:9px; }.site-nav a { font-size:9px; }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.hero-meta { margin-top:45px; }.section { padding:57px 0; }.section-head { display:block; }.section-head p { margin-top:12px; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; } }
+    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; }.footer-main { grid-template-columns:1fr; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer-contact { flex-direction:column; gap:16px; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; }.brand-mark::before,.brand-mark::after { animation:none; }.brand-mark::after { offset-distance:50%; }.hero-word-track { animation:none; } }
   </style>
 </head>
@@ -147,7 +145,6 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <nav class="site-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a></nav>
       <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Docs <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
@@ -156,31 +153,35 @@
       <h1>One foundation.<em>Many worlds.</em></h1>
       <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word-track"><span>gaming</span><span>fitness</span><span>identity</span><span>crypto</span><span>fiat</span><span>blogging</span><span>streaming</span><span>dating</span><span>development</span><span>gaming</span></span></span><span class="sr-only">gaming, fitness, identity, crypto, fiat, blogging, streaming, dating, and development.</span></p>
       <div class="actions"><a class="action action-primary" href="#platform">Explore <span aria-hidden="true">↗</span></a><a class="action" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
-      <div class="hero-meta"><span>Identity first</span><span>Separate worlds</span><span>Practical integrations</span></div>
     </div></section>
     <section class="section shell" id="platform">
-      <div class="section-head"><div><span class="label">Platform map</span><h2>Shared infrastructure, clear boundaries.</h2></div><p>The platform connects products without collapsing their accounts, economies, or policies into one indistinct service.</p></div>
       <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="product-tag">Identity</span></div><h3>Faked ID</h3><p>Linked identities and scoped claims for participating products.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span><span class="product-tag">Backbone</span></div><h3>Illicit API</h3><p>Server-side contracts for accounts, integrations, and auditable actions.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="product-tag">Commerce</span></div><h3>Faked CC</h3><p>A developing payment and entitlement layer, separate from game coins.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="product-tag">Connectors</span></div><h3>Resupply Locker</h3><p>Installation kits and server adapters for connected games.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span><span class="product-tag">Trust</span></div><h3>Illicit AC</h3><p>Game-integrity signals kept separate from payment eligibility.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red omerta-logo" aria-hidden="true"><svg class="product-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><span class="product-tag">Community</span></div><h3>Omerta Chat</h3><p>The original social world, with its own accounts, arcade, and economy.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue atlantis-logo" aria-hidden="true">🔱︎</span><span class="product-tag">Community</span></div><h3>Atlantis Chat</h3><p>A separate, all-ages community with its own identity and game progress.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◉</span><span class="product-tag">Games</span></div><h3>Arcade</h3><p>Playable modes and rewards inside each world, under that world’s rules.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">▣</span><span class="product-tag">Discovery</span></div><h3>Games Library</h3><p>Curated game pages, media, and launch links in Omerta Chat.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="product-tag">Connectors</span></div><h3>Resupply Locker</h3><p>Installation kits and server adapters for connected games.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="product-tag">Identity</span></div><h3>Faked ID</h3><p>Linked identities and scoped claims for participating products.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="product-tag">Commerce</span></div><h3>Faked CC</h3><p>A developing payment and entitlement layer, separate from game coins.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">¢</span><span class="product-tag">Game economy</span></div><h3>CrabCoin</h3><p>Game-coin balances and rewards, kept separate from real-money payments.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds">
-      <div class="section-head"><div><span class="label">Connected worlds</span><h2>Different communities. Their own rules.</h2></div></div>
       <div class="world-grid">
         <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><h3>Omerta Chat</h3><p>One coin, many worlds...</p><span class="arrow" aria-hidden="true">↗</span></a>
         <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="atlantis">Build #f21cd57</span><span class="world-sigil" aria-hidden="true">🔱︎</span><h3>Atlantis Chat</h3><p>Play, collect, connect...</p><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>
-  <footer class="shell footer"><a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a><nav class="footer-links" aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav></footer>
+  <footer class="shell footer"><div class="footer-main">
+    <div class="footer-identity"><a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a><nav class="footer-links" aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav></div>
+    <div class="footer-contact"><address class="footer-address"><strong>Illicit</strong>310 Wall Street<br>Saskatoon, SK S7K 1N7<br>Canada</address><div class="footer-reach"><a class="footer-email" href="mailto:mobs2r@waifu.club">mobs2r@waifu.club</a><div class="footer-social" aria-label="mobs2r social media"><span class="footer-social-title">@mobs2r</span>
+      <a href="https://github.com/mobs2r" aria-label="mobs2r on GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a href="https://steamcommunity.com/id/mobs2r/" aria-label="mobs2r on Steam" title="Steam" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg></a>
+      <a href="https://twitch.tv/mobs2r" aria-label="mobs2r on Twitch" title="Twitch" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg></a>
+      <a href="https://kick.com/mobs2r" aria-label="mobs2r on Kick" title="Kick" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z"/></svg></a>
+      <a href="https://x.com/mobs2r" aria-label="mobs2r on X" title="X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></a>
+      <a href="https://www.youtube.com/@mobs2r/" aria-label="mobs2r on YouTube" title="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div></div></div>
+  </div></footer>
   <script>
     (() => {
       const themeToggle = document.getElementById('theme-toggle');
