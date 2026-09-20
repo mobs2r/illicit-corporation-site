@@ -40,11 +40,10 @@
     .header-tools { display:flex; align-items:center; gap:8px; }
     .theme-toggle { display:grid; place-items:center; width:38px; height:38px; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); cursor:pointer; font-size:19px; }
     .theme-toggle:hover { background:#ffffff12; }
-    .hero { position:relative; overflow:hidden; isolation:isolate; padding:94px 0 80px; border-bottom:1px solid #ffffff12; }
-    .hero::before { position:absolute; z-index:-2; inset:0; content:""; background:linear-gradient(90deg,#101318 13%,#101318d0 55%,#10131844 100%),linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px); background-size:auto,54px 54px,54px 54px; mask-image:linear-gradient(#000 75%,transparent); animation:hero-grid-drift 28s linear infinite; }
-    .hero::after { position:absolute; z-index:-1; top:5%; right:-20%; width:min(75vw,850px); aspect-ratio:1; border:1px solid #aab2bc22; border-radius:50%; background:radial-gradient(circle at 45% 45%,#88bcf010,transparent 56%); content:""; box-shadow:0 0 0 70px #9fc4ea09,0 0 0 150px #f1857d06,inset 0 0 100px #8bb9ed0c; animation:hero-ambient-float 18s ease-in-out infinite; }
-    @keyframes hero-grid-drift { to { background-position:0 0,54px 54px,54px 54px; } }
-    @keyframes hero-ambient-float { 0%,100% { transform:translate3d(0,0,0) scale(1); opacity:.78; } 50% { transform:translate3d(-5%,4%,0) scale(1.07); opacity:1; } }
+    .hero { position:relative; overflow:hidden; isolation:isolate; padding:94px 0 80px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
+    .hero-canvas { position:absolute; z-index:0; inset:0; display:block; width:100%; height:100%; pointer-events:none; }
+    .hero::before { position:absolute; z-index:1; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,#101318 0%,#101318ee 25%,#101318a8 47%,transparent 83%),linear-gradient(0deg,#101318 0%,transparent 18%); }
+    .hero > .shell { position:relative; z-index:2; }
     h1,h2,h3,p { margin-top:0; }
     h1 { max-width:820px; margin:20px 0 19px; font-size:clamp(48px,7.2vw,108px); font-weight:850; line-height:.98; letter-spacing:-.072em; }
     h1 em { display:block; color:var(--blue); font-style:normal; }
@@ -87,11 +86,7 @@
     .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
     .footer { padding:37px 0 44px; border-top:1px solid #ffffff15; }
     .footer-identity { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
-    .footer-brands { display:flex; align-items:center; gap:14px; }
     .footer .brand-copy { font-size:16px; }
-    .footer-brand-divider { color:var(--muted); font-size:20px; font-weight:300; line-height:1; }
-    .footer-llc-mark { color:var(--text); font-size:20px; font-weight:850; letter-spacing:.08em; line-height:1; }
-    .footer-llc-mark .llc-red { color:#ef666b; }
     .footer-links { display:flex; flex-wrap:wrap; justify-content:start; gap:12px 20px; font-size:11px; }
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
     :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
@@ -100,9 +95,8 @@
     :root[data-theme="light"] .brand-mark::after { background:var(--gold); box-shadow:0 0 12px var(--gold); }
     :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
     :root[data-theme="light"] .header-link:hover,:root[data-theme="light"] .theme-toggle:hover { background:#e9f0f7; }
-    :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; }
-    :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 13%,#f5f7fad9 55%,#f5f7fa44 100%),linear-gradient(#25486910 1px,transparent 1px),linear-gradient(90deg,#25486910 1px,transparent 1px); background-size:auto,54px 54px,54px 54px; }
-    :root[data-theme="light"] .hero::after { border-color:#39699427; box-shadow:0 0 0 70px #5d9bd10b,0 0 0 150px #a6333e09,inset 0 0 100px #5d9bd10b; }
+    :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; background:radial-gradient(ellipse at 78% 48%,#dceafb 0%,#edf3fa 57%,#f5f7fa 90%); }
+    :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 0%,#f5f7faf2 26%,#f5f7fab0 49%,transparent 85%),linear-gradient(0deg,#f5f7fa 0%,transparent 18%); }
     :root[data-theme="light"] .hero-intro { color:#405063; }
     :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; }
     :root[data-theme="light"] .action:hover { border-color:#5d7894; background:#eaf1f8; }
@@ -119,12 +113,11 @@
     :root[data-theme="light"] .world .label { color:#425269; }
     :root[data-theme="light"] .world .build-label { color:var(--gold); }
     :root[data-theme="light"] .footer { border-top-color:#d5dee8; }
-    :root[data-theme="light"] .footer-llc-mark .llc-red { color:#aa2433; }
     :root[data-theme="light"] .footer-links a { color:#344a60; }
     :root[data-theme="light"] .footer-links a:hover { color:#172332; }
     @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer-brands { gap:9px; }.footer .brand-copy { font-size:14px; }.footer-brand-divider { font-size:18px; }.footer-llc-mark { font-size:18px; letter-spacing:.06em; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; }.brand-mark::before,.brand-mark::after,.hero::before,.hero::after,.hero-word-track { animation:none; }.brand-mark::after { offset-distance:50%; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer .brand-copy { font-size:14px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; }.brand-mark::before,.brand-mark::after,.hero-word-track { animation:none; }.brand-mark::after { offset-distance:50%; } }
   </style>
 </head>
 <body>
@@ -135,7 +128,7 @@
     </div>
   </header>
   <main>
-    <section class="hero" id="home"><div class="shell">
+    <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
       <h1>One foundation.<em>Many worlds.</em></h1>
       <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word-track"><span>gaming.</span><span>fitness.</span><span>identity.</span><span>crypto.</span><span>fiat.</span><span>blogging.</span><span>streaming.</span><span>dating.</span><span>development.</span><span>collecting.</span><span>commerce.</span><span>analytics.</span><span>community.</span><span>gaming.</span></span></span><span class="sr-only">gaming, fitness, identity, crypto, fiat, blogging, streaming, dating, development, collecting, commerce, analytics, and community.</span></p>
       <div class="actions"><a class="action action-primary" href="#platform">Explore <span aria-hidden="true">↗</span></a><a class="action" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
@@ -159,11 +152,7 @@
   </main>
   <footer class="shell footer">
     <div class="footer-identity">
-      <div class="footer-brands">
-        <a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-        <span class="footer-brand-divider" aria-hidden="true">|</span>
-        <span class="footer-llc-mark" role="img" aria-label="Illicit LLC">I<span class="llc-red">LL</span>I<span class="llc-red">C</span>IT</span>
-      </div>
+      <a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
       <nav class="footer-links" aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav>
     </div>
   </footer>
@@ -181,8 +170,148 @@
       themeToggle.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         applyTheme(next);
+        heroMotion?.refresh();
         try { localStorage.setItem('illicit-corporation-theme', next); } catch {}
       });
+      const initHeroMotion = () => {
+        const canvas = document.getElementById('hero-canvas');
+        const context = canvas?.getContext('2d', { alpha: false });
+        if (!context) return null;
+        const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+        let width = 0;
+        let height = 0;
+        let visible = true;
+        let frame = 0;
+        let lastFrame = 0;
+
+        const draw = time => {
+          const light = document.documentElement.dataset.theme === 'light';
+          const w = width;
+          const h = height;
+          const base = context.createLinearGradient(0, 0, w, h);
+          if (light) {
+            base.addColorStop(0, '#f5f7fa');
+            base.addColorStop(0.58, '#e7eff9');
+            base.addColorStop(1, '#d9e4f5');
+          } else {
+            base.addColorStop(0, '#101318');
+            base.addColorStop(0.58, '#101a2b');
+            base.addColorStop(1, '#09162a');
+          }
+          context.fillStyle = base;
+          context.fillRect(0, 0, w, h);
+
+          // Slow colour fields give the waves depth without a repeating grid or hard rings.
+          const fields = light
+            ? [[0.75, 0.18, 0.62, '112,156,225', 0.12], [0.96, 0.8, 0.76, '154,133,211', 0.09], [0.62, 0.64, 0.48, '91,182,211', 0.11]]
+            : [[0.74, 0.13, 0.66, '42,103,186', 0.2], [0.95, 0.79, 0.7, '96,60,155', 0.16], [0.62, 0.58, 0.48, '20,151,190', 0.12]];
+          for (let i = 0; i < fields.length; i++) {
+            const [x, y, radius, colour, alpha] = fields[i];
+            const drift = Math.sin(time * 0.13 + i * 2.1) * 0.055;
+            const glow = context.createRadialGradient((x + drift) * w, y * h, 0, (x + drift) * w, y * h, radius * Math.max(w, h));
+            glow.addColorStop(0, `rgba(${colour},${alpha})`);
+            glow.addColorStop(1, `rgba(${colour},0)`);
+            context.fillStyle = glow;
+            context.fillRect(0, 0, w, h);
+          }
+
+          // Broad translucent silk, followed by fine luminous filaments.
+          const waveY = (x, layer, offset = 0) => {
+            const u = x / w;
+            const sweep = Math.sin(u * 5.7 + time * 0.16 + layer * 0.68) * h * 0.2;
+            const ripple = Math.sin(u * 10.4 - time * 0.095 + layer * 0.36) * h * 0.036;
+            return h * (0.56 + layer * 0.09 + offset) - u * h * 0.14 + sweep + ripple;
+          };
+          for (let layer = 2; layer >= 0; layer--) {
+            const ribbon = context.createLinearGradient(w * 0.33, 0, w, h);
+            const tint = light ? ['76,140,201', '102,114,194', '78,173,194'][layer] : ['62,140,229', '125,92,220', '48,185,211'][layer];
+            ribbon.addColorStop(0, `rgba(${tint},0)`);
+            ribbon.addColorStop(0.45, `rgba(${tint},${light ? 0.09 : 0.12})`);
+            ribbon.addColorStop(1, `rgba(${tint},${light ? 0.2 : 0.23})`);
+            context.beginPath();
+            for (let x = 0; x <= w + 16; x += 16) {
+              const y = waveY(x, layer);
+              if (x === 0) context.moveTo(x, y);
+              else context.lineTo(x, y);
+            }
+            for (let x = w + 16; x >= 0; x -= 16) context.lineTo(x, waveY(x, layer, 0.15));
+            context.closePath();
+            context.fillStyle = ribbon;
+            context.fill();
+          }
+
+          const strandCount = w < 620 ? 17 : 31;
+          for (let strand = 0; strand < strandCount; strand++) {
+            const layer = strand % 3;
+            const offset = (strand / strandCount - 0.5) * 0.26;
+            const colour = light
+              ? ['54,112,178', '91,91,172', '44,142,170'][layer]
+              : ['104,179,255', '172,138,255', '81,215,231'][layer];
+            const fade = context.createLinearGradient(w * 0.23, 0, w, 0);
+            fade.addColorStop(0, `rgba(${colour},0)`);
+            fade.addColorStop(0.43, `rgba(${colour},${light ? 0.16 : 0.23})`);
+            fade.addColorStop(0.8, `rgba(${colour},${light ? 0.35 : 0.48})`);
+            fade.addColorStop(1, `rgba(${colour},${light ? 0.08 : 0.15})`);
+            context.beginPath();
+            for (let x = 0; x <= w + 10; x += 10) {
+              const y = waveY(x, layer, offset) + Math.sin(x / w * 6.5 + strand * 0.53 + time * 0.11) * h * 0.012;
+              if (x === 0) context.moveTo(x, y);
+              else context.lineTo(x, y);
+            }
+            context.strokeStyle = fade;
+            context.lineWidth = strand % 7 === 0 ? 1.35 : 0.65;
+            context.stroke();
+          }
+
+          for (let i = 0; i < 17; i++) {
+            const x = w * (0.45 + ((i * 0.61803398875) % 1) * 0.53);
+            const y = h * (0.11 + ((i * 0.38196601125) % 1) * 0.76);
+            const twinkle = 0.45 + 0.55 * Math.sin(time * 0.55 + i * 2.4);
+            context.beginPath();
+            context.arc(x, y, i % 5 === 0 ? 1.1 : 0.65, 0, Math.PI * 2);
+            context.fillStyle = light ? `rgba(60,109,168,${twinkle * 0.29})` : `rgba(196,226,255,${twinkle * 0.47})`;
+            context.fill();
+          }
+        };
+        const resize = () => {
+          const bounds = canvas.getBoundingClientRect();
+          width = Math.max(1, bounds.width);
+          height = Math.max(1, bounds.height);
+          const scale = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = Math.round(width * scale);
+          canvas.height = Math.round(height * scale);
+          context.setTransform(scale, 0, 0, scale, 0, 0);
+          draw(0);
+        };
+        const tick = now => {
+          frame = 0;
+          if (now - lastFrame >= 33) {
+            lastFrame = now;
+            draw(now / 1000);
+          }
+          if (visible && !document.hidden && !reducedMotion?.matches) frame = requestAnimationFrame(tick);
+        };
+        const refresh = () => {
+          if (frame) cancelAnimationFrame(frame);
+          frame = 0;
+          if (!visible || document.hidden) return;
+          draw(reducedMotion?.matches ? 0 : performance.now() / 1000);
+          if (!reducedMotion?.matches) frame = requestAnimationFrame(tick);
+        };
+        resize();
+        refresh();
+        window.addEventListener('resize', resize);
+        document.addEventListener('visibilitychange', refresh);
+        reducedMotion?.addEventListener?.('change', refresh);
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(entries => {
+            visible = entries[0]?.isIntersecting ?? true;
+            refresh();
+          }, { rootMargin: '100px' }).observe(canvas);
+        }
+        return { refresh };
+      };
+      const heroMotion = initHeroMotion();
       const updateBuilds = async () => {
         try {
           const response = await fetch('./builds.json', { cache: 'no-store' });
