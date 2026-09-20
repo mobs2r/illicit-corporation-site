@@ -87,10 +87,10 @@
     .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
     .footer { padding:37px 0 44px; border-top:1px solid #ffffff15; }
     .footer-identity { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
-    .footer-brands { display:flex; align-items:center; gap:18px; }
+    .footer-brands { display:flex; align-items:center; gap:14px; }
     .footer .brand-copy { font-size:16px; }
-    .footer-brand-divider { color:var(--muted); font-size:27px; font-weight:300; line-height:1; }
-    .footer-llc-mark { color:var(--text); font-size:32px; font-weight:850; letter-spacing:.12em; line-height:1; }
+    .footer-brand-divider { color:var(--muted); font-size:20px; font-weight:300; line-height:1; }
+    .footer-llc-mark { color:var(--text); font-size:20px; font-weight:850; letter-spacing:.08em; line-height:1; }
     .footer-llc-mark .llc-red { color:#ef666b; }
     .footer-links { display:flex; flex-wrap:wrap; justify-content:start; gap:12px 20px; font-size:11px; }
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
@@ -123,7 +123,7 @@
     :root[data-theme="light"] .footer-links a { color:#344a60; }
     :root[data-theme="light"] .footer-links a:hover { color:#172332; }
     @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer-brands { gap:10px; }.footer .brand-copy { font-size:14px; }.footer-brand-divider { font-size:23px; }.footer-llc-mark { font-size:26px; letter-spacing:.08em; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer-brands { gap:9px; }.footer .brand-copy { font-size:14px; }.footer-brand-divider { font-size:18px; }.footer-llc-mark { font-size:18px; letter-spacing:.06em; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; }.brand-mark::before,.brand-mark::after,.hero::before,.hero::after,.hero-word-track { animation:none; }.brand-mark::after { offset-distance:50%; } }
   </style>
 </head>
