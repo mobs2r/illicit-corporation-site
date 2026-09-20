@@ -86,32 +86,14 @@
     .world p { position:relative; max-width:280px; margin:0; color:#bec5cc; font-size:12px; }
     .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
     .footer { padding:37px 0 44px; border-top:1px solid #ffffff15; }
-    .footer-main { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:32px 60px; }
     .footer-identity { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+    .footer-brands { display:flex; align-items:center; gap:18px; }
     .footer .brand-copy { font-size:16px; }
+    .footer-brand-divider { color:var(--muted); font-size:27px; font-weight:300; line-height:1; }
+    .footer-llc-mark { color:var(--text); font-size:32px; font-weight:850; letter-spacing:.12em; line-height:1; }
+    .footer-llc-mark .llc-red { color:#ef666b; }
     .footer-links { display:flex; flex-wrap:wrap; justify-content:start; gap:12px 20px; font-size:11px; }
     .footer-links a { color:#c7cdd3; text-decoration:none; }.footer-links a:hover { color:#fff; text-decoration:underline; }
-    .footer-contact { display:flex; flex-wrap:wrap; gap:22px 44px; }
-    .footer-address { color:var(--muted); font-size:12px; font-style:normal; line-height:1.65; }
-    .footer-address-name { display:block; color:var(--text); }
-    .footer-reach { display:flex; flex-direction:column; align-items:flex-start; gap:13px; }
-    .footer-email { color:var(--text); font-size:12px; text-decoration:underline; text-underline-offset:3px; }.footer-email:hover { color:var(--blue); }
-    .footer-social { display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
-    .footer-social a { display:grid; place-items:center; width:32px; height:32px; border:1px solid var(--line); border-radius:8px; color:var(--text); text-decoration:none; transition:background .18s ease,border-color .18s ease; }
-    .footer-social a:hover { border-color:var(--blue); background:var(--raised); }
-    .footer-social svg { width:18px; height:18px; fill:currentColor; }
-    .footer-social .footer-steam svg { width:23px; height:23px; }
-    .footer-social .footer-steam { color:#66c0f4; }
-    .contact-dialog { width:min(420px,calc(100% - 28px)); padding:0; border:1px solid var(--line); border-radius:16px; background:var(--surface); color:var(--text); box-shadow:0 24px 90px #0009; }
-    .contact-dialog::backdrop { background:#070a0fc4; backdrop-filter:blur(4px); }
-    .contact-form { display:grid; gap:16px; padding:24px; }
-    .contact-form h2 { margin:0; font-size:22px; letter-spacing:-.04em; }
-    .contact-form p { margin:0; color:var(--muted); font-size:12px; }
-    .contact-form label { display:grid; gap:6px; font-size:12px; font-weight:700; }
-    .contact-form input,.contact-form textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:var(--raised); color:var(--text); font:inherit; resize:vertical; }
-    .contact-actions { display:flex; justify-content:flex-end; gap:8px; }
-    .contact-actions button { padding:9px 13px; border:1px solid var(--line); border-radius:8px; background:var(--raised); color:var(--text); cursor:pointer; }
-    .contact-actions button[type="submit"] { border-color:var(--blue); background:var(--blue); color:var(--bg); font-weight:800; }
     :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
     :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
     :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
@@ -127,7 +109,6 @@
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
     :root[data-theme="light"] .product-build { color:#526478; }
-    :root[data-theme="light"] .footer-social .footer-steam { color:#1b5f9b; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
     :root[data-theme="light"] .product p,:root[data-theme="light"] .world p { color:#415267; }
     :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
@@ -138,10 +119,11 @@
     :root[data-theme="light"] .world .label { color:#425269; }
     :root[data-theme="light"] .world .build-label { color:var(--gold); }
     :root[data-theme="light"] .footer { border-top-color:#d5dee8; }
+    :root[data-theme="light"] .footer-llc-mark .llc-red { color:#aa2433; }
     :root[data-theme="light"] .footer-links a { color:#344a60; }
     :root[data-theme="light"] .footer-links a:hover { color:#172332; }
-    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; }.footer-main { grid-template-columns:1fr; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer-contact { flex-direction:column; gap:16px; } }
+    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer-brands { gap:10px; }.footer .brand-copy { font-size:14px; }.footer-brand-divider { font-size:23px; }.footer-llc-mark { font-size:26px; letter-spacing:.08em; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; }.brand-mark::before,.brand-mark::after,.hero::before,.hero::after,.hero-word-track { animation:none; }.brand-mark::after { offset-distance:50%; } }
   </style>
 </head>
@@ -175,24 +157,16 @@
       </div>
     </section>
   </main>
-  <footer class="shell footer"><div class="footer-main">
-    <div class="footer-identity"><a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a><nav class="footer-links" aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav></div>
-    <div class="footer-contact"><address class="footer-address"><span class="footer-address-name">Illicit</span>310 Wall Street<br>Saskatoon, SK S7K 1N7<br>Canada</address><div class="footer-reach"><a class="footer-email" href="mailto:mobs2r@waifu.club">mobs2r@waifu.club</a><div class="footer-social" aria-label="Social media">
-      <a href="https://github.com/mobs2r" aria-label="mobs2r on GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-      <a class="footer-steam" href="https://steamcommunity.com/id/mobs2r/" aria-label="mobs2r on Steam" title="Steam" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg></a>
-      <a href="https://twitch.tv/mobs2r" aria-label="mobs2r on Twitch" title="Twitch" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg></a>
-      <a href="https://kick.com/mobs2r" aria-label="mobs2r on Kick" title="Kick" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z"/></svg></a>
-      <a href="https://x.com/mobs2r" aria-label="mobs2r on X" title="X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></a>
-      <a href="https://www.youtube.com/@mobs2r/" aria-label="mobs2r on YouTube" title="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-      <a href="https://bsky.app/profile/illicit.page" aria-label="Illicit on Bluesky" title="Bluesky" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026"/></svg></a>
-    </div></div></div>
-  </div></footer>
-  <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title"><form class="contact-form" id="contact-form">
-    <h2 id="contact-title">Email Illicit</h2><p>Write a note, then open it in your email app. Nothing is sent from this page.</p>
-    <label>Subject<input name="subject" type="text" maxlength="120" required></label>
-    <label>Message<textarea name="message" rows="5" maxlength="4000" required></textarea></label>
-    <div class="contact-actions"><button type="button" id="contact-cancel">Cancel</button><button type="submit">Open email app</button></div>
-  </form></dialog>
+  <footer class="shell footer">
+    <div class="footer-identity">
+      <div class="footer-brands">
+        <a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
+        <span class="footer-brand-divider" aria-hidden="true">|</span>
+        <span class="footer-llc-mark" role="img" aria-label="Illicit LLC">I<span class="llc-red">LL</span>I<span class="llc-red">C</span>IT</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav>
+    </div>
+  </footer>
   <script>
     (() => {
       const themeToggle = document.getElementById('theme-toggle');
@@ -208,23 +182,6 @@
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         applyTheme(next);
         try { localStorage.setItem('illicit-corporation-theme', next); } catch {}
-      });
-      const contactDialog = document.getElementById('contact-dialog');
-      const contactForm = document.getElementById('contact-form');
-      document.querySelector('.footer-email')?.addEventListener('click', event => {
-        if (typeof contactDialog?.showModal !== 'function') return;
-        event.preventDefault();
-        contactDialog.showModal();
-        contactForm.elements.subject.focus();
-      });
-      document.getElementById('contact-cancel')?.addEventListener('click', () => contactDialog.close());
-      contactForm?.addEventListener('submit', event => {
-        event.preventDefault();
-        const subject = contactForm.elements.subject.value.trim();
-        const message = contactForm.elements.message.value.trim();
-        if (!subject || !message) return;
-        contactDialog.close();
-        window.location.href = `mailto:mobs2r@waifu.club?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
       });
       const updateBuilds = async () => {
         try {
