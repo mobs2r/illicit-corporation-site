@@ -48,8 +48,10 @@
     h1 { max-width:820px; margin:20px 0 19px; font-size:clamp(48px,7.2vw,108px); font-weight:850; line-height:.98; letter-spacing:-.072em; }
     h1 em { display:block; color:var(--blue); font-style:normal; }
     .hero-intro { max-width:590px; margin-bottom:31px; color:#ccd2d8; font-size:clamp(16px,1.5vw,19px); }
-    .hero-word-window { display:inline-block; width:12ch; vertical-align:baseline; white-space:nowrap; }
-    .hero-word { color:var(--blue); font-weight:700; }
+    .hero-word-window { position:relative; display:inline-block; width:14ch; height:1.55em; overflow:hidden; vertical-align:bottom; white-space:nowrap; }
+    .hero-word { position:absolute; inset:0 auto auto 0; color:var(--blue); font-weight:700; opacity:0; transform:translate3d(0,105%,0); transition:transform .8s cubic-bezier(.37,0,.22,1),opacity .8s ease; will-change:transform,opacity; }
+    .hero-word.is-current { opacity:1; transform:translate3d(0,0,0); }
+    .hero-word.is-leaving { opacity:0; transform:translate3d(0,-105%,0); }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .actions { display:flex; flex-wrap:wrap; gap:10px; }
     .action { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:43px; padding:10px 16px; border:1px solid #596676; border-radius:9px; background:#ffffff06; font-size:13px; font-weight:780; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
@@ -113,7 +115,7 @@
     :root[data-theme="light"] .footer-links a:hover { color:#172332; }
     @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
     @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer .brand-copy { font-size:14px; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world { transition:none; }.brand-mark::before,.brand-mark::after { animation:none; }.brand-mark::after { offset-distance:50%; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world,.hero-word { transition:none; }.brand-mark::before,.brand-mark::after { animation:none; }.brand-mark::after { offset-distance:50%; } }
   </style>
 </head>
 <body>
@@ -126,7 +128,7 @@
   <main>
     <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
       <h1>One foundation.<em>Many worlds.</em></h1>
-      <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word" id="hero-word">gaming.</span></span><span class="sr-only">gaming, fitness, identity, crypto, fiat, blogging, streaming, dating, development, collecting, commerce, analytics, and community.</span></p>
+      <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
       <div class="actions"><a class="action action-primary" href="#platform">Explore <span aria-hidden="true">↗</span></a><a class="action" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
     </div></section>
     <section class="section shell" id="platform">
@@ -308,23 +310,44 @@
         return { refresh };
       };
       const heroMotion = initHeroMotion();
-      const heroWords = ['gaming.', 'fitness.', 'identity.', 'crypto.', 'fiat.', 'blogging.', 'streaming.', 'dating.', 'development.', 'collecting.', 'commerce.', 'analytics.', 'community.'];
+      const heroWords = ['analytics.', 'arcade.', 'art.', 'blogging.', 'collecting.', 'commerce.', 'community.', 'creativity.', 'crypto.', 'data.', 'dating.', 'development.', 'discovery.', 'fiat.', 'fitness.', 'gaming.', 'identity.', 'integrations.', 'music.', 'payments.', 'privacy.', 'security.', 'streaming.', 'trust.', 'worlds.'];
+      const wordWindow = document.querySelector('.hero-word-window');
       const heroWord = document.getElementById('hero-word');
       const wordMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
       let wordIndex = 0;
       let wordTimer = 0;
+      let wordCleanup = 0;
+      const advanceWord = () => {
+        const outgoing = wordWindow.querySelector('.hero-word.is-current');
+        if (!outgoing) return;
+        wordIndex = (wordIndex + 1) % heroWords.length;
+        const incoming = document.createElement('span');
+        incoming.className = 'hero-word';
+        incoming.id = 'hero-word';
+        incoming.textContent = heroWords[wordIndex];
+        outgoing.removeAttribute('id');
+        wordWindow.append(incoming);
+        // Establish the below-window position before animating both words upward.
+        incoming.getBoundingClientRect();
+        outgoing.classList.remove('is-current');
+        outgoing.classList.add('is-leaving');
+        incoming.classList.add('is-current');
+        wordCleanup = window.setTimeout(() => outgoing.remove(), 850);
+      };
       const syncWords = () => {
         if (wordTimer) window.clearInterval(wordTimer);
+        if (wordCleanup) window.clearTimeout(wordCleanup);
         wordIndex = 0;
         heroWord.textContent = heroWords[0];
-        if (wordMotion?.matches) return;
-        wordTimer = window.setInterval(() => {
-          wordIndex = (wordIndex + 1) % heroWords.length;
-          heroWord.textContent = heroWords[wordIndex];
-        }, 2800);
+        heroWord.className = 'hero-word is-current';
+        heroWord.id = 'hero-word';
+        wordWindow.replaceChildren(heroWord);
+        if (wordMotion?.matches || document.hidden) return;
+        wordTimer = window.setInterval(advanceWord, 3400);
       };
       syncWords();
       wordMotion?.addEventListener?.('change', syncWords);
+      document.addEventListener('visibilitychange', syncWords);
       const updateBuilds = async () => {
         try {
           const response = await fetch('./builds.json', { cache: 'no-store' });
