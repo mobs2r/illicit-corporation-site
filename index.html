@@ -122,14 +122,14 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Docs <span aria-hidden="true">↗</span></a></div>
+      <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://illicit.page/" target="_blank" rel="noopener noreferrer">Docs <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
   <main>
     <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
       <h1>One foundation.<em>Many worlds.</em></h1>
       <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
-      <div class="actions"><a class="action action-primary" href="#platform">Explore <span aria-hidden="true">↗</span></a><a class="action" href="https://github.com/mobs2r/illicit-corporation-site" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
+      <div class="actions"><a class="action action-primary" href="https://illicit.page/" target="_blank" rel="noopener noreferrer">Explore <span aria-hidden="true">↗</span></a><a class="action" href="https://illicit.page/" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
     </div></section>
     <section class="section shell" id="platform">
       <div class="product-grid">
@@ -151,7 +151,7 @@
   <footer class="shell footer">
     <div class="footer-identity">
       <a class="brand" href="./"><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <nav class="footer-links" aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav>
+      <nav class="footer-links" aria-label="Footer navigation"><a href="https://illicit.page/" target="_blank" rel="noopener noreferrer">Platform</a><a href="https://illicit.page/" target="_blank" rel="noopener noreferrer">Company</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta ↗</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis ↗</a></nav>
     </div>
   </footer>
   <script>
@@ -199,7 +199,6 @@
           context.fillStyle = base;
           context.fillRect(0, 0, w, h);
 
-          // Slow colour fields give the waves depth without a repeating grid or hard rings.
           const fields = light
             ? [[0.75, 0.18, 0.62, '112,156,225', 0.12], [0.96, 0.8, 0.76, '154,133,211', 0.09], [0.62, 0.64, 0.48, '91,182,211', 0.11]]
             : [[0.74, 0.13, 0.66, '42,103,186', 0.2], [0.95, 0.79, 0.7, '96,60,155', 0.16], [0.62, 0.58, 0.48, '20,151,190', 0.12]];
@@ -213,7 +212,6 @@
             context.fillRect(0, 0, w, h);
           }
 
-          // Broad translucent silk, followed by fine luminous filaments.
           const waveY = (x, layer, offset = 0) => {
             const u = x / w;
             const sweep = Math.sin(u * 5.7 + time * 0.16 + layer * 0.68) * h * 0.2;
@@ -327,7 +325,6 @@
         incoming.textContent = heroWords[wordIndex];
         outgoing.removeAttribute('id');
         wordWindow.append(incoming);
-        // Establish the below-window position before animating both words upward.
         incoming.getBoundingClientRect();
         outgoing.classList.remove('is-current');
         outgoing.classList.add('is-leaving');
