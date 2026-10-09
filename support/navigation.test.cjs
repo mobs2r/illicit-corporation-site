@@ -27,5 +27,5 @@ test('homepage links every current world with its own mark and concise moniker',
   assert.match(html, /class="world-symbol codcity-skull"/);
   assert.match(html, /class="world-symbol gknuckle-mark"/);
   assert.match(html, /Build #e0f83a3/);
-  assert.match(html, /Build #legacy/);
+  assert.match(html, /Build #6b7e0a4/);
 });
