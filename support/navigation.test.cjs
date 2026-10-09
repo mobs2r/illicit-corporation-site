@@ -15,6 +15,7 @@ test('homepage retains keyboard focus, responsive layout and reduced-motion supp
   assert.match(html, /:focus-visible/);
   assert.match(html, /prefers-reduced-motion:reduce/);
   assert.match(html, /@media \(max-width:620px\)/);
+  assert.match(html, /currentUrl\.searchParams\.set\('rev', revision\)/);
 });
 test('homepage links every current world with its own mark and concise moniker', () => {
   for (const [href, name, moniker] of [

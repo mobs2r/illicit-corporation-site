@@ -78,10 +78,10 @@
     .world.codcity { background:radial-gradient(circle at 84% 50%,#a4d8bd3d,transparent 36%),linear-gradient(110deg,#102319,#07120b); }
     .world.gknuckle { background:radial-gradient(circle at 84% 50%,#c5ced74a,transparent 36%),linear-gradient(110deg,#252b31,#17191e); }
     .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font:72px/1 "Segoe UI Emoji","Apple Color Emoji",sans-serif; font-variant-emoji:emoji; text-shadow:0 0 18px currentColor; }
-    .world-zap { width:54px; height:78px; fill:var(--omerta-mark); filter:drop-shadow(0 0 12px var(--omerta-mark)); }
+    .world-zap { width:47px; height:68px; fill:var(--omerta-mark); filter:drop-shadow(0 0 12px var(--omerta-mark)); }
     .world-symbol { width:78%; height:78%; overflow:visible; }
     .codcity-skull { width:56%; height:56%; fill:currentColor; filter:drop-shadow(0 0 9px currentColor); }
-    .gknuckle-mark { width:82%; height:82%; filter:drop-shadow(0 0 8px #c7d0d866); }
+    .gknuckle-mark { width:72%; height:72%; filter:drop-shadow(0 0 8px #c7d0d866); }
     .gknuckle-mark .gmod-g { fill:currentColor; }
     .omerta .world-sigil { color:var(--red); }.atlantis .world-sigil { color:var(--blue); }.codcity .world-sigil { color:#a4d8bd; }.gknuckle .world-sigil { color:#c7d0d8; }
     .world .build-label { color:var(--gold); text-transform:none; }
@@ -124,7 +124,7 @@
     :root[data-theme="light"] .footer-links a { color:#344a60; }
     :root[data-theme="light"] .footer-links a:hover { color:#172332; }
     @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:42px; height:62px; }.footer .brand-copy { font-size:14px; } }
+    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:37px; height:54px; }.footer .brand-copy { font-size:14px; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world,.hero-word { transition:none; }.brand-mark::before,.brand-mark::after { animation:none; }.brand-mark::after { offset-distance:50%; } }
   </style>
 </head>
@@ -362,6 +362,16 @@
           const response = await fetch('./builds.json', { cache: 'no-store' });
           if (!response.ok) return;
           const builds = await response.json();
+          const siteCommit = String(builds?.platform || '');
+          if (/^[a-f0-9]{7,40}$/i.test(siteCommit)) {
+            const currentUrl = new URL(window.location.href);
+            const revision = siteCommit.slice(0, 7).toLowerCase();
+            if (currentUrl.searchParams.get('rev') !== revision) {
+              currentUrl.searchParams.set('rev', revision);
+              window.location.replace(currentUrl);
+              return;
+            }
+          }
           for (const scope of ['omerta', 'atlantis', 'codcity', 'gknuckle']) {
             const commit = String(builds?.[scope] || '');
             if (!/^[a-f0-9]{7,40}$/i.test(commit)) continue;
