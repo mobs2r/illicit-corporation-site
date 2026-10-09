@@ -20,7 +20,7 @@ test('homepage retains keyboard focus, responsive layout and reduced-motion supp
 test('homepage links every current world with its own mark and concise moniker', () => {
   for (const [href, name, moniker] of [
     ['https://www.cod.city/', 'Cod City', 'Call it what you want...'],
-    ['https://gk.style/', 'gKnuckle', 'A mix of old &amp; new...']
+    ['https://www.gk.style/', 'gKnuckle', 'A mix of old &amp; new...']
   ]) {
     assert.match(html, new RegExp(`href="${href.replaceAll('.', '\\.')}`));
     assert.match(html, new RegExp(`<h3>${name}</h3><p>${moniker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
