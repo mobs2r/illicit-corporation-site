@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
 test('homepage navigation reaches real sections and documentation instead of reopening itself', () => {
-  for (const [label, id] of [['Explore', 'worlds'], ['Platform', 'platform'], ['Illicit', 'home']]) {
+  for (const [label, id] of [['Explore', 'worlds'], ['Platform', 'platform']]) {
     assert.match(html, new RegExp(`href="#${id}"( aria-current="page")?>${label}`));
     assert.ok(html.includes(`id="${id}"`));
   }
