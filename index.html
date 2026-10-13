@@ -100,6 +100,7 @@
     .illicit-footer .illicit-cross { color: var(--if-soft); font-size: 20px; line-height: 1; }
     .illicit-footer .illicit-links { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 13px; }
     .illicit-footer .illicit-links a { padding: 4px 0; color: var(--if-dim); }
+    .illicit-footer .illicit-links a > [aria-hidden="true"] { margin-left: .25em; }
     .illicit-footer .illicit-links a[aria-current="page"] { color: var(--if-ink); font-weight: 650; }
     .illicit-footer a:hover, .illicit-footer a:focus-visible { color: var(--if-ink); text-decoration: underline; text-underline-offset: 4px; }
     .illicit-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }
@@ -173,7 +174,7 @@
   </main>
   <footer class="shell footer illicit-footer">
     <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#home" aria-current="page">Illicit</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true"> ↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis<span aria-hidden="true"> ↗</span></a><a href="https://www.cod.city/" target="_blank" rel="noopener noreferrer">cod.city<span aria-hidden="true"> ↗</span></a><a href="https://www.gk.style/" target="_blank" rel="noopener noreferrer">gKnuckle<span aria-hidden="true"> ↗</span></a><a href="#platform">Platform</a></nav>
+    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#home" aria-current="page">Illicit</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis<span aria-hidden="true">↗</span></a><a href="https://www.cod.city/" target="_blank" rel="noopener noreferrer">cod.city<span aria-hidden="true">↗</span></a><a href="https://www.gk.style/" target="_blank" rel="noopener noreferrer">gKnuckle<span aria-hidden="true">↗</span></a><a href="#platform">Platform</a></nav>
   </footer>
   <script>
     (() => {
