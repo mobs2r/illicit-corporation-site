@@ -9,7 +9,9 @@ test('homepage navigation reaches real sections and documentation instead of reo
     assert.match(html, new RegExp(`href="#${id}"( aria-current="page")?>${label}`));
     assert.ok(html.includes(`id="${id}"`));
   }
-  for (const label of ['Docs', 'Build']) assert.match(html, new RegExp(`href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">${label}`));
+  assert.match(html, /href="https:\/\/github\.com\/mobs2r" target="_blank" rel="noopener noreferrer">GitHub/);
+  assert.doesNotMatch(html, />Docs </);
+  assert.match(html, /href="https:\/\/illicit\.up\.railway\.app\/support\/distribution" target="_blank" rel="noopener noreferrer">Build/);
 });
 test('homepage retains keyboard focus, responsive layout and reduced-motion support', () => {
   assert.match(html, /:focus-visible/);
@@ -29,4 +31,10 @@ test('homepage links every current world with its own mark and concise moniker',
   assert.match(html, /class="world-symbol gknuckle-mark"/);
   assert.match(html, /Build #e0f83a3/);
   assert.match(html, /Build #6b7e0a4/);
+});
+
+test('the mmm.page embed lives at the repository root and frames the published site', () => {
+  const embed = fs.readFileSync(path.join(__dirname, '../mmm-embed.html'), 'utf8');
+  assert.match(embed, /<iframe[\s\S]*src="https:\/\/mobs2r\.github\.io\/illicit-corporation-site\/"/);
+  assert.match(embed, /title="Illicit Corporation"/);
 });
