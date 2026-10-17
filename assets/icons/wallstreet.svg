@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#171b21"/>
-  <rect x="1" y="1" width="30" height="30" rx="6" fill="none" stroke="#f1cc86" stroke-width="1.25"/>
-  <text x="16" y="21" text-anchor="middle" fill="#f1cc86" font-family="sans-serif" font-size="12">WC</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 122">
+  <!-- Traced from the Wallstreet Common favicon at wallstreetcommon.com -->
+  <path fill="currentColor" d="M0 0H99V99H71L50 121L40 112L66 85H85V14H14V85H32V99H0Z"/>
 </svg>
