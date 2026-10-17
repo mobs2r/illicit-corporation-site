@@ -647,10 +647,19 @@
       // Amounts in assets/costs.json are already whole annual units in their native currency.
       // Quoted prices were rounded up first (279.99 to 280, 69.99 to 70, 17.95 to 18,
       // 57.99 to 58, 49.99 to 50, 18.99 to 19), then monthly figures were multiplied by 12
-      // and the 6-month figure by 2. Display converts those annual units and rounds up again.
-      const convertedWhole = (amount, from, to) => {
+      // and the 6-month figure by 2. Display converts those annual units, then rounds up
+      // to the next hundred from 1,000 and the next ten below that. The total is the sum
+      // of the converted values before that display rounding, rounded with the same rule.
+      const convertedAmount = (amount, from, to) => {
         const rates = fundsData.rates;
-        return Math.ceil((amount / rates[from]) * rates[to]);
+        return (amount / rates[from]) * rates[to];
+      };
+      const displayRound = value => {
+        const step = value >= 1000 ? 100 : 10;
+        const scaled = value / step;
+        const nearest = Math.round(scaled);
+        if (Math.abs(scaled - nearest) < 1e-6) return nearest * step;
+        return Math.ceil(scaled) * step;
       };
       const renderFunds = () => {
         if (!fundsData) return;
@@ -659,7 +668,7 @@
         }
         costList.replaceChildren();
         const slices = [];
-        let total = 0;
+        let rawTotal = 0;
         fundsData.costs.forEach((cost, index) => {
           const row = document.createElement('li');
           const name = document.createElement('span');
@@ -677,14 +686,17 @@
           if (cost.amount == null) {
             amount.textContent = 'TBD';
           } else {
-            const whole = convertedWhole(cost.amount, cost.currency, fundsCurrency);
-            amount.textContent = formatMoney(whole, fundsCurrency);
-            total += whole;
-            slices.push({ name: cost.name, value: whole, color: chartColors[index % chartColors.length] });
+            const exact = convertedAmount(cost.amount, cost.currency, fundsCurrency);
+            const shown = displayRound(exact);
+            amount.textContent = formatMoney(shown, fundsCurrency);
+            rawTotal += exact;
+            slices.push({ name: cost.name, value: shown, color: chartColors[index % chartColors.length] });
           }
           row.append(name, amount);
           costList.append(row);
         });
+        const total = displayRound(rawTotal);
+        const chartTotal = slices.reduce((sum, slice) => sum + slice.value, 0);
         costTotal.textContent = formatMoney(total, fundsCurrency);
         const [year, month, day] = fundsData.ratesAsOf.split('-').map(Number);
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -699,7 +711,7 @@
         const circumference = 2 * Math.PI * 46;
         let offset = 0;
         const rings = slices.map(slice => {
-          const length = total ? (slice.value / total) * circumference : 0;
+          const length = chartTotal ? (slice.value / chartTotal) * circumference : 0;
           const ring = `<circle cx="60" cy="60" r="46" fill="none" stroke="${slice.color}" stroke-width="14" stroke-dasharray="${length} ${circumference - length}" stroke-dashoffset="${-offset}"><title>${slice.name}</title></circle>`;
           offset += length;
           return ring;
