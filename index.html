@@ -98,6 +98,18 @@
     .world h3 { position:relative; margin:52px 0 6px; font-size:32px; font-weight:400; letter-spacing:-.03em; }
     .world p { position:relative; max-width:26ch; margin:0; color:#d5dde4; font-size:15px; line-height:1.45; }
     .world .arrow { position:absolute; right:22px; bottom:18px; font-size:20px; }
+    .mods { padding-top:8px; }
+    .mods-head { display:flex; align-items:end; justify-content:space-between; gap:24px 40px; margin-bottom:28px; }
+    .mods-copy { max-width:40rem; }
+    .mods h2 { margin:8px 0 10px; font-size:clamp(32px,4vw,44px); font-weight:400; letter-spacing:-.03em; }
+    .mods-intro { margin:0; color:var(--copy); font-size:16px; }
+    .mods-group + .mods-group { margin-top:28px; }
+    .mods-group h3 { margin:0 0 12px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
+    .mod-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0; padding:0; list-style:none; }
+    .mod-grid a { display:flex; flex-direction:column; gap:6px; min-width:0; padding:18px 20px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
+    .mod-grid a:hover { transform:translateY(-2px); border-color:#9daab8; }
+    .mod-name { font-size:18px; letter-spacing:-.02em; }
+    .mod-meta { color:var(--muted); font-size:14px; }
     .studio { padding-top:36px; border-top:1px solid var(--line); }
     .studio-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:28px 64px; align-items:start; }
     .studio h2 { margin:0 0 10px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
@@ -132,6 +144,8 @@
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .mod-grid a { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .mod-grid a:hover { border-color:#7b91a8; }
     :root[data-theme="light"] .product p { color:#314556; }
     :root[data-theme="light"] .world p { color:#314556; }
     :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
@@ -161,7 +175,8 @@
       .hero { padding:56px 0 44px; }
       h1 { font-size:clamp(38px,11vw,52px); }
       .section { padding:52px 0; }
-      .product-grid,.world-grid { grid-template-columns:1fr; }
+      .product-grid,.world-grid,.mod-grid { grid-template-columns:1fr; }
+      .mods-head { align-items:start; flex-direction:column; }
       .product { min-height:0; }
       .world { min-height:210px; }
       .world-sigil { right:8%; width:104px; height:104px; font-size:56px; }
@@ -211,6 +226,39 @@
         <a class="world gknuckle" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="gknuckle">Build #6b7e0a4</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="0 0 160 160" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span><h3>gKnuckle</h3><p>A mix of old &amp; new...</p><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
+    <section class="section mods shell" id="mods" aria-labelledby="mods-title">
+      <div class="mods-head">
+        <div class="mods-copy">
+          <p class="label">Workshop</p>
+          <h2 id="mods-title">Mods</h2>
+          <p class="mods-intro">Public Steam Workshop items. 8,042 lifetime subscribers across Garry's Mod and Counter-Strike 2.</p>
+        </div>
+        <a class="action" href="https://steamcommunity.com/id/mobs2r/myworkshopfiles/" target="_blank" rel="noopener noreferrer">Workshop profile <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="mods-group">
+        <h3>Garry's Mod</h3>
+        <ul class="mod-grid">
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3362030272" target="_blank" rel="noopener noreferrer"><span class="mod-name">WEBFISHING Name Tags</span><span class="mod-meta">1,919 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3324247572" target="_blank" rel="noopener noreferrer"><span class="mod-name">Junk Jet in Tool Gun</span><span class="mod-meta">381 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3346062106" target="_blank" rel="noopener noreferrer"><span class="mod-name">Neon Error Sign</span><span class="mod-meta">135 lifetime subscribers</span></a></li>
+        </ul>
+      </div>
+      <div class="mods-group">
+        <h3>Counter-Strike 2</h3>
+        <ul class="mod-grid">
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2273561428" target="_blank" rel="noopener noreferrer"><span class="mod-name">PILLARS [MULTi1V1]</span><span class="mod-meta">1,240 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2883672777" target="_blank" rel="noopener noreferrer"><span class="mod-name">CHASE [1V1 / 2V2]</span><span class="mod-meta">889 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2882814869" target="_blank" rel="noopener noreferrer"><span class="mod-name">VAULT [1V1 / 2V2]</span><span class="mod-meta">730 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2270428682" target="_blank" rel="noopener noreferrer"><span class="mod-name">LOCKERS [MULTi1V1]</span><span class="mod-meta">707 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2860736623" target="_blank" rel="noopener noreferrer"><span class="mod-name">LAB [1V1 / 2V2]</span><span class="mod-meta">663 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2805671179" target="_blank" rel="noopener noreferrer"><span class="mod-name">CHASE [MULTi1V1]</span><span class="mod-meta">631 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2320911902" target="_blank" rel="noopener noreferrer"><span class="mod-name">LAB [MULTi1V1]</span><span class="mod-meta">430 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2860731037" target="_blank" rel="noopener noreferrer"><span class="mod-name">PAiNT [1V1]</span><span class="mod-meta">181 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2876685260" target="_blank" rel="noopener noreferrer"><span class="mod-name">WOLFENSTEiN 3D [MULTi1V1]</span><span class="mod-meta">93 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2835366400" target="_blank" rel="noopener noreferrer"><span class="mod-name">PAiNT [MULTi1v1]</span><span class="mod-meta">43 lifetime subscribers</span></a></li>
+        </ul>
+      </div>
+    </section>
     <section class="section studio shell" id="contact" aria-labelledby="contact-title">
       <div class="studio-grid">
         <div>
@@ -230,7 +278,7 @@
   </main>
   <footer class="shell footer illicit-footer">
     <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#mods">Mods</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
   </footer>
   <script>
     (() => {
