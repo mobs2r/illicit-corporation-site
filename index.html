@@ -58,11 +58,12 @@
     @keyframes brand-orbit { from { offset-distance:0%; } to { offset-distance:100%; } }
     .brand-copy { display:flex; flex-direction:column; font-size:15px; letter-spacing:.16em; line-height:1.1; text-transform:uppercase; }
     .brand-copy small { margin-top:5px; color:var(--muted); font-size:10px; letter-spacing:.28em; }
-    .header-link { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:1px solid #6a7d88; border-radius:9px; font-size:14px; text-decoration:none; white-space:nowrap; }
-    .header-link:hover { background:#ffffff12; }
+    .header-link,.theme-toggle { display:grid; place-items:center; width:38px; height:38px; padding:0; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); line-height:1; flex:0 0 38px; }
+    .header-link { text-decoration:none; }
+    .header-link svg { display:block; width:18px; height:18px; }
+    .header-link:hover,.theme-toggle:hover { background:#ffffff12; }
     .header-tools { display:flex; align-items:center; gap:8px; }
-    .theme-toggle { display:grid; place-items:center; width:38px; height:38px; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); cursor:pointer; font-size:19px; }
-    .theme-toggle:hover { background:#ffffff12; }
+    .theme-toggle { cursor:pointer; font-size:19px; }
     .hero { position:relative; overflow:hidden; isolation:isolate; padding:88px 0 76px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
     .hero-canvas { position:absolute; z-index:0; inset:0; display:block; width:100%; height:100%; pointer-events:none; }
     .hero::before { position:absolute; z-index:1; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,#101318 0%,#101318ee 25%,#101318a8 47%,transparent 83%),linear-gradient(0deg,#101318 0%,transparent 18%); }
@@ -188,7 +189,7 @@
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
     .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
     .mod-grid a:hover .mod-shot { transform:scale(1.045); }
-    .studio { padding-top:36px; border-top:1px solid var(--line); }
+    .studio { padding-top:36px; }
     .studio-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:28px 64px; align-items:start; }
     .studio h2 { margin:0 0 10px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
     .studio-about { max-width:36rem; margin:0; font-size:20px; line-height:1.45; }
@@ -196,18 +197,18 @@
     .contact-list li + li { margin-top:8px; }
     .contact-list a { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
     .contact-list a:hover { color:var(--text); }
-    .illicit-footer { --if-ink:#f2f0eb; --if-dim:#c7cdd3; --if-soft:#aab2bc; --if-line:#ffffff1a; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 32px; padding:16px clamp(16px,4vw,48px); border-top:1px solid var(--if-line); background:var(--illicit-footer-bg,#070707); color:var(--if-ink); font:14px/1.5 var(--sans); }
+    .site-footer { padding:8px 0 48px; }
+    .illicit-footer { --if-ink:#f2f0eb; --if-dim:#c7cdd3; --if-soft:#aab2bc; --if-line:#ffffff1a; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 28px; padding:18px 22px; border:1px solid var(--if-line); border-radius:18px; color:var(--if-ink); font:14px/1.5 var(--sans); }
     .illicit-footer a { color:inherit; text-decoration:none; }
     .illicit-footer .illicit-lockup { display:flex; align-items:center; gap:14px; }
     .illicit-footer .illicit-mark { display:inline-flex; flex-direction:column; font-size:15px; letter-spacing:.16em; line-height:1.1; text-transform:uppercase; white-space:nowrap; }
     .illicit-footer .illicit-mark small { margin-top:5px; color:var(--if-soft); font-size:10px; letter-spacing:.28em; }
-    .illicit-footer .illicit-links { display:flex; flex-wrap:wrap; gap:4px 20px; font-size:14px; }
+    .illicit-footer .illicit-links { display:flex; flex:1 1 auto; flex-wrap:wrap; justify-content:flex-end; gap:6px 18px; min-width:min(100%,16rem); font-size:14px; }
     .illicit-footer .illicit-links a { padding:4px 0; color:var(--if-dim); }
     .illicit-footer .illicit-links a > [aria-hidden="true"] { margin-left:.25em; }
     .illicit-footer .illicit-links a[aria-current="page"] { color:var(--if-ink); }
     .illicit-footer a:hover,.illicit-footer a:focus-visible { color:var(--if-ink); text-decoration:underline; text-underline-offset:4px; }
     .illicit-footer a:focus-visible { outline:2px solid currentColor; outline-offset:3px; border-radius:2px; }
-    .footer.illicit-footer { --illicit-footer-bg:transparent; padding:28px 0 40px; }
     :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --copy:#314556; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
     :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
     :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
@@ -244,7 +245,7 @@
     :root[data-theme="light"] .illicit-footer { --if-ink:#172332; --if-dim:#344a60; --if-soft:#526173; --if-line:#d5dee8; }
     @media (max-width:900px) {
       .shell { width:min(720px,calc(100% - 36px)); }
-      .header-link { display:none; }
+      .header-link,.theme-toggle { width:38px; height:38px; }
       .hero { padding:68px 0 56px; }
       .studio-grid,.about-layout { grid-template-columns:1fr; gap:28px; }
       .funds-board { grid-template-columns:1fr; }
@@ -256,7 +257,12 @@
       .brand-copy { font-size:13px; }
       .brand-mark { width:33px; height:33px; }
       .brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }
-      .theme-toggle { width:36px; height:36px; font-size:16px; }
+      .theme-toggle,.header-link { width:36px; height:36px; flex-basis:36px; }
+      .theme-toggle { font-size:16px; }
+      .header-link svg { width:17px; height:17px; }
+      .site-footer { padding:4px 0 32px; }
+      .illicit-footer { align-items:flex-start; flex-direction:column; padding:16px; }
+      .illicit-footer .illicit-links { justify-content:flex-start; }
       .hero { padding:56px 0 44px; }
       h1 { font-size:clamp(38px,11vw,52px); }
       .section { padding:52px 0; }
@@ -295,10 +301,9 @@
       --glass-sheen:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.28) 28%, transparent 50%);
     }
     body { background:transparent; }
-    .ambience { position:fixed; z-index:-1; inset:0; overflow:hidden; pointer-events:none; background:radial-gradient(ellipse at 18% 12%, #1c3d68 0%, transparent 46%), radial-gradient(ellipse at 82% 78%, #3a2348 0%, transparent 42%), linear-gradient(165deg, #0c1016, #151b26 55%, #101820); background-size:140% 140%; }
-    html[data-theme="light"] .ambience { background:radial-gradient(ellipse at 16% 10%, #d5e7fb 0%, transparent 48%), radial-gradient(ellipse at 84% 80%, #f3dceb 0%, transparent 42%), linear-gradient(165deg, #f4f7fb, #e7eef6 60%, #f7f3ee); }
-    .ambience canvas { position:absolute; inset:0; width:100%; height:100%; }
-    .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .footer.illicit-footer {
+    .page-texture { position:fixed; z-index:-1; inset:0; pointer-events:none; background-color:#0c1016; background-image:url("./assets/grain.png"), radial-gradient(ellipse at 18% 0%, #1c3d68 0%, transparent 42%), radial-gradient(ellipse at 88% 100%, #3a2348 0%, transparent 38%), linear-gradient(165deg, #0c1016, #151b26 55%, #101820); background-repeat:repeat, no-repeat, no-repeat, no-repeat; background-size:128px 128px, auto, auto, auto; }
+    html[data-theme="light"] .page-texture { background-color:#e7eef6; background-image:url("./assets/grain.png"), radial-gradient(ellipse at 16% 0%, #d5e7fb 0%, transparent 46%), radial-gradient(ellipse at 86% 100%, #f3dceb 0%, transparent 40%), linear-gradient(165deg, #f4f7fb, #e7eef6 60%, #f7f3ee); }
+    .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .illicit-footer {
       background:var(--glass-strong);
       border-color:var(--glass-line);
       box-shadow:var(--glass-shadow);
@@ -344,7 +349,7 @@
     .nav-toggle span::after { top:5px; }
     a:focus-visible, button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; box-shadow:0 0 0 6px rgba(136,188,240,.22); }
     @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))) {
-      .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .site-nav, .footer.illicit-footer, .world {
+      .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .site-nav, .illicit-footer, .world {
         -webkit-backdrop-filter:blur(18px) saturate(1.5);
         backdrop-filter:blur(18px) saturate(1.5);
       }
@@ -360,25 +365,20 @@
       .site-nav a.is-current { background:rgba(136,188,240,.22); }
     }
     @media (prefers-reduced-motion:reduce) {
-      .ambience { animation:none; }
       .nav-indicator, .product, .world, .mod-grid a, .product::after, .world::after, .mod-grid a::after, .site-nav, .tilt { transition:none; }
       .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
       .tilt, .tilt:hover, .action:active { transform:none; }
     }
-    @media (prefers-reduced-motion:no-preference) {
-      .ambience { animation:ambience-drift 32s ease-in-out infinite alternate; }
-    }
-    @keyframes ambience-drift { from { background-position:0% 20%; } to { background-position:100% 80%; } }
   </style>
 </head>
 <body>
-  <div class="ambience" aria-hidden="true"><canvas id="ambience-canvas"></canvas></div>
+  <div class="page-texture" aria-hidden="true"></div>
   <a class="skip" href="#platform">Skip to content</a>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
       <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-      <div class="header-tools"><button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+      <div class="header-tools"><button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a></div>
     </div>
   </header>
   <main>
@@ -514,9 +514,11 @@
       </div>
     </section>
   </main>
-  <footer class="shell footer illicit-footer">
-    <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+  <footer class="site-footer">
+    <div class="shell illicit-footer">
+      <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
+      <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+    </div>
   </footer>
   <script>
     (() => {
@@ -910,77 +912,6 @@
           });
         });
       }
-      const initAmbience = () => {
-        const canvas = document.getElementById('ambience-canvas');
-        const context = canvas?.getContext('2d', { alpha: true });
-        if (!context) return;
-        let width = 0;
-        let height = 0;
-        let frame = 0;
-        let last = 0;
-        const glints = Array.from({ length: 16 }, () => ({
-          x: Math.random(),
-          y: Math.random(),
-          r: 10 + Math.random() * 26,
-          phase: Math.random() * Math.PI * 2,
-          speed: 0.08 + Math.random() * 0.16
-        }));
-        const resize = () => {
-          const scale = Math.min(window.devicePixelRatio || 1, 1.25);
-          width = window.innerWidth;
-          height = window.innerHeight;
-          canvas.width = Math.max(1, Math.round(width * scale));
-          canvas.height = Math.max(1, Math.round(height * scale));
-          context.setTransform(scale, 0, 0, scale, 0, 0);
-        };
-        const ribbon = (time, offset, amplitude, color, weight) => {
-          context.beginPath();
-          for (let x = 0; x <= width; x += 16) {
-            const y = height * offset + Math.sin(x * 0.0042 + time) * amplitude + Math.sin(x * 0.009 - time * 0.7) * amplitude * 0.35;
-            if (x === 0) context.moveTo(x, y);
-            else context.lineTo(x, y);
-          }
-          context.strokeStyle = color;
-          context.lineWidth = weight;
-          context.stroke();
-        };
-        const draw = now => {
-          const light = document.documentElement.dataset.theme === 'light';
-          const time = now * 0.00018;
-          context.clearRect(0, 0, width, height);
-          context.lineCap = 'round';
-          ribbon(time, light ? 0.38 : 0.42, height * 0.07, light ? 'rgba(70,130,190,0.16)' : 'rgba(110,180,255,0.22)', 54);
-          ribbon(time + 1.4, light ? 0.58 : 0.62, height * 0.05, light ? 'rgba(190,120,160,0.12)' : 'rgba(190,120,220,0.16)', 36);
-          for (const glint of glints) {
-            const x = ((glint.x + time * glint.speed) % 1) * width;
-            const y = (glint.y + 0.025 * Math.sin(time * 3 + glint.phase)) * height;
-            const glow = context.createRadialGradient(x, y, 0, x, y, glint.r);
-            glow.addColorStop(0, light ? 'rgba(255,255,255,0.55)' : 'rgba(198,224,255,0.32)');
-            glow.addColorStop(1, 'rgba(255,255,255,0)');
-            context.fillStyle = glow;
-            context.beginPath();
-            context.arc(x, y, glint.r, 0, Math.PI * 2);
-            context.fill();
-          }
-        };
-        const tick = now => {
-          frame = requestAnimationFrame(tick);
-          if (document.hidden || motionQuery?.matches || now - last < 80) return;
-          last = now;
-          draw(now);
-        };
-        resize();
-        draw(motionQuery?.matches ? 0 : performance.now());
-        if (!motionQuery?.matches) frame = requestAnimationFrame(tick);
-        window.addEventListener('resize', resize);
-        motionQuery?.addEventListener?.('change', () => {
-          if (frame) cancelAnimationFrame(frame);
-          frame = 0;
-          draw(0);
-          if (!motionQuery.matches) frame = requestAnimationFrame(tick);
-        });
-      };
-      initAmbience();
       const updateBuilds = async () => {
         try {
           const response = await fetch('./builds.json', { cache: 'no-store' });
