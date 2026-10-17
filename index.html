@@ -209,7 +209,7 @@
     .support-grid .partner-pill { display:grid; grid-template-columns:25px minmax(0,1fr); grid-template-rows:auto auto; column-gap:12px; row-gap:2px; align-items:center; }
     .support-grid .partner-pill .pill-link { display:contents; color:inherit; text-decoration:none; }
     .support-grid .partner-pill img { grid-column:1; grid-row:1 / span 2; }
-    .support-grid .partner-pill .pill-name { grid-column:2; grid-row:1; min-width:0; }
+    .support-grid .partner-pill .pill-name { grid-column:2; grid-row:1; min-width:0; text-transform:none; }
     .support-grid .partner-pill .code-copy { grid-column:2; grid-row:2; justify-self:start; padding:0; border:0; background:transparent; color:inherit; font:inherit; font-size:14px; line-height:1.2; text-align:left; cursor:pointer; opacity:.8; }
     .support-grid .partner-pill .code-copy:hover,
     .support-grid .partner-pill .code-copy.is-copied { opacity:1; text-decoration:underline; text-underline-offset:2px; }
@@ -495,7 +495,7 @@
           <h3 class="group-label" id="planet-pills">Preserve Our Planet</h3>
           <p class="group-note">Give directly to relief and conservation.</p>
           <ul class="support-grid">
-            <li><a class="pill" data-brand="redcross" href="https://www.redcross.ca/donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/redcross.png" width="22" height="22" alt=""><span>Canadian Red Cross<small>Donate</small></span></a></li>
+            <li><a class="pill" data-brand="redcross" href="https://www.redcross.ca/donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/redcross.png" width="22" height="22" alt=""><span>Red Cross<small>Donate</small></span></a></li>
             <li><a class="pill" data-brand="wwf" href="https://wwf.ca/donate/" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/wwf.png" width="22" height="22" alt=""><span>WWF<small>Donate</small></span></a></li>
           </ul>
         </section>
@@ -742,7 +742,8 @@
       // rates, EUR/CAD 1.5908 and GBP/CAD 1.8871: EUR = 1.4154 / 1.5908, GBP = 1.4154 / 1.8871.
       // Domain lines in assets/costs.json are the exact Hover renewal prices in USD per year.
       // Other amounts are annual units in their native currency: monthly figures were multiplied by 12
-      // and the 6-month figure by 2 before they were stored. Display converts to the selected currency,
+      // and the 6-month figure by 2 before they were stored. Anthropic is CA$160 per month, the CA$155.40
+      // Claude Max bill rounded up, times 12. Display converts to the selected currency,
       // then rounds up to the next hundred from 1,000 and the next ten below that. The total is the sum
       // of the converted values before that display rounding, rounded with the same rule.
       const convertedAmount = (amount, from, to) => {
@@ -935,7 +936,7 @@
         paintSlice(null);
       };
       const partnerCodes = [
-        { name: 'CINCH Gaming', code: 'MOBS2R', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
+        { name: 'Cinch Gaming', code: 'MOBS2R', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
         { name: 'Rampage Coffee Co.', code: 'MOBS2R', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' }
       ];
       const partnerList = document.getElementById('partner-codes');

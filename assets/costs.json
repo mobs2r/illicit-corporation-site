@@ -109,8 +109,8 @@
     },
     {
       "name": "Anthropic",
-      "amount": 1200,
-      "currency": "USD",
+      "amount": 1920,
+      "currency": "CAD",
       "icon": "assets/icons/anthropic.svg",
       "supports": {
         "url": "https://illicit.page/",
