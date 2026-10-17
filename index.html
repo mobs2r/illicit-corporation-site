@@ -132,8 +132,10 @@
     .skip { position:absolute; left:16px; top:-48px; z-index:40; padding:10px 14px; border-radius:9px; background:var(--blue); color:#101318; text-decoration:none; }
     .skip:focus { top:12px; }
     .site-nav { display:flex; flex-wrap:wrap; gap:4px 18px; }
-    .site-nav a { color:var(--muted); font-size:14px; text-decoration:none; }
+    .site-nav a { color:var(--muted); font-size:14px; text-decoration:none; padding-bottom:3px; border-bottom:2px solid transparent; }
     .site-nav a:hover { color:var(--text); }
+    .site-nav a.is-current { color:var(--text); border-bottom-color:var(--gold); }
+    section[id] { scroll-margin-top:92px; }
     .section-head { max-width:44rem; margin-bottom:28px; }
     .section-head h2 { margin:8px 0 10px; font-size:clamp(32px,4vw,48px); font-weight:400; letter-spacing:-.03em; }
     .lede { margin:0; color:var(--copy); font-size:18px; line-height:1.5; }
@@ -148,27 +150,41 @@
     .timeline li::before { content:""; position:absolute; left:-4px; top:7px; width:7px; height:7px; border-radius:50%; background:var(--gold); }
     .timeline time { display:block; color:var(--gold); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
     .timeline p { margin:4px 0 0; color:var(--copy); font-size:15px; }
-    .funded { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 22px; padding:0; list-style:none; }
-    .funded a { display:inline-flex; align-items:center; min-height:36px; padding:6px 12px; border:1px solid var(--line); border-radius:999px; text-decoration:none; }
-    .funded a:hover { border-color:#9daab8; }
-    .cost-table { border:1px solid var(--line); border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#1c2229,#15191f); }
-    .cost-group,.cost-row,.cost-total { display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding:12px 18px; }
-    .cost-group { background:#ffffff0c; color:var(--gold); font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
-    .cost-row { border-top:1px solid var(--line); }
-    .cost-row a { color:var(--blue); }
-    .cost-row code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14px; }
-    .cost-amount { color:var(--muted); text-align:right; font-variant-numeric:tabular-nums; }
-    .cost-total { border-top:1px solid var(--line); background:#ffffff08; }
-    .cost-note { margin:12px 0 0; color:var(--muted); font-size:14px; }
+    .funds-top { display:flex; align-items:flex-end; justify-content:space-between; gap:16px 24px; margin-bottom:22px; }
+    .funds-top .section-head { margin:0; }
+    .funds-top h2 { margin:8px 0 0; }
+    .currency-switch { display:flex; flex:0 0 auto; padding:3px; border:1px solid var(--line); border-radius:999px; background:#ffffff08; }
+    .currency-switch button { min-width:52px; min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; }
+    .currency-switch button[aria-checked="true"] { background:var(--text); color:var(--bg); }
+    .funds-board { display:grid; grid-template-columns:168px minmax(0,1fr); gap:22px; align-items:center; }
+    .cost-chart { width:168px; margin:0 auto; }
+    .cost-chart svg { display:block; width:100%; height:auto; }
+    .cost-list { margin:0; padding:0; list-style:none; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .cost-list li { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 16px; }
+    .cost-list li + li { border-top:1px solid var(--line); }
+    .cost-name { display:flex; align-items:center; gap:10px; min-width:0; }
+    .cost-name img { width:20px; height:20px; flex:0 0 auto; border-radius:5px; }
+    .cost-amount { color:var(--text); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
+    .rates-as-of { margin:8px 0 0; color:var(--muted); font-size:12px; }
     .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0 0; padding:0; list-style:none; }
-    .support-grid a { display:flex; flex-direction:column; gap:4px; min-height:76px; padding:14px 14px 12px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); text-decoration:none; }
-    .support-grid a:hover { transform:translateY(-2px); border-color:#9daab8; }
-    .support-grid small { color:var(--muted); }
-    .billing-panel { margin-top:28px; padding:24px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,#1c2229,#15191f); }
-    .billing-panel h3 { margin:8px 0 8px; font-size:28px; font-weight:400; }
-    .billing-panel p { margin:0 0 10px; color:var(--copy); }
-    .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
-    .chips span { padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--gold); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .support-grid a { display:flex; align-items:center; gap:10px; min-height:64px; padding:12px 14px; border-radius:14px; text-decoration:none; }
+    .support-grid a:hover { transform:translateY(-2px); }
+    .support-grid img { width:22px; height:22px; flex:0 0 auto; border-radius:5px; }
+    .support-grid small { display:block; font-size:12px; line-height:1.2; }
+    .support-grid a[data-brand="kofi"] { background:#ff5e5b; color:#1a120f; }
+    .support-grid a[data-brand="patreon"] { background:#ff424d; color:#1a0508; }
+    .support-grid a[data-brand="twitch"] { background:#9146ff; color:#fff; }
+    .support-grid a[data-brand="paypal"] { background:#002991; color:#fff; }
+    .support-grid a[data-brand="streamlabs"] { background:#80f5d2; color:#06221c; }
+    .support-grid a[data-brand="bmc"] { background:#ffdd00; color:#1a1400; }
+    .support-grid a[data-brand="github"] { background:#181717; color:#fff; }
+    .support-grid a[data-brand="throne"] { background:#796ef5; color:#0e0b1a; }
+    .finance-line { margin:0 0 18px; font-size:clamp(22px,3vw,32px); letter-spacing:-.02em; }
+    .finance-figures { display:flex; justify-content:space-between; gap:16px; margin:0 0 10px; color:var(--copy); }
+    .raise { height:14px; overflow:hidden; border-radius:999px; background:#ffffff1f; box-shadow:inset 0 0 0 1px var(--line); }
+    .raise span { display:block; width:0; height:100%; background:var(--gold); }
+    .finance-cta { margin-top:18px; }
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
     .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
     .mod-grid a:hover .mod-shot { transform:scale(1.045); }
@@ -206,8 +222,10 @@
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f3f6f9); }
-    :root[data-theme="light"] .mod-grid a,:root[data-theme="light"] .cost-table,:root[data-theme="light"] .support-grid a,:root[data-theme="light"] .billing-panel { background:linear-gradient(145deg,#fff,#f3f6f9); }
-    :root[data-theme="light"] .cost-group,:root[data-theme="light"] .cost-total { background:#eef3f8; }
+    :root[data-theme="light"] .mod-grid a,:root[data-theme="light"] .cost-list { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .cost-total { background:#eef3f8; }
+    :root[data-theme="light"] .currency-switch { background:#fff; }
+    :root[data-theme="light"] .raise { background:#d7e0ea; }
     :root[data-theme="light"] .skip { color:#fff; }
     :root[data-theme="light"] .mod-grid a:hover { border-color:#7b91a8; }
     :root[data-theme="light"] .product p { color:#314556; }
@@ -229,6 +247,7 @@
       .header-link { display:none; }
       .hero { padding:68px 0 56px; }
       .studio-grid,.about-layout { grid-template-columns:1fr; gap:28px; }
+      .funds-board { grid-template-columns:1fr; }
       .support-grid { grid-template-columns:1fr 1fr; }
       .site-nav { order:3; width:100%; padding-bottom:8px; }
     }
@@ -242,8 +261,7 @@
       h1 { font-size:clamp(38px,11vw,52px); }
       .section { padding:52px 0; }
       .product-grid,.world-grid,.mod-grid,.support-grid { grid-template-columns:1fr; }
-      .cost-group,.cost-row,.cost-total { align-items:flex-start; flex-direction:column; gap:4px; }
-      .cost-amount { text-align:left; }
+      .funds-top,.finance-figures { align-items:flex-start; flex-direction:column; }
       .mods-head { align-items:start; flex-direction:column; }
       .product { min-height:0; }
       .world { min-height:280px; }
@@ -267,7 +285,7 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <nav class="site-nav" aria-label="On this page"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <nav class="site-nav" aria-label="On this page"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
       <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
@@ -280,14 +298,13 @@
     <section class="section shell" id="platform" aria-labelledby="platform-title">
       <header class="section-head"><p class="label">Stack</p><h2 id="platform-title">Platform</h2><p class="lede">The same account, coin, and inventory run through every world. The names stay sharp. The machinery underneath is ordinary, careful engineering.</p></header>
       <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>The self-hostable spine for accounts, wallets, and inventory. It powers Omerta Chat, Atlantis Chat, and Вандам(e)баш.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>A non-invasive anti-cheat suite for fair play across Illicit API. Mushrüm supplies the data that improves it.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>The bridge into third-party games. It carries Illicit ID into places like DarkRP and FiveM, and it sells prepaid server access to operators.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Sign in once. Your Faked ID links identity across participating products and builds a trust factor they can share.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard is how you spend across participating products, with privacy kept at the center. It is also the face of server billing.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform behind Illicit API. It reads Omerta Chat, Atlantis Chat, and Вандам(e)баш, then turns that into a clearer picture of the network.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◎</span></div><h3>Casino</h3><p>Roulette, Crash, and Pachinko run inside Omerta Chat on the shared coin, beside Pool, Chess, Place, and Riff Rush.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">CS</span></div><h3>Chaster-Strike</h3><p>A Counter-Strike 2 demo, or a share code, lines up with a linked Chaster lock inside Omerta Chat. The match can be analyzed, then a confirmed consequence applied to that lock.</p><p><a href="https://omerta.chat/?chaster-strike" target="_blank" rel="noopener noreferrer">Open in Omerta Chat <span aria-hidden="true">↗</span></a></p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Resupply Locker is a game modification suite aiming to enable third-party games on Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◎</span></div><h3>Casino</h3><p>Roulette, Crash, and Pachinko.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds" aria-labelledby="worlds-title">
@@ -315,58 +332,47 @@
       </ul>
     </section>
     <section class="section shell" id="funds" aria-labelledby="funds-title">
+      <div class="funds-top">
+        <header class="section-head">
+          <p class="label">Support</p>
+          <h2 id="funds-title">Funds</h2>
+        </header>
+        <div class="currency-switch" role="radiogroup" aria-label="Currency">
+          <button type="button" role="radio" data-currency="USD" aria-checked="true">USD</button>
+          <button type="button" role="radio" data-currency="CAD" aria-checked="false">CAD</button>
+          <button type="button" role="radio" data-currency="EUR" aria-checked="false">EUR</button>
+          <button type="button" role="radio" data-currency="GBP" aria-checked="false">GBP</button>
+        </div>
+      </div>
+      <div class="funds-board">
+        <div class="cost-chart" id="cost-chart"></div>
+        <ul class="cost-list" id="cost-list"></ul>
+      </div>
+      <p class="cost-total" id="cost-total"><strong>Total</strong><span class="cost-amount"></span></p>
+      <p class="rates-as-of" id="rates-as-of"></p>
+      <ul class="support-grid" aria-label="Ways to support">
+        <li><a data-brand="kofi" href="https://ko-fi.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/kofi.png" width="22" height="22" alt=""><span>Ko-fi<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="patreon" href="https://www.patreon.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/patreon.png" width="22" height="22" alt=""><span>Patreon<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="twitch" href="https://www.twitch.tv/subs/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/twitch.png" width="22" height="22" alt=""><span>Twitch<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="paypal" href="https://www.paypal.me/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/paypal.png" width="22" height="22" alt=""><span>PayPal<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="streamlabs" href="https://streamlabs.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/streamlabs.svg" width="22" height="22" alt=""><span>Streamlabs<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="bmc" href="https://www.buymeacoffee.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/bmc.png" width="22" height="22" alt=""><span>Buy Me a Coffee<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="github" href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/github.svg" width="22" height="22" alt=""><span>GitHub<small>/mobs2r</small></span></a></li>
+        <li><a data-brand="throne" href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/throne.png" width="22" height="22" alt=""><span>Throne<small>/mobs2r</small></span></a></li>
+      </ul>
+    </section>
+    <section class="section shell" id="finance" aria-labelledby="finance-title">
       <header class="section-head">
-        <p class="label">Support</p>
-        <h2 id="funds-title">Funds</h2>
-        <p class="lede">Running costs for the studio, moved here from Omerta Chat. Support keeps Omerta Chat, Atlantis Chat, Cod City, and gKnuckle online.</p>
+        <p class="label">Capital</p>
+        <h2 id="finance-title">Finance</h2>
       </header>
-      <ul class="funded">
-        <li><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat</a></li>
-        <li><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat</a></li>
-        <li><a href="https://www.cod.city/" target="_blank" rel="noopener noreferrer">Cod City</a></li>
-        <li><a href="https://www.gk.style/" target="_blank" rel="noopener noreferrer">gKnuckle</a></li>
-      </ul>
-      <div class="cost-table" aria-label="Owner-reported annual costs">
-        <div class="cost-group"><strong>Domains</strong><span>$137.95 USD / year</span></div>
-        <div class="cost-row"><code>resupply.locker</code><span class="cost-amount">$49.99 / year</span></div>
-        <div class="cost-row"><code>vandambash.com</code><span class="cost-amount">$18.99 / year</span></div>
-        <div class="cost-row"><code>vandamebash.com</code><span class="cost-amount">$18.99 / year</span></div>
-        <div class="cost-row"><code>faked.cc</code><span class="cost-amount">$29.99 / year</span></div>
-        <div class="cost-row"><code>crab.quest</code><span class="cost-amount">$19.99 / year</span></div>
-        <div class="cost-group"><strong>Services</strong><span>$403.08 USD / year</span></div>
-        <div class="cost-row"><a href="https://mmm.page/pricing" target="_blank" rel="noopener noreferrer">Mmm Pro</a><span class="cost-amount">$25.00 / month · $300.00 / year</span></div>
-        <div class="cost-row"><a href="https://docs.railway.com/pricing/plans" target="_blank" rel="noopener noreferrer">Railway Hobby</a><span class="cost-amount">$5.00 / month · $60.00 / year</span></div>
-        <div class="cost-row"><a href="https://www.kinguin.net/kings-pass" target="_blank" rel="noopener noreferrer">Kinguin Pass</a><span class="cost-amount">$3.59 / month · $43.08 / year</span></div>
-        <div class="cost-group"><strong>Music</strong><span>$125.00 CAD / year</span></div>
-        <div class="cost-row"><a href="https://developers.soundcloud.com/docs/api/guide" target="_blank" rel="noopener noreferrer">SoundCloud Artist Pro</a><span class="cost-amount">$125.00 CAD / year · paid for one year</span></div>
-        <div class="cost-total"><strong>Annual total</strong><span class="cost-amount">$541.03 USD + $125.00 CAD / year</span></div>
+      <p class="finance-line">Zero outside funding.</p>
+      <div class="finance-figures">
+        <span><span id="raised-amount">$0</span> raised</span>
+        <span>Annual burn <span id="annual-burn"></span></span>
       </div>
-      <p class="cost-note">Owner-reported costs, not vendor quotes. Currency conversions are estimates; taxes and usage charges are not included.</p>
-      <h3 class="panel-label">Ways to support</h3>
-      <ul class="support-grid">
-        <li><a href="https://ko-fi.com/mobs2r" target="_blank" rel="noopener noreferrer">Ko-fi<small>mobs2r</small></a></li>
-        <li><a href="https://www.patreon.com/mobs2r" target="_blank" rel="noopener noreferrer">Patreon<small>mobs2r</small></a></li>
-        <li><a href="https://www.twitch.tv/subs/mobs2r" target="_blank" rel="noopener noreferrer">Twitch subscription<small>mobs2r</small></a></li>
-        <li><a href="https://www.paypal.me/mobs2r" target="_blank" rel="noopener noreferrer">PayPal<small>mobs2r</small></a></li>
-        <li><a href="https://streamlabs.com/mobs2r/tip" target="_blank" rel="noopener noreferrer">Streamlabs<small>Tip page</small></a></li>
-        <li><a href="https://www.buymeacoffee.com/mobs2r" target="_blank" rel="noopener noreferrer">Buy Me a Coffee<small>mobs2r</small></a></li>
-        <li><a href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer">GitHub Sponsors<small>mobs2r</small></a></li>
-        <li><a href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer">Throne<small>mobs2r</small></a></li>
-      </ul>
-      <div class="billing-panel">
-        <p class="label">Crypto</p>
-        <h3>Donate crypto, mint a ball</h3>
-        <p>Crypto balls are never sold in the shop. Pick a coin, choose an amount, and send it from your wallet. The ball lands in your inventory once the network confirms, and every separate donation mints another tradable ball. The quote is signed in on Omerta Chat: each one is an exact amount reserved for 30 minutes, with a small price-movement buffer, so the transfer has to match it.</p>
-        <a class="action" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer">Open crypto donate <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="billing-panel">
-        <p class="label">Billing</p>
-        <h3>Server billing, without the clutter.</h3>
-        <div class="chips"><span>Illicit ID</span><span>Prepaid access</span><span>No auto-renewal</span></div>
-        <p>A 30-day prepaid server license. Access starts only after a matching on-chain transfer has been independently confirmed. Each server gets a scoped credential that can be rotated. It is not an Illicit ID password or a wallet key.</p>
-        <p>Faked CC presents the payment experience. Illicit API keeps the order and access records. The signed-in console, where operators register a server and create a quote, still opens in Omerta Chat.</p>
-        <a class="action" href="https://omerta.chat/?billing" target="_blank" rel="noopener noreferrer">Open operator billing <span aria-hidden="true">↗</span></a>
-      </div>
+      <div class="raise" id="raise-bar" role="progressbar" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-label="Outside funding raised against the annual burn"><span id="raise-fill"></span></div>
+      <a class="action finance-cta" href="mailto:mobs2@waifu.club?subject=Investing%20in%20Illicit">Investors &amp; partners</a>
     </section>
     <section class="section shell" id="about" aria-labelledby="about-title">
       <header class="section-head">
@@ -383,7 +389,7 @@
           <p>Omerta Chat is the social hub: chat, a shared economy, and a full arcade. The arcade includes Riff Rush, Pool, Place, and Chess, plus the casino tables Roulette, Crash, and Pachinko. It plays with a keyboard, a gamepad, a guitar, or a Wii Remote. Atlantis Chat is the all-ages sister, the same arcade, collection, and chat with a PG feel. It is live at ill.up.railway.app, and the Tumblr at mobs2r.tumblr.com carries the same name.</p>
           <p>Cod City is an unofficial browser FPS built on Wii-era asset research, with shared progression, local split-screen, and items that land in the Omerta locker. gKnuckle is a rogue-lite climbing mod for Garry's Mod. Its portal runs a server browser, a WiKi, the roach MiLL, and WiSHES, where players vote on the odds with COiNS.</p>
           <p>Illicit API is the self-hostable account, wallet, and economy spine behind Omerta, Atlantis, and Вандам(e)баш. Mushrüm is the analytics platform on that API. Illicit AC is the non-invasive anti-cheat those analytics improve. Faked ID is the shared identity. Faked CC is the private way to spend, and the face of operator billing. Resupply Locker carries the same ID into third-party games, including DarkRP and FiveM, and hosts prepaid server access.</p>
-          <p>Chaster-Strike lives inside Omerta Chat. It takes a Counter-Strike 2 demo or share code, matches it to a linked Chaster lock, and can apply a confirmed consequence. The public Workshop addons are separate: WEBFISHING Name Tags, Junk Jet in Tool Gun, and Neon Error Sign, with 724 active subscribers between them.</p>
+          <p>The public Workshop addons are WEBFISHING Name Tags, Junk Jet in Tool Gun, and Neon Error Sign, with 724 active subscribers between them.</p>
           <h3>Built in-house</h3>
           <ul class="stack">
             <li>Node.js</li>
@@ -422,7 +428,7 @@
   </main>
   <footer class="shell footer illicit-footer">
     <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
   </footer>
   <script>
     (() => {
@@ -615,6 +621,143 @@
       syncWords();
       wordMotion?.addEventListener?.('change', syncWords);
       document.addEventListener('visibilitychange', syncWords);
+      const fundsCurrencyKey = 'illicit-funds-currency';
+      const fundCurrencies = ['USD', 'CAD', 'EUR', 'GBP'];
+      const currencySymbols = { USD: '$', CAD: 'CA$', EUR: '€', GBP: '£' };
+      const chartColors = ['#f1857d', '#88bcf0', '#f1cc86', '#92d7b1', '#d7a4ef', '#f0b27a', '#7fd0d8', '#e7e2d6', '#c9a227'];
+      const currencySwitch = document.querySelector('.currency-switch');
+      const costList = document.getElementById('cost-list');
+      const costChart = document.getElementById('cost-chart');
+      const costTotal = document.querySelector('#cost-total .cost-amount');
+      const ratesAsOf = document.getElementById('rates-as-of');
+      const raisedAmount = document.getElementById('raised-amount');
+      const annualBurn = document.getElementById('annual-burn');
+      const raiseBar = document.getElementById('raise-bar');
+      const raiseFill = document.getElementById('raise-fill');
+      let fundsData = null;
+      let fundsCurrency = 'USD';
+      try {
+        const savedCurrency = localStorage.getItem(fundsCurrencyKey);
+        if (fundCurrencies.includes(savedCurrency)) fundsCurrency = savedCurrency;
+      } catch {}
+      const formatMoney = (whole, currency) => `${currencySymbols[currency]}${whole.toLocaleString('en-US')}`;
+      const convertedWhole = (amount, from, to) => {
+        const rates = fundsData.rates;
+        return Math.ceil((amount / rates[from]) * rates[to]);
+      };
+      const renderFunds = () => {
+        if (!fundsData) return;
+        for (const button of currencySwitch.querySelectorAll('button')) {
+          button.setAttribute('aria-checked', button.dataset.currency === fundsCurrency ? 'true' : 'false');
+        }
+        costList.replaceChildren();
+        const slices = [];
+        let total = 0;
+        fundsData.costs.forEach((cost, index) => {
+          const row = document.createElement('li');
+          const name = document.createElement('span');
+          name.className = 'cost-name';
+          const icon = document.createElement('img');
+          icon.alt = '';
+          icon.width = 20;
+          icon.height = 20;
+          icon.src = `./${cost.icon}`;
+          const label = document.createElement('span');
+          label.textContent = cost.name;
+          name.append(icon, label);
+          const amount = document.createElement('span');
+          amount.className = 'cost-amount';
+          if (cost.amount == null) {
+            amount.textContent = 'TBD';
+          } else {
+            const whole = convertedWhole(cost.amount, cost.currency, fundsCurrency);
+            amount.textContent = formatMoney(whole, fundsCurrency);
+            total += whole;
+            slices.push({ name: cost.name, value: whole, color: chartColors[index % chartColors.length] });
+          }
+          row.append(name, amount);
+          costList.append(row);
+        });
+        costTotal.textContent = formatMoney(total, fundsCurrency);
+        const [year, month, day] = fundsData.ratesAsOf.split('-').map(Number);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        ratesAsOf.textContent = `Rates as of ${months[month - 1]} ${day}, ${year}.`;
+        const raised = 0;
+        raisedAmount.textContent = formatMoney(raised, fundsCurrency);
+        annualBurn.textContent = formatMoney(total, fundsCurrency);
+        raiseFill.style.width = total > 0 ? `${(raised / total) * 100}%` : '0%';
+        raiseBar.setAttribute('aria-valuemax', String(total));
+        raiseBar.setAttribute('aria-valuenow', '0');
+        raiseBar.setAttribute('aria-valuetext', `${formatMoney(raised, fundsCurrency)} raised of ${formatMoney(total, fundsCurrency)} annual burn`);
+        const circumference = 2 * Math.PI * 46;
+        let offset = 0;
+        const rings = slices.map(slice => {
+          const length = total ? (slice.value / total) * circumference : 0;
+          const ring = `<circle cx="60" cy="60" r="46" fill="none" stroke="${slice.color}" stroke-width="14" stroke-dasharray="${length} ${circumference - length}" stroke-dashoffset="${-offset}"><title>${slice.name}</title></circle>`;
+          offset += length;
+          return ring;
+        }).join('');
+        const summary = slices.map(slice => `${slice.name} ${formatMoney(slice.value, fundsCurrency)}`).join(', ');
+        costChart.innerHTML = `<svg viewBox="0 0 120 120" role="img" aria-label="Annual costs: ${summary}" style="transform:rotate(-90deg)">${rings}</svg>`;
+      };
+      currencySwitch.addEventListener('click', event => {
+        const button = event.target.closest('button[data-currency]');
+        if (!button || !fundCurrencies.includes(button.dataset.currency)) return;
+        fundsCurrency = button.dataset.currency;
+        try { localStorage.setItem(fundsCurrencyKey, fundsCurrency); } catch {}
+        renderFunds();
+      });
+      currencySwitch.addEventListener('keydown', event => {
+        if (!['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+        const buttons = [...currencySwitch.querySelectorAll('button')];
+        const index = buttons.indexOf(document.activeElement);
+        if (index < 0) return;
+        event.preventDefault();
+        const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+        const next = buttons[(index + step + buttons.length) % buttons.length];
+        next.focus();
+        next.click();
+      });
+      const loadFunds = async () => {
+        try {
+          const response = await fetch('./assets/costs.json', { cache: 'no-store' });
+          if (!response.ok) return;
+          fundsData = await response.json();
+          renderFunds();
+        } catch {}
+      };
+      loadFunds();
+      const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+      const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const setCurrentNav = id => {
+        for (const link of navLinks) {
+          const current = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('is-current', current);
+          if (current) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        }
+      };
+      if ('IntersectionObserver' in window && navSections.length) {
+        const pickCurrentNav = () => {
+          const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+          if (atBottom) {
+            setCurrentNav(navSections[navSections.length - 1].id);
+            return;
+          }
+          const probe = 96;
+          let current = navSections[0];
+          for (const section of navSections) {
+            if (section.getBoundingClientRect().top <= probe) current = section;
+          }
+          setCurrentNav(current.id);
+        };
+        const navObserver = new IntersectionObserver(pickCurrentNav, {
+          rootMargin: '-12% 0px -70% 0px',
+          threshold: [0, 0.2, 0.6]
+        });
+        navSections.forEach(section => navObserver.observe(section));
+        pickCurrentNav();
+      }
       const updateBuilds = async () => {
         try {
           const response = await fetch('./builds.json', { cache: 'no-store' });
