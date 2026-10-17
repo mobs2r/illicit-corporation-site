@@ -49,7 +49,7 @@
     a:focus-visible,button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
     .shell { width:min(1120px,calc(100% - 48px)); margin:auto; }
     .site-header { position:sticky; z-index:20; top:0; border-bottom:1px solid #ffffff16; background:#101318eb; backdrop-filter:blur(18px); }
-    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:76px; }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:82px; }
     .brand { display:inline-flex; align-items:center; gap:13px; text-decoration:none; white-space:nowrap; }
     .brand-mark { position:relative; display:grid; place-items:center; width:38px; height:38px; border:1px solid #67717d; border-radius:10px; font-size:20px; letter-spacing:-.04em; }
     .brand-mark::before,.brand-mark::after { position:absolute; top:0; left:0; content:""; width:6px; height:6px; border-radius:50%; offset-path:path("M 10 .5 H 28 Q 37.5 .5 37.5 10 V 28 Q 37.5 37.5 28 37.5 H 10 Q .5 37.5 .5 28 V 10 Q .5 .5 10 .5 Z"); offset-rotate:0deg; animation:brand-orbit 12s linear infinite; pointer-events:none; }
@@ -58,12 +58,12 @@
     @keyframes brand-orbit { from { offset-distance:0%; } to { offset-distance:100%; } }
     .brand-copy { display:flex; flex-direction:column; font-size:15px; letter-spacing:.16em; line-height:1.1; text-transform:uppercase; }
     .brand-copy small { margin-top:5px; color:var(--muted); font-size:10px; letter-spacing:.28em; }
-    .header-link,.theme-toggle { display:grid; place-items:center; width:38px; height:38px; padding:0; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); line-height:1; flex:0 0 38px; }
-    .header-link { text-decoration:none; }
-    .header-link svg { display:block; width:18px; height:18px; }
+    .header-link,.theme-toggle { display:grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid #6a7d88; border-radius:10px; background:#ffffff06; color:var(--text); line-height:1; flex:0 0 44px; }
+    .header-link { text-decoration:none; color:#fff; }
+    .header-link svg { display:block; width:21px; height:21px; }
     .header-link:hover,.theme-toggle:hover { background:#ffffff12; }
     .header-tools { display:flex; align-items:center; gap:8px; }
-    .theme-toggle { cursor:pointer; font-size:19px; }
+    .theme-toggle { cursor:pointer; font-size:22px; }
     .hero { position:relative; overflow:hidden; isolation:isolate; padding:88px 0 76px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
     .hero-canvas { position:absolute; z-index:0; inset:0; display:block; width:100%; height:100%; pointer-events:none; }
     .hero::before { position:absolute; z-index:1; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,#101318 0%,#101318ee 25%,#101318a8 47%,transparent 83%),linear-gradient(0deg,#101318 0%,transparent 18%); }
@@ -78,7 +78,7 @@
     .hero-word.is-leaving { opacity:0; transform:translate3d(0,-105%,0); }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .actions { display:flex; flex-wrap:wrap; gap:10px; }
-    .action { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:44px; padding:10px 16px; border:1px solid #596676; border-radius:9px; background:#ffffff06; font-size:15px; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
+    .action { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:50px; padding:12px 18px; border:1px solid #596676; border-radius:10px; background:#ffffff06; font-size:17px; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
     .action:hover { transform:translateY(-2px); border-color:#b1c3d6; background:#ffffff12; }
     .action-primary { border-color:#aec8e5; background:#b9d5ef; color:#101820; }
     .action-primary:hover { background:#d4e7f8; }
@@ -150,7 +150,7 @@
     .funds-top .section-head { margin:0; }
     .funds-top h2 { margin:0; }
     .currency-switch { display:flex; flex:0 0 auto; padding:3px; border:1px solid var(--line); border-radius:999px; background:#ffffff08; }
-    .currency-switch button { min-width:52px; min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; }
+    .currency-switch button { min-width:58px; min-height:38px; border:0; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; font-size:15px; }
     .currency-switch button[aria-checked="true"] { background:var(--text); color:var(--bg); }
     .funds-board { display:grid; grid-template-columns:minmax(260px,340px) minmax(0,1fr); gap:28px; align-items:center; }
     .cost-chart { position:relative; width:min(100%,340px); margin:0 auto; padding:10px; border:1px solid var(--glass-line); border-radius:50%; background:var(--glass-strong); box-shadow:var(--glass-shadow); }
@@ -174,18 +174,18 @@
     .cost-amount { color:var(--text); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
     .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
     .rates-as-of { margin:8px 0 0; color:var(--muted); font-size:12px; }
-    .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0 0; padding:0; list-style:none; }
-    .support-grid .pill { display:flex; align-items:center; gap:10px; min-height:64px; padding:12px 14px; border-radius:14px; text-decoration:none; }
+    .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 0; padding:0; list-style:none; }
+    .support-grid .pill { display:flex; align-items:center; gap:12px; min-height:76px; padding:14px 16px; border-radius:16px; font-size:18px; text-decoration:none; }
     .support-grid .pill:hover { transform:translateY(-2px); }
-    .support-grid img { width:22px; height:22px; flex:0 0 auto; border-radius:5px; }
-    .support-grid small { display:block; font-size:12px; line-height:1.2; }
+    .support-grid img { width:25px; height:25px; flex:0 0 auto; border-radius:6px; }
+    .support-grid small { display:block; font-size:14px; line-height:1.2; }
     .support-grid .pill[data-brand="kofi"] { background:#ff5e5b; color:#1a120f; }
     .support-grid .pill[data-brand="patreon"] { background:#ff424d; color:#1a0508; }
     .support-grid .pill[data-brand="twitch"] { background:#9146ff; color:#fff; }
     .support-grid .pill[data-brand="paypal"] { background:#002991; color:#fff; }
     .support-grid .pill[data-brand="streamlabs"] { background:#80f5d2; color:#06221c; }
     .support-grid .pill[data-brand="bmc"] { background:#ffdd00; color:#1a1400; }
-    .support-grid .pill[data-brand="github"] { background:#181717; color:#fff; }
+    .support-grid .pill[data-brand="github"] { background:#181717; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
     .support-grid .pill[data-brand="throne"] { background:#796ef5; color:#0e0b1a; }
     .support-grid .pill[data-brand="btc"] { background:#f7931a; color:#1a1208; }
     .support-grid .pill[data-brand="eth"] { background:#627eea; color:#0c1224; }
@@ -194,7 +194,6 @@
     .support-grid .pill[data-brand="pol"] { background:#8247e5; color:#fff; }
     .support-grid .pill[data-brand="usdc"] { background:#2775ca; color:#fff; }
     .support-grid .pill[data-brand="ape"] { background:#2159f5; color:#fff; }
-    .support-grid .pill[data-brand="sponsor"] { background:#db61a2; color:#2a1020; }
     .support-grid .pill[data-brand="redcross"] { background:#cc0000; color:#fff; }
     .support-grid .pill[data-brand="wwf"] { background:#fff; color:#111; box-shadow:inset 0 0 0 1px rgba(0,0,0,.18), inset 0 1px 0 #fff, 0 10px 22px rgba(0,0,0,.16); }
     .support-grid .pill[data-brand="cinch"] { background:#111; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
@@ -206,12 +205,12 @@
     .group-label { margin:0 0 10px; color:var(--muted); font-size:13px; font-weight:400; letter-spacing:.02em; }
     .group-note { margin:0 0 10px; color:var(--copy); font-size:14px; line-height:1.45; }
     .pill-group .support-grid { margin-top:0; }
-    .pill-mark { width:22px; height:22px; flex:0 0 auto; display:block; }
-    .support-grid .partner-pill { display:grid; grid-template-columns:22px minmax(0,1fr); grid-template-rows:auto auto; column-gap:10px; row-gap:1px; align-items:center; }
+    .pill-mark { width:25px; height:25px; flex:0 0 auto; display:block; }
+    .support-grid .partner-pill { display:grid; grid-template-columns:25px minmax(0,1fr); grid-template-rows:auto auto; column-gap:12px; row-gap:2px; align-items:center; }
     .support-grid .partner-pill .pill-link { display:contents; color:inherit; text-decoration:none; }
     .support-grid .partner-pill img { grid-column:1; grid-row:1 / span 2; }
     .support-grid .partner-pill .pill-name { grid-column:2; grid-row:1; min-width:0; }
-    .support-grid .partner-pill .code-copy { grid-column:2; grid-row:2; justify-self:start; padding:0; border:0; background:transparent; color:inherit; font:inherit; font-size:12px; line-height:1.2; text-align:left; cursor:pointer; opacity:.8; }
+    .support-grid .partner-pill .code-copy { grid-column:2; grid-row:2; justify-self:start; padding:0; border:0; background:transparent; color:inherit; font:inherit; font-size:14px; line-height:1.2; text-align:left; cursor:pointer; opacity:.8; }
     .support-grid .partner-pill .code-copy:hover,
     .support-grid .partner-pill .code-copy.is-copied { opacity:1; text-decoration:underline; text-underline-offset:2px; }
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
@@ -242,6 +241,8 @@
     :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
     :root[data-theme="light"] .brand-mark::after { background:var(--gold); box-shadow:0 0 12px var(--gold); }
     :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
+    :root[data-theme="light"] .header-link { color:#181717; }
+    :root[data-theme="light"] .support-grid .pill[data-brand="github"] { background:#fff; color:#181717; box-shadow:inset 0 0 0 1px rgba(24,23,23,.22), inset 0 1px 0 #fff, 0 10px 22px rgba(0,0,0,.12); }
     :root[data-theme="light"] .header-link:hover,:root[data-theme="light"] .theme-toggle:hover { background:#e9f0f7; }
     :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; background:radial-gradient(ellipse at 78% 48%,#dceafb 0%,#edf3fa 57%,#f5f7fa 90%); }
     :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 0%,#f5f7faf2 26%,#f5f7fab0 49%,transparent 85%),linear-gradient(0deg,#f5f7fa 0%,transparent 18%); }
@@ -272,7 +273,7 @@
     :root[data-theme="light"] .illicit-footer { --if-ink:#172332; --if-dim:#344a60; --if-soft:#526173; --if-line:#d5dee8; }
     @media (max-width:900px) {
       .shell { width:min(720px,calc(100% - 36px)); }
-      .header-link,.theme-toggle { width:38px; height:38px; }
+      .header-link,.theme-toggle { width:44px; height:44px; }
       .hero { padding:68px 0 56px; }
       .studio-grid { grid-template-columns:1fr; gap:28px; }
       .funds-board { grid-template-columns:1fr; }
@@ -280,13 +281,13 @@
       .site-nav { order:3; width:100%; padding-bottom:8px; }
     }
     @media (max-width:620px) {
-      .header-inner { min-height:64px; gap:10px; }
+      .header-inner { min-height:70px; gap:10px; }
       .brand-copy { font-size:13px; }
       .brand-mark { width:33px; height:33px; }
       .brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }
-      .theme-toggle,.header-link { width:36px; height:36px; flex-basis:36px; }
-      .theme-toggle { font-size:16px; }
-      .header-link svg { width:17px; height:17px; }
+      .theme-toggle,.header-link { width:41px; height:41px; flex-basis:41px; }
+      .theme-toggle { font-size:18px; }
+      .header-link svg { width:19px; height:19px; }
       .site-footer { padding:4px 0 32px; }
       .illicit-footer { align-items:flex-start; flex-direction:column; padding:16px; }
       .illicit-footer .illicit-links { justify-content:flex-start; }
@@ -370,7 +371,7 @@
     .site-nav a::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; background:radial-gradient(70px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.4), transparent 62%); transition:opacity .2s ease; }
     .site-nav a:hover::after, .site-nav a:focus-visible::after { opacity:1; }
     .site-nav a:focus-visible { background:linear-gradient(90deg, rgba(136,188,240,.38), rgba(255,255,255,.08)); box-shadow:0 0 0 1px rgba(190,220,255,.7), 0 0 16px rgba(120,180,255,.35); }
-    .nav-toggle { display:none; width:40px; height:40px; padding:0; border-radius:12px; color:var(--text); cursor:pointer; }
+    .nav-toggle { display:none; width:45px; height:45px; padding:0; border-radius:12px; color:var(--text); cursor:pointer; }
     .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { display:block; width:16px; height:1.5px; border-radius:2px; background:currentColor; position:relative; }
     .nav-toggle span::before, .nav-toggle span::after { content:""; position:absolute; left:0; }
     .nav-toggle span::before { top:-5px; }
@@ -474,7 +475,7 @@
             <li><a class="pill" data-brand="paypal" href="https://www.paypal.me/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/paypal.png" width="22" height="22" alt=""><span>PayPal<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="streamlabs" href="https://streamlabs.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/streamlabs.svg" width="22" height="22" alt=""><span>Streamlabs<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="bmc" href="https://www.buymeacoffee.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/bmc.png" width="22" height="22" alt=""><span>Buy Me a Coffee<small>/mobs2r</small></span></a></li>
-            <li><a class="pill" data-brand="github" href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/github.svg" width="22" height="22" alt=""><span>GitHub<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="github" href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer"><svg class="pill-mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="throne" href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/throne.png" width="22" height="22" alt=""><span>Throne<small>/mobs2r</small></span></a></li>
           </ul>
         </section>
@@ -490,22 +491,16 @@
             <li><a class="pill" data-brand="ape" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/ape.svg" width="22" height="22" alt=""><span>ApeCoin<small>APE</small></span></a></li>
           </ul>
         </section>
-        <section class="pill-group" aria-labelledby="sponsor-pills">
-          <h3 class="group-label" id="sponsor-pills">Sponsor</h3>
-          <ul class="support-grid">
-            <li><a class="pill" data-brand="sponsor" href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer"><svg class="pill-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 21.35 10.55 20C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>Sponsor<small>GitHub</small></span></a></li>
-          </ul>
-        </section>
         <section class="pill-group" aria-labelledby="planet-pills">
           <h3 class="group-label" id="planet-pills">Preserve Our Planet</h3>
           <p class="group-note">Give directly to relief and conservation.</p>
           <ul class="support-grid">
             <li><a class="pill" data-brand="redcross" href="https://www.redcross.ca/donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/redcross.png" width="22" height="22" alt=""><span>Canadian Red Cross<small>Donate</small></span></a></li>
-            <li><a class="pill" data-brand="wwf" href="https://wwf.ca/donate/" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/wwf.png" width="22" height="22" alt=""><span>WWF-Canada<small>Donate</small></span></a></li>
+            <li><a class="pill" data-brand="wwf" href="https://wwf.ca/donate/" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/wwf.png" width="22" height="22" alt=""><span>WWF<small>Donate</small></span></a></li>
           </ul>
         </section>
         <section class="pill-group" aria-labelledby="partner-pills">
-          <h3 class="group-label" id="partner-pills">Partner codes</h3>
+          <h3 class="group-label" id="partner-pills">Partners</h3>
           <ul class="support-grid" id="partner-codes"></ul>
         </section>
       </div>
@@ -745,11 +740,10 @@
       // Oct 16, 2026 rate table. CAD is the Bank of Canada USD/CAD daily average, 1.4154.
       // EUR and GBP per 1 USD are derived from that day's Bank of Canada euro and sterling
       // rates, EUR/CAD 1.5908 and GBP/CAD 1.8871: EUR = 1.4154 / 1.5908, GBP = 1.4154 / 1.8871.
-      // Amounts in assets/costs.json are already whole annual units in their native currency.
-      // Quoted prices were rounded up first (279.99 to 280, 69.99 to 70, 17.95 to 18,
-      // 64.99 to 65, 54.99 to 55, 41.99 to 42, 49.99 to 50, 18.99 to 19), then monthly figures were multiplied by 12
-      // and the 6-month figure by 2. Display converts those annual units, then rounds up
-      // to the next hundred from 1,000 and the next ten below that. The total is the sum
+      // Domain lines in assets/costs.json are the exact Hover renewal prices in USD per year.
+      // Other amounts are annual units in their native currency: monthly figures were multiplied by 12
+      // and the 6-month figure by 2 before they were stored. Display converts to the selected currency,
+      // then rounds up to the next hundred from 1,000 and the next ten below that. The total is the sum
       // of the converted values before that display rounding, rounded with the same rule.
       const convertedAmount = (amount, from, to) => {
         const rates = fundsData.rates;
@@ -941,8 +935,8 @@
         paintSlice(null);
       };
       const partnerCodes = [
-        { name: 'CINCH Gaming', code: 'TBD', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
-        { name: 'Rampage Coffee Co.', code: 'TBD', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' }
+        { name: 'CINCH Gaming', code: 'MOBS2R', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
+        { name: 'Rampage Coffee Co.', code: 'MOBS2R', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' }
       ];
       const partnerList = document.getElementById('partner-codes');
       for (const partner of partnerCodes) {
