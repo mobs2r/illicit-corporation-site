@@ -7,14 +7,14 @@
     "GBP": 0.750039743521806
   },
   "costs": [
-    { "name": "omerta.chat", "amount": 58, "currency": "USD", "icon": "assets/icons/omerta.svg" },
+    { "name": "omerta.chat", "amount": 65, "currency": "USD", "icon": "assets/icons/omerta.svg" },
     { "name": "resupply.locker", "amount": 50, "currency": "USD", "icon": "assets/icons/resupply.svg" },
     { "name": "vandambash.com", "amount": 19, "currency": "USD", "icon": "assets/icons/vandambash.svg" },
     { "name": "vandamebash.com", "amount": 19, "currency": "USD", "icon": "assets/icons/vandamebash.svg" },
     { "name": "faked.cc", "amount": 30, "currency": "USD", "icon": "assets/icons/faked.svg" },
     { "name": "crab.quest", "amount": 20, "currency": "USD", "icon": "assets/icons/crab.svg" },
-    { "name": "cod.city", "amount": null, "currency": "USD", "icon": "assets/icons/cod.svg" },
-    { "name": "gk.style", "amount": null, "currency": "USD", "icon": "assets/icons/gk.svg" },
+    { "name": "cod.city", "amount": 42, "currency": "USD", "icon": "assets/icons/cod.svg" },
+    { "name": "gk.style", "amount": 55, "currency": "USD", "icon": "assets/icons/gk.svg" },
     { "name": "X", "amount": 3360, "currency": "CAD", "icon": "assets/icons/x.svg" },
     { "name": "Anthropic", "amount": 1200, "currency": "USD", "icon": "assets/icons/anthropic.svg" },
     { "name": "OpenAI", "amount": 2400, "currency": "USD", "icon": "assets/icons/openai.png" },
