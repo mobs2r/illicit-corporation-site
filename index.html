@@ -641,6 +641,13 @@
         if (fundCurrencies.includes(savedCurrency)) fundsCurrency = savedCurrency;
       } catch {}
       const formatMoney = (whole, currency) => `${currencySymbols[currency]}${whole.toLocaleString('en-US')}`;
+      // Oct 16, 2026 rate table. CAD is the Bank of Canada USD/CAD daily average, 1.4154.
+      // EUR and GBP per 1 USD are derived from that day's Bank of Canada euro and sterling
+      // rates, EUR/CAD 1.5908 and GBP/CAD 1.8871: EUR = 1.4154 / 1.5908, GBP = 1.4154 / 1.8871.
+      // Amounts in assets/costs.json are already whole annual units in their native currency.
+      // Quoted prices were rounded up first (279.99 to 280, 69.99 to 70, 17.95 to 18,
+      // 57.99 to 58, 49.99 to 50, 18.99 to 19), then monthly figures were multiplied by 12
+      // and the 6-month figure by 2. Display converts those annual units and rounds up again.
       const convertedWhole = (amount, from, to) => {
         const rates = fundsData.rates;
         return Math.ceil((amount / rates[from]) * rates[to]);
