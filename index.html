@@ -278,15 +278,107 @@
       .brand-mark::before,.brand-mark::after { animation:none; }
       .brand-mark::after { offset-distance:50%; }
     }
+    :root {
+      --glass:rgba(18,22,28,.72);
+      --glass-strong:rgba(12,16,22,.84);
+      --glass-line:rgba(255,255,255,.28);
+      --glass-shadow:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.38);
+      --glass-sheen:linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,.05) 26%, transparent 48%);
+    }
+    html { background:#0c1016; }
+    html[data-theme="light"] { background:#e7eef6; }
+    html[data-theme="light"] {
+      --glass:rgba(255,255,255,.74);
+      --glass-strong:rgba(248,250,252,.88);
+      --glass-line:rgba(23,35,50,.16);
+      --glass-shadow:0 16px 36px rgba(40,60,90,.12), inset 0 1px 0 #fff;
+      --glass-sheen:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.28) 28%, transparent 50%);
+    }
+    body { background:transparent; }
+    .ambience { position:fixed; z-index:-1; inset:0; overflow:hidden; pointer-events:none; background:radial-gradient(ellipse at 18% 12%, #1c3d68 0%, transparent 46%), radial-gradient(ellipse at 82% 78%, #3a2348 0%, transparent 42%), linear-gradient(165deg, #0c1016, #151b26 55%, #101820); background-size:140% 140%; }
+    html[data-theme="light"] .ambience { background:radial-gradient(ellipse at 16% 10%, #d5e7fb 0%, transparent 48%), radial-gradient(ellipse at 84% 80%, #f3dceb 0%, transparent 42%), linear-gradient(165deg, #f4f7fb, #e7eef6 60%, #f7f3ee); }
+    .ambience canvas { position:absolute; inset:0; width:100%; height:100%; }
+    .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .footer.illicit-footer {
+      background:var(--glass-strong);
+      border-color:var(--glass-line);
+      box-shadow:var(--glass-shadow);
+    }
+    .world { border-color:var(--glass-line); box-shadow:var(--glass-shadow); }
+    .action-primary { background:linear-gradient(180deg,#e7f2fb,#9ec4e6); color:#101820; }
+    html[data-theme="light"] .action-primary { background:#2167a5; color:#fff; }
+    .hero { background:transparent; }
+    .hero::before { background:linear-gradient(90deg, rgba(12,16,22,.74), rgba(12,16,22,.28) 58%, transparent); }
+    html[data-theme="light"] .hero { background:transparent; }
+    html[data-theme="light"] .hero::before { background:linear-gradient(90deg, rgba(244,247,251,.86), rgba(244,247,251,.4) 58%, transparent); }
+    .site-header { border-bottom:1px solid var(--glass-line); }
+    .product, .world, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle { position:relative; }
+    .product, .world, .mod-grid a { overflow:hidden; }
+    .product::before, .world::before, .mod-grid a::before {
+      content:""; position:absolute; z-index:0; inset:0; border-radius:inherit; pointer-events:none;
+      background:radial-gradient(180px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.26), transparent 46%), var(--glass-sheen);
+    }
+    .product > *, .world > *, .mod-grid a > * { position:relative; z-index:2; }
+    .product::after, .world::after, .mod-grid a::after {
+      content:""; position:absolute; z-index:1; top:-20%; bottom:-20%; left:-40%; width:34%; pointer-events:none;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+      transform:translateX(-160%) rotate(14deg); transition:transform .75s ease;
+    }
+    .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:translateX(420%) rotate(14deg); }
+    .tilt { transform:perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px)); transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; }
+    .tilt:hover { --lift:-4px; }
+    .tilt:active { --lift:1px; }
+    .action:active, .header-link:active, .theme-toggle:active, .nav-toggle:active, .support-grid a:active, .currency-switch button:active { transform:scale(.97); }
+    .support-grid a { position:relative; overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 10px 22px rgba(0,0,0,.16); transition:transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease; }
+    .support-grid a::before { content:""; position:absolute; inset:0 auto auto 0; width:100%; height:46%; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.28), transparent); }
+    .site-nav { position:relative; align-items:center; gap:2px; padding:4px; border:1px solid var(--glass-line); border-radius:999px; background:var(--glass); box-shadow:inset 0 1px 0 rgba(255,255,255,.28); }
+    .nav-indicator { position:absolute; z-index:0; top:4px; left:0; height:calc(100% - 8px); width:0; border-radius:999px; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.1)); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 8px 18px rgba(90,150,220,.28); transition:transform .5s cubic-bezier(.18,1.15,.32,1), width .5s cubic-bezier(.18,1.15,.32,1); }
+    .site-nav a { position:relative; z-index:1; padding:8px 12px; border:0; border-radius:999px; overflow:hidden; }
+    .site-nav a.is-current { border-bottom-color:transparent; color:var(--text); text-shadow:0 0 12px rgba(170,210,255,.35); }
+    .site-nav a::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; background:radial-gradient(70px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.4), transparent 62%); transition:opacity .2s ease; }
+    .site-nav a:hover::after, .site-nav a:focus-visible::after { opacity:1; }
+    .site-nav a:focus-visible { background:linear-gradient(90deg, rgba(136,188,240,.38), rgba(255,255,255,.08)); box-shadow:0 0 0 1px rgba(190,220,255,.7), 0 0 16px rgba(120,180,255,.35); }
+    .nav-toggle { display:none; width:40px; height:40px; padding:0; border-radius:12px; color:var(--text); cursor:pointer; }
+    .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { display:block; width:16px; height:1.5px; border-radius:2px; background:currentColor; position:relative; }
+    .nav-toggle span::before, .nav-toggle span::after { content:""; position:absolute; left:0; }
+    .nav-toggle span::before { top:-5px; }
+    .nav-toggle span::after { top:5px; }
+    a:focus-visible, button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; box-shadow:0 0 0 6px rgba(136,188,240,.22); }
+    @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))) {
+      .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .site-nav, .footer.illicit-footer, .world {
+        -webkit-backdrop-filter:blur(18px) saturate(1.5);
+        backdrop-filter:blur(18px) saturate(1.5);
+      }
+      .site-header, .site-nav, .product, .mod-grid a, .cost-list, .cost-total { background:var(--glass); }
+    }
+    @media (max-width:900px) {
+      .nav-toggle { display:grid; place-items:center; }
+      .site-header { position:sticky; }
+      .site-nav { position:absolute; z-index:30; top:calc(100% + 8px); right:16px; left:16px; width:auto; order:0; display:flex; flex-direction:column; align-items:stretch; gap:4px; padding:12px; border-radius:22px; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-10px) scale(.98); transition:opacity .28s ease, transform .28s cubic-bezier(.2,.8,.2,1), visibility .28s ease; }
+      .site-header.is-menu-open .site-nav { opacity:1; visibility:visible; pointer-events:auto; transform:none; }
+      .site-nav a { padding:12px 14px; }
+      .nav-indicator { display:none; }
+      .site-nav a.is-current { background:rgba(136,188,240,.22); }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .ambience { animation:none; }
+      .nav-indicator, .product, .world, .mod-grid a, .product::after, .world::after, .mod-grid a::after, .site-nav, .tilt { transition:none; }
+      .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
+      .tilt, .tilt:hover, .action:active { transform:none; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .ambience { animation:ambience-drift 32s ease-in-out infinite alternate; }
+    }
+    @keyframes ambience-drift { from { background-position:0% 20%; } to { background-position:100% 80%; } }
   </style>
 </head>
 <body>
+  <div class="ambience" aria-hidden="true"><canvas id="ambience-canvas"></canvas></div>
   <a class="skip" href="#platform">Skip to content</a>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <nav class="site-nav" aria-label="On this page"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-      <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+      <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <div class="header-tools"><button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
   <main>
@@ -304,7 +396,7 @@
         <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◎</span></div><h3>Casino</h3><p>Roulette, Crash, and Pachinko.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◎</span></div><h3>Arcade</h3><p>Live multiplayer web games.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds" aria-labelledby="worlds-title">
@@ -317,14 +409,10 @@
       </div>
     </section>
     <section class="section mods shell" id="mods" aria-labelledby="mods-title">
-      <div class="mods-head">
-        <div class="mods-copy">
-          <p class="label">Workshop</p>
-          <h2 id="mods-title">Mods</h2>
-          <p class="mods-intro">Three public Garry's Mod addons. 724 active subscribers, counted from current Workshop subscriptions.</p>
-        </div>
-        <a class="action" href="https://steamcommunity.com/id/mobs2r/myworkshopfiles/" target="_blank" rel="noopener noreferrer">Workshop profile <span aria-hidden="true">↗</span></a>
-      </div>
+      <header class="section-head mods-head">
+        <p class="label">Workshop</p>
+        <h2 id="mods-title">Mods</h2>
+      </header>
       <ul class="mod-grid">
         <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3362030272" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/webfishing-name-tags.jpg" width="1024" height="1024" alt="Workshop preview of WEBFISHING Name Tags" loading="lazy" decoding="async"></span><span class="mod-heading"><img class="mod-game" src="./assets/icons/garrys-mod.jpg" width="32" height="32" alt="Garry's Mod"><span class="mod-name">WEBFISHING Name Tags</span></span><span class="mod-stat">552 Active Subscribers</span><span class="mod-stat">Last Updated Feb 15, 2026</span></a></li>
         <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3324247572" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/junk-jet.jpg" width="720" height="720" alt="Workshop preview of Junk Jet in Tool Gun" loading="lazy" decoding="async"></span><span class="mod-heading"><img class="mod-game" src="./assets/icons/garrys-mod.jpg" width="32" height="32" alt="Garry's Mod"><span class="mod-name">Junk Jet in Tool Gun</span></span><span class="mod-stat">127 Active Subscribers</span><span class="mod-stat">Last Updated Jan 13, 2025</span></a></li>
@@ -386,7 +474,7 @@
           <h3>Philosophy</h3>
           <p>The surface is underground on purpose. Short names, sharp marks, a hacky streak. Under that is ordinary engineering: accounts, wallets, inventories, and game servers on one spine. Omerta Chat is the web layer, a terminal into the mainframe. From it you can see balance, connections, and the data Mushrüm collects. The same sign-in opens Cod City and gKnuckle.</p>
           <h3>What we run</h3>
-          <p>Omerta Chat is the social hub: chat, a shared economy, and a full arcade. The arcade includes Riff Rush, Pool, Place, and Chess, plus the casino tables Roulette, Crash, and Pachinko. It plays with a keyboard, a gamepad, a guitar, or a Wii Remote. Atlantis Chat is the all-ages sister, the same arcade, collection, and chat with a PG feel. It is live at ill.up.railway.app, and the Tumblr at mobs2r.tumblr.com carries the same name.</p>
+          <p>Omerta Chat is the social hub: chat, a shared economy, and a full arcade. The arcade includes Riff Rush, Pool, Place, and Chess, plus Arcade: Roulette, Crash, and Pachinko. It plays with a keyboard, a gamepad, a guitar, or a Wii Remote. Atlantis Chat is the all-ages sister, the same arcade, collection, and chat with a PG feel. It is live at ill.up.railway.app, and the Tumblr at mobs2r.tumblr.com carries the same name.</p>
           <p>Cod City is an unofficial browser FPS built on Wii-era asset research, with shared progression, local split-screen, and items that land in the Omerta locker. gKnuckle is a rogue-lite climbing mod for Garry's Mod. Its portal runs a server browser, a WiKi, the roach MiLL, and WiSHES, where players vote on the odds with COiNS.</p>
           <p>Illicit API is the self-hostable account, wallet, and economy spine behind Omerta, Atlantis, and Вандам(e)баш. Mushrüm is the analytics platform on that API. Illicit AC is the non-invasive anti-cheat those analytics improve. Faked ID is the shared identity. Faked CC is the private way to spend, and the face of operator billing. Resupply Locker carries the same ID into third-party games, including DarkRP and FiveM, and hosts prepaid server access.</p>
           <p>The public Workshop addons are WEBFISHING Name Tags, Junk Jet in Tool Gun, and Neon Error Sign, with 724 active subscribers between them.</p>
@@ -748,6 +836,13 @@
       loadFunds();
       const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
       const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const navIndicator = document.querySelector('.nav-indicator');
+      const placeNavPill = () => {
+        const current = document.querySelector('.site-nav a.is-current');
+        if (!navIndicator || !current) return;
+        navIndicator.style.width = `${current.offsetWidth}px`;
+        navIndicator.style.transform = `translateX(${current.offsetLeft}px)`;
+      };
       const setCurrentNav = id => {
         for (const link of navLinks) {
           const current = link.getAttribute('href') === `#${id}`;
@@ -755,6 +850,7 @@
           if (current) link.setAttribute('aria-current', 'page');
           else link.removeAttribute('aria-current');
         }
+        placeNavPill();
       };
       if ('IntersectionObserver' in window && navSections.length) {
         const pickCurrentNav = () => {
@@ -777,6 +873,114 @@
         navSections.forEach(section => navObserver.observe(section));
         pickCurrentNav();
       }
+      placeNavPill();
+      window.addEventListener('resize', placeNavPill);
+      document.fonts?.ready?.then(placeNavPill);
+      const header = document.querySelector('.site-header');
+      const navToggle = document.getElementById('nav-toggle');
+      const setMenu = open => {
+        header.classList.toggle('is-menu-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      };
+      navToggle.addEventListener('click', () => setMenu(!header.classList.contains('is-menu-open')));
+      navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+      navLinks.forEach(link => link.addEventListener('pointermove', event => {
+        const bounds = link.getBoundingClientRect();
+        link.style.setProperty('--mx', `${event.clientX - bounds.left}px`);
+        link.style.setProperty('--my', `${event.clientY - bounds.top}px`);
+      }));
+      const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+      if (!motionQuery?.matches) {
+        document.querySelectorAll('.product, .world, .mod-grid a').forEach(card => {
+          card.classList.add('tilt');
+          card.addEventListener('pointermove', event => {
+            const bounds = card.getBoundingClientRect();
+            const px = (event.clientX - bounds.left) / bounds.width;
+            const py = (event.clientY - bounds.top) / bounds.height;
+            card.style.setProperty('--mx', `${px * 100}%`);
+            card.style.setProperty('--my', `${py * 100}%`);
+            card.style.setProperty('--rx', `${(0.5 - py) * 4.5}deg`);
+            card.style.setProperty('--ry', `${(px - 0.5) * 5.5}deg`);
+          });
+          card.addEventListener('pointerleave', () => {
+            card.style.removeProperty('--rx');
+            card.style.removeProperty('--ry');
+          });
+        });
+      }
+      const initAmbience = () => {
+        const canvas = document.getElementById('ambience-canvas');
+        const context = canvas?.getContext('2d', { alpha: true });
+        if (!context) return;
+        let width = 0;
+        let height = 0;
+        let frame = 0;
+        let last = 0;
+        const glints = Array.from({ length: 16 }, () => ({
+          x: Math.random(),
+          y: Math.random(),
+          r: 10 + Math.random() * 26,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.08 + Math.random() * 0.16
+        }));
+        const resize = () => {
+          const scale = Math.min(window.devicePixelRatio || 1, 1.25);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.max(1, Math.round(width * scale));
+          canvas.height = Math.max(1, Math.round(height * scale));
+          context.setTransform(scale, 0, 0, scale, 0, 0);
+        };
+        const ribbon = (time, offset, amplitude, color, weight) => {
+          context.beginPath();
+          for (let x = 0; x <= width; x += 16) {
+            const y = height * offset + Math.sin(x * 0.0042 + time) * amplitude + Math.sin(x * 0.009 - time * 0.7) * amplitude * 0.35;
+            if (x === 0) context.moveTo(x, y);
+            else context.lineTo(x, y);
+          }
+          context.strokeStyle = color;
+          context.lineWidth = weight;
+          context.stroke();
+        };
+        const draw = now => {
+          const light = document.documentElement.dataset.theme === 'light';
+          const time = now * 0.00018;
+          context.clearRect(0, 0, width, height);
+          context.lineCap = 'round';
+          ribbon(time, light ? 0.38 : 0.42, height * 0.07, light ? 'rgba(70,130,190,0.16)' : 'rgba(110,180,255,0.22)', 54);
+          ribbon(time + 1.4, light ? 0.58 : 0.62, height * 0.05, light ? 'rgba(190,120,160,0.12)' : 'rgba(190,120,220,0.16)', 36);
+          for (const glint of glints) {
+            const x = ((glint.x + time * glint.speed) % 1) * width;
+            const y = (glint.y + 0.025 * Math.sin(time * 3 + glint.phase)) * height;
+            const glow = context.createRadialGradient(x, y, 0, x, y, glint.r);
+            glow.addColorStop(0, light ? 'rgba(255,255,255,0.55)' : 'rgba(198,224,255,0.32)');
+            glow.addColorStop(1, 'rgba(255,255,255,0)');
+            context.fillStyle = glow;
+            context.beginPath();
+            context.arc(x, y, glint.r, 0, Math.PI * 2);
+            context.fill();
+          }
+        };
+        const tick = now => {
+          frame = requestAnimationFrame(tick);
+          if (document.hidden || motionQuery?.matches || now - last < 80) return;
+          last = now;
+          draw(now);
+        };
+        resize();
+        draw(motionQuery?.matches ? 0 : performance.now());
+        if (!motionQuery?.matches) frame = requestAnimationFrame(tick);
+        window.addEventListener('resize', resize);
+        motionQuery?.addEventListener?.('change', () => {
+          if (frame) cancelAnimationFrame(frame);
+          frame = 0;
+          draw(0);
+          if (!motionQuery.matches) frame = requestAnimationFrame(tick);
+        });
+      };
+      initAmbience();
       const updateBuilds = async () => {
         try {
           const response = await fetch('./builds.json', { cache: 'no-store' });
