@@ -141,17 +141,9 @@
     .section-head { max-width:44rem; margin-bottom:28px; }
     .section-head h2 { margin:8px 0 10px; font-size:clamp(32px,4vw,48px); font-weight:400; letter-spacing:-.03em; }
     .lede { margin:0; color:var(--copy); font-size:18px; line-height:1.5; }
-    .about-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr); gap:28px 48px; align-items:start; }
-    .about-copy h3 { margin:28px 0 8px; font-size:20px; font-weight:400; letter-spacing:-.02em; }
-    .about-copy p { margin:0 0 12px; color:var(--copy); }
-    .about-copy a { color:var(--blue); }
+    .about-copy { max-width:46rem; margin:0; color:var(--copy); font-size:18px; line-height:1.55; }
     .stack { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
     .stack li { padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--copy); font-size:14px; }
-    .timeline { margin:0; padding:0; list-style:none; border-left:1px solid var(--line); }
-    .timeline li { position:relative; padding:0 0 18px 18px; }
-    .timeline li::before { content:""; position:absolute; left:-4px; top:7px; width:7px; height:7px; border-radius:50%; background:var(--gold); }
-    .timeline time { display:block; color:var(--gold); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-    .timeline p { margin:4px 0 0; color:var(--copy); font-size:15px; }
     .funds-top { display:flex; align-items:flex-end; justify-content:space-between; gap:16px 24px; margin-bottom:22px; }
     .funds-top .section-head { margin:0; }
     .funds-top h2 { margin:8px 0 0; }
@@ -182,10 +174,10 @@
     .support-grid a[data-brand="bmc"] { background:#ffdd00; color:#1a1400; }
     .support-grid a[data-brand="github"] { background:#181717; color:#fff; }
     .support-grid a[data-brand="throne"] { background:#796ef5; color:#0e0b1a; }
-    .finance-line { margin:0 0 18px; font-size:clamp(22px,3vw,32px); letter-spacing:-.02em; }
-    .finance-figures { display:flex; justify-content:space-between; gap:16px; margin:0 0 10px; color:var(--copy); }
-    .raise { height:14px; overflow:hidden; border-radius:999px; background:#ffffff1f; box-shadow:inset 0 0 0 1px var(--line); }
-    .raise span { display:block; width:0; height:100%; background:var(--gold); }
+    .invest-figures { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 28px; margin:0 0 18px; }
+    .invest-figures p { margin:0; font-size:clamp(18px,2vw,26px); letter-spacing:-.02em; line-height:1.35; }
+    .raise { height:18px; overflow:hidden; border-radius:999px; background:#ffffff1f; box-shadow:inset 0 0 0 1px var(--line); }
+    .raise span { display:block; width:100%; height:100%; background:linear-gradient(180deg,rgba(255,168,160,.95),rgba(176,36,48,.86)); box-shadow:inset 0 1px 0 rgba(255,255,255,.55); }
     .finance-cta { margin-top:18px; }
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
     .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
@@ -248,7 +240,7 @@
       .shell { width:min(720px,calc(100% - 36px)); }
       .header-link,.theme-toggle { width:38px; height:38px; }
       .hero { padding:68px 0 56px; }
-      .studio-grid,.about-layout { grid-template-columns:1fr; gap:28px; }
+      .studio-grid { grid-template-columns:1fr; gap:28px; }
       .funds-board { grid-template-columns:1fr; }
       .support-grid { grid-template-columns:1fr 1fr; }
       .site-nav { order:3; width:100%; padding-bottom:8px; }
@@ -268,7 +260,8 @@
       h1 { font-size:clamp(38px,11vw,52px); }
       .section { padding:52px 0; }
       .product-grid,.world-grid,.mod-grid,.support-grid { grid-template-columns:1fr; }
-      .funds-top,.finance-figures { align-items:flex-start; flex-direction:column; }
+      .funds-top { align-items:flex-start; flex-direction:column; }
+      .invest-figures { grid-template-columns:1fr; }
       .mods-head { align-items:start; flex-direction:column; }
       .product { min-height:0; }
       .world { min-height:280px; }
@@ -379,7 +372,7 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#invest">Invest</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
       <div class="header-tools"><button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a></div>
     </div>
   </header>
@@ -451,59 +444,29 @@
         <li><a data-brand="throne" href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/throne.png" width="22" height="22" alt=""><span>Throne<small>/mobs2r</small></span></a></li>
       </ul>
     </section>
-    <section class="section shell" id="finance" aria-labelledby="finance-title">
+    <section class="section shell" id="invest" aria-labelledby="invest-title">
       <header class="section-head">
-        <p class="label">Capital</p>
-        <h2 id="finance-title">Finance</h2>
+        <h2 id="invest-title">Want to invest in Illicit Corporation?</h2>
       </header>
-      <p class="finance-line">Zero outside funding.</p>
-      <div class="finance-figures">
-        <span><span id="raised-amount">$0</span> raised</span>
-        <span>Annual burn <span id="annual-burn"></span></span>
+      <div class="invest-figures">
+        <p id="invest-funders">$0 CAD from Funders in 2026</p>
+        <p id="invest-revenue">$0 CAD from Revenue in 2026</p>
+        <p id="invest-burn">Annual Burn in 2026: $0 CAD</p>
       </div>
-      <div class="raise" id="raise-bar" role="progressbar" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-label="Outside funding raised against the annual burn"><span id="raise-fill"></span></div>
+      <div class="raise invest-loss" id="invest-bar" role="progressbar" aria-valuemin="0" aria-valuenow="100" aria-valuemax="100" aria-label="Share of the annual burn not covered by funding or revenue"><span id="invest-fill"></span></div>
       <a class="action finance-cta" href="mailto:mobs2@waifu.club?subject=Investing%20in%20Illicit">Investors &amp; partners</a>
     </section>
     <section class="section shell" id="about" aria-labelledby="about-title">
       <header class="section-head">
-        <p class="label">Studio</p>
         <h2 id="about-title">About</h2>
-        <p class="lede">A Métis-founded indie studio in Saskatoon, Saskatchewan. The founder is Secretary of the Board at SaskInteractive.</p>
       </header>
-      <div class="about-layout">
-        <div class="about-copy">
-          <p>Illicit builds identity, community, and the developer tools that tie independent worlds together. The public Steam profile puts it plainly: former staff at Overwolf and Ex Corp, founder of Illicit Corporation, and a contributor on Klaus Veen's Treason.</p>
-          <h3>Philosophy</h3>
-          <p>The surface is underground on purpose. Short names, sharp marks, a hacky streak. Under that is ordinary engineering: accounts, wallets, inventories, and game servers on one spine. Omerta Chat is the web layer, a terminal into the mainframe. From it you can see balance, connections, and the data Mushrüm collects. The same sign-in opens Cod City and gKnuckle.</p>
-          <h3>What we run</h3>
-          <p>Omerta Chat is the social hub: chat, a shared economy, and a full arcade. The arcade includes Riff Rush, Pool, Place, and Chess, plus Arcade: Roulette, Crash, and Pachinko. It plays with a keyboard, a gamepad, a guitar, or a Wii Remote. Atlantis Chat is the all-ages sister, the same arcade, collection, and chat with a PG feel. It is live at ill.up.railway.app, and the Tumblr at mobs2r.tumblr.com carries the same name.</p>
-          <p>Cod City is an unofficial browser FPS built on Wii-era asset research, with shared progression, local split-screen, and items that land in the Omerta locker. gKnuckle is a rogue-lite climbing mod for Garry's Mod. Its portal runs a server browser, a WiKi, the roach MiLL, and WiSHES, where players vote on the odds with COiNS.</p>
-          <p>Illicit API is the self-hostable account, wallet, and economy spine behind Omerta, Atlantis, and Вандам(e)баш. Mushrüm is the analytics platform on that API. Illicit AC is the non-invasive anti-cheat those analytics improve. Faked ID is the shared identity. Faked CC is the private way to spend, and the face of operator billing. Resupply Locker carries the same ID into third-party games, including DarkRP and FiveM, and hosts prepaid server access.</p>
-          <p>The public Workshop addons are WEBFISHING Name Tags, Junk Jet in Tool Gun, and Neon Error Sign, with 724 active subscribers between them.</p>
-          <h3>Built in-house</h3>
-          <ul class="stack">
-            <li>Node.js</li>
-            <li>OAuth, including Steam, Google, and Discord</li>
-            <li>Payments through Faked CC and crypto quotes</li>
-            <li>GLua for the Garry's Mod addons</li>
-            <li>Railway, Supabase, and mmm.page</li>
-          </ul>
-          <h3>Reach</h3>
-          <p>Three public Garry's Mod Workshop addons. 724 active subscribers in total: 552 on WEBFISHING Name Tags, 127 on Junk Jet in Tool Gun, and 45 on Neon Error Sign. That total is current subscriptions from the public Workshop file details, not lifetime subscriptions. The timeline uses the addons' publish timestamps in UTC, plus the member-since date on the public Steam profile.</p>
-        </div>
-        <ol class="timeline">
-          <li><time datetime="2020-03-31">March 31, 2020</time><p>The public Steam profile opens, located in Saskatoon.</p></li>
-          <li><time datetime="2024-09-04">September 4, 2024</time><p>Junk Jet in Tool Gun is published on the Workshop.</p></li>
-          <li><time datetime="2024-10-09">October 9, 2024</time><p>Neon Error Sign is published.</p></li>
-          <li><time datetime="2024-11-08">November 8, 2024</time><p>WEBFISHING Name Tags is published.</p></li>
-        </ol>
-      </div>
+      <p class="about-copy">Illicit Corporation is a Métis founded independent research &amp; development lab located in Saskatoon, Saskatchewan, Canada. The focus of our research &amp; development is game design, specifically with networking or peripherals. The company was founded by Alyx (mobs2r) who is deeply passionate about the foundational values of the lab. We are constantly evolving our team &amp; commitment to mirror these responsibilities.</p>
     </section>
     <section class="section studio shell" id="contact" aria-labelledby="contact-title">
       <div class="studio-grid">
         <div>
           <h2>Studio</h2>
-          <p class="studio-about">Métis-founded. Based at 310 Wall Street in Saskatoon. The founder is Secretary of the Board at SaskInteractive.</p>
+          <p class="studio-about">Métis-founded. Based at 310 Wall Street in Saskatoon.</p>
         </div>
         <div>
           <h2 id="contact-title">Contact</h2>
@@ -519,7 +482,7 @@
   <footer class="site-footer">
     <div class="shell illicit-footer">
       <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-      <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#finance">Finance</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+      <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#invest">Invest</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
     </div>
   </footer>
   <script>
@@ -722,10 +685,11 @@
       const costChart = document.getElementById('cost-chart');
       const costTotal = document.querySelector('#cost-total .cost-amount');
       const ratesAsOf = document.getElementById('rates-as-of');
-      const raisedAmount = document.getElementById('raised-amount');
-      const annualBurn = document.getElementById('annual-burn');
-      const raiseBar = document.getElementById('raise-bar');
-      const raiseFill = document.getElementById('raise-fill');
+      const investFunders = document.getElementById('invest-funders');
+      const investRevenue = document.getElementById('invest-revenue');
+      const investBurn = document.getElementById('invest-burn');
+      const investBar = document.getElementById('invest-bar');
+      const investFill = document.getElementById('invest-fill');
       let fundsData = null;
       let fundsCurrency = 'USD';
       try {
@@ -793,13 +757,21 @@
         const [year, month, day] = fundsData.ratesAsOf.split('-').map(Number);
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         ratesAsOf.textContent = `Rates as of ${months[month - 1]} ${day}, ${year}.`;
-        const raised = 0;
-        raisedAmount.textContent = formatMoney(raised, fundsCurrency);
-        annualBurn.textContent = formatMoney(total, fundsCurrency);
-        raiseFill.style.width = total > 0 ? `${(raised / total) * 100}%` : '0%';
-        raiseBar.setAttribute('aria-valuemax', String(total));
-        raiseBar.setAttribute('aria-valuenow', '0');
-        raiseBar.setAttribute('aria-valuetext', `${formatMoney(raised, fundsCurrency)} raised of ${formatMoney(total, fundsCurrency)} annual burn`);
+        const fundersCad = 0;
+        const revenueCad = 0;
+        const funders = displayRound(convertedAmount(fundersCad, 'CAD', fundsCurrency));
+        const revenue = displayRound(convertedAmount(revenueCad, 'CAD', fundsCurrency));
+        const covered = total > 0 ? (funders + revenue) / total : 0;
+        const loss = Math.min(1, Math.max(0, 1 - covered));
+        const investSymbol = fundsCurrency === 'EUR' ? '€' : fundsCurrency === 'GBP' ? '£' : '$';
+        const investMoney = whole => `${investSymbol}${whole.toLocaleString('en-US')} ${fundsCurrency}`;
+        investFunders.textContent = `${investMoney(funders)} from Funders in 2026`;
+        investRevenue.textContent = `${investMoney(revenue)} from Revenue in 2026`;
+        investBurn.textContent = `Annual Burn in 2026: ${investMoney(total)}`;
+        investFill.style.width = `${loss * 100}%`;
+        investBar.setAttribute('aria-valuemax', '100');
+        investBar.setAttribute('aria-valuenow', String(Math.round(loss * 100)));
+        investBar.setAttribute('aria-valuetext', `${Math.round(loss * 100)}% of the annual burn is uncovered`);
         const circumference = 2 * Math.PI * 46;
         let offset = 0;
         const rings = slices.map(slice => {
