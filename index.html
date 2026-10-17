@@ -595,7 +595,9 @@
           if (/^[a-f0-9]{7,40}$/i.test(siteCommit)) {
             const currentUrl = new URL(window.location.href);
             const revision = siteCommit.slice(0, 7).toLowerCase();
-            if (currentUrl.searchParams.get('rev') !== revision) {
+            // htmlpreview.github.io serves this file from a document whose query is the source URL.
+            const previewShell = /(^|\.)htmlpreview\.github\.io$/i.test(currentUrl.hostname);
+            if (!previewShell && currentUrl.searchParams.get('rev') !== revision) {
               currentUrl.searchParams.set('rev', revision);
               window.location.replace(currentUrl);
               return;
