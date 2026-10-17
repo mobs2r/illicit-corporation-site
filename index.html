@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Illicit Corporation builds identity, community, and developer infrastructure for connected worlds.">
+  <meta name="description" content="Illicit Corporation is a Saskatchewan-based independent interactive studio building community platforms and tools. Atlantis Chat is the all-ages flagship.">
   <meta name="theme-color" content="#101318">
   <link rel="manifest" href="./manifest.webmanifest">
   <title>Illicit Corporation</title>
@@ -16,17 +16,31 @@
     })();
   </script>
   <style>
-    :root { color-scheme: dark; --bg:#101318; --surface:#171b21; --raised:#1e242c; --line:#343b45; --text:#f2f0eb; --muted:#aab2bc; --red:#f1857d; --blue:#88bcf0; --gold:#f1cc86; --green:#92d7b1; --omerta-mark:#a51f24; }
+    :root {
+      color-scheme: dark;
+      --bg:#101318; --surface:#171b21; --raised:#1e242c; --line:#343b45; --text:#f2f0eb; --muted:#b7c0ca;
+      --red:#f1857d; --blue:#88bcf0; --gold:#f1cc86; --green:#92d7b1; --omerta-mark:#a51f24;
+      --mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "SF Mono", Menlo, Consolas, monospace;
+      --badge-bg:#8e2428; --badge-ink:#fff8f7; --stamp:#ffb4ae; --redact:#07080b;
+      --vault-bg:#10141a; --vault-line:#7a4545; --card:#161a20; --copy:#d7dee7; --quiet:#d7dee7;
+      --callout:#ffffff10; --nav-hover:#ffffff14; --header-bg:#101318eb; --header-line:#ffffff16;
+      --term:#0e1218; --founder-bg:#171b21; --chip-line:#f1cc86; --soft:#ffffff14;
+      --cod:#a4d8bd; --gk:#c7d0d8;
+    }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
     button { font:inherit; }
     button,a { -webkit-tap-highlight-color:transparent; }
     a { color:inherit; }
     a:focus-visible,button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
-    .shell { width:min(1260px,calc(100% - 64px)); margin:auto; }
-    .site-header { position:sticky; z-index:20; top:0; border-bottom:1px solid #ffffff16; background:#101318e9; backdrop-filter:blur(18px); }
-    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:77px; }
+    main:focus { outline:none; }
+    ::selection { background:#88bcf066; }
+    .shell { width:min(1120px,calc(100% - 48px)); margin:auto; }
+    .skip { position:fixed; z-index:40; left:12px; top:12px; transform:translateY(-180%); padding:10px 14px; border-radius:8px; background:#d7e8f8; color:#101820; font-weight:800; text-decoration:none; }
+    .skip:focus { transform:none; }
+    .site-header { position:sticky; z-index:20; top:0; border-bottom:1px solid var(--header-line); background:var(--header-bg); backdrop-filter:blur(18px); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:18px 22px; min-height:77px; }
     .brand { display:inline-flex; align-items:center; gap:13px; text-decoration:none; white-space:nowrap; }
     .brand-mark { position:relative; display:grid; place-items:center; width:38px; height:38px; border:1px solid #67717d; border-radius:10px; font-size:20px; font-weight:900; letter-spacing:-.09em; }
     .brand-mark::before,.brand-mark::after { position:absolute; top:0; left:0; content:""; width:6px; height:6px; border-radius:50%; offset-path:path("M 10 .5 H 28 Q 37.5 .5 37.5 10 V 28 Q 37.5 37.5 28 37.5 H 10 Q .5 37.5 .5 28 V 10 Q .5 .5 10 .5 Z"); offset-rotate:0deg; animation:brand-orbit 12s linear infinite; pointer-events:none; }
@@ -35,143 +49,351 @@
     @keyframes brand-orbit { from { offset-distance:0%; } to { offset-distance:100%; } }
     .brand-copy { display:flex; flex-direction:column; font-size:14px; font-weight:850; letter-spacing:.12em; line-height:1.1; text-transform:uppercase; }
     .brand-copy small { margin-top:4px; color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.27em; }
+    .site-nav { display:flex; flex:1; flex-wrap:wrap; justify-content:flex-end; gap:2px; min-width:0; }
+    .site-nav a { padding:10px 8px; border-radius:8px; color:var(--muted); font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; line-height:1; text-decoration:none; text-transform:uppercase; white-space:nowrap; }
+    .site-nav a:hover { background:var(--nav-hover); color:var(--text); }
     .header-link { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:1px solid #6a7d88; border-radius:9px; font-size:12px; font-weight:800; text-decoration:none; white-space:nowrap; }
     .header-link:hover { background:#ffffff12; }
     .header-tools { display:flex; align-items:center; gap:8px; }
     .theme-toggle { display:grid; place-items:center; width:38px; height:38px; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); cursor:pointer; font-size:19px; }
     .theme-toggle:hover { background:#ffffff12; }
-    .hero { position:relative; overflow:hidden; isolation:isolate; padding:94px 0 80px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
+    .hero { position:relative; overflow:hidden; isolation:isolate; padding:78px 0 72px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
     .hero-canvas { position:absolute; z-index:0; inset:0; display:block; width:100%; height:100%; pointer-events:none; }
     .hero::before { position:absolute; z-index:1; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,#101318 0%,#101318ee 25%,#101318a8 47%,transparent 83%),linear-gradient(0deg,#101318 0%,transparent 18%); }
     .hero > .shell { position:relative; z-index:2; }
+    .kicker { display:flex; align-items:center; gap:10px; margin:0 0 16px; color:var(--gold); font-family:var(--mono); font-size:12px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
+    .status-dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 10px var(--green); animation:pulse 2.4s ease-in-out infinite; }
+    .cursor { width:.55em; height:.85em; background:currentColor; animation:blink 1.15s steps(1) infinite; }
+    @keyframes pulse { 50% { opacity:.4; } }
+    @keyframes blink { 50% { opacity:0; } }
     h1,h2,h3,p { margin-top:0; }
-    h1 { max-width:820px; margin:20px 0 19px; font-size:clamp(48px,7.2vw,108px); font-weight:850; line-height:.98; letter-spacing:-.072em; }
-    h1 em { display:block; color:var(--blue); font-style:normal; }
-    .hero-intro { max-width:590px; margin-bottom:31px; color:#ccd2d8; font-size:clamp(16px,1.5vw,19px); }
+    h1 { max-width:820px; margin:0 0 16px; font-size:clamp(46px,6.4vw,92px); font-weight:850; line-height:.96; letter-spacing:-.072em; }
+    h1 em { display:block; position:relative; color:var(--blue); font-style:normal; }
+    .glitch-title em { animation:glitch 6.8s infinite; }
+    @keyframes glitch {
+      0%, 86%, 100% { text-shadow:none; transform:none; }
+      88% { text-shadow:2px 0 var(--red), -2px 0 var(--green); transform:translateX(-1px); }
+      91% { text-shadow:-2px 0 var(--blue), 2px 0 var(--red); transform:translateX(1px); }
+      94% { text-shadow:none; transform:none; }
+    }
+    h2 { margin:0 0 12px; font-size:clamp(32px,4vw,48px); font-weight:800; letter-spacing:-.045em; line-height:1.05; }
+    h3 { margin:0 0 6px; font-size:22px; letter-spacing:-.03em; }
+    .hero-intro { max-width:640px; margin-bottom:8px; color:#d5dde6; font-size:clamp(17px,1.5vw,20px); }
     .hero-word-window { position:relative; display:inline-block; width:14ch; height:1.55em; overflow:hidden; vertical-align:bottom; white-space:nowrap; }
     .hero-word { position:absolute; inset:0 auto auto 0; color:var(--blue); font-weight:700; opacity:0; transform:translate3d(0,105%,0); transition:transform .8s cubic-bezier(.37,0,.22,1),opacity .8s ease; will-change:transform,opacity; }
     .hero-word.is-current { opacity:1; transform:translate3d(0,0,0); }
     .hero-word.is-leaving { opacity:0; transform:translate3d(0,-105%,0); }
+    .hero-studio { max-width:560px; margin:0 0 26px; color:var(--copy); font-size:16px; }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .actions { display:flex; flex-wrap:wrap; gap:10px; }
-    .action { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:43px; padding:10px 16px; border:1px solid #596676; border-radius:9px; background:#ffffff06; font-size:13px; font-weight:780; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
+    .section-actions { margin-top:18px; }
+    .action { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:10px 16px; border:1px solid #596676; border-radius:9px; background:#ffffff06; font-size:14px; font-weight:750; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
     .action:hover { transform:translateY(-2px); border-color:#b1c3d6; background:#ffffff12; }
     .action-primary { border-color:#aec8e5; background:#b9d5ef; color:#101820; }
     .action-primary:hover { background:#d4e7f8; }
-    section { scroll-margin-top:100px; }
-    .section { padding:83px 0; }
-    .label { color:var(--gold); font-size:10px; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
-    .product-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-    .product { display:flex; flex-direction:column; min-height:180px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
-    .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
-    .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
-    .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
+    section { scroll-margin-top:120px; }
+    .section { padding:72px 0; }
+    .label { margin:0; color:var(--gold); font-family:var(--mono); font-size:12px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; }
+    .section-lead,.callout { max-width:68ch; color:var(--copy); font-size:16px; }
+    .section-lead { margin:0 0 22px; }
+    .callout { margin:0 0 18px; padding:12px 14px; border-left:3px solid var(--gold); background:var(--callout); }
+    .flagship { overflow:hidden; border:1px solid var(--line); border-radius:18px; background:radial-gradient(circle at 86% 42%,#2e73b055,transparent 36%),linear-gradient(115deg,#1b2838,#14181e 62%); box-shadow:inset 0 0 0 1px #ffffff10; }
+    .window-bar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:12px 18px; border-bottom:1px solid #ffffff18; background:#0000002e; }
+    .flagship-body { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 20px; align-items:center; padding:28px 28px 32px; }
+    .flagship-copy { min-width:0; }
+    .flagship h2 { margin:8px 0 10px; font-size:clamp(40px,5vw,68px); }
+    .lede { max-width:36em; margin:0 0 22px; color:var(--text); font-size:18px; line-height:1.45; }
+    .flagship-sigil { display:grid; place-items:center; width:clamp(112px,16vw,168px); height:clamp(112px,16vw,168px); border:1px solid currentColor; border-radius:50%; color:var(--blue); font:clamp(58px,8vw,92px)/1 "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif; font-variant-emoji:emoji; text-shadow:0 0 18px currentColor; }
+    .about-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr); gap:28px; align-items:start; }
+    .mission { max-width:62ch; margin:0 0 14px; font-size:20px; font-weight:650; letter-spacing:-.02em; line-height:1.35; }
+    .about-copy p:last-child { max-width:62ch; margin-bottom:0; color:var(--copy); }
+    .founder { padding:22px; border:1px solid var(--line); border-radius:16px; background:var(--founder-bg); }
+    .founder-row { display:flex; gap:14px; align-items:flex-start; margin-top:14px; }
+    .monogram { display:grid; place-items:center; flex:none; width:64px; height:64px; border:1px solid var(--line); border-radius:12px; background:var(--bg); font-size:22px; font-weight:850; letter-spacing:-.06em; }
+    .founder h3 { margin:0 0 8px; font-size:26px; }
+    .role-list { margin:0; padding:0; list-style:none; color:var(--copy); }
+    .role-list li + li { margin-top:4px; }
+    .product-grid,.service-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .product,.service { min-width:0; padding:22px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .product { display:flex; flex-direction:column; min-height:196px; }
+    .product-top { display:flex; justify-content:space-between; gap:14px; align-items:center; }
+    .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-family:var(--mono); font-size:16px; font-weight:800; }
+    .product-icon.blue { color:var(--blue); } .product-icon.red { color:var(--red); } .product-icon.gold { color:var(--gold); } .product-icon.green { color:var(--green); }
     .mushroom-icon { width:21px; height:21px; fill:currentColor; }
-    .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
-    .product p { margin:0; color:#b5bdc5; font-size:11px; letter-spacing:-.012em; line-height:1.4; }
-    .worlds { padding-top:0; }
-    .world-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .world { position:relative; min-height:230px; overflow:hidden; padding:27px; border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
-    .world:hover { transform:translateY(-3px); border-color:#9daab8; }
-    .world.omerta { background:radial-gradient(circle at 83% 48%,#8f302c55,transparent 35%),linear-gradient(110deg,#2b1c1d,#17191e); }
-    .world.atlantis { background:radial-gradient(circle at 84% 50%,#2e73b055,transparent 35%),linear-gradient(110deg,#1b2532,#17191e); }
-    .world.codcity { background:radial-gradient(circle at 84% 50%,#a4d8bd3d,transparent 36%),linear-gradient(110deg,#102319,#07120b); }
-    .world.gknuckle { background:radial-gradient(circle at 84% 50%,#c5ced74a,transparent 36%),linear-gradient(110deg,#252b31,#17191e); }
-    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font:72px/1 "Segoe UI Emoji","Apple Color Emoji",sans-serif; font-variant-emoji:emoji; text-shadow:0 0 18px currentColor; }
-    .world-zap { width:47px; height:68px; fill:var(--omerta-mark); filter:drop-shadow(0 0 12px var(--omerta-mark)); }
+    .product h3 { margin:18px 0 8px; font-size:20px; }
+    .product p,.service p { margin:0; color:var(--copy); font-size:15px; line-height:1.45; }
+    .product p.chip { display:inline-block; align-self:flex-start; margin:0 0 8px; padding:3px 7px; border:1px solid var(--chip-line); border-radius:4px; color:var(--gold); font-family:var(--mono); font-size:12px; font-weight:750; letter-spacing:.08em; line-height:1.35; text-transform:uppercase; }
+    .service { display:grid; grid-template-columns:auto minmax(0,1fr); gap:4px 14px; align-items:start; }
+    .svc-index { grid-row:span 2; color:var(--gold); font-family:var(--mono); font-size:13px; font-weight:800; letter-spacing:.08em; }
+    .service h3 { margin:0; font-size:18px; }
+    .vault { padding:22px; border:1px dashed var(--vault-line); border-radius:18px; background:var(--vault-bg); }
+    .vault-head { display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:12px 20px; margin-bottom:8px; }
+    .stamp { margin:0; padding:6px 10px; border:3px solid var(--stamp); border-radius:4px; color:var(--stamp); font-family:var(--mono); font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; transform:rotate(-6deg); }
+    .vault .section-lead { margin-top:0; }
+    .vault-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .vault-card { position:relative; display:flex; flex-direction:column; min-width:0; min-height:248px; padding:16px 112px 16px 16px; overflow:hidden; border:1px solid #3c3333; border-radius:12px; background:var(--card); }
+    .vault-kicker { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:8px; }
+    .file-id { color:var(--muted); font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .tag { display:inline-flex; align-items:center; min-height:22px; padding:2px 7px; border:1px solid var(--line); border-radius:4px; color:var(--muted); font-family:var(--mono); font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .tag-age { border-color:transparent; background:var(--badge-bg); color:var(--badge-ink); }
+    .build-label { margin:0 0 12px; color:var(--gold); text-transform:none; letter-spacing:.04em; }
+    .vault-card h3 { font-size:26px; }
+    .vault-card > p:not(.build-label) { max-width:28ch; margin:0 0 12px; color:var(--copy); font-size:15px; }
+    .vault-card .build-label { color:var(--gold); font-size:12px; }
+    .redaction { display:grid; gap:7px; margin:0 0 16px; }
+    .redact-bar { display:block; height:10px; width:92%; border-radius:2px; background:var(--redact); }
+    .redact-bar.mid { width:74%; } .redact-bar.short { width:48%; }
+    .quiet-link { margin-top:auto; align-self:flex-start; color:var(--quiet); font-family:var(--mono); font-size:13px; text-underline-offset:3px; }
+    .quiet-link:hover { color:var(--text); }
+    .world-sigil { position:absolute; right:12px; top:54%; display:grid; place-items:center; width:96px; height:96px; transform:translateY(-50%); overflow:hidden; border:1px solid currentColor; border-radius:50%; pointer-events:none; }
+    .world-sigil::after { content:""; position:absolute; left:-14%; right:-14%; top:42%; height:12px; background:var(--redact); transform:rotate(-10deg); box-shadow:0 18px 0 var(--redact); }
+    .world-zap { width:34px; height:50px; fill:var(--omerta-mark); filter:drop-shadow(0 0 10px var(--omerta-mark)); }
     .world-symbol { width:78%; height:78%; overflow:visible; }
-    .codcity-skull { width:56%; height:56%; fill:currentColor; filter:drop-shadow(0 0 9px currentColor); }
+    .codcity-skull { width:56%; height:56%; fill:currentColor; filter:drop-shadow(0 0 8px currentColor); }
     .gknuckle-mark { width:72%; height:72%; filter:drop-shadow(0 0 8px #c7d0d866); }
     .gknuckle-mark .gmod-g { fill:currentColor; }
-    .omerta .world-sigil { color:var(--red); }.atlantis .world-sigil { color:var(--blue); }.codcity .world-sigil { color:#a4d8bd; }.gknuckle .world-sigil { color:#c7d0d8; }
-    .world .build-label { color:var(--gold); text-transform:none; }
-    .world .label { color:#d9dadb; }
-    .world h3 { position:relative; margin:49px 0 5px; font-size:29px; letter-spacing:-.055em; }
-    .world p { position:relative; max-width:280px; margin:0; color:#bec5cc; font-size:12px; }
-    .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
-    .illicit-footer { --if-ink: #f2f0eb; --if-dim: #c7cdd3; --if-soft: #aab2bc; --if-line: #ffffff1a; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 16px clamp(16px, 4vw, 48px); border-top: 1px solid var(--if-line); background: var(--illicit-footer-bg, #070707); color: var(--if-ink); font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-    .illicit-footer a { color: inherit; text-decoration: none; }
-    .illicit-footer .illicit-lockup { display: flex; align-items: center; gap: 14px; }
-    .illicit-footer .illicit-mark { display: inline-flex; flex-direction: column; font-size: 16px; font-weight: 850; letter-spacing: .12em; line-height: 1.1; text-transform: uppercase; white-space: nowrap; }
-    .illicit-footer .illicit-mark small { margin-top: 4px; color: var(--if-soft); font-size: 10px; font-weight: 600; letter-spacing: .27em; }
-    .illicit-footer .illicit-cross { color: var(--if-soft); font-size: 20px; line-height: 1; }
-    .illicit-footer .illicit-links { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 13px; }
-    .illicit-footer .illicit-links a { padding: 4px 0; color: var(--if-dim); }
-    .illicit-footer .illicit-links a > [aria-hidden="true"] { margin-left: .25em; }
-    .illicit-footer .illicit-links a[aria-current="page"] { color: var(--if-ink); font-weight: 650; }
-    .illicit-footer a:hover, .illicit-footer a:focus-visible { color: var(--if-ink); text-decoration: underline; text-underline-offset: 4px; }
-    .illicit-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }
-    .illicit-footer .illicit-credit { width: 100%; margin: 0; color: var(--if-soft); font-size: 12px; }
+    .omerta .world-sigil { color:var(--red); } .codcity .world-sigil { color:var(--cod); } .gknuckle .world-sigil { color:var(--gk); }
+    .term { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:var(--term); }
+    .term-top { display:flex; justify-content:space-between; gap:12px; padding:10px 14px; border-bottom:1px solid var(--line); color:var(--muted); font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .term-body { padding:16px 16px 18px; }
+    .term-body p { margin:0 0 8px; font-family:var(--mono); font-size:14px; line-height:1.5; }
+    .prompt { color:var(--green); }
+    .todo-mark { display:inline-block; margin-right:6px; padding:1px 6px; background:var(--gold); color:#1c1406; font-weight:850; letter-spacing:.12em; }
+    .term-note { max-width:68ch; color:var(--copy) !important; }
+    .illicit-footer { --if-ink:#f2f0eb; --if-dim:#c7cdd3; --if-soft:#aab2bc; --if-line:#ffffff1a; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 32px; padding:16px clamp(16px,4vw,48px); border-top:1px solid var(--if-line); background:var(--illicit-footer-bg,#070707); color:var(--if-ink); font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+    .illicit-footer a { color:inherit; text-decoration:none; }
+    .illicit-footer .illicit-lockup { display:flex; align-items:center; gap:14px; }
+    .illicit-footer .illicit-mark { display:inline-flex; flex-direction:column; font-size:16px; font-weight:850; letter-spacing:.12em; line-height:1.1; text-transform:uppercase; white-space:nowrap; }
+    .illicit-footer .illicit-mark small { margin-top:4px; color:var(--if-soft); font-size:10px; font-weight:600; letter-spacing:.27em; }
+    .illicit-footer .illicit-links { display:flex; flex-wrap:wrap; gap:4px 20px; font-size:13px; }
+    .illicit-footer .illicit-links a { padding:4px 0; color:var(--if-dim); }
+    .illicit-footer .illicit-links a > [aria-hidden="true"] { margin-left:.25em; }
+    .illicit-footer .illicit-links a[aria-current="page"] { color:var(--if-ink); font-weight:650; }
+    .illicit-footer a:hover,.illicit-footer a:focus-visible { color:var(--if-ink); text-decoration:underline; text-underline-offset:4px; }
+    .illicit-footer a:focus-visible { outline:2px solid currentColor; outline-offset:3px; border-radius:2px; }
+    .illicit-footer .illicit-credit { width:100%; margin:0; color:var(--if-soft); font-size:12px; }
     .footer.illicit-footer { --illicit-footer-bg:transparent; padding:32px 0 40px; }
-    :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
-    :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
+    :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#146b45; --omerta-mark:#39ff14; --stamp:#8e2428; --redact:#1a1f26; --vault-bg:#f3eee4; --vault-line:#a89062; --card:#fffdf8; --copy:#314556; --quiet:#1d3348; --callout:#fff; --nav-hover:#e7eef6; --header-bg:#f9fbfceb; --header-line:#d6dee7; --term:#fbfcfe; --founder-bg:#fff; --chip-line:#80570d; --soft:#17233214; --cod:#1f6b4e; --gk:#3e5260; }
+    :root[data-theme="light"] .skip { background:#2167a5; color:#fff; }
     :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
     :root[data-theme="light"] .brand-mark::after { background:var(--gold); box-shadow:0 0 12px var(--gold); }
     :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
     :root[data-theme="light"] .header-link:hover,:root[data-theme="light"] .theme-toggle:hover { background:#e9f0f7; }
     :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; background:radial-gradient(ellipse at 78% 48%,#dceafb 0%,#edf3fa 57%,#f5f7fa 90%); }
     :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 0%,#f5f7faf2 26%,#f5f7fab0 49%,transparent 85%),linear-gradient(0deg,#f5f7fa 0%,transparent 18%); }
-    :root[data-theme="light"] .hero-intro { color:#405063; }
-    :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; }
+    :root[data-theme="light"] .hero-intro { color:#314556; }
+    :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; color:#172332; }
     :root[data-theme="light"] .action:hover { border-color:#5d7894; background:#eaf1f8; }
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
-    :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
-    :root[data-theme="light"] .product p,:root[data-theme="light"] .world p { color:#415267; }
-    :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
-    :root[data-theme="light"] .world.atlantis { background:radial-gradient(circle at 84% 50%,#d2a13c2b,transparent 36%),linear-gradient(110deg,#fffaf0,#f3f6f9); }
-    :root[data-theme="light"] .world.codcity { background:radial-gradient(circle at 84% 50%,#a4d8bd66,transparent 36%),linear-gradient(110deg,#edf8f1,#e5eee9); }
-    :root[data-theme="light"] .world.gknuckle { background:radial-gradient(circle at 84% 50%,#aab6c25c,transparent 36%),linear-gradient(110deg,#f5f7f9,#e8edf1); }
-    :root[data-theme="light"] .omerta .world-sigil { color:var(--green); }
-    :root[data-theme="light"] .atlantis .world-sigil { color:var(--gold); }
-    :root[data-theme="light"] .codcity .world-sigil { color:#477b64; }
-    :root[data-theme="light"] .gknuckle .world-sigil { color:#667581; }
-    :root[data-theme="light"] .world:hover { border-color:#7b91a8; }
-    :root[data-theme="light"] .world .label { color:#425269; }
-    :root[data-theme="light"] .world .build-label { color:var(--gold); }
+    :root[data-theme="light"] .flagship { background:radial-gradient(circle at 86% 42%,#e7c27a55,transparent 36%),linear-gradient(115deg,#fffaf0,#f4f7fb 62%); box-shadow:inset 0 0 0 1px #ffffff; }
+    :root[data-theme="light"] .window-bar { border-bottom-color:#e4d7bc; background:#fff6e4cc; }
+    :root[data-theme="light"] .flagship-sigil { color:var(--gold); }
+    :root[data-theme="light"] .product,:root[data-theme="light"] .service { background:linear-gradient(145deg,#fff,#f0f4f8); }
+    :root[data-theme="light"] .vault-card { border-color:#e0d3b8; }
+    :root[data-theme="light"] .todo-mark { color:#fffaf0; }
     :root[data-theme="light"] .illicit-footer { --if-ink:#172332; --if-dim:#344a60; --if-soft:#526173; --if-line:#d5dee8; }
-    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:37px; height:54px; }.illicit-footer .illicit-mark { font-size:14px; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world,.hero-word { transition:none; }.brand-mark::before,.brand-mark::after { animation:none; }.brand-mark::after { offset-distance:50%; } }
+    @media (max-width:980px) {
+      .about-grid,.vault-grid { grid-template-columns:1fr; }
+      .vault-card { min-height:220px; }
+    }
+    @media (max-width:900px) {
+      .shell { width:min(720px,calc(100% - 36px)); }
+      .header-inner { flex-wrap:wrap; align-items:center; row-gap:0; min-height:0; padding-top:10px; }
+      .site-nav { order:3; flex:1 0 100%; justify-content:flex-start; padding:4px 0 10px; }
+      .header-link { display:none; }
+      section { scroll-margin-top:170px; }
+      .product-grid,.service-grid { grid-template-columns:1fr; }
+      .hero { padding:64px 0 56px; }
+    }
+    @media (max-width:620px) {
+      .header-inner { gap:8px; }
+      .brand-copy { font-size:11px; }
+      .brand-mark { width:33px; height:33px; }
+      .brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }
+      .theme-toggle { width:38px; height:38px; }
+      .site-nav a { padding:11px 8px; }
+      .hero { padding:52px 0 44px; }
+      h1 { font-size:clamp(36px,11vw,52px); }
+      .section { padding:52px 0; }
+      .flagship-body { padding:22px 18px 24px; }
+      .flagship h2 { font-size:clamp(34px,10vw,48px); }
+      .vault { padding:16px; }
+      .vault-card { padding-right:100px; }
+      .world-sigil { width:84px; height:84px; right:8px; }
+      .world-zap { width:30px; height:44px; }
+      .founder-row { align-items:center; }
+      .illicit-footer .illicit-mark { font-size:14px; }
+      .mission { font-size:18px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      .action,.world,.hero-word { transition:none; }
+      .brand-mark::before,.brand-mark::after,.glitch-title em,.status-dot,.cursor { animation:none; }
+      .brand-mark::after { offset-distance:50%; }
+      .cursor { opacity:1; }
+    }
+    @media (forced-colors:active) {
+      .redact-bar,.stamp,.tag-age,.todo-mark { forced-color-adjust:none; border:1px solid CanvasText; }
+      .redact-bar { background:CanvasText; }
+    }
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#worlds">Worlds</a>
+        <a href="#restricted">Restricted</a>
+        <a href="#platform">Platform</a>
+        <a href="#services">Hire</a>
+        <a href="#contact">Contact</a>
+      </nav>
       <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
-  <main>
+  <main id="main" tabindex="-1">
     <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
-      <h1>One foundation.<em>Many worlds.</em></h1>
+      <p class="kicker"><span class="status-dot" aria-hidden="true"></span> Public briefing <span aria-hidden="true">//</span> Saskatchewan <span class="cursor" aria-hidden="true"></span></p>
+      <h1 class="glitch-title">One foundation.<em>Many worlds.</em></h1>
       <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
-      <div class="actions"><a class="action action-primary" href="#worlds">Explore <span aria-hidden="true">↓</span></a><a class="action" href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
+      <p class="hero-studio">Saskatchewan-based independent interactive studio. Atlantis Chat is the all-ages flagship.</p>
+      <div class="actions">
+        <a class="action action-primary" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Enter Atlantis <span class="sr-only">(opens in a new tab)</span><span aria-hidden="true">↗</span></a>
+        <a class="action" href="#worlds">Explore <span aria-hidden="true">↓</span></a>
+        <a class="action" href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a>
+      </div>
     </div></section>
-    <section class="section shell" id="platform" aria-labelledby="platform-title">
-      <h2 class="sr-only" id="platform-title">Platform</h2>
-      <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Resupply Locker is a game modification suite aiming to enable third-party games on Illicit API.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushroom</h3><p>Mushroom is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+
+    <section class="section shell" id="worlds" aria-labelledby="worlds-title">
+      <article class="flagship">
+        <div class="window-bar">
+          <p class="label">01 // Worlds · All ages</p>
+          <p class="label build-label" data-build="atlantis">Build #f21cd57</p>
+        </div>
+        <div class="flagship-body">
+          <div class="flagship-copy">
+            <h2 id="worlds-title">Atlantis Chat</h2>
+            <p class="lede">An all-ages world where people play, collect, and connect.</p>
+            <a class="action action-primary" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Enter Atlantis <span class="sr-only">(opens in a new tab)</span><span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="flagship-sigil" aria-hidden="true">🔱︎</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section shell" id="about" aria-labelledby="about-title">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="label">02 // About</p>
+          <h2 id="about-title">Mission</h2>
+          <p class="mission">Illicit Corporation is a Saskatchewan-based independent interactive studio building community platforms and tools.</p>
+          <p>The studio is based in Saskatchewan, Canada. We make shared places for people to talk and play, and the systems that keep those places connected. Atlantis Chat is the public, all-ages world. Other builds are filed under Restricted, with only a partial record on this page.</p>
+        </div>
+        <aside class="founder" aria-labelledby="founder-name">
+          <p class="label">Founder</p>
+          <div class="founder-row">
+            <span class="monogram" aria-hidden="true">AL</span>
+            <div>
+              <h3 id="founder-name">Alyx Lepine</h3>
+              <ul class="role-list">
+                <li>Métis founder, Saskatchewan</li>
+                <li>Secretary of the Board at SaskInteractive</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
-    <section class="section worlds shell" id="worlds" aria-labelledby="worlds-title">
-      <h2 class="sr-only" id="worlds-title">Worlds</h2>
-      <div class="world-grid">
-        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><h3>Omerta Chat</h3><p>One coin, many worlds...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="atlantis">Build #f21cd57</span><span class="world-sigil" aria-hidden="true">🔱︎</span><h3>Atlantis Chat</h3><p>Play, collect, connect...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world codcity" href="https://www.cod.city/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="codcity">Build #e0f83a3</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol codcity-skull" viewBox="-.6 -.6 1.2 1.2" focusable="false"><path fill-rule="evenodd" d="M0-.46C.27-.46.42-.28.42-.06C.42.08.36.16.28.2V.36C.28.42.24.46.18.46H-.18C-.24.46-.28.42-.28.36V.2C-.36.16-.42.08-.42-.06C-.42-.28-.27-.46 0-.46ZM-.2-.12A.1.11 0 1 0-.2.1.1.11 0 1 0-.2-.12ZM.2-.12A.1.11 0 1 1 .2.1.1.11 0 1 1 .2-.12ZM0 .1-.06.22H.06Z"/></svg></span><h3>Cod City</h3><p>Call it what you want...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world gknuckle" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="gknuckle">Build #6b7e0a4</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="0 0 160 160" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span><h3>gKnuckle</h3><p>A mix of old &amp; new...</p><span class="arrow" aria-hidden="true">↗</span></a>
+
+    <section class="section shell" id="platform" aria-labelledby="platform-title">
+      <p class="label">03 // Platform</p>
+      <h2 id="platform-title">Platform</h2>
+      <p class="callout">Faked ID and Faked CC keep those product names. Faked ID is for privacy and identity-linking, not a government ID. Faked CC is an in-ecosystem wallet with no cash value, not a credit card.</p>
+      <div class="product-grid">
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span><span class="label">Framework</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span><span class="label">Fair play</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span><span class="label">Game tools</span></div><h3>Resupply Locker</h3><p>Resupply Locker is a game modification suite aiming to enable third-party games on Illicit API.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span><span class="label">Privacy</span></div><h3>Faked ID</h3><p class="chip">Not a government ID</p><p>A privacy and identity-linking profile for participating Illicit products. It is not a real ID.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span><span class="label">Wallet</span></div><h3>Faked CC</h3><p class="chip">No cash value</p><p>An in-ecosystem wallet for participating products. It has no cash value and is not a credit card.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span><span class="label">Analytics</span></div><h3>Mushroom</h3><p>Mushroom is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+      </div>
+    </section>
+
+    <section class="section shell" id="restricted" aria-labelledby="restricted-title">
+      <div class="vault">
+        <div class="vault-head">
+          <div>
+            <p class="label">04 // Vault</p>
+            <h2 id="restricted-title">Restricted</h2>
+          </div>
+          <p class="stamp" aria-hidden="true">Restricted</p>
+        </div>
+        <p class="section-lead">Filed worlds, shown as a partial record. Omerta Chat is limited to ID-verified 18+ access. The other files stay redacted here.</p>
+        <div class="vault-grid">
+          <article class="vault-card omerta">
+            <div class="vault-kicker"><span class="tag tag-age">18+</span><span class="file-id">File // Omerta</span></div>
+            <p class="label build-label" data-build="omerta">Build #9770223</p>
+            <span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span>
+            <h3>Omerta Chat</h3>
+            <p>ID-verified 18+ access</p>
+            <div class="redaction" aria-hidden="true"><span class="redact-bar"></span><span class="redact-bar mid"></span><span class="redact-bar short"></span></div>
+            <a class="quiet-link" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">omerta.chat<span class="sr-only"> (opens in a new tab)</span></a>
+          </article>
+          <article class="vault-card codcity">
+            <div class="vault-kicker"><span class="tag">Partial</span><span class="file-id">File // Cod City</span></div>
+            <p class="label build-label" data-build="codcity">Build #e0f83a3</p>
+            <span class="world-sigil" aria-hidden="true"><svg class="world-symbol codcity-skull" viewBox="-.6 -.6 1.2 1.2" focusable="false"><path fill-rule="evenodd" d="M0-.46C.27-.46.42-.28.42-.06C.42.08.36.16.28.2V.36C.28.42.24.46.18.46H-.18C-.24.46-.28.42-.28.36V.2C-.36.16-.42.08-.42-.06C-.42-.28-.27-.46 0-.46ZM-.2-.12A.1.11 0 1 0-.2.1.1.11 0 1 0-.2-.12ZM.2-.12A.1.11 0 1 1 .2.1.1.11 0 1 1 .2-.12ZM0 .1-.06.22H.06Z"/></svg></span>
+            <h3>Cod City</h3><p>Call it what you want...</p>
+            <div class="redaction" aria-hidden="true"><span class="redact-bar"></span><span class="redact-bar mid"></span><span class="redact-bar short"></span></div>
+            <a class="quiet-link" href="https://www.cod.city/" target="_blank" rel="noopener noreferrer">cod.city<span class="sr-only"> (opens in a new tab)</span></a>
+          </article>
+          <article class="vault-card gknuckle">
+            <div class="vault-kicker"><span class="tag">Partial</span><span class="file-id">File // gKnuckle</span></div>
+            <p class="label build-label" data-build="gknuckle">Build #6b7e0a4</p>
+            <span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="0 0 160 160" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span>
+            <h3>gKnuckle</h3><p>A mix of old &amp; new...</p>
+            <div class="redaction" aria-hidden="true"><span class="redact-bar"></span><span class="redact-bar mid"></span><span class="redact-bar short"></span></div>
+            <a class="quiet-link" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer">gk.style<span class="sr-only"> (opens in a new tab)</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="services" aria-labelledby="services-title">
+      <p class="label">05 // Services</p>
+      <h2 id="services-title">Hire Illicit</h2>
+      <p class="section-lead">Commission the studio for community software, game tooling, and the pipes underneath.</p>
+      <div class="service-grid">
+        <article class="service"><span class="svc-index" aria-hidden="true">01</span><h3>Custom community and chat platforms</h3><p>A place to gather, with chat built around how a specific community actually talks.</p></article>
+        <article class="service"><span class="svc-index" aria-hidden="true">02</span><h3>Discord and Garry's Mod tooling</h3><p>Bots, server tools, and Garry's Mod addons that meet a community where it already plays.</p></article>
+        <article class="service"><span class="svc-index" aria-hidden="true">03</span><h3>Browser game and input tech</h3><p>Games and controls in the browser, including Wii Remote and gamepad input.</p></article>
+        <article class="service"><span class="svc-index" aria-hidden="true">04</span><h3>Auth and payments integration</h3><p>Sign-in and payments wired into a community product for client work.</p></article>
+      </div>
+      <div class="actions section-actions"><a class="action" href="#contact">Contact the studio <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section class="section shell" id="contact" aria-labelledby="contact-title">
+      <p class="label">06 // Contact</p>
+      <h2 id="contact-title">Contact</h2>
+      <div class="term" role="region" aria-label="Studio contact">
+        <div class="term-top"><span>contact.txt</span><span>Unfiled</span></div>
+        <div class="term-body">
+          <p><span class="prompt" aria-hidden="true">&gt; </span>studio email</p>
+          <p class="term-note"><strong class="todo-mark">TODO</strong> No public email is checked into this repository. Replace this placeholder before a funding application.</p>
+          <p><span class="prompt" aria-hidden="true">&gt; </span>public code</p>
+          <p><a href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">github.com/mobs2r<span class="sr-only"> (opens in a new tab)</span></a></p>
+        </div>
       </div>
     </section>
   </main>
   <footer class="shell footer illicit-footer">
     <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#about">About</a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a><a href="#contact">Contact</a></nav>
+    <p class="illicit-credit">Saskatchewan, Canada · independent interactive studio</p>
   </footer>
   <script>
     (() => {

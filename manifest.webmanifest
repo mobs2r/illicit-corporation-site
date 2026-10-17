@@ -1,7 +1,7 @@
 {
   "name": "Illicit Corporation",
   "short_name": "Illicit",
-  "description": "A shared foundation for independent communities, games, identity, and developer tools.",
+  "description": "Saskatchewan-based independent interactive studio building community platforms and tools. Atlantis Chat is the all-ages flagship.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
