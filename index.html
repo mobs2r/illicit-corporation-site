@@ -3,8 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Illicit Corporation builds identity, community, and developer infrastructure for connected worlds.">
+  <meta name="description" content="Illicit Corporation is a Métis-founded studio in Saskatoon. Identity, communities, games, and the tools that connect them.">
   <meta name="theme-color" content="#101318">
+  <meta property="og:title" content="Illicit Corporation">
+  <meta property="og:description" content="A Métis-founded studio in Saskatoon. One foundation for chat, games, identity, and the tools underneath.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://illicit.page/">
+  <meta property="og:image" content="https://mobs2r.github.io/illicit-corporation-site/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Illicit Corporation">
+  <meta name="twitter:description" content="A Métis-founded studio in Saskatoon. One foundation for chat, games, identity, and the tools underneath.">
+  <meta name="twitter:image" content="https://mobs2r.github.io/illicit-corporation-site/assets/og.png">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://illicit.page/">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Illicit Corporation","url":"https://illicit.page/","email":"mobs2@waifu.club","address":{"@type":"PostalAddress","streetAddress":"310 Wall Street","addressLocality":"Saskatoon","addressRegion":"SK","postalCode":"S7K 1N7","addressCountry":"CA"}}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
@@ -78,6 +92,8 @@
     .analytics-icon { width:20px; height:20px; fill:currentColor; }
     .product h3 { margin:22px 0 8px; font-size:22px; font-weight:400; letter-spacing:-.02em; }
     .product p { margin:0; color:var(--copy); font-size:15px; line-height:1.5; }
+    .product p + p { margin-top:10px; }
+    .product a { color:var(--blue); }
     .worlds { padding-top:0; }
     .world-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
     .world { position:relative; min-height:236px; overflow:hidden; padding:28px; border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
@@ -96,7 +112,7 @@
     .world .label { color:#d9dadb; }
     .world .build-label { color:var(--gold); text-transform:none; letter-spacing:.04em; font-size:13px; }
     .world h3 { position:relative; margin:52px 0 6px; font-size:32px; font-weight:400; letter-spacing:-.03em; }
-    .world p { position:relative; max-width:26ch; margin:0; color:#d5dde4; font-size:15px; line-height:1.45; }
+    .world p { position:relative; max-width:28ch; margin:0; color:#d5dde4; font-size:15px; line-height:1.45; }
     .world .arrow { position:absolute; right:22px; bottom:18px; font-size:20px; }
     .mods { padding-top:8px; }
     .mods-head { display:flex; align-items:end; justify-content:space-between; gap:24px 40px; margin-bottom:28px; }
@@ -104,12 +120,56 @@
     .mods h2 { margin:8px 0 10px; font-size:clamp(32px,4vw,44px); font-weight:400; letter-spacing:-.03em; }
     .mods-intro { margin:0; color:var(--copy); font-size:16px; }
     .mods-group + .mods-group { margin-top:28px; }
-    .mods-group h3 { margin:0 0 12px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
+    .mods-group h3,.panel-label { margin:0 0 12px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
+    .panel-label { margin-top:28px; }
     .mod-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0; padding:0; list-style:none; }
     .mod-grid a { display:flex; flex-direction:column; gap:6px; min-width:0; padding:18px 20px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
     .mod-grid a:hover { transform:translateY(-2px); border-color:#9daab8; }
     .mod-name { font-size:18px; letter-spacing:-.02em; }
     .mod-meta { color:var(--muted); font-size:14px; }
+    .skip { position:absolute; left:16px; top:-48px; z-index:40; padding:10px 14px; border-radius:9px; background:var(--blue); color:#101318; text-decoration:none; }
+    .skip:focus { top:12px; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:4px 18px; }
+    .site-nav a { color:var(--muted); font-size:14px; text-decoration:none; }
+    .site-nav a:hover { color:var(--text); }
+    .section-head { max-width:44rem; margin-bottom:28px; }
+    .section-head h2 { margin:8px 0 10px; font-size:clamp(32px,4vw,48px); font-weight:400; letter-spacing:-.03em; }
+    .lede { margin:0; color:var(--copy); font-size:18px; line-height:1.5; }
+    .about-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr); gap:28px 48px; align-items:start; }
+    .about-copy h3 { margin:28px 0 8px; font-size:20px; font-weight:400; letter-spacing:-.02em; }
+    .about-copy p { margin:0 0 12px; color:var(--copy); }
+    .about-copy a { color:var(--blue); }
+    .stack { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
+    .stack li { padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--copy); font-size:14px; }
+    .timeline { margin:0; padding:0; list-style:none; border-left:1px solid var(--line); }
+    .timeline li { position:relative; padding:0 0 18px 18px; }
+    .timeline li::before { content:""; position:absolute; left:-4px; top:7px; width:7px; height:7px; border-radius:50%; background:var(--gold); }
+    .timeline time { display:block; color:var(--gold); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .timeline p { margin:4px 0 0; color:var(--copy); font-size:15px; }
+    .funded { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 22px; padding:0; list-style:none; }
+    .funded a { display:inline-flex; align-items:center; min-height:36px; padding:6px 12px; border:1px solid var(--line); border-radius:999px; text-decoration:none; }
+    .funded a:hover { border-color:#9daab8; }
+    .cost-table { border:1px solid var(--line); border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .cost-group,.cost-row,.cost-total { display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding:12px 18px; }
+    .cost-group { background:#ffffff0c; color:var(--gold); font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+    .cost-row { border-top:1px solid var(--line); }
+    .cost-row a { color:var(--blue); }
+    .cost-row code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14px; }
+    .cost-amount { color:var(--muted); text-align:right; font-variant-numeric:tabular-nums; }
+    .cost-total { border-top:1px solid var(--line); background:#ffffff08; }
+    .cost-note { margin:12px 0 0; color:var(--muted); font-size:14px; }
+    .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0 0; padding:0; list-style:none; }
+    .support-grid a { display:flex; flex-direction:column; gap:4px; min-height:76px; padding:14px 14px 12px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); text-decoration:none; }
+    .support-grid a:hover { transform:translateY(-2px); border-color:#9daab8; }
+    .support-grid small { color:var(--muted); }
+    .billing-panel { margin-top:28px; padding:24px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .billing-panel h3 { margin:8px 0 8px; font-size:28px; font-weight:400; }
+    .billing-panel p { margin:0 0 10px; color:var(--copy); }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .chips span { padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--gold); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
+    .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
+    .mod-grid a:hover .mod-shot { transform:scale(1.045); }
     .studio { padding-top:36px; border-top:1px solid var(--line); }
     .studio-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:28px 64px; align-items:start; }
     .studio h2 { margin:0 0 10px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
@@ -144,7 +204,9 @@
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
     :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f3f6f9); }
-    :root[data-theme="light"] .mod-grid a { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .mod-grid a,:root[data-theme="light"] .cost-table,:root[data-theme="light"] .support-grid a,:root[data-theme="light"] .billing-panel { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .cost-group,:root[data-theme="light"] .cost-total { background:#eef3f8; }
+    :root[data-theme="light"] .skip { color:#fff; }
     :root[data-theme="light"] .mod-grid a:hover { border-color:#7b91a8; }
     :root[data-theme="light"] .product p { color:#314556; }
     :root[data-theme="light"] .world p { color:#314556; }
@@ -164,7 +226,9 @@
       .shell { width:min(720px,calc(100% - 36px)); }
       .header-link { display:none; }
       .hero { padding:68px 0 56px; }
-      .studio-grid { grid-template-columns:1fr; gap:28px; }
+      .studio-grid,.about-layout { grid-template-columns:1fr; gap:28px; }
+      .support-grid { grid-template-columns:1fr 1fr; }
+      .site-nav { order:3; width:100%; padding-bottom:8px; }
     }
     @media (max-width:620px) {
       .header-inner { min-height:64px; gap:10px; }
@@ -175,10 +239,13 @@
       .hero { padding:56px 0 44px; }
       h1 { font-size:clamp(38px,11vw,52px); }
       .section { padding:52px 0; }
-      .product-grid,.world-grid,.mod-grid { grid-template-columns:1fr; }
+      .product-grid,.world-grid,.mod-grid,.support-grid { grid-template-columns:1fr; }
+      .cost-group,.cost-row,.cost-total { align-items:flex-start; flex-direction:column; gap:4px; }
+      .cost-amount { text-align:left; }
       .mods-head { align-items:start; flex-direction:column; }
       .product { min-height:0; }
-      .world { min-height:210px; }
+      .world { min-height:280px; }
+      .world p { max-width:16ch; }
       .world-sigil { right:8%; width:104px; height:104px; font-size:56px; }
       .world-zap { width:36px; height:52px; }
       .world h3 { margin-top:44px; font-size:28px; }
@@ -187,43 +254,47 @@
     }
     @media (prefers-reduced-motion:reduce) {
       html { scroll-behavior:auto; }
-      .action,.world,.hero-word { transition:none; }
+      .action,.world,.hero-word,.mod-shot,.support-grid a { transition:none; }
       .brand-mark::before,.brand-mark::after { animation:none; }
       .brand-mark::after { offset-distance:50%; }
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#platform">Skip to content</a>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
+      <nav class="site-nav" aria-label="On this page"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
       <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
     </div>
   </header>
   <main>
     <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
       <h1>One foundation.<em>Many worlds.</em></h1>
-      <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
+      <p class="hero-intro">One studio in Saskatoon, building the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
       <div class="actions"><a class="action action-primary" href="#worlds">Explore <span aria-hidden="true">↓</span></a><a class="action" href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
     </div></section>
     <section class="section shell" id="platform" aria-labelledby="platform-title">
-      <h2 class="sr-only" id="platform-title">Platform</h2>
+      <header class="section-head"><p class="label">Stack</p><h2 id="platform-title">Platform</h2><p class="lede">The same account, coin, and inventory run through every world. The names stay sharp. The machinery underneath is ordinary, careful engineering.</p></header>
       <div class="product-grid">
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Resupply Locker is a game modification suite aiming to enable third-party games on Illicit API.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>The self-hostable spine for accounts, wallets, and inventory. It powers Omerta Chat, Atlantis Chat, and Вандам(e)баш.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>A non-invasive anti-cheat suite for fair play across Illicit API. Mushrüm supplies the data that improves it.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>The bridge into third-party games. It carries Illicit ID into places like DarkRP and FiveM, and it sells prepaid server access to operators.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Sign in once. Your Faked ID links identity across participating products and builds a trust factor they can share.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard is how you spend across participating products, with privacy kept at the center. It is also the face of server billing.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform behind Illicit API. It reads Omerta Chat, Atlantis Chat, and Вандам(e)баш, then turns that into a clearer picture of the network.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◎</span></div><h3>Casino</h3><p>Roulette, Crash, and Pachinko run inside Omerta Chat on the shared coin, beside Pool, Chess, Place, and Riff Rush.</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">CS</span></div><h3>Chaster-Strike</h3><p>A Counter-Strike 2 demo, or a share code, lines up with a linked Chaster lock inside Omerta Chat. The match can be analyzed, then a confirmed consequence applied to that lock.</p><p><a href="https://omerta.chat/?chaster-strike" target="_blank" rel="noopener noreferrer">Open in Omerta Chat <span aria-hidden="true">↗</span></a></p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds" aria-labelledby="worlds-title">
-      <h2 class="sr-only" id="worlds-title">Worlds</h2>
+      <header class="section-head"><p class="label">Live</p><h2 id="worlds-title">Worlds</h2><p class="lede">Four public fronts. One Illicit ID, one coin, and one inventory move between them.</p></header>
       <div class="world-grid">
-        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><h3>Omerta Chat</h3><p>One coin, many worlds...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="atlantis">Build #f21cd57</span><span class="world-sigil" aria-hidden="true">🔱︎</span><h3>Atlantis Chat</h3><p>Play, collect, connect...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world codcity" href="https://www.cod.city/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="codcity">Build #e0f83a3</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol codcity-skull" viewBox="-.6 -.6 1.2 1.2" focusable="false"><path fill-rule="evenodd" d="M0-.46C.27-.46.42-.28.42-.06C.42.08.36.16.28.2V.36C.28.42.24.46.18.46H-.18C-.24.46-.28.42-.28.36V.2C-.36.16-.42.08-.42-.06C-.42-.28-.27-.46 0-.46ZM-.2-.12A.1.11 0 1 0-.2.1.1.11 0 1 0-.2-.12ZM.2-.12A.1.11 0 1 1 .2.1.1.11 0 1 1 .2-.12ZM0 .1-.06.22H.06Z"/></svg></span><h3>Cod City</h3><p>Call it what you want...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world gknuckle" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="gknuckle">Build #6b7e0a4</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="0 0 160 160" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span><h3>gKnuckle</h3><p>A mix of old &amp; new...</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><h3>Omerta Chat</h3><p>One coin, many worlds... The social hub, the arcade, and the shared economy.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="atlantis">Build #f21cd57</span><span class="world-sigil" aria-hidden="true">🔱︎</span><h3>Atlantis Chat</h3><p>Play, collect, connect... Omerta's all-ages sister, with the same arcade scaled to a PG feel.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world codcity" href="https://www.cod.city/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="codcity">Build #e0f83a3</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol codcity-skull" viewBox="-.6 -.6 1.2 1.2" focusable="false"><path fill-rule="evenodd" d="M0-.46C.27-.46.42-.28.42-.06C.42.08.36.16.28.2V.36C.28.42.24.46.18.46H-.18C-.24.46-.28.42-.28.36V.2C-.36.16-.42.08-.42-.06C-.42-.28-.27-.46 0-.46ZM-.2-.12A.1.11 0 1 0-.2.1.1.11 0 1 0-.2-.12ZM.2-.12A.1.11 0 1 1 .2.1.1.11 0 1 1 .2-.12ZM0 .1-.06.22H.06Z"/></svg></span><h3>Cod City</h3><p>Call it what you want... An unofficial browser FPS. Items earned there land in the Omerta locker.</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world gknuckle" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="gknuckle">Build #6b7e0a4</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="0 0 160 160" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span><h3>gKnuckle</h3><p>A mix of old &amp; new... A rogue-lite climb for Garry's Mod, with a server browser, WiKi, MiLL, and WiSHES.</p><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
     <section class="section mods shell" id="mods" aria-labelledby="mods-title">
@@ -238,32 +309,126 @@
       <div class="mods-group">
         <h3>Garry's Mod</h3>
         <ul class="mod-grid">
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3362030272" target="_blank" rel="noopener noreferrer"><span class="mod-name">WEBFISHING Name Tags</span><span class="mod-meta">1,919 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3324247572" target="_blank" rel="noopener noreferrer"><span class="mod-name">Junk Jet in Tool Gun</span><span class="mod-meta">381 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3346062106" target="_blank" rel="noopener noreferrer"><span class="mod-name">Neon Error Sign</span><span class="mod-meta">135 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3362030272" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/webfishing-name-tags.jpg" width="1024" height="1024" alt="Workshop preview of WEBFISHING Name Tags" loading="lazy" decoding="async"></span><span class="mod-name">WEBFISHING Name Tags</span><span class="mod-meta">1,919 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3324247572" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/junk-jet.jpg" width="720" height="720" alt="Workshop preview of Junk Jet in Tool Gun" loading="lazy" decoding="async"></span><span class="mod-name">Junk Jet in Tool Gun</span><span class="mod-meta">381 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3346062106" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/neon-error-sign.gif" width="526" height="526" alt="Workshop preview of Neon Error Sign" loading="lazy" decoding="async"></span><span class="mod-name">Neon Error Sign</span><span class="mod-meta">135 lifetime subscribers</span></a></li>
         </ul>
       </div>
       <div class="mods-group">
         <h3>Counter-Strike 2</h3>
         <ul class="mod-grid">
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2273561428" target="_blank" rel="noopener noreferrer"><span class="mod-name">PILLARS [MULTi1V1]</span><span class="mod-meta">1,240 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2883672777" target="_blank" rel="noopener noreferrer"><span class="mod-name">CHASE [1V1 / 2V2]</span><span class="mod-meta">889 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2882814869" target="_blank" rel="noopener noreferrer"><span class="mod-name">VAULT [1V1 / 2V2]</span><span class="mod-meta">730 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2270428682" target="_blank" rel="noopener noreferrer"><span class="mod-name">LOCKERS [MULTi1V1]</span><span class="mod-meta">707 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2860736623" target="_blank" rel="noopener noreferrer"><span class="mod-name">LAB [1V1 / 2V2]</span><span class="mod-meta">663 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2805671179" target="_blank" rel="noopener noreferrer"><span class="mod-name">CHASE [MULTi1V1]</span><span class="mod-meta">631 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2320911902" target="_blank" rel="noopener noreferrer"><span class="mod-name">LAB [MULTi1V1]</span><span class="mod-meta">430 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2860731037" target="_blank" rel="noopener noreferrer"><span class="mod-name">PAiNT [1V1]</span><span class="mod-meta">181 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2876685260" target="_blank" rel="noopener noreferrer"><span class="mod-name">WOLFENSTEiN 3D [MULTi1V1]</span><span class="mod-meta">93 lifetime subscribers</span></a></li>
-          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2835366400" target="_blank" rel="noopener noreferrer"><span class="mod-name">PAiNT [MULTi1v1]</span><span class="mod-meta">43 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2273561428" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/pillars.jpg" width="555" height="312" alt="Workshop preview of PILLARS [MULTi1V1]" loading="lazy" decoding="async"></span><span class="mod-name">PILLARS [MULTi1V1]</span><span class="mod-meta">1,240 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2883672777" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/chase-1v1.jpg" width="555" height="312" alt="Workshop preview of CHASE [1V1 / 2V2]" loading="lazy" decoding="async"></span><span class="mod-name">CHASE [1V1 / 2V2]</span><span class="mod-meta">889 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2882814869" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/vault.jpg" width="555" height="312" alt="Workshop preview of VAULT [1V1 / 2V2]" loading="lazy" decoding="async"></span><span class="mod-name">VAULT [1V1 / 2V2]</span><span class="mod-meta">730 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2270428682" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/lockers.jpg" width="555" height="312" alt="Workshop preview of LOCKERS [MULTi1V1]" loading="lazy" decoding="async"></span><span class="mod-name">LOCKERS [MULTi1V1]</span><span class="mod-meta">707 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2860736623" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/lab-1v1.jpg" width="555" height="312" alt="Workshop preview of LAB [1V1 / 2V2]" loading="lazy" decoding="async"></span><span class="mod-name">LAB [1V1 / 2V2]</span><span class="mod-meta">663 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2805671179" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/chase-multi.jpg" width="555" height="312" alt="Workshop preview of CHASE [MULTi1V1]" loading="lazy" decoding="async"></span><span class="mod-name">CHASE [MULTi1V1]</span><span class="mod-meta">631 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2320911902" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/lab-multi.jpg" width="555" height="312" alt="Workshop preview of LAB [MULTi1V1]" loading="lazy" decoding="async"></span><span class="mod-name">LAB [MULTi1V1]</span><span class="mod-meta">430 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2860731037" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/paint-1v1.jpg" width="555" height="312" alt="Workshop preview of PAiNT [1V1]" loading="lazy" decoding="async"></span><span class="mod-name">PAiNT [1V1]</span><span class="mod-meta">181 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2876685260" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/wolfenstein.jpg" width="555" height="312" alt="Workshop preview of WOLFENSTEiN 3D [MULTi1V1]" loading="lazy" decoding="async"></span><span class="mod-name">WOLFENSTEiN 3D [MULTi1V1]</span><span class="mod-meta">93 lifetime subscribers</span></a></li>
+          <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2835366400" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/paint-multi.jpg" width="555" height="312" alt="Workshop preview of PAiNT [MULTi1v1]" loading="lazy" decoding="async"></span><span class="mod-name">PAiNT [MULTi1v1]</span><span class="mod-meta">43 lifetime subscribers</span></a></li>
         </ul>
+      </div>
+    </section>
+    <section class="section shell" id="funds" aria-labelledby="funds-title">
+      <header class="section-head">
+        <p class="label">Support</p>
+        <h2 id="funds-title">Funds</h2>
+        <p class="lede">Running costs for the studio, moved here from Omerta Chat. Support keeps Omerta Chat, Atlantis Chat, Cod City, and gKnuckle online.</p>
+      </header>
+      <ul class="funded">
+        <li><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat</a></li>
+        <li><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat</a></li>
+        <li><a href="https://www.cod.city/" target="_blank" rel="noopener noreferrer">Cod City</a></li>
+        <li><a href="https://www.gk.style/" target="_blank" rel="noopener noreferrer">gKnuckle</a></li>
+      </ul>
+      <div class="cost-table" aria-label="Owner-reported annual costs">
+        <div class="cost-group"><strong>Domains</strong><span>$137.95 USD / year</span></div>
+        <div class="cost-row"><code>resupply.locker</code><span class="cost-amount">$49.99 / year</span></div>
+        <div class="cost-row"><code>vandambash.com</code><span class="cost-amount">$18.99 / year</span></div>
+        <div class="cost-row"><code>vandamebash.com</code><span class="cost-amount">$18.99 / year</span></div>
+        <div class="cost-row"><code>faked.cc</code><span class="cost-amount">$29.99 / year</span></div>
+        <div class="cost-row"><code>crab.quest</code><span class="cost-amount">$19.99 / year</span></div>
+        <div class="cost-group"><strong>Services</strong><span>$403.08 USD / year</span></div>
+        <div class="cost-row"><a href="https://mmm.page/pricing" target="_blank" rel="noopener noreferrer">Mmm Pro</a><span class="cost-amount">$25.00 / month · $300.00 / year</span></div>
+        <div class="cost-row"><a href="https://docs.railway.com/pricing/plans" target="_blank" rel="noopener noreferrer">Railway Hobby</a><span class="cost-amount">$5.00 / month · $60.00 / year</span></div>
+        <div class="cost-row"><a href="https://www.kinguin.net/kings-pass" target="_blank" rel="noopener noreferrer">Kinguin Pass</a><span class="cost-amount">$3.59 / month · $43.08 / year</span></div>
+        <div class="cost-group"><strong>Music</strong><span>$125.00 CAD / year</span></div>
+        <div class="cost-row"><a href="https://developers.soundcloud.com/docs/api/guide" target="_blank" rel="noopener noreferrer">SoundCloud Artist Pro</a><span class="cost-amount">$125.00 CAD / year · paid for one year</span></div>
+        <div class="cost-total"><strong>Annual total</strong><span class="cost-amount">$541.03 USD + $125.00 CAD / year</span></div>
+      </div>
+      <p class="cost-note">Owner-reported costs, not vendor quotes. Currency conversions are estimates; taxes and usage charges are not included.</p>
+      <h3 class="panel-label">Ways to support</h3>
+      <ul class="support-grid">
+        <li><a href="https://ko-fi.com/mobs2r" target="_blank" rel="noopener noreferrer">Ko-fi<small>mobs2r</small></a></li>
+        <li><a href="https://www.patreon.com/mobs2r" target="_blank" rel="noopener noreferrer">Patreon<small>mobs2r</small></a></li>
+        <li><a href="https://www.twitch.tv/subs/mobs2r" target="_blank" rel="noopener noreferrer">Twitch subscription<small>mobs2r</small></a></li>
+        <li><a href="https://www.paypal.me/mobs2r" target="_blank" rel="noopener noreferrer">PayPal<small>mobs2r</small></a></li>
+        <li><a href="https://streamlabs.com/mobs2r/tip" target="_blank" rel="noopener noreferrer">Streamlabs<small>Tip page</small></a></li>
+        <li><a href="https://www.buymeacoffee.com/mobs2r" target="_blank" rel="noopener noreferrer">Buy Me a Coffee<small>mobs2r</small></a></li>
+        <li><a href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer">GitHub Sponsors<small>mobs2r</small></a></li>
+        <li><a href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer">Throne<small>mobs2r</small></a></li>
+      </ul>
+      <div class="billing-panel">
+        <p class="label">Crypto</p>
+        <h3>Donate crypto, mint a ball</h3>
+        <p>Crypto balls are never sold in the shop. Pick a coin, choose an amount, and send it from your wallet. The ball lands in your inventory once the network confirms, and every separate donation mints another tradable ball. The quote is signed in on Omerta Chat: each one is an exact amount reserved for 30 minutes, with a small price-movement buffer, so the transfer has to match it.</p>
+        <a class="action" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer">Open crypto donate <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="billing-panel">
+        <p class="label">Billing</p>
+        <h3>Server billing, without the clutter.</h3>
+        <div class="chips"><span>Illicit ID</span><span>Prepaid access</span><span>No auto-renewal</span></div>
+        <p>A 30-day prepaid server license. Access starts only after a matching on-chain transfer has been independently confirmed. Each server gets a scoped credential that can be rotated. It is not an Illicit ID password or a wallet key.</p>
+        <p>Faked CC presents the payment experience. Illicit API keeps the order and access records. The signed-in console, where operators register a server and create a quote, still opens in Omerta Chat.</p>
+        <a class="action" href="https://omerta.chat/?billing" target="_blank" rel="noopener noreferrer">Open operator billing <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    <section class="section shell" id="about" aria-labelledby="about-title">
+      <header class="section-head">
+        <p class="label">Studio</p>
+        <h2 id="about-title">About</h2>
+        <p class="lede">A Métis-founded indie studio in Saskatoon, Saskatchewan. The founder is Secretary of the Board at SaskInteractive.</p>
+      </header>
+      <div class="about-layout">
+        <div class="about-copy">
+          <p>Illicit builds identity, community, and the developer tools that tie independent worlds together. The public Steam profile puts it plainly: former staff at Overwolf and Ex Corp, founder of Illicit Corporation, and a contributor on Klaus Veen's Treason.</p>
+          <h3>Philosophy</h3>
+          <p>The surface is underground on purpose. Short names, sharp marks, a hacky streak. Under that is ordinary engineering: accounts, wallets, inventories, and game servers on one spine. Omerta Chat is the web layer, a terminal into the mainframe. From it you can see balance, connections, and the data Mushrüm collects. The same sign-in opens Cod City and gKnuckle.</p>
+          <h3>What we run</h3>
+          <p>Omerta Chat is the social hub: chat, a shared economy, and a full arcade. The arcade includes Riff Rush, Pool, Place, and Chess, plus the casino tables Roulette, Crash, and Pachinko. It plays with a keyboard, a gamepad, a guitar, or a Wii Remote. Atlantis Chat is the all-ages sister, the same arcade, collection, and chat with a PG feel. It is live at ill.up.railway.app, and the Tumblr at mobs2r.tumblr.com carries the same name.</p>
+          <p>Cod City is an unofficial browser FPS built on Wii-era asset research, with shared progression, local split-screen, and items that land in the Omerta locker. gKnuckle is a rogue-lite climbing mod for Garry's Mod. Its portal runs a server browser, a WiKi, the roach MiLL, and WiSHES, where players vote on the odds with COiNS.</p>
+          <p>Illicit API is the self-hostable account, wallet, and economy spine behind Omerta, Atlantis, and Вандам(e)баш. Mushrüm is the analytics platform on that API. Illicit AC is the non-invasive anti-cheat those analytics improve. Faked ID is the shared identity. Faked CC is the private way to spend, and the face of operator billing. Resupply Locker carries the same ID into third-party games, including DarkRP and FiveM, and hosts prepaid server access.</p>
+          <p>Chaster-Strike lives inside Omerta Chat. It takes a Counter-Strike 2 demo or share code, matches it to a linked Chaster lock, and can apply a confirmed consequence. The public Workshop is separate work: three Garry's Mod addons and ten Counter-Strike maps, 8,042 lifetime subscribers in all.</p>
+          <h3>Built in-house</h3>
+          <ul class="stack">
+            <li>Node.js</li>
+            <li>OAuth, including Steam, Google, and Discord</li>
+            <li>Payments through Faked CC and crypto quotes</li>
+            <li>GLua for the Garry's Mod addons</li>
+            <li>Source maps on the Workshop</li>
+            <li>Railway, Supabase, and mmm.page</li>
+          </ul>
+          <h3>Reach</h3>
+          <p>Thirteen public Workshop items. 8,042 lifetime subscribers: 5,607 on the Counter-Strike maps and 2,435 on the Garry's Mod addons. Counts come from the public Steam Workshop file details. The timeline uses those same publish timestamps, in UTC, plus the member-since date on the public Steam profile.</p>
+        </div>
+        <ol class="timeline">
+          <li><time datetime="2020-03-31">March 31, 2020</time><p>The public Steam profile opens, located in Saskatoon.</p></li>
+          <li><time datetime="2020-10-28">October 28, 2020</time><p>LOCKERS [MULTi1V1] is published. PILLARS [MULTi1V1] follows on October 31.</p></li>
+          <li><time datetime="2020-12-14">December 14, 2020</time><p>LAB [MULTi1V1] joins the set.</p></li>
+          <li><time datetime="2022-05-08">May 8, 2022</time><p>CHASE [MULTi1V1] is published. PAiNT [MULTi1v1] follows on July 15.</p></li>
+          <li><time datetime="2022-09-09">September 9, 2022</time><p>PAiNT [1V1] and LAB [1V1 / 2V2] go up the same day.</p></li>
+          <li><time datetime="2022-10-18">October 18, 2022</time><p>WOLFENSTEiN 3D [MULTi1V1], then VAULT on November 1 and CHASE [1V1 / 2V2] on November 3.</p></li>
+          <li><time datetime="2024-09-04">September 4, 2024</time><p>Junk Jet in Tool Gun, a Garry's Mod addon. Neon Error Sign follows on October 9.</p></li>
+          <li><time datetime="2024-11-08">November 8, 2024</time><p>WEBFISHING Name Tags is published.</p></li>
+        </ol>
       </div>
     </section>
     <section class="section studio shell" id="contact" aria-labelledby="contact-title">
       <div class="studio-grid">
         <div>
-          <h2>About</h2>
-          <p class="studio-about">A Métis-founded studio. The founder is Secretary of the Board at SaskInteractive.</p>
+          <h2>Studio</h2>
+          <p class="studio-about">Métis-founded. Based at 310 Wall Street in Saskatoon. The founder is Secretary of the Board at SaskInteractive.</p>
         </div>
         <div>
           <h2 id="contact-title">Contact</h2>
@@ -278,7 +443,7 @@
   </main>
   <footer class="shell footer illicit-footer">
     <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#mods">Mods</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
   </footer>
   <script>
     (() => {
