@@ -37,4 +37,8 @@ test('the mmm.page embed lives at the repository root and frames the published s
   const embed = fs.readFileSync(path.join(__dirname, '../mmm-embed.html'), 'utf8');
   assert.match(embed, /<iframe[\s\S]*src="https:\/\/mobs2r\.github\.io\/illicit-corporation-site\/"/);
   assert.match(embed, /title="Illicit Corporation"/);
+  assert.match(embed, /source: 'illicit-embed'/);
+  assert.match(embed, /#101318/);
+  assert.match(html, /classList\.add\('is-embedded'\)/);
+  assert.match(html, /source: 'illicit-corporation'/);
 });
