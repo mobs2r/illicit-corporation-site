@@ -63,4 +63,16 @@ test('active navigation follows scrolling through long Scale sections and the fo
   pick(); assert.equal(active, 'funds');
   window.scrollY = 5100;
   pick(); assert.equal(active, 'contact');
+  const scheduler = html.slice(html.indexOf('let navFrame = 0;'), html.indexOf('// Intersection thresholds alone'));
+  const frames = [];
+  let updates = 0;
+  const queue = vm.runInNewContext(scheduler + '; queueCurrentNav', {
+    requestAnimationFrame: callback => frames.push(callback),
+    pickCurrentNav: () => { updates++; }
+  });
+  queue(); queue(); queue();
+  assert.equal(frames.length, 1);
+  frames[0]();
+  assert.equal(updates, 1);
+  queue(); assert.equal(frames.length, 2);
 });
