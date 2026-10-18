@@ -3,8 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Illicit Corporation builds identity, community, and developer infrastructure for connected worlds.">
+  <meta name="description" content="Illicit Corporation is a Métis-founded studio in Saskatoon. Identity, communities, games, and the tools that connect them.">
   <meta name="theme-color" content="#101318">
+  <meta property="og:title" content="Illicit Corporation">
+  <meta property="og:description" content="A Métis-founded studio in Saskatoon. One foundation for chat, games, identity, and the tools underneath.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://illicit.page/">
+  <meta property="og:image" content="https://mobs2r.github.io/illicit-corporation-site/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Illicit Corporation">
+  <meta name="twitter:description" content="A Métis-founded studio in Saskatoon. One foundation for chat, games, identity, and the tools underneath.">
+  <meta name="twitter:image" content="https://mobs2r.github.io/illicit-corporation-site/assets/og.png">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://illicit.page/">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Illicit Corporation","url":"https://illicit.page/","email":"mobs2@waifu.club","address":{"@type":"PostalAddress","streetAddress":"310 Wall Street","addressLocality":"Saskatoon","addressRegion":"SK","postalCode":"S7K 1N7","addressCountry":"CA"}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
   <link rel="manifest" href="./manifest.webmanifest">
   <title>Illicit Corporation</title>
   <script>
@@ -16,108 +33,232 @@
     })();
   </script>
   <style>
-    :root { color-scheme: dark; --bg:#101318; --surface:#171b21; --raised:#1e242c; --line:#343b45; --text:#f2f0eb; --muted:#aab2bc; --red:#f1857d; --blue:#88bcf0; --gold:#f1cc86; --green:#92d7b1; --omerta-mark:#a51f24; }
+    :root {
+      color-scheme: dark;
+      --bg:#101318; --surface:#171b21; --raised:#1e242c; --line:#343b45;
+      --text:#f3f1ec; --muted:#b7c0ca; --copy:#d5dde6;
+      --red:#f1857d; --blue:#88bcf0; --gold:#f1cc86; --green:#92d7b1; --omerta-mark:#a51f24;
+      --sans: Questrial, "Segoe UI", system-ui, sans-serif;
+    }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font:16px/1.55 var(--sans); }
     button { font:inherit; }
     button,a { -webkit-tap-highlight-color:transparent; }
     a { color:inherit; }
     a:focus-visible,button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
-    .shell { width:min(1260px,calc(100% - 64px)); margin:auto; }
-    .site-header { position:sticky; z-index:20; top:0; border-bottom:1px solid #ffffff16; background:#101318e9; backdrop-filter:blur(18px); }
-    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:77px; }
+    .shell { width:min(1120px,calc(100% - 48px)); margin:auto; }
+    .site-header { position:sticky; z-index:20; top:0; border-bottom:1px solid #ffffff16; background:#101318eb; backdrop-filter:blur(18px); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:82px; }
     .brand { display:inline-flex; align-items:center; gap:13px; text-decoration:none; white-space:nowrap; }
-    .brand-mark { position:relative; display:grid; place-items:center; width:38px; height:38px; border:1px solid #67717d; border-radius:10px; font-size:20px; font-weight:900; letter-spacing:-.09em; }
+    .brand-mark { position:relative; display:grid; place-items:center; width:38px; height:38px; border:1px solid #67717d; border-radius:10px; font-size:20px; letter-spacing:-.04em; }
     .brand-mark::before,.brand-mark::after { position:absolute; top:0; left:0; content:""; width:6px; height:6px; border-radius:50%; offset-path:path("M 10 .5 H 28 Q 37.5 .5 37.5 10 V 28 Q 37.5 37.5 28 37.5 H 10 Q .5 37.5 .5 28 V 10 Q .5 .5 10 .5 Z"); offset-rotate:0deg; animation:brand-orbit 12s linear infinite; pointer-events:none; }
     .brand-mark::before { background:var(--red); box-shadow:0 0 12px var(--red); }
     .brand-mark::after { background:var(--blue); box-shadow:0 0 12px var(--blue); animation-delay:-6s; }
     @keyframes brand-orbit { from { offset-distance:0%; } to { offset-distance:100%; } }
-    .brand-copy { display:flex; flex-direction:column; font-size:14px; font-weight:850; letter-spacing:.12em; line-height:1.1; text-transform:uppercase; }
-    .brand-copy small { margin-top:4px; color:var(--muted); font-size:9px; font-weight:600; letter-spacing:.27em; }
-    .header-link { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:1px solid #6a7d88; border-radius:9px; font-size:12px; font-weight:800; text-decoration:none; white-space:nowrap; }
-    .header-link:hover { background:#ffffff12; }
+    .brand-copy { display:flex; flex-direction:column; font-size:15px; letter-spacing:.16em; line-height:1.1; text-transform:uppercase; }
+    .brand-copy small { margin-top:5px; color:var(--muted); font-size:10px; letter-spacing:.28em; }
+    .header-link,.theme-toggle { display:grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid #6a7d88; border-radius:10px; background:#ffffff06; color:var(--text); line-height:1; flex:0 0 44px; }
+    .header-link { text-decoration:none; color:#fff; }
+    .header-link svg { display:block; width:21px; height:21px; }
+    .header-link:hover,.theme-toggle:hover { background:#ffffff12; }
     .header-tools { display:flex; align-items:center; gap:8px; }
-    .theme-toggle { display:grid; place-items:center; width:38px; height:38px; border:1px solid #6a7d88; border-radius:9px; background:#ffffff06; color:var(--text); cursor:pointer; font-size:19px; }
-    .theme-toggle:hover { background:#ffffff12; }
-    .hero { position:relative; overflow:hidden; isolation:isolate; padding:94px 0 80px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
+    .theme-toggle { cursor:pointer; font-size:22px; }
+    .hero { position:relative; overflow:hidden; isolation:isolate; padding:88px 0 76px; border-bottom:1px solid #ffffff12; background:radial-gradient(ellipse at 78% 48%,#24324b 0%,#111927 53%,#101318 88%); }
     .hero-canvas { position:absolute; z-index:0; inset:0; display:block; width:100%; height:100%; pointer-events:none; }
     .hero::before { position:absolute; z-index:1; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,#101318 0%,#101318ee 25%,#101318a8 47%,transparent 83%),linear-gradient(0deg,#101318 0%,transparent 18%); }
     .hero > .shell { position:relative; z-index:2; }
     h1,h2,h3,p { margin-top:0; }
-    h1 { max-width:820px; margin:20px 0 19px; font-size:clamp(48px,7.2vw,108px); font-weight:850; line-height:.98; letter-spacing:-.072em; }
+    h1 { max-width:16ch; margin:0 0 18px; font-size:clamp(46px,6.6vw,92px); font-weight:400; line-height:1.02; letter-spacing:-.03em; }
     h1 em { display:block; color:var(--blue); font-style:normal; }
-    .hero-intro { max-width:590px; margin-bottom:31px; color:#ccd2d8; font-size:clamp(16px,1.5vw,19px); }
-    .hero-word-window { position:relative; display:inline-block; width:14ch; height:1.55em; overflow:hidden; vertical-align:bottom; white-space:nowrap; }
-    .hero-word { position:absolute; inset:0 auto auto 0; color:var(--blue); font-weight:700; opacity:0; transform:translate3d(0,105%,0); transition:transform .8s cubic-bezier(.37,0,.22,1),opacity .8s ease; will-change:transform,opacity; }
+    .hero-intro { max-width:38rem; margin-bottom:28px; color:#d5dde6; font-size:clamp(17px,1.5vw,20px); line-height:1.5; }
+    .hero-word-window { position:relative; display:inline-block; width:15ch; height:1.55em; overflow:hidden; vertical-align:bottom; white-space:nowrap; }
+    .hero-word { position:absolute; inset:0 auto auto 0; color:var(--blue); font-weight:400; opacity:0; transform:translate3d(0,105%,0); transition:transform .8s cubic-bezier(.37,0,.22,1),opacity .8s ease; will-change:transform,opacity; }
     .hero-word.is-current { opacity:1; transform:translate3d(0,0,0); }
     .hero-word.is-leaving { opacity:0; transform:translate3d(0,-105%,0); }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
     .actions { display:flex; flex-wrap:wrap; gap:10px; }
-    .action { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:43px; padding:10px 16px; border:1px solid #596676; border-radius:9px; background:#ffffff06; font-size:13px; font-weight:780; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
+    .action { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:50px; padding:12px 18px; border:1px solid #596676; border-radius:10px; background:#ffffff06; font-size:17px; text-decoration:none; transition:transform .18s ease,background .18s ease,border-color .18s ease; }
     .action:hover { transform:translateY(-2px); border-color:#b1c3d6; background:#ffffff12; }
     .action-primary { border-color:#aec8e5; background:#b9d5ef; color:#101820; }
     .action-primary:hover { background:#d4e7f8; }
     section { scroll-margin-top:100px; }
-    .section { padding:83px 0; }
-    .label { color:var(--gold); font-size:10px; font-weight:850; letter-spacing:.17em; text-transform:uppercase; }
-    .product-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-    .product { display:flex; flex-direction:column; min-height:180px; padding:23px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .section { padding:72px 0; }
+    .label { color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; }
+    .product-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .product { display:flex; flex-direction:column; min-width:0; min-height:188px; padding:24px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,#1c2229,#15191f); }
     .product-top { display:flex; justify-content:space-between; gap:14px; align-items:start; }
-    .product-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid currentColor; border-radius:9px; font-size:18px; font-weight:800; }
-    .product-icon.blue { color:var(--blue); }.product-icon.red { color:var(--red); }.product-icon.gold { color:var(--gold); }.product-icon.green { color:var(--green); }
-    .mushroom-icon { width:21px; height:21px; fill:currentColor; }
-    .product h3 { margin:25px 0 5px; font-size:19px; letter-spacing:-.035em; }
-    .product p { margin:0; color:#b5bdc5; font-size:11px; letter-spacing:-.012em; line-height:1.4; }
+    .product-icon { display:grid; place-items:center; width:36px; height:36px; border:1px solid currentColor; border-radius:9px; font-size:16px; }
+    .product-icon.blue { color:var(--blue); } .product-icon.red { color:var(--red); } .product-icon.gold { color:var(--gold); } .product-icon.green { color:var(--green); }
+    .analytics-icon { width:20px; height:20px; fill:currentColor; }
+    .product h3 { margin:22px 0 8px; font-size:22px; font-weight:400; letter-spacing:-.02em; }
+    .product.product-plain { justify-content:center; }
+    .product.product-plain h3 { margin-top:0; }
+    .product p { margin:0; color:var(--copy); font-size:15px; line-height:1.5; }
+    .product p + p { margin-top:10px; }
+    .product a { color:var(--blue); }
     .worlds { padding-top:0; }
-    .world-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .world { position:relative; min-height:230px; overflow:hidden; padding:27px; border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
+    .world-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .world { position:relative; min-height:236px; overflow:hidden; padding:28px; border:1px solid var(--line); border-radius:16px; text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
     .world:hover { transform:translateY(-3px); border-color:#9daab8; }
     .world.omerta { background:radial-gradient(circle at 83% 48%,#8f302c55,transparent 35%),linear-gradient(110deg,#2b1c1d,#17191e); }
     .world.atlantis { background:radial-gradient(circle at 84% 50%,#2e73b055,transparent 35%),linear-gradient(110deg,#1b2532,#17191e); }
     .world.codcity { background:radial-gradient(circle at 84% 50%,#a4d8bd3d,transparent 36%),linear-gradient(110deg,#102319,#07120b); }
     .world.gknuckle { background:radial-gradient(circle at 84% 50%,#c5ced74a,transparent 36%),linear-gradient(110deg,#252b31,#17191e); }
-    .world-sigil { position:absolute; right:12%; top:50%; display:grid; place-items:center; width:135px; height:135px; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font:72px/1 "Segoe UI Emoji","Apple Color Emoji",sans-serif; font-variant-emoji:emoji; text-shadow:0 0 18px currentColor; }
-    .world-zap { width:47px; height:68px; fill:var(--omerta-mark); filter:drop-shadow(0 0 12px var(--omerta-mark)); }
-    .world-symbol { width:78%; height:78%; overflow:visible; }
-    .codcity-skull { width:56%; height:56%; fill:currentColor; filter:drop-shadow(0 0 9px currentColor); }
-    .gknuckle-mark { width:72%; height:72%; filter:drop-shadow(0 0 8px #c7d0d866); }
+    .world > .world-sigil { position:absolute; z-index:2; top:50%; right:28px; left:auto; display:grid; place-items:center; width:112px; height:112px; margin:0; transform:translateY(-50%); border:1px solid currentColor; border-radius:50%; font:40px/1 "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif; font-variant-emoji:emoji; text-shadow:0 0 18px currentColor; }
+    .world > .world-sigil > svg { display:block; width:52px; height:52px; }
+    .world-zap { fill:var(--omerta-mark); filter:drop-shadow(0 0 12px var(--omerta-mark)); }
+    .world-symbol { overflow:visible; }
+    .codcity-skull { fill:currentColor; filter:drop-shadow(0 0 9px currentColor); }
+    .gknuckle-mark { filter:drop-shadow(0 0 8px #c7d0d866); }
     .gknuckle-mark .gmod-g { fill:currentColor; }
-    .omerta .world-sigil { color:var(--red); }.atlantis .world-sigil { color:var(--blue); }.codcity .world-sigil { color:#a4d8bd; }.gknuckle .world-sigil { color:#c7d0d8; }
-    .world .build-label { color:var(--gold); text-transform:none; }
+    .omerta .world-sigil { color:var(--red); } .atlantis .world-sigil { color:var(--blue); } .codcity .world-sigil { color:#a4d8bd; } .gknuckle .world-sigil { color:#c7d0d8; }
     .world .label { color:#d9dadb; }
-    .world h3 { position:relative; margin:49px 0 5px; font-size:29px; letter-spacing:-.055em; }
-    .world p { position:relative; max-width:280px; margin:0; color:#bec5cc; font-size:12px; }
-    .world .arrow { position:absolute; right:23px; bottom:20px; font-size:20px; }
-    .illicit-footer { --if-ink: #f2f0eb; --if-dim: #c7cdd3; --if-soft: #aab2bc; --if-line: #ffffff1a; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 16px clamp(16px, 4vw, 48px); border-top: 1px solid var(--if-line); background: var(--illicit-footer-bg, #070707); color: var(--if-ink); font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-    .illicit-footer a { color: inherit; text-decoration: none; }
-    .illicit-footer .illicit-lockup { display: flex; align-items: center; gap: 14px; }
-    .illicit-footer .illicit-mark { display: inline-flex; flex-direction: column; font-size: 16px; font-weight: 850; letter-spacing: .12em; line-height: 1.1; text-transform: uppercase; white-space: nowrap; }
-    .illicit-footer .illicit-mark small { margin-top: 4px; color: var(--if-soft); font-size: 10px; font-weight: 600; letter-spacing: .27em; }
-    .illicit-footer .illicit-cross { color: var(--if-soft); font-size: 20px; line-height: 1; }
-    .illicit-footer .illicit-links { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 13px; }
-    .illicit-footer .illicit-links a { padding: 4px 0; color: var(--if-dim); }
-    .illicit-footer .illicit-links a > [aria-hidden="true"] { margin-left: .25em; }
-    .illicit-footer .illicit-links a[aria-current="page"] { color: var(--if-ink); font-weight: 650; }
-    .illicit-footer a:hover, .illicit-footer a:focus-visible { color: var(--if-ink); text-decoration: underline; text-underline-offset: 4px; }
-    .illicit-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }
-    .illicit-footer .illicit-credit { width: 100%; margin: 0; color: var(--if-soft); font-size: 12px; }
-    .footer.illicit-footer { --illicit-footer-bg:transparent; padding:32px 0 40px; }
-    :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
+    .world .build-label { color:var(--gold); text-transform:none; letter-spacing:.04em; font-size:13px; }
+    .world h3 { position:relative; max-width:calc(100% - 148px); margin:56px 0 6px; font-size:32px; font-weight:400; letter-spacing:-.03em; }
+    .world p { position:relative; max-width:calc(100% - 148px); margin:0; color:#d5dde4; font-size:15px; line-height:1.45; }
+    .world .arrow { position:absolute; right:22px; bottom:18px; font-size:20px; }
+    .mods { padding-top:8px; }
+    .mods-head { display:flex; align-items:end; justify-content:space-between; gap:24px 40px; margin-bottom:28px; }
+    .mods-copy { max-width:40rem; }
+    .mods h2 { margin:0 0 10px; font-size:clamp(32px,4vw,44px); font-weight:400; letter-spacing:-.03em; }
+    .mods-intro { margin:0; color:var(--copy); font-size:16px; }
+    .mods-group + .mods-group { margin-top:28px; }
+    .mods-group h3,.panel-label { margin:0 0 12px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
+    .panel-label { margin-top:28px; }
+    .mod-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:0; padding:0; list-style:none; }
+    .mod-grid a { display:flex; flex-direction:column; gap:6px; min-width:0; padding:18px 20px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,#1c2229,#15191f); text-decoration:none; transition:border-color .2s ease,transform .2s ease; }
+    .mod-grid a:hover { transform:translateY(-2px); border-color:#9daab8; }
+    .mod-heading { display:flex; align-items:center; gap:8px; min-width:0; }
+    .mod-game { width:20px; height:20px; flex:0 0 auto; border-radius:4px; }
+    .mod-name { min-width:0; font-size:18px; letter-spacing:-.02em; }
+    .mod-stat { color:var(--muted); font-size:14px; }
+    .skip { position:absolute; left:16px; top:-48px; z-index:40; padding:10px 14px; border-radius:9px; background:var(--blue); color:#101318; text-decoration:none; }
+    .skip:focus { top:12px; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:4px 18px; }
+    .site-nav a { color:var(--muted); font-size:14px; text-decoration:none; padding-bottom:3px; border-bottom:2px solid transparent; }
+    .site-nav a:hover { color:var(--text); }
+    .site-nav a.is-current { color:var(--text); border-bottom-color:var(--gold); }
+    section[id] { scroll-margin-top:92px; }
+    .section-head { max-width:44rem; margin-bottom:28px; }
+    .section-head h2 { margin:0 0 10px; font-size:clamp(32px,4vw,48px); font-weight:400; letter-spacing:-.03em; }
+    .lede { margin:0; color:var(--copy); font-size:18px; line-height:1.5; }
+    .about-copy { max-width:46rem; margin:0; color:var(--copy); font-size:18px; line-height:1.55; }
+    .stack { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
+    .stack li { padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--copy); font-size:14px; }
+    .funds-top { display:flex; align-items:flex-end; justify-content:space-between; gap:16px 24px; margin-bottom:22px; }
+    .funds-top .section-head { margin:0; }
+    .funds-top h2 { margin:0; }
+    .currency-switch { display:flex; flex:0 0 auto; padding:3px; border:1px solid var(--line); border-radius:999px; background:#ffffff08; }
+    .currency-switch button { min-width:58px; min-height:38px; border:0; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; font-size:15px; }
+    .currency-switch button[aria-checked="true"] { background:var(--text); color:var(--bg); }
+    .funds-board { display:grid; grid-template-columns:minmax(260px,340px) minmax(0,1fr); gap:28px; align-items:center; }
+    .cost-chart { position:relative; width:min(100%,340px); margin:0 auto; padding:10px; border:1px solid var(--glass-line); border-radius:50%; background:var(--glass-strong); box-shadow:var(--glass-shadow); }
+    .cost-chart svg { display:block; width:100%; height:auto; }
+    .cost-readout { position:absolute; left:50%; top:50%; width:44%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; text-align:center; pointer-events:none; }
+    .cost-readout strong { font-size:clamp(15px,1.6vw,20px); font-weight:400; letter-spacing:-.03em; line-height:1.15; text-wrap:balance; }
+    .cost-readout span { color:var(--muted); font-size:12px; line-height:1.3; }
+    .donut-slice { transition:opacity .2s ease, filter .2s ease; }
+    .cost-chart.is-active a .donut-slice { opacity:.38; }
+    .cost-chart.is-active a.is-hot .donut-slice { opacity:1; filter:brightness(1.14); }
+    .cost-chart a:focus-visible .donut-slice { outline:2px solid var(--blue); outline-offset:2px; }
+    .cost-list { margin:0; padding:0; list-style:none; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#1c2229,#15191f); }
+    .cost-list li + li { border-top:1px solid var(--line); }
+    .cost-list a { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 16px; color:inherit; text-decoration:none; }
+    .cost-list a:hover, .cost-list a.is-hot { background:rgba(136,188,240,.16); }
+    .cost-list.is-active a { opacity:.55; }
+    .cost-list.is-active a.is-hot, .cost-list.is-active a:hover { opacity:1; }
+    .cost-name { display:flex; align-items:center; gap:10px; min-width:0; }
+    .cost-swatch { width:9px; height:9px; flex:0 0 auto; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
+    .cost-name img { width:20px; height:20px; flex:0 0 auto; border-radius:5px; }
+    .cost-amount { color:var(--text); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
+    .rates-as-of { margin:8px 0 0; color:var(--muted); font-size:12px; }
+    .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 0; padding:0; list-style:none; }
+    .support-grid .pill { display:flex; align-items:center; gap:12px; min-height:76px; padding:14px 16px; border-radius:16px; font-size:18px; text-decoration:none; }
+    .support-grid .pill:hover { transform:translateY(-2px); }
+    .support-grid img { width:25px; height:25px; flex:0 0 auto; border-radius:6px; }
+    .support-grid small { display:block; font-size:14px; line-height:1.2; }
+    .support-grid .pill[data-brand="kofi"] { background:#ff5e5b; color:#1a120f; }
+    .support-grid .pill[data-brand="patreon"] { background:#ff424d; color:#1a0508; }
+    .support-grid .pill[data-brand="twitch"] { background:#9146ff; color:#fff; }
+    .support-grid .pill[data-brand="paypal"] { background:#002991; color:#fff; }
+    .support-grid .pill[data-brand="streamlabs"] { background:#80f5d2; color:#06221c; }
+    .support-grid .pill[data-brand="bmc"] { background:#ffdd00; color:#1a1400; }
+    .support-grid .pill[data-brand="github"] { background:#181717; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
+    .support-grid .pill[data-brand="throne"] { background:#796ef5; color:#0e0b1a; }
+    .support-grid .pill[data-brand="btc"] { background:#f7931a; color:#1a1208; }
+    .support-grid .pill[data-brand="eth"] { background:#627eea; color:#0c1224; }
+    .support-grid .pill[data-brand="sol"] { background:#00ffa3; color:#06221c; }
+    .support-grid .pill[data-brand="avax"] { background:#e84142; color:#2a0a0a; }
+    .support-grid .pill[data-brand="pol"] { background:#8247e5; color:#fff; }
+    .support-grid .pill[data-brand="usdc"] { background:#2775ca; color:#fff; }
+    .support-grid .pill[data-brand="ape"] { background:#2159f5; color:#fff; }
+    .support-grid .pill[data-brand="redcross"] { background:#cc0000; color:#fff; }
+    .support-grid .pill[data-brand="wwf"] { background:#fff; color:#111; box-shadow:inset 0 0 0 1px rgba(0,0,0,.18), inset 0 1px 0 #fff, 0 10px 22px rgba(0,0,0,.16); }
+    .support-grid .pill[data-brand="cinch"] { background:#111; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
+    .support-grid .pill[data-brand="rampage"] { background:#1a1a1a; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
+    .support-grid .pill[data-brand="pol"] img,
+    .support-grid .pill[data-brand="usdc"] img,
+    .support-grid .pill[data-brand="ape"] img { filter:brightness(0) invert(1); }
+    .pill-groups { display:flex; flex-direction:column; gap:26px; margin-top:32px; }
+    .group-label { margin:0 0 10px; color:var(--muted); font-size:13px; font-weight:400; letter-spacing:.02em; }
+    .group-note { margin:0 0 10px; color:var(--copy); font-size:14px; line-height:1.45; }
+    .pill-group .support-grid { margin-top:0; }
+    .pill-mark { width:25px; height:25px; flex:0 0 auto; display:block; }
+    .support-grid .partner-pill { display:grid; grid-template-columns:25px minmax(0,1fr); grid-template-rows:auto auto; column-gap:12px; row-gap:2px; align-items:center; }
+    .support-grid .partner-pill .pill-link { display:contents; color:inherit; text-decoration:none; }
+    .support-grid .partner-pill img { grid-column:1; grid-row:1 / span 2; }
+    .support-grid .partner-pill .pill-name { grid-column:2; grid-row:1; min-width:0; text-transform:none; }
+    .support-grid .partner-pill .code-copy { grid-column:2; grid-row:2; justify-self:start; padding:0; border:0; background:transparent; color:inherit; font:inherit; font-size:14px; line-height:1.2; text-align:left; cursor:pointer; opacity:.8; }
+    .support-grid .partner-pill .code-copy:hover,
+    .support-grid .partner-pill .code-copy.is-copied { opacity:1; text-decoration:underline; text-underline-offset:2px; }
+    .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
+    .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
+    .mod-grid a:hover .mod-shot { transform:scale(1.045); }
+    .studio { padding-top:36px; }
+    .studio-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:28px 64px; align-items:start; }
+    .studio h2 { margin:0 0 10px; color:var(--gold); font-size:12px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; }
+    .studio-about { max-width:36rem; margin:0; font-size:20px; line-height:1.45; }
+    .contact-list { margin:0; padding:0; list-style:none; font-size:16px; line-height:1.5; }
+    .contact-list li + li { margin-top:8px; }
+    .contact-list a { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
+    .contact-list a:hover { color:var(--text); }
+    .site-footer { padding:8px 0 48px; }
+    .illicit-footer { --if-ink:#f2f0eb; --if-dim:#c7cdd3; --if-soft:#aab2bc; --if-line:#ffffff1a; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 28px; padding:18px 22px; border:1px solid var(--if-line); border-radius:18px; color:var(--if-ink); font:14px/1.5 var(--sans); }
+    .illicit-footer a { color:inherit; text-decoration:none; }
+    .illicit-footer .illicit-lockup { display:flex; align-items:center; gap:14px; }
+    .illicit-footer .illicit-mark { display:inline-flex; flex-direction:column; font-size:15px; letter-spacing:.16em; line-height:1.1; text-transform:uppercase; white-space:nowrap; }
+    .illicit-footer .illicit-mark small { margin-top:5px; color:var(--if-soft); font-size:10px; letter-spacing:.28em; }
+    .illicit-footer .illicit-links { display:flex; flex:1 1 auto; flex-wrap:wrap; justify-content:flex-end; gap:6px 18px; min-width:min(100%,16rem); font-size:14px; }
+    .illicit-footer .illicit-links a { padding:4px 0; color:var(--if-dim); }
+    .illicit-footer .illicit-links a > [aria-hidden="true"] { margin-left:.25em; }
+    .illicit-footer .illicit-links a[aria-current="page"] { color:var(--if-ink); }
+    .illicit-footer a:hover,.illicit-footer a:focus-visible { color:var(--if-ink); text-decoration:underline; text-underline-offset:4px; }
+    .illicit-footer a:focus-visible { outline:2px solid currentColor; outline-offset:3px; border-radius:2px; }
+    :root[data-theme="light"] { color-scheme:light; --bg:#f5f7fa; --surface:#fff; --raised:#eef2f6; --line:#cbd5e0; --text:#172332; --muted:#526173; --copy:#314556; --red:#a6333e; --blue:#2167a5; --gold:#80570d; --green:#1d7653; --omerta-mark:#39ff14; }
     :root[data-theme="light"] .site-header { border-bottom-color:#d6dee7; background:#f9fbfce8; }
     :root[data-theme="light"] .brand-mark::before { background:var(--green); box-shadow:0 0 12px var(--green); }
     :root[data-theme="light"] .brand-mark::after { background:var(--gold); box-shadow:0 0 12px var(--gold); }
     :root[data-theme="light"] .header-link,:root[data-theme="light"] .theme-toggle { border-color:#a9b8c8; background:#ffffffad; color:#1d2b3a; }
+    :root[data-theme="light"] .header-link { color:#181717; }
+    :root[data-theme="light"] .support-grid .pill[data-brand="github"] { background:#fff; color:#181717; box-shadow:inset 0 0 0 1px rgba(24,23,23,.22), inset 0 1px 0 #fff, 0 10px 22px rgba(0,0,0,.12); }
     :root[data-theme="light"] .header-link:hover,:root[data-theme="light"] .theme-toggle:hover { background:#e9f0f7; }
     :root[data-theme="light"] .hero { border-bottom-color:#dce4ed; background:radial-gradient(ellipse at 78% 48%,#dceafb 0%,#edf3fa 57%,#f5f7fa 90%); }
     :root[data-theme="light"] .hero::before { background:linear-gradient(90deg,#f5f7fa 0%,#f5f7faf2 26%,#f5f7fab0 49%,transparent 85%),linear-gradient(0deg,#f5f7fa 0%,transparent 18%); }
-    :root[data-theme="light"] .hero-intro { color:#405063; }
-    :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; }
+    :root[data-theme="light"] .hero-intro { color:#314556; }
+    :root[data-theme="light"] .action { border-color:#a7b8c9; background:#fff; color:#172332; }
     :root[data-theme="light"] .action:hover { border-color:#5d7894; background:#eaf1f8; }
     :root[data-theme="light"] .action-primary { border-color:#2167a5; background:#2167a5; color:#fff; }
     :root[data-theme="light"] .action-primary:hover { background:#16558d; }
-    :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f0f4f8); }
-    :root[data-theme="light"] .product p,:root[data-theme="light"] .world p { color:#415267; }
+    :root[data-theme="light"] .product { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .mod-grid a,:root[data-theme="light"] .cost-list { background:linear-gradient(145deg,#fff,#f3f6f9); }
+    :root[data-theme="light"] .cost-total { background:#eef3f8; }
+    :root[data-theme="light"] .currency-switch { background:#fff; }
+    :root[data-theme="light"] .skip { color:#fff; }
+    :root[data-theme="light"] .mod-grid a:hover { border-color:#7b91a8; }
+    :root[data-theme="light"] .product p { color:#314556; }
+    :root[data-theme="light"] .world p { color:#314556; }
     :root[data-theme="light"] .world.omerta { background:radial-gradient(circle at 83% 48%,#39ad3226,transparent 36%),linear-gradient(110deg,#f4fff2,#f3f6f9); }
     :root[data-theme="light"] .world.atlantis { background:radial-gradient(circle at 84% 50%,#d2a13c2b,transparent 36%),linear-gradient(110deg,#fffaf0,#f3f6f9); }
     :root[data-theme="light"] .world.codcity { background:radial-gradient(circle at 84% 50%,#a4d8bd66,transparent 36%),linear-gradient(110deg,#edf8f1,#e5eee9); }
@@ -130,48 +271,262 @@
     :root[data-theme="light"] .world .label { color:#425269; }
     :root[data-theme="light"] .world .build-label { color:var(--gold); }
     :root[data-theme="light"] .illicit-footer { --if-ink:#172332; --if-dim:#344a60; --if-soft:#526173; --if-line:#d5dee8; }
-    @media (max-width:900px) { .shell { width:min(720px,calc(100% - 36px)); }.header-link { display:none; }.product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.product { grid-column:auto; }.hero { padding:75px 0 63px; } }
-    @media (max-width:620px) { .header-inner { min-height:65px; gap:10px; }.brand-copy { font-size:11px; }.brand-mark { width:33px; height:33px; }.brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }.theme-toggle { width:32px; height:32px; font-size:16px; }.hero { padding:69px 0 51px; }.section { padding:57px 0; }.product-grid,.world-grid { grid-template-columns:1fr; }.product { min-height:172px; }.world { min-height:205px; }.world-sigil { right:9%; width:105px; height:105px; font-size:57px; }.world-zap { width:37px; height:54px; }.illicit-footer .illicit-mark { font-size:14px; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.action,.world,.hero-word { transition:none; }.brand-mark::before,.brand-mark::after { animation:none; }.brand-mark::after { offset-distance:50%; } }
+    @media (max-width:900px) {
+      .shell { width:min(720px,calc(100% - 36px)); }
+      .header-link,.theme-toggle { width:44px; height:44px; }
+      .hero { padding:68px 0 56px; }
+      .studio-grid { grid-template-columns:1fr; gap:28px; }
+      .funds-board { grid-template-columns:1fr; }
+      .support-grid { grid-template-columns:1fr 1fr; }
+      .site-nav { order:3; width:100%; padding-bottom:8px; }
+    }
+    @media (max-width:620px) {
+      .header-inner { min-height:70px; gap:10px; }
+      .brand-copy { font-size:13px; }
+      .brand-mark { width:33px; height:33px; }
+      .brand-mark::before,.brand-mark::after { offset-path:path("M 9 .5 H 24 Q 32.5 .5 32.5 9 V 24 Q 32.5 32.5 24 32.5 H 9 Q .5 32.5 .5 24 V 9 Q .5 .5 9 .5 Z"); }
+      .theme-toggle,.header-link { width:41px; height:41px; flex-basis:41px; }
+      .theme-toggle { font-size:18px; }
+      .header-link svg { width:19px; height:19px; }
+      .site-footer { padding:4px 0 32px; }
+      .illicit-footer { align-items:flex-start; flex-direction:column; padding:16px; }
+      .illicit-footer .illicit-links { justify-content:flex-start; }
+      .hero { padding:56px 0 44px; }
+      h1 { font-size:clamp(38px,11vw,52px); }
+      .section { padding:52px 0; }
+      .product-grid,.world-grid,.mod-grid,.support-grid { grid-template-columns:1fr; }
+      .funds-top { align-items:flex-start; flex-direction:column; }
+      .mods-head { align-items:start; flex-direction:column; }
+      .product { min-height:0; }
+      .world { min-height:280px; }
+      .world p { max-width:16ch; }
+      .world > .world-sigil { right:18px; width:88px; height:88px; font-size:36px; }
+      .world > .world-sigil > svg { width:40px; height:40px; }
+      .world h3 { margin-top:40px; font-size:28px; }
+      .world h3,.world p { max-width:calc(100% - 112px); }
+      .illicit-footer .illicit-mark { font-size:14px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      .action,.world,.hero-word,.mod-shot,.support-grid .pill { transition:none; }
+      .brand-mark::before,.brand-mark::after { animation:none; }
+      .brand-mark::after { offset-distance:50%; }
+    }
+    :root {
+      --glass:rgba(18,22,28,.72);
+      --glass-strong:rgba(12,16,22,.84);
+      --glass-line:rgba(255,255,255,.28);
+      --glass-shadow:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.38);
+      --glass-sheen:linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,.05) 26%, transparent 48%);
+    }
+    html { background:#0c1016; }
+    html[data-theme="light"] { background:#e7eef6; }
+    html[data-theme="light"] {
+      --glass:rgba(255,255,255,.74);
+      --glass-strong:rgba(248,250,252,.88);
+      --glass-line:rgba(23,35,50,.16);
+      --glass-shadow:0 16px 36px rgba(40,60,90,.12), inset 0 1px 0 #fff;
+      --glass-sheen:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.28) 28%, transparent 50%);
+    }
+    body { background:transparent; }
+    .page-texture { position:fixed; z-index:-1; inset:0; pointer-events:none; background-color:#0c1016; background-image:url("./assets/grain.png"), radial-gradient(ellipse at 18% 0%, #1c3d68 0%, transparent 42%), radial-gradient(ellipse at 88% 100%, #3a2348 0%, transparent 38%), linear-gradient(165deg, #0c1016, #151b26 55%, #101820); background-repeat:repeat, no-repeat, no-repeat, no-repeat; background-size:128px 128px, auto, auto, auto; }
+    html[data-theme="light"] .page-texture { background-color:#e7eef6; background-image:url("./assets/grain.png"), radial-gradient(ellipse at 16% 0%, #d5e7fb 0%, transparent 46%), radial-gradient(ellipse at 86% 100%, #f3dceb 0%, transparent 40%), linear-gradient(165deg, #f4f7fb, #e7eef6 60%, #f7f3ee); }
+    .site-header, .product, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .illicit-footer {
+      background:var(--glass-strong);
+      border-color:var(--glass-line);
+      box-shadow:var(--glass-shadow);
+    }
+    .world { border-color:var(--glass-line); box-shadow:var(--glass-shadow); }
+    .action-primary { background:linear-gradient(180deg,#e7f2fb,#9ec4e6); color:#101820; }
+    html[data-theme="light"] .action-primary { background:#2167a5; color:#fff; }
+    .hero { background:transparent; }
+    .hero::before { background:linear-gradient(90deg, rgba(12,16,22,.74), rgba(12,16,22,.28) 58%, transparent); }
+    html[data-theme="light"] .hero { background:transparent; }
+    html[data-theme="light"] .hero::before { background:linear-gradient(90deg, rgba(244,247,251,.86), rgba(244,247,251,.4) 58%, transparent); }
+    .site-header { border-bottom:1px solid var(--glass-line); }
+    .product, .world, .mod-grid a, .cost-list, .cost-total, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle { position:relative; }
+    .product, .world, .mod-grid a { overflow:hidden; }
+    .product::before, .world::before, .mod-grid a::before {
+      content:""; position:absolute; z-index:0; inset:0; border-radius:inherit; pointer-events:none;
+      background:var(--glass-sheen);
+    }
+    .product > *, .world > *, .mod-grid a > * { position:relative; z-index:2; }
+    .product::after, .world::after, .mod-grid a::after {
+      content:""; position:absolute; z-index:1; top:-20%; bottom:-20%; left:-40%; width:34%; pointer-events:none;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+      transform:translateX(-160%) rotate(14deg); transition:transform .75s ease;
+    }
+    .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:translateX(420%) rotate(14deg); }
+    .tilt { transform:perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px)); transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; }
+    .tilt:hover { --lift:-4px; }
+    .tilt:active { --lift:1px; }
+    .action:active, .header-link:active, .theme-toggle:active, .nav-toggle:active, .support-grid .pill:active, .currency-switch button:active { transform:scale(.97); }
+    .support-grid .pill { position:relative; overflow:hidden; box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 10px 22px rgba(0,0,0,.16); transition:transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease; }
+    .support-grid .pill::before { content:""; position:absolute; inset:0 auto auto 0; width:100%; height:46%; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.28), transparent); }
+    .support-grid .pill img, .support-grid .pill .pill-mark, .support-grid .pill span, .support-grid .pill .code-copy { position:relative; z-index:1; }
+    .site-nav { position:relative; align-items:center; gap:2px; padding:4px; border:1px solid var(--glass-line); border-radius:999px; background:var(--glass); box-shadow:inset 0 1px 0 rgba(255,255,255,.28); }
+    .nav-indicator { position:absolute; z-index:0; top:4px; left:0; height:calc(100% - 8px); width:0; border-radius:999px; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.1)); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 8px 18px rgba(90,150,220,.28); transition:transform .5s cubic-bezier(.18,1.15,.32,1), width .5s cubic-bezier(.18,1.15,.32,1); }
+    .site-nav a { position:relative; z-index:1; padding:8px 12px; border:0; border-radius:999px; overflow:hidden; }
+    .site-nav a.is-current { border-bottom-color:transparent; color:var(--text); text-shadow:0 0 12px rgba(170,210,255,.35); }
+    .site-nav a::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; background:radial-gradient(70px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.4), transparent 62%); transition:opacity .2s ease; }
+    .site-nav a:hover::after, .site-nav a:focus-visible::after { opacity:1; }
+    .site-nav a:focus-visible { background:linear-gradient(90deg, rgba(136,188,240,.38), rgba(255,255,255,.08)); box-shadow:0 0 0 1px rgba(190,220,255,.7), 0 0 16px rgba(120,180,255,.35); }
+    .nav-toggle { display:none; width:45px; height:45px; padding:0; border-radius:12px; color:var(--text); cursor:pointer; }
+    .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { display:block; width:16px; height:1.5px; border-radius:2px; background:currentColor; position:relative; }
+    .nav-toggle span::before, .nav-toggle span::after { content:""; position:absolute; left:0; }
+    .nav-toggle span::before { top:-5px; }
+    .nav-toggle span::after { top:5px; }
+    a:focus-visible, button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; box-shadow:0 0 0 6px rgba(136,188,240,.22); }
+    @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))) {
+      .site-header, .product, .mod-grid a, .cost-list, .cost-total, .cost-chart, .action, .currency-switch, .stack li, .header-link, .theme-toggle, .nav-toggle, .site-nav, .illicit-footer, .world {
+        -webkit-backdrop-filter:blur(18px) saturate(1.5);
+        backdrop-filter:blur(18px) saturate(1.5);
+      }
+      .site-header, .site-nav, .product, .mod-grid a, .cost-list, .cost-total, .cost-chart { background:var(--glass); }
+    }
+    @media (max-width:900px) {
+      .nav-toggle { display:grid; place-items:center; }
+      .site-header { position:sticky; }
+      .site-nav { position:absolute; z-index:30; top:calc(100% + 8px); right:16px; left:16px; width:auto; order:0; display:flex; flex-direction:column; align-items:stretch; gap:4px; padding:12px; border-radius:22px; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-10px) scale(.98); transition:opacity .28s ease, transform .28s cubic-bezier(.2,.8,.2,1), visibility .28s ease; }
+      .site-header.is-menu-open .site-nav { opacity:1; visibility:visible; pointer-events:auto; transform:none; }
+      .site-nav a { padding:12px 14px; }
+      .nav-indicator { display:none; }
+      .site-nav a.is-current { background:rgba(136,188,240,.22); }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .nav-indicator, .product, .world, .mod-grid a, .product::after, .world::after, .mod-grid a::after, .site-nav, .tilt, .donut-slice, .cost-list a { transition:none; }
+      .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
+      .tilt, .tilt:hover, .action:active { transform:none; }
+    }
   </style>
 </head>
 <body>
+  <div class="page-texture" aria-hidden="true"></div>
+  <a class="skip" href="#platform">Skip to content</a>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <div class="header-tools"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+      <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <div class="header-tools"><button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a></div>
     </div>
   </header>
   <main>
     <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
       <h1>One foundation.<em>Many worlds.</em></h1>
-      <p class="hero-intro">Illicit builds the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
+      <p class="hero-intro">One studio in Saskatoon, building the connective tissue behind <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
       <div class="actions"><a class="action action-primary" href="#worlds">Explore <span aria-hidden="true">↓</span></a><a class="action" href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
     </div></section>
     <section class="section shell" id="platform" aria-labelledby="platform-title">
-      <h2 class="sr-only" id="platform-title">Platform</h2>
+      <header class="section-head"><h2 id="platform-title">Platform</h2><p class="lede">The same account, coin, and inventory run through every world. The names stay sharp. The machinery underneath is ordinary, careful engineering.</p></header>
       <div class="product-grid">
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon red" aria-hidden="true">↗</span></div><h3>Resupply Locker</h3><p>Resupply Locker is a game modification suite aiming to enable third-party games on Illicit API.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
-        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="mushroom-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushroom</h3><p>Mushroom is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
+        <article class="product product-plain"><h3>Arcade</h3><p>Live multiplayer web games.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds" aria-labelledby="worlds-title">
-      <h2 class="sr-only" id="worlds-title">Worlds</h2>
+      <header class="section-head"><h2 id="worlds-title">Worlds</h2></header>
       <div class="world-grid">
-        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="0 0 40 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><h3>Omerta Chat</h3><p>One coin, many worlds...</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world omerta" href="https://omerta.chat/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="omerta">Build #9770223</span><span class="world-sigil" aria-hidden="true"><svg class="world-zap" viewBox="-14.5 0 70 70" focusable="false"><path d="M23 0 4 39h16l-4 31 21-42H21z"/></svg></span><h3>Omerta Chat</h3><p>One coin, many worlds...</p><span class="arrow" aria-hidden="true">↗</span></a>
         <a class="world atlantis" href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="atlantis">Build #f21cd57</span><span class="world-sigil" aria-hidden="true">🔱︎</span><h3>Atlantis Chat</h3><p>Play, collect, connect...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world codcity" href="https://www.cod.city/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="codcity">Build #e0f83a3</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol codcity-skull" viewBox="-.6 -.6 1.2 1.2" focusable="false"><path fill-rule="evenodd" d="M0-.46C.27-.46.42-.28.42-.06C.42.08.36.16.28.2V.36C.28.42.24.46.18.46H-.18C-.24.46-.28.42-.28.36V.2C-.36.16-.42.08-.42-.06C-.42-.28-.27-.46 0-.46ZM-.2-.12A.1.11 0 1 0-.2.1.1.11 0 1 0-.2-.12ZM.2-.12A.1.11 0 1 1 .2.1.1.11 0 1 1 .2-.12ZM0 .1-.06.22H.06Z"/></svg></span><h3>Cod City</h3><p>Call it what you want...</p><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="world gknuckle" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="gknuckle">Build #6b7e0a4</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="0 0 160 160" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span><h3>gKnuckle</h3><p>A mix of old &amp; new...</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world codcity" href="https://www.cod.city/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="codcity">Build #e0f83a3</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol codcity-skull" viewBox="-0.46 -0.46 0.92 0.92" focusable="false"><path fill-rule="evenodd" d="M0-.46C.27-.46.42-.28.42-.06C.42.08.36.16.28.2V.36C.28.42.24.46.18.46H-.18C-.24.46-.28.42-.28.36V.2C-.36.16-.42.08-.42-.06C-.42-.28-.27-.46 0-.46ZM-.2-.12A.1.11 0 1 0-.2.1.1.11 0 1 0-.2-.12ZM.2-.12A.1.11 0 1 1 .2.1.1.11 0 1 1 .2-.12ZM0 .1-.06.22H.06Z"/></svg></span><h3>Cod City</h3><p>Call it what you want...</p><span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="world gknuckle" href="https://www.gk.style/" target="_blank" rel="noopener noreferrer"><span class="label build-label" data-build="gknuckle">Build #6b7e0a4</span><span class="world-sigil" aria-hidden="true"><svg class="world-symbol gknuckle-mark" viewBox="24.94 25.9 110.08 110.08" focusable="false"><path class="gmod-g" fill-rule="evenodd" d="M96.53 92.33c-1.08 1.29-2.16 2.85-3.5 4.13-2.74 2.6-6.16 3.96-9.79 4.75-4.38.95-8.79.83-13.21.23-5.52-.74-10.36-2.98-14.58-6.54-3.55-3.01-6.1-6.76-7.92-11.04-1.85-4.35-2.81-8.93-3.3-13.6-.7-6.76-.37-13.46 1.65-19.99 1.66-5.36 4.18-10.26 8.01-14.45 4.43-4.86 9.82-8.02 16.25-9.34 3.59-.74 7.22-.74 10.85-.15 6.46 1.05 11.45 4.37 15.11 9.76.09.12.45.65.45.65V27.87h19.5v74.99c-.02 7.74-2.2 14.82-7.16 20.88-3.86 4.71-8.84 7.82-14.54 9.82-5.55 1.95-11.29 2.63-17.14 2.38-6.39-.27-12.54-1.65-18.15-4.8-8.44-4.75-13.57-11.86-14.84-21.57-.17-1.29-.21-2.6-.26-3.9v-.5h18.18v.43c.06 3.37 1 6.41 3.33 8.91 1.74 1.87 3.9 3.1 6.35 3.76 5.68 1.53 11.24 1.21 16.52-1.51 4.75-2.45 7.75-6.29 8.09-11.73.26-4.1.1-8.23.13-12.35v-.35ZM64.31 64.94c-.11-4.48.35-8.88 2.11-13.05 2.06-4.9 5.66-7.88 10.98-8.69 3.67-.56 7.25-.32 10.64 1.32 3.38 1.64 5.47 4.45 6.84 7.84 1.34 3.33 2.03 6.82 2.07 10.38.05 3.18.04 6.42-.45 9.55-.98 6.3-5.35 12.19-12.05 13.83-6.11 1.5-12.42-.85-16.06-6.01-2.56-3.62-3.74-7.68-4.05-12.04-.07-1.04-.01-2.09-.03-3.13Z"/></svg></span><h3>gKnuckle</h3><p>A mix of old &amp; new...</p><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
+    <section class="section mods shell" id="mods" aria-labelledby="mods-title">
+      <header class="section-head mods-head">
+        <h2 id="mods-title">Mods</h2>
+      </header>
+      <ul class="mod-grid">
+        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3362030272" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/webfishing-name-tags.jpg" width="1024" height="1024" alt="Workshop preview of WEBFISHING Name Tags" loading="lazy" decoding="async"></span><span class="mod-heading"><img class="mod-game" src="./assets/icons/garrys-mod.jpg" width="32" height="32" alt="Garry's Mod"><span class="mod-name">WEBFISHING Name Tags</span></span><span class="mod-stat">552 Active Subscribers</span><span class="mod-stat">Last Updated Feb 15, 2026</span></a></li>
+        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3324247572" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/junk-jet.jpg" width="720" height="720" alt="Workshop preview of Junk Jet in Tool Gun" loading="lazy" decoding="async"></span><span class="mod-heading"><img class="mod-game" src="./assets/icons/garrys-mod.jpg" width="32" height="32" alt="Garry's Mod"><span class="mod-name">Junk Jet in Tool Gun</span></span><span class="mod-stat">127 Active Subscribers</span><span class="mod-stat">Last Updated Jan 13, 2025</span></a></li>
+        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3346062106" target="_blank" rel="noopener noreferrer"><span class="mod-frame"><img class="mod-shot" src="./assets/mods/neon-error-sign.gif" width="526" height="526" alt="Workshop preview of Neon Error Sign" loading="lazy" decoding="async"></span><span class="mod-heading"><img class="mod-game" src="./assets/icons/garrys-mod.jpg" width="32" height="32" alt="Garry's Mod"><span class="mod-name">Neon Error Sign</span></span><span class="mod-stat">45 Active Subscribers</span><span class="mod-stat">Last Updated Oct 9, 2024</span></a></li>
+      </ul>
+    </section>
+    <section class="section shell" id="funds" aria-labelledby="funds-title">
+      <div class="funds-top">
+        <header class="section-head">
+          <h2 id="funds-title">Funds</h2>
+        </header>
+        <div class="currency-switch" role="radiogroup" aria-label="Currency">
+          <button type="button" role="radio" data-currency="USD" aria-checked="true">USD</button>
+          <button type="button" role="radio" data-currency="CAD" aria-checked="false">CAD</button>
+          <button type="button" role="radio" data-currency="EUR" aria-checked="false">EUR</button>
+          <button type="button" role="radio" data-currency="GBP" aria-checked="false">GBP</button>
+        </div>
+      </div>
+      <div class="funds-board">
+        <div class="cost-chart" id="cost-chart"><div class="cost-chart-svg" id="cost-chart-svg"></div><div class="cost-readout" id="cost-readout" aria-live="polite"></div></div>
+        <ul class="cost-list" id="cost-list"></ul>
+      </div>
+      <p class="cost-total" id="cost-total"><strong>Total</strong><span class="cost-amount"></span></p>
+      <p class="rates-as-of" id="rates-as-of"></p>
+      <div class="pill-groups">
+        <section class="pill-group" aria-labelledby="support-pills">
+          <h3 class="group-label" id="support-pills">Support</h3>
+          <ul class="support-grid">
+            <li><a class="pill" data-brand="kofi" href="https://ko-fi.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/kofi.png" width="22" height="22" alt=""><span>Ko-fi<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="patreon" href="https://www.patreon.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/patreon.png" width="22" height="22" alt=""><span>Patreon<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="twitch" href="https://www.twitch.tv/subs/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/twitch.png" width="22" height="22" alt=""><span>Twitch<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="paypal" href="https://www.paypal.me/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/paypal.png" width="22" height="22" alt=""><span>PayPal<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="streamlabs" href="https://streamlabs.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/streamlabs.svg" width="22" height="22" alt=""><span>Streamlabs<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="bmc" href="https://www.buymeacoffee.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/bmc.png" width="22" height="22" alt=""><span>Buy Me a Coffee<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="github" href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer"><svg class="pill-mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="throne" href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/throne.png" width="22" height="22" alt=""><span>Throne<small>/mobs2r</small></span></a></li>
+          </ul>
+        </section>
+        <section class="pill-group" aria-labelledby="crypto-pills">
+          <h3 class="group-label" id="crypto-pills">Crypto</h3>
+          <ul class="support-grid">
+            <li><a class="pill" data-brand="btc" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span>Bitcoin<small>BTC</small></span></a></li>
+            <li><a class="pill" data-brand="eth" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span>Ethereum<small>ETH</small></span></a></li>
+            <li><a class="pill" data-brand="sol" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span>Solana<small>SOL</small></span></a></li>
+            <li><a class="pill" data-brand="avax" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span>Avalanche<small>AVAX</small></span></a></li>
+            <li><a class="pill" data-brand="pol" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span>Polygon<small>POL</small></span></a></li>
+            <li><a class="pill" data-brand="usdc" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span>USD Coin<small>USDC</small></span></a></li>
+            <li><a class="pill" data-brand="ape" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/ape.svg" width="22" height="22" alt=""><span>ApeCoin<small>APE</small></span></a></li>
+          </ul>
+        </section>
+        <section class="pill-group" aria-labelledby="planet-pills">
+          <h3 class="group-label" id="planet-pills">Preserve Our Planet</h3>
+          <p class="group-note">Give directly to relief and conservation.</p>
+          <ul class="support-grid">
+            <li><a class="pill" data-brand="redcross" href="https://www.redcross.ca/donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/redcross.png" width="22" height="22" alt=""><span>Red Cross<small>Donate</small></span></a></li>
+            <li><a class="pill" data-brand="wwf" href="https://wwf.ca/donate/" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/wwf.png" width="22" height="22" alt=""><span>WWF<small>Donate</small></span></a></li>
+          </ul>
+        </section>
+        <section class="pill-group" aria-labelledby="partner-pills">
+          <h3 class="group-label" id="partner-pills">Partners</h3>
+          <ul class="support-grid" id="partner-codes"></ul>
+        </section>
+      </div>
+    </section>
+    <section class="section shell" id="about" aria-labelledby="about-title">
+      <header class="section-head">
+        <h2 id="about-title">About</h2>
+      </header>
+      <p class="about-copy">Illicit Corporation is a Métis founded independent research &amp; development lab located in Saskatoon, Saskatchewan, Canada. The focus of our research &amp; development is game design, specifically with networking or peripherals. The company was founded by Alyx (mobs2r) who is deeply passionate about the foundational values of the lab. We are constantly evolving our team &amp; commitment to mirror these responsibilities.</p>
+    </section>
+    <section class="section shell" id="contact" aria-labelledby="contact-title">
+      <header class="section-head">
+        <h2 id="contact-title">Contact</h2>
+      </header>
+      <ul class="contact-list">
+        <li><a href="mailto:mobs2@waifu.club">mobs2@waifu.club</a></li>
+        <li>Illicit, 310 Wall Street, Saskatoon, SK S7K 1N7, Canada</li>
+        <li><a href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </section>
   </main>
-  <footer class="shell footer illicit-footer">
-    <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-    <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="https://omerta.chat/" target="_blank" rel="noopener noreferrer">Omerta Chat<span aria-hidden="true">↗</span></a><a href="https://ill.up.railway.app/" target="_blank" rel="noopener noreferrer">Atlantis Chat<span aria-hidden="true">↗</span></a></nav>
+  <footer class="site-footer">
+    <div class="shell illicit-footer">
+      <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
+      <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    </div>
   </footer>
   <script>
     (() => {
@@ -364,6 +719,384 @@
       syncWords();
       wordMotion?.addEventListener?.('change', syncWords);
       document.addEventListener('visibilitychange', syncWords);
+      const fundsCurrencyKey = 'illicit-funds-currency';
+      const fundCurrencies = ['USD', 'CAD', 'EUR', 'GBP'];
+      const currencySymbols = { USD: '$', CAD: 'CA$', EUR: '€', GBP: '£' };
+      const chartColors = ['#f1857d', '#88bcf0', '#f1cc86', '#92d7b1', '#d7a4ef', '#f0b27a', '#7fd0d8', '#e7e2d6', '#c9a227'];
+      const currencySwitch = document.querySelector('.currency-switch');
+      const costList = document.getElementById('cost-list');
+      const costChart = document.getElementById('cost-chart');
+      const costChartSvg = document.getElementById('cost-chart-svg');
+      const costReadout = document.getElementById('cost-readout');
+      const costTotal = document.querySelector('#cost-total .cost-amount');
+      const ratesAsOf = document.getElementById('rates-as-of');
+      let fundsData = null;
+      let fundsCurrency = 'USD';
+      try {
+        const savedCurrency = localStorage.getItem(fundsCurrencyKey);
+        if (fundCurrencies.includes(savedCurrency)) fundsCurrency = savedCurrency;
+      } catch {}
+      const formatMoney = (whole, currency) => `${currencySymbols[currency]}${whole.toLocaleString('en-US')}`;
+      // Oct 16, 2026 rate table. CAD is the Bank of Canada USD/CAD daily average, 1.4154.
+      // EUR and GBP per 1 USD are derived from that day's Bank of Canada euro and sterling
+      // rates, EUR/CAD 1.5908 and GBP/CAD 1.8871: EUR = 1.4154 / 1.5908, GBP = 1.4154 / 1.8871.
+      // Domain lines in assets/costs.json are the exact Hover renewal prices in USD per year.
+      // Other amounts are annual units in their native currency: monthly figures were multiplied by 12
+      // and the 6-month figure by 2 before they were stored. Anthropic is CA$160 per month, the CA$155.40
+      // Claude Max bill rounded up, times 12. Display converts to the selected currency,
+      // then rounds up to the next hundred from 1,000 and the next ten below that. The total is the sum
+      // of the converted values before that display rounding, rounded with the same rule.
+      const convertedAmount = (amount, from, to) => {
+        const rates = fundsData.rates;
+        return (amount / rates[from]) * rates[to];
+      };
+      const displayRound = value => {
+        const step = value >= 1000 ? 100 : 10;
+        const scaled = value / step;
+        const nearest = Math.round(scaled);
+        if (Math.abs(scaled - nearest) < 1e-6) return nearest * step;
+        return Math.ceil(scaled) * step;
+      };
+      const svgNS = 'http://www.w3.org/2000/svg';
+      let showSlice = () => {};
+      const sliceIndex = node => {
+        const hit = node?.closest?.('[data-slice]');
+        if (!hit) return null;
+        const value = hit.getAttribute('data-slice');
+        return value == null || value === '' ? null : Number(value);
+      };
+      const watchSlices = root => {
+        root.addEventListener('pointerover', event => {
+          const index = sliceIndex(event.target);
+          if (index != null) showSlice(index);
+        });
+        root.addEventListener('pointerleave', () => showSlice(null));
+        root.addEventListener('focusin', event => {
+          const index = sliceIndex(event.target);
+          if (index != null) showSlice(index);
+        });
+        root.addEventListener('focusout', event => {
+          if (!root.contains(event.relatedTarget)) showSlice(null);
+        });
+      };
+      watchSlices(costChart);
+      watchSlices(costList);
+      const renderFunds = () => {
+        if (!fundsData) return;
+        for (const button of currencySwitch.querySelectorAll('button')) {
+          button.setAttribute('aria-checked', button.dataset.currency === fundsCurrency ? 'true' : 'false');
+        }
+        costList.replaceChildren();
+        const slices = [];
+        let rawTotal = 0;
+        fundsData.costs.forEach((cost, index) => {
+          const supports = cost.supports || {};
+          const row = document.createElement('li');
+          const link = document.createElement('a');
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          if (supports.url) link.href = supports.url;
+          const name = document.createElement('span');
+          name.className = 'cost-name';
+          const swatch = document.createElement('span');
+          swatch.className = 'cost-swatch';
+          swatch.style.background = chartColors[index % chartColors.length];
+          const icon = document.createElement('img');
+          icon.alt = '';
+          icon.width = 20;
+          icon.height = 20;
+          icon.src = `./${cost.icon}`;
+          const label = document.createElement('span');
+          label.textContent = cost.name;
+          name.append(swatch, icon, label);
+          const amount = document.createElement('span');
+          amount.className = 'cost-amount';
+          if (cost.amount == null) {
+            amount.textContent = 'TBD';
+          } else {
+            const exact = convertedAmount(cost.amount, cost.currency, fundsCurrency);
+            const shown = displayRound(exact);
+            amount.textContent = formatMoney(shown, fundsCurrency);
+            rawTotal += exact;
+            const sliceIndexValue = slices.length;
+            slices.push({
+              name: cost.name,
+              value: shown,
+              color: chartColors[index % chartColors.length],
+              href: supports.url || '',
+              supportsLabel: supports.label || cost.name
+            });
+            link.dataset.slice = String(sliceIndexValue);
+          }
+          link.append(name, amount);
+          row.append(link);
+          costList.append(row);
+        });
+        const total = displayRound(rawTotal);
+        const chartTotal = slices.reduce((sum, slice) => sum + slice.value, 0);
+        costTotal.textContent = formatMoney(total, fundsCurrency);
+        const [year, month, day] = fundsData.ratesAsOf.split('-').map(Number);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        ratesAsOf.textContent = `Rates as of ${months[month - 1]} ${day}, ${year}.`;
+        const shareText = value => `${(chartTotal ? (value / chartTotal) * 100 : 0).toFixed(1)}%`;
+        for (const link of costList.querySelectorAll('[data-slice]')) {
+          const slice = slices[Number(link.dataset.slice)];
+          const note = document.createElement('span');
+          note.className = 'sr-only';
+          note.textContent = `, ${shareText(slice.value)}, ${slice.supportsLabel}`;
+          link.append(note);
+        }
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttribute('viewBox', '0 0 200 200');
+        svg.setAttribute('role', 'group');
+        svg.setAttribute('aria-label', 'Annual costs');
+        const defs = document.createElementNS(svgNS, 'defs');
+        const gradient = document.createElementNS(svgNS, 'linearGradient');
+        gradient.setAttribute('id', 'donutSheen');
+        gradient.setAttribute('x1', '0');
+        gradient.setAttribute('y1', '0');
+        gradient.setAttribute('x2', '0');
+        gradient.setAttribute('y2', '1');
+        for (const [offset, opacity] of [['0', '.34'], ['.46', '.06'], ['1', '0']]) {
+          const stop = document.createElementNS(svgNS, 'stop');
+          stop.setAttribute('offset', offset);
+          stop.setAttribute('stop-color', '#fff');
+          stop.setAttribute('stop-opacity', opacity);
+          gradient.append(stop);
+        }
+        defs.append(gradient);
+        svg.append(defs);
+        const rotor = document.createElementNS(svgNS, 'g');
+        const outer = 87;
+        const inner = 57;
+        const circumference = 2 * Math.PI * 72;
+        let cursor = 0;
+        const point = (angle, radius) => [100 + Math.cos(angle) * radius, 100 + Math.sin(angle) * radius];
+        slices.forEach((slice, index) => {
+          const full = chartTotal ? (slice.value / chartTotal) * circumference : 0;
+          const gap = full > 10 ? 2.4 : 0;
+          const length = Math.max(full - gap, 0.6);
+          const start = -Math.PI / 2 + (cursor / circumference) * Math.PI * 2;
+          const end = -Math.PI / 2 + ((cursor + length) / circumference) * Math.PI * 2;
+          const large = end - start > Math.PI ? 1 : 0;
+          const [x1, y1] = point(start, outer);
+          const [x2, y2] = point(end, outer);
+          const [x3, y3] = point(end, inner);
+          const [x4, y4] = point(start, inner);
+          const link = document.createElementNS(svgNS, 'a');
+          if (slice.href) {
+            link.setAttribute('href', slice.href);
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+          }
+          link.setAttribute('data-slice', String(index));
+          link.setAttribute('aria-label', `${slice.name}, ${formatMoney(slice.value, fundsCurrency)}, ${shareText(slice.value)}, ${slice.supportsLabel}`);
+          const wedge = document.createElementNS(svgNS, 'path');
+          wedge.setAttribute('class', 'donut-slice');
+          wedge.setAttribute('d', `M ${x1} ${y1} A ${outer} ${outer} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${inner} ${inner} 0 ${large} 0 ${x4} ${y4} Z`);
+          wedge.setAttribute('fill', slice.color);
+          link.append(wedge);
+          rotor.append(link);
+          cursor += full;
+        });
+        svg.append(rotor);
+        const gloss = (attributes) => {
+          const circle = document.createElementNS(svgNS, 'circle');
+          for (const [key, value] of Object.entries(attributes)) circle.setAttribute(key, value);
+          circle.setAttribute('pointer-events', 'none');
+          svg.append(circle);
+        };
+        gloss({ cx: '100', cy: '100', r: '72', fill: 'none', stroke: 'url(#donutSheen)', 'stroke-width': '30' });
+        gloss({ cx: '100', cy: '100', r: '87', fill: 'none', stroke: 'rgba(255,255,255,.38)', 'stroke-width': '1.25' });
+        gloss({ cx: '100', cy: '100', r: '57', fill: 'none', stroke: 'rgba(255,255,255,.28)', 'stroke-width': '1.25' });
+        costChartSvg.replaceChildren(svg);
+        const paintSlice = index => {
+          const hot = index != null && slices[index] ? slices[index] : null;
+          costChart.classList.toggle('is-active', Boolean(hot));
+          costList.classList.toggle('is-active', Boolean(hot));
+          for (const node of document.querySelectorAll('#cost-chart [data-slice], #cost-list [data-slice]')) {
+            node.classList.toggle('is-hot', Boolean(hot) && node.getAttribute('data-slice') === String(index));
+          }
+          costReadout.replaceChildren();
+          const title = document.createElement('strong');
+          const detail = document.createElement('span');
+          if (!hot) {
+            title.textContent = formatMoney(total, fundsCurrency);
+            detail.textContent = 'Annual';
+            costReadout.append(title, detail);
+            return;
+          }
+          title.textContent = hot.name;
+          detail.textContent = `${formatMoney(hot.value, fundsCurrency)} · ${shareText(hot.value)}`;
+          const where = document.createElement('span');
+          where.textContent = hot.supportsLabel;
+          costReadout.append(title, detail, where);
+        };
+        showSlice = paintSlice;
+        paintSlice(null);
+      };
+      const partnerCodes = [
+        { name: 'Cinch Gaming', code: 'MOBS2R', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
+        { name: 'Rampage Coffee Co.', code: 'MOBS2R', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' }
+      ];
+      const partnerList = document.getElementById('partner-codes');
+      for (const partner of partnerCodes) {
+        const item = document.createElement('li');
+        const pill = document.createElement('div');
+        pill.className = 'pill partner-pill';
+        pill.dataset.brand = partner.brand;
+        const link = document.createElement('a');
+        link.className = 'pill-link';
+        link.href = partner.href;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        const icon = document.createElement('img');
+        icon.alt = '';
+        icon.width = 22;
+        icon.height = 22;
+        icon.src = partner.icon;
+        const name = document.createElement('span');
+        name.className = 'pill-name';
+        name.textContent = partner.name;
+        link.append(icon, name);
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'code-copy';
+        button.dataset.code = partner.code;
+        button.textContent = partner.code;
+        button.setAttribute('aria-label', `Copy ${partner.name} partner code`);
+        pill.append(link, button);
+        item.append(pill);
+        partnerList.append(item);
+      }
+      partnerList.addEventListener('click', async event => {
+        const button = event.target.closest('.code-copy');
+        if (!button) return;
+        const code = button.dataset.code || '';
+        try {
+          await navigator.clipboard.writeText(code);
+        } catch {
+          const area = document.createElement('textarea');
+          area.value = code;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.left = '-9999px';
+          document.body.append(area);
+          area.select();
+          document.execCommand('copy');
+          area.remove();
+        }
+        window.clearTimeout(button.copyTimer);
+        button.textContent = 'Copied';
+        button.classList.add('is-copied');
+        button.copyTimer = window.setTimeout(() => {
+          button.textContent = button.dataset.code || '';
+          button.classList.remove('is-copied');
+        }, 1600);
+      });
+      currencySwitch.addEventListener('click', event => {
+        const button = event.target.closest('button[data-currency]');
+        if (!button || !fundCurrencies.includes(button.dataset.currency)) return;
+        fundsCurrency = button.dataset.currency;
+        try { localStorage.setItem(fundsCurrencyKey, fundsCurrency); } catch {}
+        renderFunds();
+      });
+      currencySwitch.addEventListener('keydown', event => {
+        if (!['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+        const buttons = [...currencySwitch.querySelectorAll('button')];
+        const index = buttons.indexOf(document.activeElement);
+        if (index < 0) return;
+        event.preventDefault();
+        const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+        const next = buttons[(index + step + buttons.length) % buttons.length];
+        next.focus();
+        next.click();
+      });
+      const loadFunds = async () => {
+        try {
+          const response = await fetch('./assets/costs.json', { cache: 'no-store' });
+          if (!response.ok) return;
+          fundsData = await response.json();
+          renderFunds();
+        } catch {}
+      };
+      loadFunds();
+      const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+      const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      const navIndicator = document.querySelector('.nav-indicator');
+      const placeNavPill = () => {
+        const current = document.querySelector('.site-nav a.is-current');
+        if (!navIndicator || !current) return;
+        navIndicator.style.width = `${current.offsetWidth}px`;
+        navIndicator.style.transform = `translateX(${current.offsetLeft}px)`;
+      };
+      const setCurrentNav = id => {
+        for (const link of navLinks) {
+          const current = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('is-current', current);
+          if (current) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        }
+        placeNavPill();
+      };
+      if ('IntersectionObserver' in window && navSections.length) {
+        const pickCurrentNav = () => {
+          const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+          if (atBottom) {
+            setCurrentNav(navSections[navSections.length - 1].id);
+            return;
+          }
+          const probe = 96;
+          let current = navSections[0];
+          for (const section of navSections) {
+            if (section.getBoundingClientRect().top <= probe) current = section;
+          }
+          setCurrentNav(current.id);
+        };
+        const navObserver = new IntersectionObserver(pickCurrentNav, {
+          rootMargin: '-12% 0px -70% 0px',
+          threshold: [0, 0.2, 0.6]
+        });
+        navSections.forEach(section => navObserver.observe(section));
+        pickCurrentNav();
+      }
+      placeNavPill();
+      window.addEventListener('resize', placeNavPill);
+      document.fonts?.ready?.then(placeNavPill);
+      const header = document.querySelector('.site-header');
+      const navToggle = document.getElementById('nav-toggle');
+      const setMenu = open => {
+        header.classList.toggle('is-menu-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      };
+      navToggle.addEventListener('click', () => setMenu(!header.classList.contains('is-menu-open')));
+      navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+      navLinks.forEach(link => link.addEventListener('pointermove', event => {
+        const bounds = link.getBoundingClientRect();
+        link.style.setProperty('--mx', `${event.clientX - bounds.left}px`);
+        link.style.setProperty('--my', `${event.clientY - bounds.top}px`);
+      }));
+      const motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+      if (!motionQuery?.matches) {
+        document.querySelectorAll('.product, .world, .mod-grid a').forEach(card => {
+          card.classList.add('tilt');
+          card.addEventListener('pointermove', event => {
+            const bounds = card.getBoundingClientRect();
+            const px = (event.clientX - bounds.left) / bounds.width;
+            const py = (event.clientY - bounds.top) / bounds.height;
+            card.style.setProperty('--mx', `${px * 100}%`);
+            card.style.setProperty('--my', `${py * 100}%`);
+            card.style.setProperty('--rx', `${(0.5 - py) * 4.5}deg`);
+            card.style.setProperty('--ry', `${(px - 0.5) * 5.5}deg`);
+          });
+          card.addEventListener('pointerleave', () => {
+            card.style.removeProperty('--rx');
+            card.style.removeProperty('--ry');
+          });
+        });
+      }
       const updateBuilds = async () => {
         try {
           const response = await fetch('./builds.json', { cache: 'no-store' });
@@ -373,7 +1106,8 @@
           if (/^[a-f0-9]{7,40}$/i.test(siteCommit)) {
             const currentUrl = new URL(window.location.href);
             const revision = siteCommit.slice(0, 7).toLowerCase();
-            if (currentUrl.searchParams.get('rev') !== revision) {
+            const previewShell = /(^|\.)htmlpreview\.github\.io$/i.test(currentUrl.hostname);
+            if (!previewShell && currentUrl.searchParams.get('rev') !== revision) {
               currentUrl.searchParams.set('rev', revision);
               window.location.replace(currentUrl);
               return;
@@ -393,5 +1127,6 @@
       window.setInterval(updateBuilds, 15 * 60 * 1000);
     })();
   </script>
+
 </body>
 </html>

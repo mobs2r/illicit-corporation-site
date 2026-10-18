@@ -1,0 +1,191 @@
+{
+  "ratesAsOf": "2026-10-16",
+  "rates": {
+    "USD": 1,
+    "CAD": 1.4154,
+    "EUR": 0.88974101081217,
+    "GBP": 0.750039743521806
+  },
+  "costs": [
+    {
+      "name": "illicit.page",
+      "amount": 18.99,
+      "currency": "USD",
+      "icon": "assets/icons/illicit.svg",
+      "supports": {
+        "url": "https://illicit.page/",
+        "label": "Illicit"
+      }
+    },
+    {
+      "name": "omerta.chat",
+      "amount": 64.99,
+      "currency": "USD",
+      "icon": "assets/icons/omerta.svg",
+      "supports": {
+        "url": "https://omerta.chat/",
+        "label": "Omerta Chat"
+      }
+    },
+    {
+      "name": "resupply.locker",
+      "amount": 49.99,
+      "currency": "USD",
+      "icon": "assets/icons/resupply.svg",
+      "supports": {
+        "url": "https://resupply.locker/",
+        "label": "Resupply Locker"
+      }
+    },
+    {
+      "name": "vandambash.com",
+      "amount": 18.99,
+      "currency": "USD",
+      "icon": "assets/icons/vandambash.svg",
+      "supports": {
+        "url": "https://vandambash.com/",
+        "label": "Vandambash"
+      }
+    },
+    {
+      "name": "vandamebash.com",
+      "amount": 18.99,
+      "currency": "USD",
+      "icon": "assets/icons/vandamebash.svg",
+      "supports": {
+        "url": "https://vandamebash.com/",
+        "label": "Vandamebash"
+      }
+    },
+    {
+      "name": "faked.cc",
+      "amount": 29.99,
+      "currency": "USD",
+      "icon": "assets/icons/faked.svg",
+      "supports": {
+        "url": "https://faked.cc/",
+        "label": "Faked"
+      }
+    },
+    {
+      "name": "crab.quest",
+      "amount": 21.99,
+      "currency": "USD",
+      "icon": "assets/icons/crab.svg",
+      "supports": {
+        "url": "https://crab.quest/",
+        "label": "Crab Quest"
+      }
+    },
+    {
+      "name": "cod.city",
+      "amount": 41.99,
+      "currency": "USD",
+      "icon": "assets/icons/cod.svg",
+      "supports": {
+        "url": "https://www.cod.city/",
+        "label": "Cod City"
+      }
+    },
+    {
+      "name": "gk.style",
+      "amount": 54.99,
+      "currency": "USD",
+      "icon": "assets/icons/gk.svg",
+      "supports": {
+        "url": "https://www.gk.style/",
+        "label": "gKnuckle"
+      }
+    },
+    {
+      "name": "X",
+      "amount": 3360,
+      "currency": "CAD",
+      "icon": "assets/icons/x.svg",
+      "supports": {
+        "url": "https://x.com/mobs2r",
+        "label": "X"
+      }
+    },
+    {
+      "name": "Anthropic",
+      "amount": 1920,
+      "currency": "CAD",
+      "icon": "assets/icons/anthropic.svg",
+      "supports": {
+        "url": "https://illicit.page/",
+        "label": "Illicit"
+      }
+    },
+    {
+      "name": "OpenAI",
+      "amount": 2400,
+      "currency": "USD",
+      "icon": "assets/icons/openai.png",
+      "supports": {
+        "url": "https://omerta.chat/",
+        "label": "Omerta Chat"
+      }
+    },
+    {
+      "name": "Tumblr",
+      "amount": 70,
+      "currency": "USD",
+      "icon": "assets/icons/tumblr.png",
+      "supports": {
+        "url": "https://mobs2r.tumblr.com/",
+        "label": "Atlantis on Tumblr"
+      }
+    },
+    {
+      "name": "SoundCloud",
+      "amount": 99,
+      "currency": "USD",
+      "icon": "assets/icons/soundcloud.svg",
+      "supports": {
+        "url": "https://omerta.chat/",
+        "label": "Omerta Chat"
+      }
+    },
+    {
+      "name": "Railway",
+      "amount": 60,
+      "currency": "USD",
+      "icon": "assets/icons/railway.svg",
+      "supports": {
+        "url": "https://ill.up.railway.app/",
+        "label": "Atlantis Chat"
+      }
+    },
+    {
+      "name": "Kinguin",
+      "amount": 36,
+      "currency": "USD",
+      "icon": "assets/icons/kinguin.svg",
+      "supports": {
+        "url": "https://omerta.chat/",
+        "label": "Omerta Chat"
+      }
+    },
+    {
+      "name": "Woolgather",
+      "amount": 144,
+      "currency": "USD",
+      "icon": "assets/icons/woolgather.png",
+      "supports": {
+        "url": "https://illicit.page/",
+        "label": "Illicit"
+      }
+    },
+    {
+      "name": "Wallstreet Common",
+      "amount": 360,
+      "currency": "CAD",
+      "icon": "assets/icons/wallstreet.svg",
+      "supports": {
+        "url": "https://www.wallstreetcommon.com/",
+        "label": "Wallstreet Common"
+      }
+    }
+  ]
+}

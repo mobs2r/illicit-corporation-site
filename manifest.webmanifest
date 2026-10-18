@@ -1,7 +1,7 @@
 {
   "name": "Illicit Corporation",
   "short_name": "Illicit",
-  "description": "A shared foundation for independent communities, games, identity, and developer tools.",
+  "description": "Illicit Corporation is a Métis-founded studio in Saskatoon. Identity, communities, games, and the tools that connect them.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
