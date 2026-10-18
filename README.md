@@ -29,5 +29,35 @@ The live page background is a flat `#101318`. Keep that color in the mmm.page pa
 ## Checks
 
 ```sh
-node --test support/navigation.test.cjs
+node --test support/*.test.cjs
 ```
+
+## Scale and donations
+
+`assets/costs.json` stores annual amounts in their original billing currency.
+Exchange rates are units per USD; convert once and round only the displayed
+cents. Do not round budgets upward to tens or hundreds. Claude Max and
+SoundCloud use owner-confirmed CAD bills; other rows distinguish public list
+prices, plan minimums and unconfirmed estimates. Hover publishes USD prices;
+individual renewal invoices may differ. Rate dates remain in source metadata,
+not a dated banner on the page.
+
+`assets/donation-wallets.json` is a snapshot of the existing public recipients,
+not credentials or donor records. It avoids requiring Omerta login or widening
+the shared API's CORS policy. Recheck the public configuration before changing
+recipients. The corporate page does not issue quotes, connect a wallet, mint
+rewards or collect email addresses. Existing backend receipts and awarded
+inventory remain intact.
+
+Email-linked rewards are not enabled. Before launch, require a verified payment
+receipt plus ownership of its linked email, expiring single-use verification
+tokens, replay-safe receipt/account binding and server-side reward idempotency.
+The shared API already has a Resend recovery-mail transport, but its sender,
+domain and production configuration must be verified before reusing it. The
+public contact address is mobs2r@illicit.page; its inbox is not set up yet.
+
+The three world icons reuse their actual marks from the world cards. Avalanche's
+mark comes from https://www.avalanche.com/favicon-light.svg and ApeCoin's from
+https://apecoin.com/favicon.png. The manifest and embedded page share the Illicit
+favicon. The outer illicit.page favicon is separately managed by mmm.page;
+updating an iframe alone cannot change that browser-tab icon.
