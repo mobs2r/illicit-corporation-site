@@ -1,10 +1,54 @@
-<div style="width:100%;height:min(90vh,900px);min-height:520px;overflow:hidden;border-radius:16px;background:#101318">
+<div id="illicit-frame" style="width:100%;background:#101318">
   <iframe
+    id="illicit-site"
     title="Illicit Corporation"
     src="https://mobs2r.github.io/illicit-corporation-site/"
-    loading="lazy"
+    loading="eager"
     referrerpolicy="strict-origin-when-cross-origin"
-    style="display:block;width:100%;height:100%;border:0"
+    style="display:block;width:100%;height:100vh;min-height:720px;border:0;background:#101318"
   ></iframe>
 </div>
+<script>
+  (function () {
+    var frame = document.getElementById('illicit-site');
+    if (!frame) return;
+    var canvas = '#101318';
+    document.documentElement.style.backgroundColor = canvas;
+    if (document.body) document.body.style.backgroundColor = canvas;
+    function unclip(height) {
+      var content = frame.closest('.block-content');
+      if (content) {
+        content.style.overflow = 'visible';
+        content.style.height = 'auto';
+      }
+      var section = frame.closest('section');
+      if (section) {
+        section.style.overflow = 'visible';
+        section.style.height = Math.max(height + 48, section.scrollHeight) + 'px';
+      }
+      var freeform = document.querySelector('.freeform');
+      if (freeform) freeform.style.height = 'auto';
+      var page = document.querySelector('.page-view');
+      if (page) page.style.height = 'auto';
+    }
+    function pin() {
+      var rect = frame.getBoundingClientRect();
+      var offset = Math.round(Math.max(0, Math.min(-rect.top, Math.max(0, rect.height - 96))));
+      frame.contentWindow.postMessage({ source: 'illicit-embed', pin: offset }, 'https://mobs2r.github.io');
+    }
+    window.addEventListener('message', function (event) {
+      if (event.origin !== 'https://mobs2r.github.io') return;
+      var data = event.data || {};
+      if (data.source !== 'illicit-corporation') return;
+      var height = Number(data.height);
+      if (!isFinite(height) || height < 400) return;
+      var next = Math.ceil(height) + 'px';
+      if (frame.style.height !== next) frame.style.height = next;
+      unclip(Math.ceil(height));
+      pin();
+    });
+    window.addEventListener('scroll', pin, { passive: true });
+    window.addEventListener('resize', pin);
+  })();
+</script>
 <p><a href="https://mobs2r.github.io/illicit-corporation-site/" target="_blank" rel="noopener noreferrer">Open Illicit Corporation in a new tab</a></p>
