@@ -30,6 +30,7 @@
       try { saved = localStorage.getItem('illicit-corporation-theme') || ''; } catch {}
       document.documentElement.dataset.theme = saved === 'light' || saved === 'dark'
         ? saved : (window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (window.parent !== window) document.documentElement.classList.add('is-embedded');
     })();
   </script>
   <style>
@@ -398,6 +399,11 @@
       .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
       .tilt, .tilt:hover, .action:active { transform:none; }
     }
+    .embed-bleed { display:none; }
+    html.is-embedded { --header-pin:0px; --header-offset:83px; }
+    html.is-embedded body { padding-top:var(--header-offset); }
+    html.is-embedded .site-header { position:fixed; top:var(--header-pin); left:0; right:0; width:100%; }
+    html.is-embedded .embed-bleed { display:block; height:640px; pointer-events:none; background:linear-gradient(180deg, rgba(16,19,24,0) 0%, rgba(16,19,24,0) 16%, #101318 58%, #101318 100%); }
   </style>
 </head>
 <body>
@@ -528,6 +534,31 @@
       <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
     </div>
   </footer>
+  <div class="embed-bleed" aria-hidden="true"></div>
+  <script>
+    (() => {
+      if (window.parent === window) return;
+      const header = document.querySelector('.site-header');
+      const root = document.documentElement;
+      const syncOffset = () => root.style.setProperty('--header-offset', `${header.offsetHeight}px`);
+      const report = () => {
+        syncOffset();
+        window.parent.postMessage({ source: 'illicit-corporation', height: Math.ceil(root.scrollHeight) }, '*');
+      };
+      window.addEventListener('message', event => {
+        if (event.source !== window.parent) return;
+        const data = event.data;
+        if (!data || data.source !== 'illicit-embed' || !Number.isFinite(Number(data.pin))) return;
+        const pin = Math.max(0, Math.round(Number(data.pin)));
+        root.style.setProperty('--header-pin', `${pin}px`);
+      });
+      syncOffset();
+      report();
+      window.addEventListener('load', report);
+      window.addEventListener('resize', syncOffset);
+      if (window.ResizeObserver) new ResizeObserver(report).observe(root);
+    })();
+  </script>
   <script>
     (() => {
       const themeToggle = document.getElementById('theme-toggle');
