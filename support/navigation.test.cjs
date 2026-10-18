@@ -5,6 +5,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+
+test('hero subtitle stays concise and retains its animated word scroller', () => {
+  assert.match(html, /<p class="hero-intro">One studio in Saskatoon, building <span class="hero-word-window"/);
+  assert.match(html, /id="hero-word">analytics\.<\/span>/);
+  assert.doesNotMatch(html, /building the connective tissue behind/);
+});
 test('homepage navigation reaches real sections and documentation instead of reopening itself', () => {
   for (const [label, id] of [['Explore', 'worlds'], ['Platform', 'platform']]) {
     assert.match(html, new RegExp(`href="#${id}"( aria-current="page")?>${label}`));
