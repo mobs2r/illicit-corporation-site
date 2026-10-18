@@ -177,17 +177,11 @@
     .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
     .cost-basis { display:block; font-size:11px; font-weight:400; color:var(--muted); line-height:1.45; margin-top:4px; }
     .cost-name > span:last-child { min-width:0; }
-    .donation-wallets { display:grid; gap:10px; margin-top:18px; }
-    .donation-wallet { padding:14px 18px; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
-    .donation-wallet summary { cursor:pointer; font-weight:bold; }
-    .donation-wallet code { display:block; overflow-wrap:anywhere; margin:12px 0; user-select:all; }
-    .wallet-network { color:var(--blue); }
-    .wallet-copy { color:var(--text); background:var(--raised); border:1px solid var(--line); border-radius:8px; padding:8px 14px; cursor:pointer; }
-    .wallet-feedback { display:block; margin-top:8px; font-size:12px; color:var(--muted); }
-    .donation-rewards { border-left:3px solid var(--gold); padding:4px 18px; margin-top:22px; }
     .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 0; padding:0; list-style:none; }
     .support-grid .pill { display:flex; align-items:center; gap:12px; min-height:76px; padding:14px 16px; border-radius:16px; font-size:18px; text-decoration:none; }
     .support-grid .pill:hover { transform:translateY(-2px); }
+    .support-grid button.pill { width:100%; border:0; text-align:left; cursor:pointer; }
+    .support-grid button.pill:disabled { opacity:.55; cursor:wait; }
     .support-grid img { width:25px; height:25px; flex:0 0 auto; border-radius:6px; }
     .support-grid small { display:block; font-size:14px; line-height:1.2; }
     .support-grid .pill[data-brand="kofi"] { background:#ff5e5b; color:#1a120f; }
@@ -430,7 +424,7 @@
       <div class="actions"><a class="action action-primary" href="#worlds">Explore <span aria-hidden="true">↓</span></a><a class="action" href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
     </div></section>
     <section class="section shell" id="platform" aria-labelledby="platform-title">
-      <header class="section-head"><h2 id="platform-title">Platform</h2><p class="lede">The same account, coin, and inventory run through every world. The names stay sharp. The machinery underneath is ordinary, careful engineering.</p></header>
+      <header class="section-head"><h2 id="platform-title">Platform</h2></header>
       <div class="product-grid">
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">{ }</span></div><h3>Illicit API</h3><p>Illicit API is the framework powering Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
         <article class="product"><div class="product-top"><span class="product-icon green" aria-hidden="true">✓</span></div><h3>Illicit AC</h3><p>Illicit Anti-Cheat is a non-invasive security suite aiming to enable fair play across Illicit API.</p></article>
@@ -463,7 +457,6 @@
       <div class="funds-top">
         <header class="section-head">
           <h2 id="funds-title">Scale</h2>
-          <p>Annual costs in their original billing currencies, converted once. Subscription estimates await invoice confirmation.</p>
         </header>
         <div class="currency-switch" role="radiogroup" aria-label="Currency">
           <button type="button" role="radio" data-currency="USD" aria-checked="true">USD</button>
@@ -498,17 +491,15 @@
         <section class="pill-group" aria-labelledby="crypto-pills">
           <h3 class="group-label" id="crypto-pills">Crypto</h3>
           <ul class="support-grid">
-            <li><a class="pill" data-brand="btc" data-crypto-wallet="btc" href="#crypto-btc"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span>Bitcoin<small>BTC</small></span></a></li>
-            <li><a class="pill" data-brand="eth" data-crypto-wallet="eth" href="#crypto-eth"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span>Ethereum<small>ETH</small></span></a></li>
-            <li><a class="pill" data-brand="sol" data-crypto-wallet="sol" href="#crypto-sol"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span>Solana<small>SOL</small></span></a></li>
-            <li><a class="pill" data-brand="avax" data-crypto-wallet="avax" href="#crypto-avax"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span>Avalanche<small>AVAX</small></span></a></li>
-            <li><a class="pill" data-brand="pol" data-crypto-wallet="pol" href="#crypto-pol"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span>Polygon<small>POL</small></span></a></li>
-            <li><a class="pill" data-brand="usdc" data-crypto-wallet="usdc" href="#crypto-usdc"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span>USD Coin<small>USDC</small></span></a></li>
-            <li><a class="pill" data-brand="ape" data-crypto-wallet="ape" href="#crypto-ape"><img src="./assets/icons/ape.png" width="22" height="22" alt=""><span>ApeCoin<small>APE</small></span></a></li>
+            <li><button type="button" disabled class="pill" data-brand="btc" data-crypto-wallet="btc"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span>Bitcoin<small>BTC</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="eth" data-crypto-wallet="eth"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span>Ethereum<small>ETH</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="sol" data-crypto-wallet="sol"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span>Solana<small>SOL</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="avax" data-crypto-wallet="avax"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span>Avalanche<small>AVAX · C-Chain</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="pol" data-crypto-wallet="pol"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span>Polygon<small>POL · Polygon PoS</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="usdc" data-crypto-wallet="usdc"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span>USD Coin<small>USDC · Ethereum</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="ape" data-crypto-wallet="ape"><img src="./assets/icons/ape.png" width="22" height="22" alt=""><span>ApeCoin<small>APE · Ethereum</small></span></button></li>
           </ul>
-          <p class="group-note">Send only the selected asset on the network shown below. These are direct donations, not payment quotes or automatic reward claims.</p>
-          <div id="crypto-wallets" class="donation-wallets" aria-live="polite">Loading verified donation recipients…</div>
-          <div class="donation-rewards"><h4>Email-linked rewards · work in progress</h4><p>Future Crypto Ball rewards will require both a verified donation receipt and ownership of its linked email address. Email verification and reward claiming are not active here yet; no email is collected by this donation page.</p><p>For an existing donation receipt, <a href="#contact">contact us</a> with its transaction ID. Never share a password, private key or seed phrase.</p></div>
+          <span id="crypto-copy-status" class="sr-only" role="status" aria-live="polite"></span>
         </section>
         <section class="pill-group" aria-labelledby="planet-pills">
           <h3 class="group-label" id="planet-pills">Canada</h3>
@@ -548,14 +539,14 @@
   </footer>
   <script type="module">
     import { convertMoney, roundMoney, formatMoney } from './assets/scale-pricing.mjs';
-    import { mountDonations } from './assets/donations.mjs';
+    import { mountDonations } from './assets/donations.mjs?v=copy-wallets-1';
     (() => {
       const openingHash = location.hash;
       let userNavigated = false;
       for (const type of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
         window.addEventListener(type, () => { userNavigated = true; }, { once: true, passive: true });
       }
-      const donationsReady = mountDonations(document.querySelector('#crypto-wallets'));
+      const donationsReady = mountDonations(document.querySelector('#donate'));
       const themeToggle = document.getElementById('theme-toggle');
       const applyTheme = theme => {
         document.documentElement.dataset.theme = theme;

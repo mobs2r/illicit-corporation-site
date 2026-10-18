@@ -52,7 +52,10 @@ not a dated banner on the page.
 `assets/donation-wallets.json` is a snapshot of the existing public recipients,
 not credentials or donor records. It avoids requiring Omerta login or widening
 the shared API's CORS policy. Recheck the public configuration before changing
-recipients. The corporate page does not issue quotes, connect a wallet, mint
+recipients. Crypto buttons copy the verified recipient directly and briefly
+show a confirmation; network names stay in their compact labels. An accessible
+status announces success or failure without adding visible wallet panels.
+The corporate page does not issue quotes, connect a wallet, mint
 rewards or collect email addresses. Existing backend receipts and awarded
 inventory remain intact.
 
