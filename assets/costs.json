@@ -15,7 +15,8 @@
       "supports": {
         "url": "https://illicit.page/",
         "label": "Illicit"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "omerta.chat",
@@ -25,7 +26,8 @@
       "supports": {
         "url": "https://omerta.chat/",
         "label": "Omerta Chat"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "resupply.locker",
@@ -35,7 +37,8 @@
       "supports": {
         "url": "https://resupply.locker/",
         "label": "Resupply Locker"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "vandambash.com",
@@ -45,7 +48,8 @@
       "supports": {
         "url": "https://vandambash.com/",
         "label": "Vandambash"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "vandamebash.com",
@@ -55,7 +59,8 @@
       "supports": {
         "url": "https://vandamebash.com/",
         "label": "Vandamebash"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "faked.cc",
@@ -65,7 +70,8 @@
       "supports": {
         "url": "https://faked.cc/",
         "label": "Faked"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "crab.quest",
@@ -75,7 +81,8 @@
       "supports": {
         "url": "https://crab.quest/",
         "label": "Crab Quest"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "cod.city",
@@ -85,7 +92,8 @@
       "supports": {
         "url": "https://www.cod.city/",
         "label": "Cod City"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
       "name": "gk.style",
@@ -95,27 +103,31 @@
       "supports": {
         "url": "https://www.gk.style/",
         "label": "gKnuckle"
-      }
+      },
+      "basis": "Hover USD renewal list price; taxes/discounts may differ"
     },
     {
-      "name": "X",
-      "amount": 3360,
-      "currency": "CAD",
+      "name": "Grok",
+      "amount": 2400,
+      "currency": "USD",
       "icon": "assets/icons/x.svg",
       "supports": {
         "url": "https://x.com/mobs2r",
         "label": "X"
-      }
+      },
+      "basis": "Ultra public list price US$200/month; legacy Heavy/invoice may differ",
+      "priceSource": "https://x.ai/pricing"
     },
     {
       "name": "Anthropic",
-      "amount": 1920,
+      "amount": 1864.8,
       "currency": "CAD",
       "icon": "assets/icons/anthropic.svg",
       "supports": {
         "url": "https://illicit.page/",
         "label": "Illicit"
-      }
+      },
+      "basis": "owner-confirmed CA$155.40/month"
     },
     {
       "name": "OpenAI",
@@ -125,7 +137,8 @@
       "supports": {
         "url": "https://omerta.chat/",
         "label": "Omerta Chat"
-      }
+      },
+      "basis": "Pro US$200/month budget; current invoice unconfirmed"
     },
     {
       "name": "Tumblr",
@@ -135,17 +148,19 @@
       "supports": {
         "url": "https://mobs2r.tumblr.com/",
         "label": "Atlantis on Tumblr"
-      }
+      },
+      "basis": "existing budget; current invoice unconfirmed"
     },
     {
       "name": "SoundCloud",
-      "amount": 99,
-      "currency": "USD",
+      "amount": 125,
+      "currency": "CAD",
       "icon": "assets/icons/soundcloud.svg",
       "supports": {
         "url": "https://omerta.chat/",
         "label": "Omerta Chat"
-      }
+      },
+      "basis": "owner-confirmed CA$125/year"
     },
     {
       "name": "Railway",
@@ -155,7 +170,8 @@
       "supports": {
         "url": "https://ill.up.railway.app/",
         "label": "Atlantis Chat"
-      }
+      },
+      "basis": "Hobby US$5/month minimum; metered usage extra"
     },
     {
       "name": "Kinguin",
@@ -165,7 +181,8 @@
       "supports": {
         "url": "https://omerta.chat/",
         "label": "Omerta Chat"
-      }
+      },
+      "basis": "existing budget; current invoice unconfirmed"
     },
     {
       "name": "Woolgather",
@@ -175,7 +192,8 @@
       "supports": {
         "url": "https://illicit.page/",
         "label": "Illicit"
-      }
+      },
+      "basis": "existing budget; current invoice unconfirmed"
     },
     {
       "name": "Wallstreet Common",
@@ -185,7 +203,10 @@
       "supports": {
         "url": "https://www.wallstreetcommon.com/",
         "label": "Wallstreet Common"
-      }
+      },
+      "basis": "existing budget; current invoice unconfirmed"
     }
-  ]
+  ],
+  "rateBasis": "units-per-USD",
+  "rateSource": "https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/"
 }

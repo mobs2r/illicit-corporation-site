@@ -33,6 +33,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Check navigation, currency and public donation configuration
+        run: node --test support/*.test.cjs
       - name: Prepare public static artifact
         run: |
           mkdir -p _site

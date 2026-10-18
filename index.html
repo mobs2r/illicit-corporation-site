@@ -17,7 +17,7 @@
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://illicit.page/">
   <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"Illicit Corporation","url":"https://illicit.page/","email":"mobs2@waifu.club","address":{"@type":"PostalAddress","streetAddress":"310 Wall Street","addressLocality":"Saskatoon","addressRegion":"SK","postalCode":"S7K 1N7","addressCountry":"CA"}}
+    {"@context":"https://schema.org","@type":"Organization","name":"Illicit Corporation","url":"https://illicit.page/","email":"mobs2r@illicit.page","address":{"@type":"PostalAddress","streetAddress":"310 Wall Street","addressLocality":"Saskatoon","addressRegion":"SK","postalCode":"S7K 1N7","addressCountry":"CA"}}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,7 +173,16 @@
     .cost-name .cost-mark { width:20px; height:20px; flex:0 0 auto; display:block; color:var(--text); }
     .cost-amount { color:var(--text); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
     .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
-    .rates-as-of { margin:8px 0 0; color:var(--muted); font-size:12px; }
+    .cost-basis { display:block; font-size:11px; font-weight:400; color:var(--muted); line-height:1.45; margin-top:4px; }
+    .cost-name > span:last-child { min-width:0; }
+    .donation-wallets { display:grid; gap:10px; margin-top:18px; }
+    .donation-wallet { padding:14px 18px; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
+    .donation-wallet summary { cursor:pointer; font-weight:bold; }
+    .donation-wallet code { display:block; overflow-wrap:anywhere; margin:12px 0; user-select:all; }
+    .wallet-network { color:var(--blue); }
+    .wallet-copy { color:var(--text); background:var(--raised); border:1px solid var(--line); border-radius:8px; padding:8px 14px; cursor:pointer; }
+    .wallet-feedback { display:block; margin-top:8px; font-size:12px; color:var(--muted); }
+    .donation-rewards { border-left:3px solid var(--gold); padding:4px 18px; margin-top:22px; }
     .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 0; padding:0; list-style:none; }
     .support-grid .pill { display:flex; align-items:center; gap:12px; min-height:76px; padding:14px 16px; border-radius:16px; font-size:18px; text-decoration:none; }
     .support-grid .pill:hover { transform:translateY(-2px); }
@@ -199,8 +208,8 @@
     .support-grid .pill[data-brand="cinch"] { background:#111; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
     .support-grid .pill[data-brand="rampage"] { background:#1a1a1a; color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
     .support-grid .pill[data-brand="pol"] img,
-    .support-grid .pill[data-brand="usdc"] img,
-    .support-grid .pill[data-brand="ape"] img { filter:brightness(0) invert(1); }
+    .support-grid .pill[data-brand="usdc"] img { filter:brightness(0) invert(1); }
+    .support-grid .pill[data-brand="avax"] img { filter:brightness(0) invert(1); }
     .pill-groups { display:flex; flex-direction:column; gap:26px; margin-top:32px; }
     .group-label { margin:0 0 10px; color:var(--muted); font-size:13px; font-weight:400; letter-spacing:.02em; }
     .group-note { margin:0 0 10px; color:var(--copy); font-size:14px; line-height:1.45; }
@@ -411,7 +420,7 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Illicit Corporation home"><span class="brand-mark" aria-hidden="true">I</span><span class="brand-copy">ILLICIT<small>CORPORATION</small></span></a>
-      <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <nav class="site-nav" id="site-nav" aria-label="On this page"><span class="nav-indicator" aria-hidden="true"></span><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Scale</a><a href="#donate">Donate</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
       <div class="header-tools"><button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme"></button><a class="header-link" href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a></div>
     </div>
   </header>
@@ -454,7 +463,8 @@
     <section class="section shell" id="funds" aria-labelledby="funds-title">
       <div class="funds-top">
         <header class="section-head">
-          <h2 id="funds-title">Funds</h2>
+          <h2 id="funds-title">Scale</h2>
+          <p>Annual costs in their original billing currencies, converted once. Subscription estimates await invoice confirmation.</p>
         </header>
         <div class="currency-switch" role="radiogroup" aria-label="Currency">
           <button type="button" role="radio" data-currency="USD" aria-checked="true">USD</button>
@@ -467,8 +477,11 @@
         <div class="cost-chart" id="cost-chart"><div class="cost-chart-svg" id="cost-chart-svg"></div><div class="cost-readout" id="cost-readout" aria-live="polite"></div></div>
         <ul class="cost-list" id="cost-list"></ul>
       </div>
-      <p class="cost-total" id="cost-total"><strong>Total</strong><span class="cost-amount"></span></p>
-      <p class="rates-as-of" id="rates-as-of"></p>
+      <p class="cost-total" id="cost-total"><strong>Annual total</strong><span class="cost-amount"></span></p>
+      <p class="group-note">Conversions are indicative. Taxes, card fees and metered usage may differ. Source amounts and pricing basis appear beside each cost.</p>
+    </section>
+    <section class="section shell" id="donate" aria-labelledby="donate-title">
+      <header class="section-head"><h2 id="donate-title">Donations</h2><p>Support Illicit Corporation and its projects here. No Omerta account is required to give.</p></header>
       <div class="pill-groups">
         <section class="pill-group" aria-labelledby="support-pills">
           <h3 class="group-label" id="support-pills">Support</h3>
@@ -477,7 +490,7 @@
             <li><a class="pill" data-brand="patreon" href="https://www.patreon.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/patreon.png" width="22" height="22" alt=""><span>Patreon<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="twitch" href="https://www.twitch.tv/subs/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/twitch.png" width="22" height="22" alt=""><span>Twitch<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="paypal" href="https://www.paypal.me/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/paypal.png" width="22" height="22" alt=""><span>PayPal<small>/mobs2r</small></span></a></li>
-            <li><a class="pill" data-brand="streamlabs" href="https://streamlabs.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/streamlabs.svg" width="22" height="22" alt=""><span>Streamlabs<small>/mobs2r</small></span></a></li>
+            <li><a class="pill" data-brand="streamlabs" href="https://streamlabs.com/mobs2r/tip" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/streamlabs.svg" width="22" height="22" alt=""><span>Streamlabs<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="bmc" href="https://www.buymeacoffee.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/bmc.png" width="22" height="22" alt=""><span>Buy Me a Coffee<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="github" href="https://github.com/sponsors/mobs2r" target="_blank" rel="noopener noreferrer"><svg class="pill-mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.21-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92.08 2.12-.51.56-.82 1.27-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.19.45.68.71 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span>GitHub<small>/mobs2r</small></span></a></li>
             <li><a class="pill" data-brand="throne" href="https://throne.com/mobs2r" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/throne.png" width="22" height="22" alt=""><span>Throne<small>/mobs2r</small></span></a></li>
@@ -486,18 +499,20 @@
         <section class="pill-group" aria-labelledby="crypto-pills">
           <h3 class="group-label" id="crypto-pills">Crypto</h3>
           <ul class="support-grid">
-            <li><a class="pill" data-brand="btc" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span>Bitcoin<small>BTC</small></span></a></li>
-            <li><a class="pill" data-brand="eth" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span>Ethereum<small>ETH</small></span></a></li>
-            <li><a class="pill" data-brand="sol" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span>Solana<small>SOL</small></span></a></li>
-            <li><a class="pill" data-brand="avax" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span>Avalanche<small>AVAX</small></span></a></li>
-            <li><a class="pill" data-brand="pol" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span>Polygon<small>POL</small></span></a></li>
-            <li><a class="pill" data-brand="usdc" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span>USD Coin<small>USDC</small></span></a></li>
-            <li><a class="pill" data-brand="ape" href="https://omerta.chat/?donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/ape.svg" width="22" height="22" alt=""><span>ApeCoin<small>APE</small></span></a></li>
+            <li><a class="pill" data-brand="btc" data-crypto-wallet="btc" href="#crypto-btc"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span>Bitcoin<small>BTC</small></span></a></li>
+            <li><a class="pill" data-brand="eth" data-crypto-wallet="eth" href="#crypto-eth"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span>Ethereum<small>ETH</small></span></a></li>
+            <li><a class="pill" data-brand="sol" data-crypto-wallet="sol" href="#crypto-sol"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span>Solana<small>SOL</small></span></a></li>
+            <li><a class="pill" data-brand="avax" data-crypto-wallet="avax" href="#crypto-avax"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span>Avalanche<small>AVAX</small></span></a></li>
+            <li><a class="pill" data-brand="pol" data-crypto-wallet="pol" href="#crypto-pol"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span>Polygon<small>POL</small></span></a></li>
+            <li><a class="pill" data-brand="usdc" data-crypto-wallet="usdc" href="#crypto-usdc"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span>USD Coin<small>USDC</small></span></a></li>
+            <li><a class="pill" data-brand="ape" data-crypto-wallet="ape" href="#crypto-ape"><img src="./assets/icons/ape.png" width="22" height="22" alt=""><span>ApeCoin<small>APE</small></span></a></li>
           </ul>
+          <p class="group-note">Send only the selected asset on the network shown below. These are direct donations, not payment quotes or automatic reward claims.</p>
+          <div id="crypto-wallets" class="donation-wallets" aria-live="polite">Loading verified donation recipients…</div>
+          <div class="donation-rewards"><h4>Email-linked rewards · work in progress</h4><p>Future Crypto Ball rewards will require both a verified donation receipt and ownership of its linked email address. Email verification and reward claiming are not active here yet; no email is collected by this donation page.</p><p>For an existing donation receipt, <a href="#contact">contact us</a> with its transaction ID. Never share a password, private key or seed phrase.</p></div>
         </section>
         <section class="pill-group" aria-labelledby="planet-pills">
-          <h3 class="group-label" id="planet-pills">Preserve Our Planet</h3>
-          <p class="group-note">Give directly to relief and conservation.</p>
+          <h3 class="group-label" id="planet-pills">Canada</h3>
           <ul class="support-grid">
             <li><a class="pill" data-brand="redcross" href="https://www.redcross.ca/donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/redcross.png" width="22" height="22" alt=""><span>Red Cross<small>Donate</small></span></a></li>
             <li><a class="pill" data-brand="wwf" href="https://wwf.ca/donate/" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/wwf.png" width="22" height="22" alt=""><span>WWF<small>Donate</small></span></a></li>
@@ -520,7 +535,7 @@
         <h2 id="contact-title">Contact</h2>
       </header>
       <ul class="contact-list">
-        <li><a href="mailto:mobs2@waifu.club">mobs2@waifu.club</a></li>
+        <li><a href="mailto:mobs2r@illicit.page">mobs2r@illicit.page</a> <small>(Inbox setup pending)</small></li>
         <li>Illicit, 310 Wall Street, Saskatoon, SK S7K 1N7, Canada</li>
         <li><a href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></li>
       </ul>
@@ -529,7 +544,7 @@
   <footer class="site-footer">
     <div class="shell illicit-footer">
       <div class="illicit-lockup"><a class="illicit-mark" href="#home">ILLICIT<small>CORPORATION</small></a></div>
-      <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Scale</a><a href="#donate">Donate</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
     </div>
   </footer>
   <div class="embed-bleed" aria-hidden="true"></div>
@@ -557,8 +572,11 @@
       if (window.ResizeObserver) new ResizeObserver(report).observe(root);
     })();
   </script>
-  <script>
+  <script type="module">
+    import { convertMoney, roundMoney, formatMoney } from './assets/scale-pricing.mjs';
+    import { mountDonations } from './assets/donations.mjs';
     (() => {
+      mountDonations(document.querySelector('#crypto-wallets'));
       const themeToggle = document.getElementById('theme-toggle');
       const applyTheme = theme => {
         document.documentElement.dataset.theme = theme;
@@ -750,7 +768,6 @@
       document.addEventListener('visibilitychange', syncWords);
       const fundsCurrencyKey = 'illicit-funds-currency';
       const fundCurrencies = ['USD', 'CAD', 'EUR', 'GBP'];
-      const currencySymbols = { USD: '$', CAD: 'CA$', EUR: '€', GBP: '£' };
       const chartColors = ['#f1857d', '#88bcf0', '#f1cc86', '#92d7b1', '#d7a4ef', '#f0b27a', '#7fd0d8', '#e7e2d6', '#c9a227'];
       const currencySwitch = document.querySelector('.currency-switch');
       const costList = document.getElementById('cost-list');
@@ -758,34 +775,19 @@
       const costChartSvg = document.getElementById('cost-chart-svg');
       const costReadout = document.getElementById('cost-readout');
       const costTotal = document.querySelector('#cost-total .cost-amount');
-      const ratesAsOf = document.getElementById('rates-as-of');
       let fundsData = null;
       let fundsCurrency = 'USD';
       try {
         const savedCurrency = localStorage.getItem(fundsCurrencyKey);
         if (fundCurrencies.includes(savedCurrency)) fundsCurrency = savedCurrency;
       } catch {}
-      const formatMoney = (whole, currency) => `${currencySymbols[currency]}${whole.toLocaleString('en-US')}`;
       // Oct 16, 2026 rate table. CAD is the Bank of Canada USD/CAD daily average, 1.4154.
       // EUR and GBP per 1 USD are derived from that day's Bank of Canada euro and sterling
       // rates, EUR/CAD 1.5908 and GBP/CAD 1.8871: EUR = 1.4154 / 1.5908, GBP = 1.4154 / 1.8871.
-      // Domain lines in assets/costs.json are the exact Hover renewal prices in USD per year.
-      // Other amounts are annual units in their native currency: monthly figures were multiplied by 12
-      // and the 6-month figure by 2 before they were stored. Anthropic is CA$160 per month, the CA$155.40
-      // Claude Max bill rounded up, times 12. Display converts to the selected currency,
-      // then rounds up to the next hundred from 1,000 and the next ten below that. The total is the sum
-      // of the converted values before that display rounding, rounded with the same rule.
-      const convertedAmount = (amount, from, to) => {
-        const rates = fundsData.rates;
-        return (amount / rates[from]) * rates[to];
-      };
-      const displayRound = value => {
-        const step = value >= 1000 ? 100 : 10;
-        const scaled = value / step;
-        const nearest = Math.round(scaled);
-        if (Math.abs(scaled - nearest) < 1e-6) return nearest * step;
-        return Math.ceil(scaled) * step;
-      };
+      // Annual native-currency source amounts are not preconverted or rounded
+      // up. Only the final display rounds to cents; totals sum displayed cents.
+      const convertedAmount = (amount, from, to) => convertMoney(amount, from, to, fundsData.rates);
+      const displayRound = roundMoney;
       const svgNS = 'http://www.w3.org/2000/svg';
       let showSlice = () => {};
       const sliceIndex = node => {
@@ -855,6 +857,10 @@
           const label = document.createElement('span');
           label.textContent = cost.name;
           name.append(swatch, icon, label);
+          const basis = document.createElement('small');
+          basis.className = 'cost-basis';
+          basis.textContent = cost.amount == null ? 'Invoice amount unconfirmed' : `${formatMoney(cost.amount, cost.currency)} / year · ${cost.basis || 'owner estimate; invoice unconfirmed'}`;
+          label.append(basis);
           const amount = document.createElement('span');
           amount.className = 'cost-amount';
           if (cost.amount == null) {
@@ -863,7 +869,7 @@
             const exact = convertedAmount(cost.amount, cost.currency, fundsCurrency);
             const shown = displayRound(exact);
             amount.textContent = formatMoney(shown, fundsCurrency);
-            rawTotal += exact;
+            rawTotal += shown;
             const sliceIndexValue = slices.length;
             slices.push({
               name: cost.name,
@@ -881,9 +887,6 @@
         const total = displayRound(rawTotal);
         const chartTotal = slices.reduce((sum, slice) => sum + slice.value, 0);
         costTotal.textContent = formatMoney(total, fundsCurrency);
-        const [year, month, day] = fundsData.ratesAsOf.split('-').map(Number);
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        ratesAsOf.textContent = `Rates as of ${months[month - 1]} ${day}, ${year}.`;
         const shareText = value => `${(chartTotal ? (value / chartTotal) * 100 : 0).toFixed(1)}%`;
         for (const link of costList.querySelectorAll('[data-slice]')) {
           const slice = slices[Number(link.dataset.slice)];
