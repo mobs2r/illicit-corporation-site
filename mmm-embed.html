@@ -1,54 +1,33 @@
-<div id="illicit-frame" style="width:100%;background:#101318">
-  <iframe
-    id="illicit-site"
-    title="Illicit Corporation"
-    src="https://mobs2r.github.io/illicit-corporation-site/"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    style="display:block;width:100%;height:100vh;min-height:720px;border:0;background:#101318"
-  ></iframe>
-</div>
+<iframe
+  id="illicit-site"
+  title="Illicit Corporation"
+  src="https://mobs2r.github.io/illicit-corporation-site/"
+  loading="eager"
+  referrerpolicy="strict-origin-when-cross-origin"
+  style="display:block;width:100%;height:100vh;height:100dvh;border:0;background:#101318"
+></iframe>
 <script>
-  (function () {
-    var frame = document.getElementById('illicit-site');
-    if (!frame) return;
-    var canvas = '#101318';
-    document.documentElement.style.backgroundColor = canvas;
-    if (document.body) document.body.style.backgroundColor = canvas;
-    function unclip(height) {
-      var content = frame.closest('.block-content');
-      if (content) {
-        content.style.overflow = 'visible';
-        content.style.height = 'auto';
-      }
-      var section = frame.closest('section');
-      if (section) {
-        section.style.overflow = 'visible';
-        section.style.height = Math.max(height + 48, section.scrollHeight) + 'px';
-      }
-      var freeform = document.querySelector('.freeform');
-      if (freeform) freeform.style.height = 'auto';
-      var page = document.querySelector('.page-view');
-      if (page) page.style.height = 'auto';
-    }
-    function pin() {
-      var rect = frame.getBoundingClientRect();
-      var offset = Math.round(Math.max(0, Math.min(-rect.top, Math.max(0, rect.height - 96))));
-      frame.contentWindow.postMessage({ source: 'illicit-embed', pin: offset }, 'https://mobs2r.github.io');
-    }
-    window.addEventListener('message', function (event) {
-      if (event.origin !== 'https://mobs2r.github.io') return;
-      var data = event.data || {};
-      if (data.source !== 'illicit-corporation') return;
-      var height = Number(data.height);
-      if (!isFinite(height) || height < 400) return;
-      var next = Math.ceil(height) + 'px';
-      if (frame.style.height !== next) frame.style.height = next;
-      unclip(Math.ceil(height));
-      pin();
-    });
-    window.addEventListener('scroll', pin, { passive: true });
-    window.addEventListener('resize', pin);
-  })();
+(function () {
+  var frame = document.getElementById('illicit-site');
+  if (!frame || new URL(location.href).searchParams.has('editing')) return;
+  var site = 'https://mobs2r.github.io/illicit-corporation-site/';
+  // Reparent outside mmm.page's transformed canvas: fixed positioning there
+  // would otherwise be relative to the block, not the browser viewport.
+  document.body.appendChild(frame);
+  frame.style.cssText = 'position:fixed;inset:0;display:block;width:100%;height:100vh;height:100dvh;border:0;border-radius:0;background:#101318;z-index:2147483000';
+  document.documentElement.style.cssText += ';overflow:hidden;background:#101318';
+  document.body.style.cssText += ';overflow:hidden;margin:0;background:#101318';
+  function followHash() {
+    var hash = /^#(?:home|platform|worlds|mods|funds|donate|about|contact|crypto-(?:btc|eth|sol|avax|pol|usdc|ape))$/.test(location.hash) ? location.hash : '';
+    var next = site + hash;
+    if (frame.getAttribute('src') !== next) frame.setAttribute('src', next);
+  }
+  followHash();
+  window.addEventListener('hashchange', followHash);
+  // A public hosted asset also fixes the outer tab icon without file access.
+  var icon = document.querySelector('link[rel~="icon"]');
+  if (!icon) { icon = document.createElement('link'); icon.rel = 'icon'; document.head.appendChild(icon); }
+  icon.type = 'image/png';
+  icon.href = site + 'assets/favicon.png';
+})();
 </script>
-<p><a href="https://mobs2r.github.io/illicit-corporation-site/" target="_blank" rel="noopener noreferrer">Open Illicit Corporation in a new tab</a></p>

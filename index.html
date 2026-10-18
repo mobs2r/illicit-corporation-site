@@ -409,11 +409,8 @@
       .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
       .tilt, .tilt:hover, .action:active { transform:none; }
     }
-    .embed-bleed { display:none; }
-    html.is-embedded { --header-pin:0px; --header-offset:83px; }
-    html.is-embedded body { padding-top:var(--header-offset); }
-    html.is-embedded .site-header { position:fixed; top:var(--header-pin); left:0; right:0; width:100%; }
-    html.is-embedded .embed-bleed { display:block; height:640px; pointer-events:none; background:linear-gradient(180deg, rgba(16,19,24,0) 0%, rgba(16,19,24,0) 16%, #101318 58%, #101318 100%); }
+    /* The host uses one viewport-sized iframe. Its document owns scrolling,
+       so the normal sticky header works in both embedded and direct views. */
   </style>
 </head>
 <body>
@@ -549,36 +546,16 @@
       <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Scale</a><a href="#donate">Donate</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
     </div>
   </footer>
-  <div class="embed-bleed" aria-hidden="true"></div>
-  <script>
-    (() => {
-      if (window.parent === window) return;
-      const header = document.querySelector('.site-header');
-      const root = document.documentElement;
-      const syncOffset = () => root.style.setProperty('--header-offset', `${header.offsetHeight}px`);
-      const report = () => {
-        syncOffset();
-        window.parent.postMessage({ source: 'illicit-corporation', height: Math.ceil(root.scrollHeight) }, '*');
-      };
-      window.addEventListener('message', event => {
-        if (event.source !== window.parent) return;
-        const data = event.data;
-        if (!data || data.source !== 'illicit-embed' || !Number.isFinite(Number(data.pin))) return;
-        const pin = Math.max(0, Math.round(Number(data.pin)));
-        root.style.setProperty('--header-pin', `${pin}px`);
-      });
-      syncOffset();
-      report();
-      window.addEventListener('load', report);
-      window.addEventListener('resize', syncOffset);
-      if (window.ResizeObserver) new ResizeObserver(report).observe(root);
-    })();
-  </script>
   <script type="module">
     import { convertMoney, roundMoney, formatMoney } from './assets/scale-pricing.mjs';
     import { mountDonations } from './assets/donations.mjs';
     (() => {
-      mountDonations(document.querySelector('#crypto-wallets'));
+      const openingHash = location.hash;
+      let userNavigated = false;
+      for (const type of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
+        window.addEventListener(type, () => { userNavigated = true; }, { once: true, passive: true });
+      }
+      const donationsReady = mountDonations(document.querySelector('#crypto-wallets'));
       const themeToggle = document.getElementById('theme-toggle');
       const applyTheme = theme => {
         document.documentElement.dataset.theme = theme;
@@ -1071,7 +1048,13 @@
           renderFunds();
         } catch {}
       };
-      loadFunds();
+      const costsReady = loadFunds();
+      Promise.all([donationsReady, costsReady]).then(() => {
+        // Async rows can move a deep-linked section after the browser's first
+        // anchor scroll. Restore it once, without interrupting user navigation.
+        if (!openingHash || location.hash !== openingHash || userNavigated) return;
+        requestAnimationFrame(() => document.getElementById(openingHash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' }));
+      });
       const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
       const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
       const navIndicator = document.querySelector('.nav-indicator');

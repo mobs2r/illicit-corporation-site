@@ -24,7 +24,14 @@ All code lives on GitHub under [@mobs2r](https://github.com/mobs2r).
 
 The embed only frames the GitHub Pages site. Updates to `index.html` show up on illicit.page without touching mmm.page again. Change `mmm-embed.html` only if the frame itself should change, then paste it into mmm.page again.
 
-The live page background is a flat `#101318`. Keep that color in the mmm.page page-background setting (Page style → background color). The framed site fades into `#101318` below the footer, and the embed script stretches the frame to the full page and keeps the header on screen while the mmm.page window scrolls. Safe mode has to stay off, or the embed script will not run. A light-mode canvas, if you ever switch the whole mmm.page background, would be `#e7eef6` instead.
+The public embed uses one viewport-sized iframe, outside mmm.page's transformed
+canvas. The inner document owns all scrolling and its normal sticky header;
+the outer page does not scroll. Do not restore the old 2,827-pixel frame,
+header-pinning messages or 640-pixel footer spacer. Those created nested
+scrolling, a disappearing header and a black footer band. The script skips
+fullscreen mounting in `?editing` so the mmm.page editor remains accessible.
+It forwards supported section hashes and sets the outer tab icon to the hosted
+corporate PNG. Keep the host background `#101318` as a loading fallback.
 
 ## Checks
 
@@ -59,5 +66,5 @@ public contact address is mobs2r@illicit.page; its inbox is not set up yet.
 The three world icons reuse their actual marks from the world cards. Avalanche's
 mark comes from https://www.avalanche.com/favicon-light.svg and ApeCoin's from
 https://apecoin.com/favicon.png. The manifest and embedded page share the Illicit
-favicon. The outer illicit.page favicon is separately managed by mmm.page;
-updating an iframe alone cannot change that browser-tab icon.
+favicon. The embed script explicitly sets the outer favicon to the same public
+PNG; the mmm.page Site Icon setting can also use that PNG as a no-script fallback.
