@@ -65,3 +65,10 @@ test('every referenced local icon is present and is an image, not an HTML error 
     else assert.ok(bytes[0] === 0x89 && bytes[1] === 0x50 || bytes[0] === 0xff && bytes[1] === 0xd8, icon + ' signature');
   }
 });
+
+test('manifest and touch icon use the same corporate favicon', () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, '../manifest.webmanifest')));
+  assert.match(html, /rel="apple-touch-icon" href="\.\/assets\/favicon\.png"/);
+  assert.ok(manifest.icons.some(i => i.src === './assets/favicon.png' && i.sizes === '512x512'));
+  assert.equal(fs.readFileSync(path.join(__dirname, '../assets/favicon.png')).subarray(1, 4).toString(), 'PNG');
+});
