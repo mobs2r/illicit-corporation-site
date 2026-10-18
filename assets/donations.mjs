@@ -20,29 +20,64 @@ export function validateWallets(data) {
   return data.chains;
 }
 
-export async function mountDonations(root, { fetcher = fetch, clipboard = navigator.clipboard } = {}) {
+export async function copyAddress(address, clipboard, doc) {
+  try {
+    if (!clipboard?.writeText) throw Error('Clipboard API unavailable');
+    await clipboard.writeText(address);
+    return;
+  } catch {
+    // User-activated fallback for embeds where async clipboard writing is not
+    // delegated. It writes only; it never reads the visitor's clipboard.
+    const previous = doc.activeElement;
+    const field = doc.createElement('textarea');
+    field.value = address;
+    field.readOnly = true;
+    field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+    doc.body.append(field);
+    try {
+      field.select();
+      if (!doc.execCommand('copy')) throw Error('Clipboard copy unavailable');
+    } finally {
+      field.remove();
+      previous?.focus({ preventScroll: true });
+    }
+  }
+}
+
+export async function mountDonations(root, { fetcher = fetch, clipboard = globalThis.navigator?.clipboard, schedule = setTimeout, cancel = clearTimeout } = {}) {
   if (!root) return;
+  const buttons = [...root.querySelectorAll('[data-crypto-wallet]')];
+  const status = root.querySelector('#crypto-copy-status');
+  const doc = root.ownerDocument;
+  buttons.forEach(button => { button.disabled = true; });
   try {
     const response = await fetcher('./assets/donation-wallets.json');
     if (!response.ok) throw Error('Donation wallets unavailable');
-    const chains = validateWallets(await response.json());
-    root.replaceChildren();
-    for (const c of chains) {
-      const panel = document.createElement('details'); panel.id = `crypto-${c.id}`; panel.className = 'donation-wallet';
-      const summary = document.createElement('summary'); summary.textContent = `${c.name} · ${c.symbol}`;
-      const network = document.createElement('p'); network.className = 'wallet-network'; network.textContent = `Network: ${c.network === 'btc' ? 'Bitcoin' : c.network === 'sol' ? 'Solana' : c.network}${c.kind === 'erc20' ? ' · ERC-20 token' : ''}`;
-      const address = document.createElement('code'); address.textContent = c.address;
-      const copy = document.createElement('button'); copy.type = 'button'; copy.className = 'wallet-copy'; copy.textContent = 'Copy address'; copy.setAttribute('aria-label', `Copy ${c.name} donation address`);
-      const feedback = document.createElement('span'); feedback.className = 'wallet-feedback'; feedback.setAttribute('role', 'status');
-      copy.onclick = async () => { try { await clipboard.writeText(c.address); feedback.textContent = 'Address copied. Check the network before sending.'; } catch { feedback.textContent = 'Copy unavailable. Select the address above to copy it.'; } };
-      panel.append(summary, network, address, copy, feedback);
-      if (c.token) { const token = document.createElement('p'); token.className = 'group-note'; token.textContent = `Token contract: ${c.token}`; panel.append(token); }
-      root.append(panel);
+    const chains = new Map(validateWallets(await response.json()).map(c => [c.id, c]));
+    for (const button of buttons) {
+      const chain = chains.get(button.dataset.cryptoWallet);
+      if (!chain) continue;
+      const label = button.querySelector('small');
+      const originalLabel = label.textContent;
+      let timer;
+      button.setAttribute('aria-label', `Copy ${chain.name} address`);
+      button.title = `Copy ${chain.symbol} address · ${chain.name}`;
+      button.disabled = false;
+      button.onclick = async () => {
+        cancel(timer);
+        try {
+          await copyAddress(chain.address, clipboard, doc);
+          label.textContent = 'Copied ✓';
+          if (status) status.textContent = `${chain.name} address copied.`;
+        } catch {
+          label.textContent = 'Copy unavailable';
+          if (status) status.textContent = 'Could not copy the address. Please try again.';
+        }
+        timer = schedule(() => { label.textContent = originalLabel; }, 2000);
+      };
     }
-    const reveal = id => { const panel = document.getElementById(id); if (panel?.classList.contains('donation-wallet')) { panel.open = true; panel.scrollIntoView({ block: 'center', behavior: 'instant' }); } };
-    document.querySelectorAll('[data-crypto-wallet]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); reveal(`crypto-${link.dataset.cryptoWallet}`); }));
-    reveal(location.hash.slice(1));
   } catch {
-    root.textContent = 'Wallets unavailable. Use the support links above; do not send to an unverified recipient.';
+    buttons.forEach(button => { button.querySelector('small').textContent = 'Unavailable'; });
+    if (status) status.textContent = 'Donation addresses are unavailable.';
   }
 }

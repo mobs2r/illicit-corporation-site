@@ -33,8 +33,9 @@ test('requested copy is removed, Scale is visible and donations stay on the corp
   assert.doesNotMatch(html, /Preserve Our Planet|Give directly to relief and conservation\.|Rates as of|>Funds</);
   assert.doesNotMatch(html, /omerta\.chat\/\?donate/);
   assert.match(html, /id="donate"/);
-  assert.match(html, /Email-linked rewards · work in progress/);
-  assert.match(html, /no email is collected by this donation page/);
+  assert.doesNotMatch(html, /Email-linked rewards|Future Crypto Ball rewards|For an existing donation receipt|Send only the selected asset|Annual costs in their original billing currencies|The same account, coin, and inventory|id="crypto-wallets"|donation-rewards/);
+  assert.equal([...html.matchAll(/<button type="button" disabled class="pill"[^>]+data-crypto-wallet=/g)].length, 7);
+  assert.match(html, /id="crypto-copy-status" class="sr-only" role="status"/);
   assert.match(html, /href="mailto:mobs2r@illicit\.page">mobs2r@illicit\.page<\/a>/);
   assert.match(html, /"email":"mobs2r@illicit\.page"/);
   assert.match(html, /Inbox setup pending/);
