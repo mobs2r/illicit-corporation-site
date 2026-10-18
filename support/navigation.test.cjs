@@ -3,6 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
 test('homepage navigation reaches real sections and documentation instead of reopening itself', () => {
   for (const [label, id] of [['Explore', 'worlds'], ['Platform', 'platform']]) {
@@ -47,4 +48,19 @@ test('the mmm.page embed lives at the repository root and frames the published s
   assert.match(html, /classList\.add\('is-embedded'\)/);
   assert.doesNotMatch(html, /--header-pin|embed-bleed|height:640px/);
   assert.match(html, /\.site-header \{ position:sticky;/);
+});
+
+test('active navigation follows scrolling through long Scale sections and the footer', () => {
+  assert.match(html, /addEventListener\('scroll', queueCurrentNav, \{ passive: true \}\)/);
+  assert.match(html, /if \(navFrame\) return/);
+  assert.match(html, /requestAnimationFrame\(\(\) => \{ navFrame = 0; pickCurrentNav\(\); \}\)/);
+  const source = html.slice(html.indexOf('const pickCurrentNav = () => {'), html.indexOf('let navFrame = 0;'));
+  let active;
+  const window = { innerHeight: 900, scrollY: 2800 };
+  const document = { documentElement: { scrollHeight: 6000 } };
+  const navSections = [{ id: 'mods', getBoundingClientRect: () => ({ top: -300 }) }, { id: 'funds', getBoundingClientRect: () => ({ top: 80 }) }, { id: 'contact', getBoundingClientRect: () => ({ top: 2500 }) }];
+  const pick = vm.runInNewContext(source + '; pickCurrentNav', { window, document, navSections, setCurrentNav: id => { active = id; } });
+  pick(); assert.equal(active, 'funds');
+  window.scrollY = 5100;
+  pick(); assert.equal(active, 'contact');
 });

@@ -1087,7 +1087,16 @@
           }
           setCurrentNav(current.id);
         };
-        const navObserver = new IntersectionObserver(pickCurrentNav, {
+        let navFrame = 0;
+        const queueCurrentNav = () => {
+          if (navFrame) return;
+          navFrame = requestAnimationFrame(() => { navFrame = 0; pickCurrentNav(); });
+        };
+        // Intersection thresholds alone miss long sections and the final
+        // pixels of a smooth anchor scroll. Track scrolling once per frame.
+        window.addEventListener('scroll', queueCurrentNav, { passive: true });
+        window.addEventListener('resize', queueCurrentNav);
+        const navObserver = new IntersectionObserver(queueCurrentNav, {
           rootMargin: '-12% 0px -70% 0px',
           threshold: [0, 0.2, 0.6]
         });
