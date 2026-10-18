@@ -24,6 +24,8 @@ All code lives on GitHub under [@mobs2r](https://github.com/mobs2r).
 
 The embed only frames the GitHub Pages site. Updates to `index.html` show up on illicit.page without touching mmm.page again. Change `mmm-embed.html` only if the frame itself should change, then paste it into mmm.page again.
 
+The live page background is a flat `#101318`. Keep that color in the mmm.page page-background setting (Page style → background color). The framed site fades into `#101318` below the footer, and the embed script stretches the frame to the full page and keeps the header on screen while the mmm.page window scrolls. Safe mode has to stay off, or the embed script will not run. A light-mode canvas, if you ever switch the whole mmm.page background, would be `#e7eef6` instead.
+
 ## Checks
 
 ```sh

@@ -30,6 +30,7 @@
       try { saved = localStorage.getItem('illicit-corporation-theme') || ''; } catch {}
       document.documentElement.dataset.theme = saved === 'light' || saved === 'dark'
         ? saved : (window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (window.parent !== window) document.documentElement.classList.add('is-embedded');
     })();
   </script>
   <style>
@@ -92,8 +93,6 @@
     .product-icon.blue { color:var(--blue); } .product-icon.red { color:var(--red); } .product-icon.gold { color:var(--gold); } .product-icon.green { color:var(--green); }
     .analytics-icon { width:20px; height:20px; fill:currentColor; }
     .product h3 { margin:22px 0 8px; font-size:22px; font-weight:400; letter-spacing:-.02em; }
-    .product.product-plain { justify-content:center; }
-    .product.product-plain h3 { margin-top:0; }
     .product p { margin:0; color:var(--copy); font-size:15px; line-height:1.5; }
     .product p + p { margin-top:10px; }
     .product a { color:var(--blue); }
@@ -171,6 +170,7 @@
     .cost-name { display:flex; align-items:center; gap:10px; min-width:0; }
     .cost-swatch { width:9px; height:9px; flex:0 0 auto; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
     .cost-name img { width:20px; height:20px; flex:0 0 auto; border-radius:5px; }
+    .cost-name .cost-mark { width:20px; height:20px; flex:0 0 auto; display:block; color:var(--text); }
     .cost-amount { color:var(--text); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
     .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
     .rates-as-of { margin:8px 0 0; color:var(--muted); font-size:12px; }
@@ -398,6 +398,11 @@
       .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
       .tilt, .tilt:hover, .action:active { transform:none; }
     }
+    .embed-bleed { display:none; }
+    html.is-embedded { --header-pin:0px; --header-offset:83px; }
+    html.is-embedded body { padding-top:var(--header-offset); }
+    html.is-embedded .site-header { position:fixed; top:var(--header-pin); left:0; right:0; width:100%; }
+    html.is-embedded .embed-bleed { display:block; height:640px; pointer-events:none; background:linear-gradient(180deg, rgba(16,19,24,0) 0%, rgba(16,19,24,0) 16%, #101318 58%, #101318 100%); }
   </style>
 </head>
 <body>
@@ -425,7 +430,6 @@
         <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true">ID</span></div><h3>Faked ID</h3><p>Your Faked ID will enable you to link identity across participating products, building trust factor.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon gold" aria-hidden="true">◇</span></div><h3>Faked CC</h3><p>Your Faked CreditCard will enable you to spend across participating products with ease &amp; maximum privacy.</p></article>
         <article class="product"><div class="product-top"><span class="product-icon blue" aria-hidden="true"><svg class="analytics-icon" viewBox="0 0 24 24" focusable="false"><path d="M12 2a9 9 0 0 0-9 9v1h6v5a3 3 0 0 0 6 0v-5h6v-1a9 9 0 0 0-9-9Zm-5.8 8a6 6 0 0 1 11.6 0H6.2Z"/></svg></span></div><h3>Mushrüm</h3><p>Mushrüm is the analytics platform enabling Illicit API, with data from Omerta Chat, Atlantis Chat, &amp; Вандам(e)баш!</p></article>
-        <article class="product product-plain"><h3>Arcade</h3><p>Live multiplayer web games.</p></article>
       </div>
     </section>
     <section class="section worlds shell" id="worlds" aria-labelledby="worlds-title">
@@ -528,6 +532,31 @@
       <nav class="illicit-links" aria-label="Illicit Corporation"><a href="#platform">Platform</a><a href="#worlds">Worlds</a><a href="#mods">Mods</a><a href="#funds">Funds</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
     </div>
   </footer>
+  <div class="embed-bleed" aria-hidden="true"></div>
+  <script>
+    (() => {
+      if (window.parent === window) return;
+      const header = document.querySelector('.site-header');
+      const root = document.documentElement;
+      const syncOffset = () => root.style.setProperty('--header-offset', `${header.offsetHeight}px`);
+      const report = () => {
+        syncOffset();
+        window.parent.postMessage({ source: 'illicit-corporation', height: Math.ceil(root.scrollHeight) }, '*');
+      };
+      window.addEventListener('message', event => {
+        if (event.source !== window.parent) return;
+        const data = event.data;
+        if (!data || data.source !== 'illicit-embed' || !Number.isFinite(Number(data.pin))) return;
+        const pin = Math.max(0, Math.round(Number(data.pin)));
+        root.style.setProperty('--header-pin', `${pin}px`);
+      });
+      syncOffset();
+      report();
+      window.addEventListener('load', report);
+      window.addEventListener('resize', syncOffset);
+      if (window.ResizeObserver) new ResizeObserver(report).observe(root);
+    })();
+  </script>
   <script>
     (() => {
       const themeToggle = document.getElementById('theme-toggle');
@@ -781,6 +810,18 @@
       };
       watchSlices(costChart);
       watchSlices(costList);
+      const wallstreetMark = () => {
+        const mark = document.createElementNS(svgNS, 'svg');
+        mark.setAttribute('class', 'cost-mark');
+        mark.setAttribute('viewBox', '0 0 100 122');
+        mark.setAttribute('aria-hidden', 'true');
+        mark.setAttribute('focusable', 'false');
+        const shape = document.createElementNS(svgNS, 'path');
+        shape.setAttribute('fill', 'currentColor');
+        shape.setAttribute('d', 'M0 0H99V99H71L50 121L40 112L66 85H85V14H14V85H32V99H0Z');
+        mark.append(shape);
+        return mark;
+      };
       const renderFunds = () => {
         if (!fundsData) return;
         for (const button of currencySwitch.querySelectorAll('button')) {
@@ -801,11 +842,16 @@
           const swatch = document.createElement('span');
           swatch.className = 'cost-swatch';
           swatch.style.background = chartColors[index % chartColors.length];
-          const icon = document.createElement('img');
-          icon.alt = '';
-          icon.width = 20;
-          icon.height = 20;
-          icon.src = `./${cost.icon}`;
+          let icon;
+          if (cost.icon === 'assets/icons/wallstreet.svg') {
+            icon = wallstreetMark();
+          } else {
+            icon = document.createElement('img');
+            icon.alt = '';
+            icon.width = 20;
+            icon.height = 20;
+            icon.src = `./${cost.icon}`;
+          }
           const label = document.createElement('span');
           label.textContent = cost.name;
           name.append(swatch, icon, label);
