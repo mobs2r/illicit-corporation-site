@@ -11,6 +11,7 @@
   var frame = document.getElementById('illicit-site');
   if (!frame || new URL(location.href).searchParams.has('editing')) return;
   var site = 'https://mobs2r.github.io/illicit-page/';
+  var revision = '';
   // Reparent outside mmm.page's transformed canvas: fixed positioning there
   // would otherwise be relative to the block, not the browser viewport.
   document.body.appendChild(frame);
@@ -20,11 +21,20 @@
   function followHash() {
     var hash = /^#(?:home|platform|worlds|mods|funds|donate|about|contact|crypto-(?:btc|eth|sol|avax|pol|usdc|ape))$/.test(location.hash) ? location.hash : '';
     // A fragment change starts navigation after mmm.page reparents the iframe.
-    var next = site + (hash || '#home');
+    var next = site + (revision ? '?rev=' + revision : '') + (hash || '#home');
     if (frame.getAttribute('src') !== next) frame.setAttribute('src', next);
   }
   followHash();
   window.addEventListener('hashchange', followHash);
+  if (typeof fetch === 'function') {
+    fetch(site + 'builds.json', { cache: 'no-store' })
+      .then(function (response) { if (!response.ok) throw Error('Build unavailable'); return response.json(); })
+      .then(function (data) {
+        if (!/^[a-f0-9]{7,40}$/.test(data.platform || '')) return;
+        revision = data.platform.slice(0, 12);
+        followHash();
+      }).catch(function () {});
+  }
   // A public hosted asset also fixes the outer tab icon without file access.
   var icon = document.querySelector('link[rel~="icon"]');
   if (!icon) { icon = document.createElement('link'); icon.rel = 'icon'; document.head.appendChild(icon); }
