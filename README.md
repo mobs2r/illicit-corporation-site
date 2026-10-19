@@ -16,7 +16,7 @@ All code lives on GitHub under [@mobs2r](https://github.com/mobs2r).
 
 ## Publishing
 
-1. Push to `main`. `.github/workflows/corporation-pages.yml` publishes `index.html` to GitHub Pages at <https://mobs2r.github.io/illicit-corporation-site/>.
+1. Push to `main`. `.github/workflows/corporation-pages.yml` publishes `index.html` to GitHub Pages at <https://mobs2r.github.io/illicit-page/>.
 2. illicit.page is built on [mmm.page](https://mmm.page). It shows the site through an embed:
    1. In the mmm.page editor, add an **Embed / HTML** block.
    2. Paste the contents of `mmm-embed.html` into it.

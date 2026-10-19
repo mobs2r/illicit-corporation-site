@@ -42,7 +42,7 @@ test('homepage links every current world with its own mark and concise moniker',
 
 test('the mmm.page embed lives at the repository root and frames the published site', () => {
   const embed = fs.readFileSync(path.join(__dirname, '../mmm-embed.html'), 'utf8');
-  assert.match(embed, /<iframe[\s\S]*src="https:\/\/mobs2r\.github\.io\/illicit-corporation-site\/"/);
+  assert.match(embed, /<iframe[\s\S]*src="https:\/\/mobs2r\.github\.io\/illicit-page\/"/);
   assert.match(embed, /title="Illicit Corporation"/);
   assert.match(embed, /document\.body\.appendChild\(frame\)/);
   assert.match(embed, /position:fixed;inset:0/);

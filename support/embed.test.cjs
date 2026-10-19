@@ -7,7 +7,7 @@ const embed = fs.readFileSync(path.join(__dirname, '../mmm-embed.html'), 'utf8')
 const script = embed.match(/<script>([\s\S]*?)<\/script>/)[1];
 function run(href) {
   const location = new URL(href);
-  let src = 'https://mobs2r.github.io/illicit-corporation-site/';
+  let src = 'https://mobs2r.github.io/illicit-page/';
   const frame = { style: {}, getAttribute: () => src, setAttribute: (key, value) => { src = value; } };
   const icon = {};
   const attached = [];
@@ -27,12 +27,12 @@ test('public embed has one viewport scroll owner and matching favicon', () => {
   assert.match(app.frame.style.cssText, /position:fixed;inset:0/);
   assert.match(app.frame.style.cssText, /height:100dvh/);
   assert.match(app.document.documentElement.style.cssText, /overflow:hidden/);
-  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-corporation-site/#donate');
-  assert.equal(app.icon.href, 'https://mobs2r.github.io/illicit-corporation-site/assets/favicon.png');
+  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/#donate');
+  assert.equal(app.icon.href, 'https://mobs2r.github.io/illicit-page/assets/favicon.png');
   app.location.hash = '#contact'; app.events.hashchange();
-  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-corporation-site/#contact');
+  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/#contact');
   app.location.hash = '#untrusted'; app.events.hashchange();
-  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-corporation-site/');
+  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/');
 });
 test('editor preview is never covered or scroll-locked by the public embed', () => {
   const app = run('https://mmm.page/mobs2r?editing');

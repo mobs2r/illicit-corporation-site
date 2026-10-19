@@ -1,7 +1,7 @@
 <iframe
   id="illicit-site"
   title="Illicit Corporation"
-  src="https://mobs2r.github.io/illicit-corporation-site/"
+  src="https://mobs2r.github.io/illicit-page/"
   loading="eager"
   referrerpolicy="strict-origin-when-cross-origin"
   style="display:block;width:100%;height:100vh;height:100dvh;border:0;background:#101318"
@@ -10,7 +10,7 @@
 (function () {
   var frame = document.getElementById('illicit-site');
   if (!frame || new URL(location.href).searchParams.has('editing')) return;
-  var site = 'https://mobs2r.github.io/illicit-corporation-site/';
+  var site = 'https://mobs2r.github.io/illicit-page/';
   // Reparent outside mmm.page's transformed canvas: fixed positioning there
   // would otherwise be relative to the block, not the browser viewport.
   document.body.appendChild(frame);
