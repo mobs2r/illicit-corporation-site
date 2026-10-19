@@ -25,13 +25,11 @@ without re-rounding. Wheel colors meet edge-to-edge, with matching small strokes
 to cover antialias hairlines. Currency conversion and the annual total are
 unchanged. No pricing disclaimers or per-service subtext were restored.
 
-The header gear opens a native, keyboard-accessible server picker and links to
-the existing Illicit account/billing screen. Core choices use the actual game
-icons (Garry's Mod, GTA V and San Andreas from Steam Community; ThreeJS and
-Minecraft cached site favicons). Extra adapters are discovery entries, not
-promises of tested hosting. Setup remains manual: no Tebex store exists yet and
-no customer deployment or API secret is issued by this public page. See
-[the hosting boundary](support/HOSTING-PLAN.md) before enabling paid provisioning.
+The corporate billing/server picker and its header gear are removed for now.
+Its source and planning notes are retained but are not loaded by the page.
+The existing Illicit backend, accounts and billing records are unchanged.
+See [the hosting boundary](support/HOSTING-PLAN.md) before resuming this work.
+The theme button uses centered SVG sun/moon icons rather than font glyphs.
 
 Source for [illicit.page](https://illicit.page), the home of Illicit Corporation and the worlds it runs: Omerta Chat, Atlantis Chat, cod.city and gKnuckle.
 

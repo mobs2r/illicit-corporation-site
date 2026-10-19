@@ -21,11 +21,10 @@ test('requested server choices have game icons rather than bracketed runtime nam
   assert.throws(() => serverDetails('unknown'));
 });
 
-test('the gear has a no-JS billing fallback and a native accessible dialog', () => {
+test('the corporate site does not expose or load the paused billing/server picker', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const script = fs.readFileSync(path.join(root, 'assets/server-portal.mjs'), 'utf8');
-  assert.match(html, /id="account-toggle" href="https:\/\/illicit.up.railway.app\/\?billing"/);
-  assert.match(html, /aria-label="Servers and billing" aria-haspopup="dialog" aria-controls="server-portal"/);
+  assert.doesNotMatch(html, /account-toggle|server-portal|server-catalog|Servers and billing|\?billing/);
   assert.match(script, /dialog.showModal\(\)/);
   assert.match(script, /trigger.focus\(\)/);
   assert.match(script, /form method="dialog"/);

@@ -26,6 +26,14 @@ test('homepage retains keyboard focus, responsive layout and reduced-motion supp
   assert.match(html, /@media \(max-width:620px\)/);
   assert.match(html, /currentUrl\.searchParams\.set\('rev', revision\)/);
 });
+
+test('sun and moon use centered SVG boxes instead of font-dependent glyphs', () => {
+  for (const icon of ['sun', 'moon']) assert.match(html, new RegExp('class="theme-' + icon + '" viewBox="0 0 24 24" aria-hidden="true"'));
+  assert.match(html, /\.theme-toggle svg \{ display:block; width:22px; height:22px; grid-area:1 \/ 1/);
+  assert.match(html, /data-theme="light"\] \.theme-toggle \.theme-sun \{ display:none/);
+  assert.match(html, /data-theme="light"\] \.theme-toggle \.theme-moon \{ display:block/);
+  assert.doesNotMatch(html, /themeToggle.textContent|☀|☾/);
+});
 test('homepage links every current world with its own mark and concise moniker', () => {
   for (const [href, name, moniker] of [
     ['https://www.cod.city/', 'Cod City', 'Call it what you want...'],
