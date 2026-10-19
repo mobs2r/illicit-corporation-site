@@ -36,10 +36,19 @@ test('requested copy is removed, Scale is visible and donations stay on the corp
   assert.doesNotMatch(html, /Email-linked rewards|Future Crypto Ball rewards|For an existing donation receipt|Send only the selected asset|Annual costs in their original billing currencies|The same account, coin, and inventory|id="crypto-wallets"|donation-rewards/);
   assert.equal([...html.matchAll(/<button type="button" disabled class="pill"[^>]+data-crypto-wallet=/g)].length, 7);
   assert.match(html, /id="crypto-copy-status" class="sr-only" role="status"/);
-  assert.match(html, /href="mailto:mobs2r@illicit\.page">mobs2r@illicit\.page<\/a>/);
-  assert.match(html, /"email":"mobs2r@illicit\.page"/);
-  assert.match(html, /Inbox setup pending/);
+  assert.match(html, /href="mailto:biz@illicit\.page">biz@illicit\.page<\/a>/);
+  assert.match(html, /href="mailto:promo@illicit\.page">promo@illicit\.page<\/a>/);
+  assert.match(html, /"email":\["biz@illicit\.page","promo@illicit\.page"\]/);
+  assert.doesNotMatch(html, /Inbox setup pending|mobs2r@illicit\.page|Support Illicit Corporation and its projects here|No Omerta account is required to give/);
+  assert.match(html, /Saskatoon, Saskatchewan S7K 1N7/);
   assert.doesNotMatch(html, /mobs2@waifu\.club/);
+});
+
+test('contact embeds isolated private support without corporate-page auth or credentialed API calls', () => {
+  assert.match(html, /title="Illicit private support chat and tickets" src="https:\/\/illicit.up.railway.app\/support\/desk" loading="lazy"/);
+  assert.match(html, /Open support in its own window/);
+  assert.match(html, /support-desk-frame[^}]+height:760px/);
+  assert.doesNotMatch(html, /crabcoin_token|X-Support-Guest|api\/support/);
 });
 
 test('all seven migrated recipients validate and bad or duplicated networks fail closed', async () => {

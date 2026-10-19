@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" href="./assets/favicon.png">
   <link rel="canonical" href="https://illicit.page/">
   <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"Illicit Corporation","url":"https://illicit.page/","email":"mobs2r@illicit.page","address":{"@type":"PostalAddress","streetAddress":"310 Wall Street","addressLocality":"Saskatoon","addressRegion":"SK","postalCode":"S7K 1N7","addressCountry":"CA"}}
+    {"@context":"https://schema.org","@type":"Organization","name":"Illicit Corporation","url":"https://illicit.page/","email":["biz@illicit.page","promo@illicit.page"],"address":{"@type":"PostalAddress","streetAddress":"310 Wall Street","addressLocality":"Saskatoon","addressRegion":"Saskatchewan","postalCode":"S7K 1N7","addressCountry":"CA"}}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -229,6 +229,12 @@
     .contact-list li + li { margin-top:8px; }
     .contact-list a { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
     .contact-list a:hover { color:var(--text); }
+    #contact { padding-bottom:72px; }
+    .contact-list { font-size:18px; margin-bottom:30px; }
+    .support-desk-frame { display:block; width:100%; height:760px; border:1px solid var(--line); border-radius:18px; background:#10151c; }
+    .support-desk-link { margin:14px 0 0; font-size:14px; }
+    .support-desk-link a { color:var(--blue); text-underline-offset:3px; }
+    @media (max-width:650px) { .contact-list { font-size:16px; } .support-desk-frame { height:970px; border-radius:12px; } }
     .site-footer { padding:8px 0 48px; }
     .illicit-footer { --if-ink:#f2f0eb; --if-dim:#c7cdd3; --if-soft:#aab2bc; --if-line:#ffffff1a; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 28px; padding:18px 22px; border:1px solid var(--if-line); border-radius:18px; color:var(--if-ink); font:14px/1.5 var(--sans); }
     .illicit-footer a { color:inherit; text-decoration:none; }
@@ -473,7 +479,7 @@
       <p class="group-note">Conversions are indicative. Taxes, card fees and metered usage may differ. Source amounts and pricing basis appear beside each cost.</p>
     </section>
     <section class="section shell" id="donate" aria-labelledby="donate-title">
-      <header class="section-head"><h2 id="donate-title">Donations</h2><p>Support Illicit Corporation and its projects here. No Omerta account is required to give.</p></header>
+      <header class="section-head"><h2 id="donate-title">Donations</h2></header>
       <div class="pill-groups">
         <section class="pill-group" aria-labelledby="support-pills">
           <h3 class="group-label" id="support-pills">Support</h3>
@@ -525,10 +531,12 @@
         <h2 id="contact-title">Contact</h2>
       </header>
       <ul class="contact-list">
-        <li><a href="mailto:mobs2r@illicit.page">mobs2r@illicit.page</a> <small>(Inbox setup pending)</small></li>
-        <li>Illicit, 310 Wall Street, Saskatoon, SK S7K 1N7, Canada</li>
+        <li><a href="mailto:biz@illicit.page">biz@illicit.page</a> <span aria-hidden="true">|</span> <a href="mailto:promo@illicit.page">promo@illicit.page</a></li>
+        <li>Illicit, 310 Wall Street, Saskatoon, Saskatchewan S7K 1N7, Canada</li>
         <li><a href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></li>
       </ul>
+      <iframe class="support-desk-frame" title="Illicit private support chat and tickets" src="https://illicit.up.railway.app/support/desk" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <p class="support-desk-link"><a href="https://illicit.up.railway.app/support/desk" target="_blank" rel="noopener noreferrer">Open support in its own window ↗</a></p>
     </section>
   </main>
   <footer class="site-footer">
