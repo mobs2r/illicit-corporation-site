@@ -1,8 +1,8 @@
 // rates are units per USD, never CAD per unit. Amounts retain their billed
 // currency and annual period; conversion occurs exactly once at presentation.
 export const currencyOptions = Object.freeze([
-  { code: 'USD', symbol: '$', prefix: 'US$', name: 'US dollar' },
   { code: 'CAD', symbol: '$', prefix: 'CA$', name: 'Canadian dollar' },
+  { code: 'USD', symbol: '$', prefix: 'US$', name: 'US dollar' },
   { code: 'EUR', symbol: '€', prefix: '€', name: 'Euro' },
   { code: 'GBP', symbol: '£', prefix: '£', name: 'British pound' },
   { code: 'AUD', symbol: '$', prefix: 'A$', name: 'Australian dollar' },

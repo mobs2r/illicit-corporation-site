@@ -474,8 +474,8 @@
           <h2 id="funds-title">Scale</h2>
         </header>
         <div class="currency-switch" role="radiogroup" aria-label="Currency">
-          <button type="button" role="radio" data-currency="USD" aria-label="USD — US dollar" aria-checked="true">USD <span class="currency-symbol" aria-hidden="true">$</span></button>
-          <button type="button" role="radio" data-currency="CAD" aria-label="CAD — Canadian dollar" aria-checked="false">CAD <span class="currency-symbol" aria-hidden="true">$</span></button>
+          <button type="button" role="radio" data-currency="CAD" aria-label="CAD — Canadian dollar" aria-checked="true">CAD <span class="currency-symbol" aria-hidden="true">$</span></button>
+          <button type="button" role="radio" data-currency="USD" aria-label="USD — US dollar" aria-checked="false">USD <span class="currency-symbol" aria-hidden="true">$</span></button>
           <button type="button" role="radio" data-currency="EUR" aria-label="EUR — Euro" aria-checked="false">EUR <span class="currency-symbol" aria-hidden="true">€</span></button>
           <button type="button" role="radio" data-currency="GBP" aria-label="GBP — British pound" aria-checked="false">GBP <span class="currency-symbol" aria-hidden="true">£</span></button>
           <button type="button" role="radio" data-currency="AUD" aria-label="AUD — Australian dollar" aria-checked="false">AUD <span class="currency-symbol" aria-hidden="true">$</span></button>
@@ -771,7 +771,7 @@
       const costReadout = document.getElementById('cost-readout');
       const costTotal = document.querySelector('#cost-total .cost-amount');
       let fundsData = null;
-      let fundsCurrency = 'USD';
+      let fundsCurrency = 'CAD';
       try {
         const savedCurrency = localStorage.getItem(fundsCurrencyKey);
         if (fundCurrencies.includes(savedCurrency)) fundsCurrency = savedCurrency;

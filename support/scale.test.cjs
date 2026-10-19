@@ -177,9 +177,12 @@ test('wheel segments use their complete share with matching strokes to close ant
 test('twelve symbol-labelled currencies use the verified snapshot and single conversion basis', async () => {
   const { currencyOptions, convertMoney, formatMoney } = await import('../assets/scale-pricing.mjs');
   assert.equal(currencyOptions.length, 12);
+  assert.equal(currencyOptions[0].code, 'CAD');
   assert.equal(new Set(currencyOptions.map(option => option.code)).size, 12);
   const codes = [...html.matchAll(/role="radio" data-currency="([A-Z]+)"/g)].map(match => match[1]);
   assert.deepEqual(codes, currencyOptions.map(option => option.code));
+  assert.match(html, /data-currency="CAD"[^>]*aria-checked="true"/);
+  assert.match(html, /let fundsCurrency = 'CAD';/);
   assert.equal(data.ratesAsOf, '2026-10-16');
   for (const option of currencyOptions) {
     assert.ok(data.rates[option.code] > 0);
