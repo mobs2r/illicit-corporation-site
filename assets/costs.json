@@ -4,7 +4,15 @@
     "USD": 1,
     "CAD": 1.4154,
     "EUR": 0.88974101081217,
-    "GBP": 0.750039743521806
+    "GBP": 0.750039743521806,
+    "AUD": 1.438853308935651,
+    "NZD": 1.768586779957516,
+    "JPY": 157.96875,
+    "CHF": 0.8240568234746157,
+    "CNY": 6.6858762399622105,
+    "INR": 94.99328859060402,
+    "BRL": 5.078579117330463,
+    "KRW": 1334.0245051837887
   },
   "costs": [
     {
@@ -217,5 +225,7 @@
     }
   ],
   "rateBasis": "units-per-USD",
-  "rateSource": "https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/"
+  "rateSource": "https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/",
+  "rateObservationUrl": "https://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY/json?start_date=2026-10-16&end_date=2026-10-16",
+  "rateInputsCadPerUnit": {"USD":1.4154,"CAD":1,"EUR":1.5908,"GBP":1.8871,"AUD":0.9837,"NZD":0.8003,"JPY":0.00896,"CHF":1.7176,"CNY":0.2117,"INR":0.0149,"BRL":0.2787,"KRW":0.001061}
 }

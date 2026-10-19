@@ -151,11 +151,12 @@
     .about-copy { max-width:46rem; margin:0; color:var(--copy); font-size:18px; line-height:1.55; }
     .stack { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
     .stack li { padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--copy); font-size:14px; }
-    .funds-top { display:flex; align-items:flex-end; justify-content:space-between; gap:16px 24px; margin-bottom:22px; }
+    .funds-top { display:grid; grid-template-columns:minmax(260px,340px) minmax(0,1fr); align-items:end; gap:16px 28px; margin-bottom:22px; }
     .funds-top .section-head { margin:0; }
     .funds-top h2 { margin:0; }
-    .currency-switch { display:flex; flex:0 0 auto; padding:3px; border:1px solid var(--line); border-radius:999px; background:#ffffff08; }
-    .currency-switch button { min-width:58px; min-height:38px; border:0; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; font-size:15px; }
+    .currency-switch { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); width:100%; gap:3px; padding:4px; border:1px solid var(--line); border-radius:22px; background:#ffffff08; }
+    .currency-switch button { display:flex; align-items:center; justify-content:center; gap:5px; min-width:0; min-height:38px; padding:4px; border:0; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; font-size:14px; }
+    .currency-symbol { opacity:.8; }
     .currency-switch button[aria-checked="true"] { background:var(--text); color:var(--bg); }
     .funds-board { display:grid; grid-template-columns:minmax(260px,340px) minmax(0,1fr); gap:28px; align-items:start; }
     .cost-chart { position:relative; width:min(100%,340px); margin:0 auto; padding:10px; border:1px solid var(--glass-line); border-radius:50%; background:var(--glass-strong); box-shadow:var(--glass-shadow); }
@@ -293,10 +294,12 @@
       .hero { padding:68px 0 56px; }
       .studio-grid { grid-template-columns:1fr; gap:28px; }
       .funds-board { grid-template-columns:1fr; }
+      .funds-top { grid-template-columns:1fr; }
       .support-grid { grid-template-columns:1fr 1fr; }
       .site-nav { order:3; width:100%; padding-bottom:8px; }
     }
     @media (max-width:620px) {
+      .currency-switch { grid-template-columns:repeat(4,minmax(0,1fr)); }
       .header-inner { min-height:70px; gap:10px; }
       .brand-copy { font-size:13px; }
       .brand-mark { width:33px; height:33px; }
@@ -431,7 +434,7 @@
   <main>
     <section class="hero" id="home"><canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas><div class="shell">
       <h1>One foundation.<em>Many worlds.</em></h1>
-      <p class="hero-intro">One studio in Saskatoon, building <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
+      <p class="hero-intro">One lab in Saskatoon, building <span class="hero-word-window" aria-hidden="true"><span class="hero-word is-current" id="hero-word">analytics.</span></span><span class="sr-only">analytics, arcade, art, blogging, collecting, commerce, community, creativity, crypto, data, dating, development, discovery, fiat, fitness, gaming, identity, integrations, music, payments, privacy, security, streaming, trust, and worlds.</span></p>
       <div class="actions"><a class="action action-primary" href="#worlds">Explore <span aria-hidden="true">↓</span></a><a class="action" href="https://illicit.up.railway.app/support/distribution" target="_blank" rel="noopener noreferrer">Build <span aria-hidden="true">↗</span></a></div>
     </div></section>
     <section class="section shell" id="platform" aria-labelledby="platform-title">
@@ -470,10 +473,18 @@
           <h2 id="funds-title">Scale</h2>
         </header>
         <div class="currency-switch" role="radiogroup" aria-label="Currency">
-          <button type="button" role="radio" data-currency="USD" aria-checked="true">USD</button>
-          <button type="button" role="radio" data-currency="CAD" aria-checked="false">CAD</button>
-          <button type="button" role="radio" data-currency="EUR" aria-checked="false">EUR</button>
-          <button type="button" role="radio" data-currency="GBP" aria-checked="false">GBP</button>
+          <button type="button" role="radio" data-currency="USD" aria-label="USD — US dollar" aria-checked="true">USD <span class="currency-symbol" aria-hidden="true">$</span></button>
+          <button type="button" role="radio" data-currency="CAD" aria-label="CAD — Canadian dollar" aria-checked="false">CAD <span class="currency-symbol" aria-hidden="true">$</span></button>
+          <button type="button" role="radio" data-currency="EUR" aria-label="EUR — Euro" aria-checked="false">EUR <span class="currency-symbol" aria-hidden="true">€</span></button>
+          <button type="button" role="radio" data-currency="GBP" aria-label="GBP — British pound" aria-checked="false">GBP <span class="currency-symbol" aria-hidden="true">£</span></button>
+          <button type="button" role="radio" data-currency="AUD" aria-label="AUD — Australian dollar" aria-checked="false">AUD <span class="currency-symbol" aria-hidden="true">$</span></button>
+          <button type="button" role="radio" data-currency="NZD" aria-label="NZD — New Zealand dollar" aria-checked="false">NZD <span class="currency-symbol" aria-hidden="true">$</span></button>
+          <button type="button" role="radio" data-currency="JPY" aria-label="JPY — Japanese yen" aria-checked="false">JPY <span class="currency-symbol" aria-hidden="true">¥</span></button>
+          <button type="button" role="radio" data-currency="CHF" aria-label="CHF — Swiss franc" aria-checked="false">CHF <span class="currency-symbol" aria-hidden="true">Fr</span></button>
+          <button type="button" role="radio" data-currency="CNY" aria-label="CNY — Chinese yuan" aria-checked="false">CNY <span class="currency-symbol" aria-hidden="true">¥</span></button>
+          <button type="button" role="radio" data-currency="INR" aria-label="INR — Indian rupee" aria-checked="false">INR <span class="currency-symbol" aria-hidden="true">₹</span></button>
+          <button type="button" role="radio" data-currency="BRL" aria-label="BRL — Brazilian real" aria-checked="false">BRL <span class="currency-symbol" aria-hidden="true">R$</span></button>
+          <button type="button" role="radio" data-currency="KRW" aria-label="KRW — South Korean won" aria-checked="false">KRW <span class="currency-symbol" aria-hidden="true">₩</span></button>
         </div>
       </div>
       <div class="funds-board">
@@ -548,7 +559,7 @@
     </div>
   </footer>
   <script type="module">
-    import { formatMoney } from './assets/scale-pricing.mjs?v=annual-budget-2';
+    import { currencyOptions, formatMoney } from './assets/scale-pricing.mjs?v=major-currencies-3';
     import { groupAnnualCosts } from './assets/scale-groups.mjs?v=1';
     import { mountDonations } from './assets/donations.mjs?v=copy-wallets-2';
     (() => {
@@ -747,7 +758,7 @@
       wordMotion?.addEventListener?.('change', syncWords);
       document.addEventListener('visibilitychange', syncWords);
       const fundsCurrencyKey = 'illicit-funds-currency';
-      const fundCurrencies = ['USD', 'CAD', 'EUR', 'GBP'];
+      const fundCurrencies = currencyOptions.map(option => option.code);
       const chartColors = ['#f1857d', '#88bcf0', '#f1cc86', '#92d7b1', '#d7a4ef', '#f0b27a', '#7fd0d8', '#e7e2d6', '#c9a227', '#a9b6e8'];
       const currencySwitch = document.querySelector('.currency-switch');
       const costList = document.getElementById('cost-list');

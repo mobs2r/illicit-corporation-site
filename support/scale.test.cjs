@@ -14,7 +14,7 @@ test('conversion uses each source currency once before presentation rounding', a
   assert.equal(roundMoney(155.40), 155.4);
   assert.equal(roundMoney(2400), 2400);
   for (const amount of [NaN, -1, Infinity]) assert.throws(() => convertMoney(amount, 'USD', 'CAD', data.rates));
-  assert.throws(() => convertMoney(20, 'AUD', 'CAD', data.rates));
+  assert.throws(() => convertMoney(20, 'XXX', 'CAD', data.rates));
 });
 
 test('annual display restores upward tens/hundreds without adding public explanatory text', async () => {
@@ -148,7 +148,7 @@ test('remaining button palettes and current USDC mark match their audited source
 test('domain categories combine into exactly one wheel chunk in every currency', async () => {
   const { groupAnnualCosts } = await import('../assets/scale-groups.mjs');
   const { convertMoney, roundBudgetMoney } = await import('../assets/scale-pricing.mjs');
-  for (const currency of ['USD', 'CAD', 'EUR', 'GBP']) {
+  for (const currency of Object.keys(data.rates)) {
     const grouped = groupAnnualCosts(data.costs, currency, data.rates, ['#123456', '#abcdef']);
     assert.deepEqual(grouped.sections.map(section => section.name), ['Domains', 'Services']);
     assert.equal(grouped.sections[0].rows.length, 9);
@@ -172,6 +172,30 @@ test('wheel segments use their complete share with matching strokes to close ant
   assert.doesNotMatch(html, /full - gap|Math.max\(full|const gap = full/);
   assert.match(html, /wedge.setAttribute\('stroke', slice.color\)/);
   assert.match(html, /wedge.setAttribute\('stroke-width', '\.35'\)/);
+});
+
+test('twelve symbol-labelled currencies use the verified snapshot and single conversion basis', async () => {
+  const { currencyOptions, convertMoney, formatMoney } = await import('../assets/scale-pricing.mjs');
+  assert.equal(currencyOptions.length, 12);
+  assert.equal(new Set(currencyOptions.map(option => option.code)).size, 12);
+  const codes = [...html.matchAll(/role="radio" data-currency="([A-Z]+)"/g)].map(match => match[1]);
+  assert.deepEqual(codes, currencyOptions.map(option => option.code));
+  assert.equal(data.ratesAsOf, '2026-10-16');
+  for (const option of currencyOptions) {
+    assert.ok(data.rates[option.code] > 0);
+    assert.ok(html.includes(`aria-label="${option.code} — ${option.name}"`));
+    assert.ok(html.includes(`>${option.code} <span class="currency-symbol" aria-hidden="true">${option.symbol}</span>`));
+    assert.ok(Math.abs(data.rates[option.code] - data.rateInputsCadPerUnit.USD / data.rateInputsCadPerUnit[option.code]) < 1e-12);
+    const converted = convertMoney(100, 'USD', option.code, data.rates);
+    assert.ok(Math.abs(convertMoney(converted, option.code, 'USD', data.rates) - 100) < 1e-9);
+    assert.ok(formatMoney(converted, option.code).startsWith(option.prefix));
+  }
+  assert.equal(formatMoney(123.45, 'JPY'), 'JP¥123');
+  assert.equal(formatMoney(123.45, 'KRW'), '₩123');
+  assert.throws(() => formatMoney(100, 'XXX'));
+  assert.throws(() => formatMoney(-1, 'USD'));
+  assert.match(html, /\.funds-top \{ display:grid; grid-template-columns:minmax\(260px,340px\) minmax\(0,1fr\)/);
+  assert.match(html, /\.currency-switch \{ display:grid; grid-template-columns:repeat\(6,minmax\(0,1fr\)\); width:100%/);
 });
 
 test('the bottom profile link is removed while the top profile and sponsor buttons remain', () => {

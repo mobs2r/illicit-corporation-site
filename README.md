@@ -80,6 +80,13 @@ equals the displayed line items. Public rows show only name and annual amount,
 without links, subtext or a rounding disclaimer. Claude Max and SoundCloud use
 owner-confirmed CAD bills; source metadata retains the pricing basis for the
 other rows. Rate dates remain in source metadata, not a banner on the page.
+The panel-width currency selector includes USD, CAD, EUR, GBP, AUD, NZD, JPY,
+CHF, CNY, INR, BRL and KRW with symbols. All use the October 16, 2026 Bank of
+Canada observation: CAD per currency unit is inverted against USD/CAD once
+to store units per USD. Raw observation inputs and URL are retained in the
+JSON. JPY and KRW display no fractional units; dollar and yen prefixes keep
+different currencies distinguishable in amounts. The visible subtitle says
+"One lab in Saskatoon, building" and retains its word scroller.
 
 `assets/donation-wallets.json` is a snapshot of the existing public recipients,
 not credentials or donor records. It avoids requiring Omerta login or widening
