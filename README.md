@@ -66,6 +66,14 @@ seven recipients remain unchanged. Its icon is from
 https://github.com/spothq/cryptocurrency-icons/blob/master/svg/black/usdt.svg
 (CC0-1.0). Partners appear before Canada; Lis-Skins and XPlay.gg both use the
 owner-supplied MOBS2R code and link to their homepages.
+
+Partner favicon sources: Lis-Skins' https://lis-skins.com/favicon.ico (converted
+losslessly to a local PNG), and Google's cached favicon for xplay.gg via
+https://www.google.com/s2/favicons?domain=xplay.gg&sz=128, matching the white X
+mark on XPlay's official blog. The favicon pixels supply Lis-Skins' orange
+`#ff7200`; XPlay uses its black/white mark. These files are served locally,
+without runtime favicon-proxy requests, and are used only to identify the
+linked partners. The MOBS2R codes are unchanged.
 The corporate page does not issue quotes, connect a wallet, mint
 rewards or collect email addresses. Existing backend receipts and awarded
 inventory remain intact.

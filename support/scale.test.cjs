@@ -106,6 +106,18 @@ test('Partners appears before Canada and both new partners use the supplied MOBS
   assert.match(html, /name: 'XPlay.gg', code: 'MOBS2R', href: 'https:\/\/xplay.gg\/'/);
 });
 
+test('Lis-Skins and XPlay have local real favicons and their orange/black and monochrome palettes', () => {
+  for (const [brand, file] of [['lis-skins', 'lis-skins.png'], ['xplay', 'xplay.png']]) {
+    assert.match(html, new RegExp(`icon: './assets/icons/${file.replace('.', '\\.')}', brand: '${brand}'`));
+    const bytes = fs.readFileSync(path.join(__dirname, '../assets/icons', file));
+    assert.equal(bytes.subarray(1, 4).toString(), 'PNG');
+    assert.ok(bytes.readUInt32BE(16) >= 32 && bytes.readUInt32BE(20) >= 32);
+  }
+  assert.match(html, /data-brand="lis-skins"\] \{ background:#ff7200; color:#161006/);
+  assert.match(html, /data-brand="xplay"\] \{ background:#000; color:#f8f8f8/);
+  assert.doesNotMatch(html, /background:#f6ad62|color:#f5d77b/);
+});
+
 test('every referenced local icon is present and is an image, not an HTML error page', () => {
   const icons = new Set([...html.matchAll(/src="\.\/(assets\/icons\/[^"?]+)"/g)].map(m => m[1]).concat(data.costs.map(c => c.icon)));
   for (const icon of icons) {

@@ -216,8 +216,9 @@
     .support-grid .partner-pill .code-copy { grid-column:2; grid-row:2; justify-self:start; padding:0; border:0; background:transparent; color:inherit; font:inherit; font-size:14px; line-height:1.2; text-align:left; cursor:pointer; opacity:.8; }
     .support-grid .partner-pill .code-copy:hover,
     .support-grid .partner-pill .code-copy.is-copied { opacity:1; text-decoration:underline; text-underline-offset:2px; }
-    .support-grid .pill[data-brand="lis-skins"] { background:#f6ad62; color:#291507; }
-    .support-grid .pill[data-brand="xplay"] { background:#1c2b42; color:#f5d77b; }
+    .support-grid .pill[data-brand="lis-skins"] { background:#ff7200; color:#161006; }
+    .support-grid .partner-pill[data-brand="lis-skins"] img { padding:2px; background:#111; border-radius:6px; }
+    .support-grid .pill[data-brand="xplay"] { background:#000; color:#f8f8f8; box-shadow:inset 0 0 0 1px rgba(255,255,255,.28), inset 0 1px 0 rgba(255,255,255,.45), 0 10px 22px rgba(0,0,0,.16); }
     .support-grid .partner-pill.has-no-icon { grid-template-columns:minmax(0,1fr); }
     .support-grid .partner-pill.has-no-icon .pill-name,.support-grid .partner-pill.has-no-icon .code-copy { grid-column:1; }
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
@@ -908,8 +909,8 @@
       const partnerCodes = [
         { name: 'Cinch Gaming', code: 'MOBS2R', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
         { name: 'Rampage Coffee Co.', code: 'MOBS2R', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' },
-        { name: 'Lis-Skins', code: 'MOBS2R', href: 'https://lis-skins.com/', brand: 'lis-skins' },
-        { name: 'XPlay.gg', code: 'MOBS2R', href: 'https://xplay.gg/', brand: 'xplay' }
+        { name: 'Lis-Skins', code: 'MOBS2R', href: 'https://lis-skins.com/', icon: './assets/icons/lis-skins.png', brand: 'lis-skins' },
+        { name: 'XPlay.gg', code: 'MOBS2R', href: 'https://xplay.gg/', icon: './assets/icons/xplay.png', brand: 'xplay' }
       ];
       const partnerList = document.getElementById('partner-codes');
       for (const partner of partnerCodes) {
