@@ -11,6 +11,14 @@ test('hero subtitle stays concise and retains its animated word scroller', () =>
   assert.match(html, /id="hero-word">analytics\.<\/span>/);
   assert.doesNotMatch(html, /building the connective tissue behind/);
 });
+
+test('Apps replaces the public Worlds label without breaking existing section links', () => {
+  assert.match(html, /<h1>One foundation\.<em>Many apps\.<\/em><\/h1>/);
+  assert.match(html, /id="worlds-title">Apps</);
+  assert.equal([...html.matchAll(/href="#worlds">Apps<\/a>/g)].length, 2);
+  assert.match(html, /id="worlds" aria-labelledby="worlds-title"/);
+  assert.doesNotMatch(html, />Worlds<|Many worlds\./);
+});
 test('homepage navigation reaches real sections and documentation instead of reopening itself', () => {
   for (const [label, id] of [['Explore', 'worlds'], ['Platform', 'platform']]) {
     assert.match(html, new RegExp(`href="#${id}"( aria-current="page")?>${label}`));
