@@ -61,6 +61,17 @@
       "kind": "erc20",
       "address": "0xE7e7f86B917CCE369991d0DA51D61b3e183C9718",
       "token": "0x4d224452801aced8b2f0aebe155379bb5d594381"
+    },
+    {
+      "id": "usdt",
+      "name": "Tether on Ethereum",
+      "symbol": "USDT",
+      "network": "ethereum",
+      "kind": "erc20",
+      "address": "0xE7e7f86B917CCE369991d0DA51D61b3e183C9718",
+      "token": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "tokenSource": "https://tether.to/en/supported-protocols/",
+      "recipientSource": "Existing Ethereum donation wallet"
     }
   ]
 }

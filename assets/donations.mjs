@@ -1,9 +1,10 @@
-const IDS = new Set(['btc', 'eth', 'sol', 'avax', 'pol', 'usdc', 'ape']);
+const IDS = new Set(['btc', 'eth', 'sol', 'avax', 'pol', 'usdc', 'ape', 'usdt']);
 const ASSETS = {
   btc: ['btc', 'btc', 'BTC'], eth: ['ethereum', 'evm', 'ETH'], sol: ['sol', 'sol', 'SOL'],
   avax: ['avalanche', 'evm', 'AVAX'], pol: ['polygon', 'evm', 'POL'],
   usdc: ['ethereum', 'erc20', 'USDC', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'],
-  ape: ['ethereum', 'erc20', 'APE', '0x4d224452801aced8b2f0aebe155379bb5d594381']
+  ape: ['ethereum', 'erc20', 'APE', '0x4d224452801aced8b2f0aebe155379bb5d594381'],
+  usdt: ['ethereum', 'erc20', 'USDT', '0xdac17f958d2ee523a2206206994597c13d831ec7']
 };
 export function validateWallets(data) {
   if (data?.schema !== 1 || data.rewardsEnabled !== false || !Array.isArray(data.chains) || data.chains.length !== IDS.size) throw Error('Invalid donation wallet configuration');
@@ -51,33 +52,30 @@ export async function mountDonations(root, { fetcher = fetch, clipboard = global
   const doc = root.ownerDocument;
   buttons.forEach(button => { button.disabled = true; });
   try {
-    const response = await fetcher('./assets/donation-wallets.json');
+    const response = await fetcher('./assets/donation-wallets.json', { cache: 'no-store' });
     if (!response.ok) throw Error('Donation wallets unavailable');
     const chains = new Map(validateWallets(await response.json()).map(c => [c.id, c]));
     for (const button of buttons) {
       const chain = chains.get(button.dataset.cryptoWallet);
       if (!chain) continue;
-      const label = button.querySelector('small');
-      const originalLabel = label.textContent;
+      const label = button.querySelector('[data-crypto-label]');
       let timer;
-      button.setAttribute('aria-label', `Copy ${chain.name} address`);
-      button.title = `Copy ${chain.symbol} address · ${chain.name}`;
+      button.setAttribute('aria-label', `Copy ${label.textContent} address`);
       button.disabled = false;
       button.onclick = async () => {
         cancel(timer);
         try {
           await copyAddress(chain.address, clipboard, doc);
-          label.textContent = 'Copied ✓';
-          if (status) status.textContent = `${chain.name} address copied.`;
+          button.dataset.copyState = 'copied';
+          if (status) status.textContent = `${label.textContent} address copied.`;
         } catch {
-          label.textContent = 'Copy unavailable';
+          button.dataset.copyState = 'error';
           if (status) status.textContent = 'Could not copy the address. Please try again.';
         }
-        timer = schedule(() => { label.textContent = originalLabel; }, 2000);
+        timer = schedule(() => { delete button.dataset.copyState; }, 2000);
       };
     }
   } catch {
-    buttons.forEach(button => { button.querySelector('small').textContent = 'Unavailable'; });
     if (status) status.textContent = 'Donation addresses are unavailable.';
   }
 }

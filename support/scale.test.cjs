@@ -34,7 +34,7 @@ test('requested copy is removed, Scale is visible and donations stay on the corp
   assert.doesNotMatch(html, /omerta\.chat\/\?donate/);
   assert.match(html, /id="donate"/);
   assert.doesNotMatch(html, /Email-linked rewards|Future Crypto Ball rewards|For an existing donation receipt|Send only the selected asset|Annual costs in their original billing currencies|The same account, coin, and inventory|id="crypto-wallets"|donation-rewards/);
-  assert.equal([...html.matchAll(/<button type="button" disabled class="pill"[^>]+data-crypto-wallet=/g)].length, 7);
+  assert.equal([...html.matchAll(/<button type="button" disabled class="pill"[^>]+data-crypto-wallet=/g)].length, 8);
   assert.match(html, /id="crypto-copy-status" class="sr-only" role="status"/);
   assert.match(html, /href="mailto:biz@illicit\.page">biz@illicit\.page<\/a>/);
   assert.match(html, /href="mailto:promo@illicit\.page">promo@illicit\.page<\/a>/);
@@ -61,10 +61,22 @@ test('annual cost breakdown renders only service name and right-aligned amount w
   assert.match(html, /\.cost-amount \{[^}]*text-align:right/);
 });
 
-test('all seven migrated recipients validate and bad or duplicated networks fail closed', async () => {
+test('crypto buttons show only the asset name and dollar-prefixed ticker; Solana is purple', () => {
+  const buttons = [...html.matchAll(/data-crypto-wallet="([a-z]+)"[^>]*>[\s\S]*?<span data-crypto-label>([^<]+)<\/span><\/button>/g)];
+  assert.deepEqual(buttons.map(match => match[2]), ['Bitcoin ($BTC)', 'Ethereum ($ETH)', 'Solana ($SOL)', 'Avalanche ($AVAX)', 'Polygon ($POL)', 'USD Coin ($USDC)', 'ApeCoin ($APE)', 'Tether ($USDT)']);
+  for (const match of buttons) assert.doesNotMatch(match[0], /<small>|C-Chain|PoS|on Ethereum|·/);
+  assert.match(html, /data-brand="sol"\] \{ background:#9945ff; color:#fff/);
+});
+
+test('all eight recipients validate and bad or duplicated networks fail closed', async () => {
   const { validateWallets } = await import('../assets/donations.mjs');
   const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/donation-wallets.json')));
-  assert.equal(validateWallets(config).length, 7);
+  assert.equal(validateWallets(config).length, 8);
+  const tether = config.chains.find(c => c.id === 'usdt');
+  assert.equal(tether.address, config.chains.find(c => c.id === 'eth').address);
+  assert.equal(tether.token, '0xdac17f958d2ee523a2206206994597c13d831ec7');
+  const wrongTether = structuredClone(config); wrongTether.chains.find(c => c.id === 'usdt').token = wrongTether.chains.find(c => c.id === 'usdc').token;
+  assert.throws(() => validateWallets(wrongTether));
   const bad = structuredClone(config); bad.chains[0].address = 'not-a-wallet';
   assert.throws(() => validateWallets(bad));
   const duplicate = structuredClone(config); duplicate.chains[1].id = duplicate.chains[0].id;
@@ -74,6 +86,12 @@ test('all seven migrated recipients validate and bad or duplicated networks fail
   const wrongToken = structuredClone(config); wrongToken.chains[5].token = wrongToken.chains[6].token;
   assert.throws(() => validateWallets(wrongToken));
   assert.throws(() => validateWallets({ ...config, rewardsEnabled: true }));
+});
+
+test('Partners appears before Canada and both new partners use the supplied MOBS2R code', () => {
+  assert.ok(html.indexOf('id="partner-pills"') < html.indexOf('id="planet-pills"'));
+  assert.match(html, /name: 'Lis-Skins', code: 'MOBS2R', href: 'https:\/\/lis-skins.com\/'/);
+  assert.match(html, /name: 'XPlay.gg', code: 'MOBS2R', href: 'https:\/\/xplay.gg\/'/);
 });
 
 test('every referenced local icon is present and is an image, not an HTML error page', () => {

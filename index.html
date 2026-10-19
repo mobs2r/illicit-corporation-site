@@ -189,10 +189,13 @@
     .support-grid .pill[data-brand="throne"] { background:#796ef5; color:#0e0b1a; }
     .support-grid .pill[data-brand="btc"] { background:#f7931a; color:#1a1208; }
     .support-grid .pill[data-brand="eth"] { background:#627eea; color:#0c1224; }
-    .support-grid .pill[data-brand="sol"] { background:#00ffa3; color:#06221c; }
+    .support-grid .pill[data-brand="sol"] { background:#9945ff; color:#fff; }
+    .support-grid button[data-copy-state="copied"] { outline:2px solid var(--text); outline-offset:3px; filter:brightness(1.12); }
+    .support-grid button[data-copy-state="error"] { outline:2px solid var(--red); outline-offset:3px; }
     .support-grid .pill[data-brand="avax"] { background:#e84142; color:#2a0a0a; }
     .support-grid .pill[data-brand="pol"] { background:#8247e5; color:#fff; }
     .support-grid .pill[data-brand="usdc"] { background:#2775ca; color:#fff; }
+    .support-grid .pill[data-brand="usdt"] { background:#26a17b; color:#041d15; }
     .support-grid .pill[data-brand="ape"] { background:#2159f5; color:#fff; }
     .support-grid .pill[data-brand="redcross"] { background:#cc0000; color:#fff; }
     .support-grid .pill[data-brand="wwf"] { background:#fff; color:#111; box-shadow:inset 0 0 0 1px rgba(0,0,0,.18), inset 0 1px 0 #fff, 0 10px 22px rgba(0,0,0,.16); }
@@ -213,6 +216,10 @@
     .support-grid .partner-pill .code-copy { grid-column:2; grid-row:2; justify-self:start; padding:0; border:0; background:transparent; color:inherit; font:inherit; font-size:14px; line-height:1.2; text-align:left; cursor:pointer; opacity:.8; }
     .support-grid .partner-pill .code-copy:hover,
     .support-grid .partner-pill .code-copy.is-copied { opacity:1; text-decoration:underline; text-underline-offset:2px; }
+    .support-grid .pill[data-brand="lis-skins"] { background:#f6ad62; color:#291507; }
+    .support-grid .pill[data-brand="xplay"] { background:#1c2b42; color:#f5d77b; }
+    .support-grid .partner-pill.has-no-icon .pill-link { grid-template-columns:minmax(0,1fr); }
+    .support-grid .partner-pill.has-no-icon .pill-name,.support-grid .partner-pill.has-no-icon .code-copy { grid-column:1; }
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
     .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
     .mod-grid a:hover .mod-shot { transform:scale(1.045); }
@@ -485,15 +492,20 @@
         <section class="pill-group" aria-labelledby="crypto-pills">
           <h3 class="group-label" id="crypto-pills">Crypto</h3>
           <ul class="support-grid">
-            <li><button type="button" disabled class="pill" data-brand="btc" data-crypto-wallet="btc"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span>Bitcoin<small>BTC</small></span></button></li>
-            <li><button type="button" disabled class="pill" data-brand="eth" data-crypto-wallet="eth"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span>Ethereum<small>ETH</small></span></button></li>
-            <li><button type="button" disabled class="pill" data-brand="sol" data-crypto-wallet="sol"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span>Solana<small>SOL</small></span></button></li>
-            <li><button type="button" disabled class="pill" data-brand="avax" data-crypto-wallet="avax"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span>Avalanche<small>AVAX · C-Chain</small></span></button></li>
-            <li><button type="button" disabled class="pill" data-brand="pol" data-crypto-wallet="pol"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span>Polygon<small>POL · Polygon PoS</small></span></button></li>
-            <li><button type="button" disabled class="pill" data-brand="usdc" data-crypto-wallet="usdc"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span>USD Coin<small>USDC · Ethereum</small></span></button></li>
-            <li><button type="button" disabled class="pill" data-brand="ape" data-crypto-wallet="ape"><img src="./assets/icons/ape.png" width="22" height="22" alt=""><span>ApeCoin<small>APE · Ethereum</small></span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="btc" data-crypto-wallet="btc"><img src="./assets/icons/btc.svg" width="22" height="22" alt=""><span data-crypto-label>Bitcoin ($BTC)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="eth" data-crypto-wallet="eth"><img src="./assets/icons/eth.svg" width="22" height="22" alt=""><span data-crypto-label>Ethereum ($ETH)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="sol" data-crypto-wallet="sol"><img src="./assets/icons/sol.svg" width="22" height="22" alt=""><span data-crypto-label>Solana ($SOL)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="avax" data-crypto-wallet="avax"><img src="./assets/icons/avax.svg" width="22" height="22" alt=""><span data-crypto-label>Avalanche ($AVAX)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="pol" data-crypto-wallet="pol"><img src="./assets/icons/pol.svg" width="22" height="22" alt=""><span data-crypto-label>Polygon ($POL)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="usdc" data-crypto-wallet="usdc"><img src="./assets/icons/usdc.svg" width="22" height="22" alt=""><span data-crypto-label>USD Coin ($USDC)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="ape" data-crypto-wallet="ape"><img src="./assets/icons/ape.png" width="22" height="22" alt=""><span data-crypto-label>ApeCoin ($APE)</span></button></li>
+            <li><button type="button" disabled class="pill" data-brand="usdt" data-crypto-wallet="usdt"><img src="./assets/icons/usdt.svg" width="22" height="22" alt=""><span data-crypto-label>Tether ($USDT)</span></button></li>
           </ul>
           <span id="crypto-copy-status" class="sr-only" role="status" aria-live="polite"></span>
+        </section>
+        <section class="pill-group" aria-labelledby="partner-pills">
+          <h3 class="group-label" id="partner-pills">Partners</h3>
+          <ul class="support-grid" id="partner-codes"></ul>
         </section>
         <section class="pill-group" aria-labelledby="planet-pills">
           <h3 class="group-label" id="planet-pills">Canada</h3>
@@ -501,10 +513,6 @@
             <li><a class="pill" data-brand="redcross" href="https://www.redcross.ca/donate" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/redcross.png" width="22" height="22" alt=""><span>Red Cross<small>Donate</small></span></a></li>
             <li><a class="pill" data-brand="wwf" href="https://wwf.ca/donate/" target="_blank" rel="noopener noreferrer"><img src="./assets/icons/wwf.png" width="22" height="22" alt=""><span>WWF<small>Donate</small></span></a></li>
           </ul>
-        </section>
-        <section class="pill-group" aria-labelledby="partner-pills">
-          <h3 class="group-label" id="partner-pills">Partners</h3>
-          <ul class="support-grid" id="partner-codes"></ul>
         </section>
       </div>
     </section>
@@ -533,7 +541,7 @@
   </footer>
   <script type="module">
     import { convertMoney, roundMoney, formatMoney } from './assets/scale-pricing.mjs';
-    import { mountDonations } from './assets/donations.mjs?v=copy-wallets-1';
+    import { mountDonations } from './assets/donations.mjs?v=copy-wallets-2';
     (() => {
       const openingHash = location.hash;
       let userNavigated = false;
@@ -899,28 +907,33 @@
       };
       const partnerCodes = [
         { name: 'Cinch Gaming', code: 'MOBS2R', href: 'https://www.cinchgaming.com/', icon: './assets/icons/cinch.png', brand: 'cinch' },
-        { name: 'Rampage Coffee Co.', code: 'MOBS2R', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' }
+        { name: 'Rampage Coffee Co.', code: 'MOBS2R', href: 'https://rampagecoffee.com/', icon: './assets/icons/rampage.png', brand: 'rampage' },
+        { name: 'Lis-Skins', code: 'MOBS2R', href: 'https://lis-skins.com/', brand: 'lis-skins' },
+        { name: 'XPlay.gg', code: 'MOBS2R', href: 'https://xplay.gg/', brand: 'xplay' }
       ];
       const partnerList = document.getElementById('partner-codes');
       for (const partner of partnerCodes) {
         const item = document.createElement('li');
         const pill = document.createElement('div');
-        pill.className = 'pill partner-pill';
+        pill.className = `pill partner-pill${partner.icon ? '' : ' has-no-icon'}`;
         pill.dataset.brand = partner.brand;
         const link = document.createElement('a');
         link.className = 'pill-link';
         link.href = partner.href;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        const icon = document.createElement('img');
-        icon.alt = '';
-        icon.width = 22;
-        icon.height = 22;
-        icon.src = partner.icon;
+        if (partner.icon) {
+          const icon = document.createElement('img');
+          icon.alt = '';
+          icon.width = 22;
+          icon.height = 22;
+          icon.src = partner.icon;
+          link.append(icon);
+        }
         const name = document.createElement('span');
         name.className = 'pill-name';
         name.textContent = partner.name;
-        link.append(icon, name);
+        link.append(name);
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'code-copy';

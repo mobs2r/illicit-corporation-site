@@ -53,8 +53,18 @@ not a dated banner on the page.
 not credentials or donor records. It avoids requiring Omerta login or widening
 the shared API's CORS policy. Recheck the public configuration before changing
 recipients. Crypto buttons copy the verified recipient directly and briefly
-show a confirmation; network names stay in their compact labels. An accessible
-status announces success or failure without adding visible wallet panels.
+show a brief confirmation outline. Labels contain only the asset name and
+($TICKER); an accessible status announces success or failure without changing
+those labels or adding visible wallet panels. Recipient networks remain
+validated in the wallet configuration; this presentation change does not
+alter any address or token.
+
+Tether ($USDT) uses the existing Ethereum recipient, with the ERC-20 USD₮
+contract checked against https://tether.to/en/supported-protocols/. The original
+seven recipients remain unchanged. Its icon is from
+https://github.com/spothq/cryptocurrency-icons/blob/master/svg/black/usdt.svg
+(CC0-1.0). Partners appear before Canada; Lis-Skins and XPlay.gg both use the
+owner-supplied MOBS2R code and link to their homepages.
 The corporate page does not issue quotes, connect a wallet, mint
 rewards or collect email addresses. Existing backend receipts and awarded
 inventory remain intact.

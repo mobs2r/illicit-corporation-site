@@ -7,9 +7,10 @@ const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/donati
 function fixture() {
   const status = { textContent: '' };
   const buttons = config.chains.map(chain => {
-    const small = { textContent: chain.symbol };
-    return { dataset: { cryptoWallet: chain.id }, small, attributes: {}, disabled: true,
-      querySelector: () => small, setAttribute(name, value) { this.attributes[name] = value; } };
+    const names = { btc: 'Bitcoin', eth: 'Ethereum', sol: 'Solana', avax: 'Avalanche', pol: 'Polygon', usdc: 'USD Coin', ape: 'ApeCoin', usdt: 'Tether' };
+    const label = { textContent: `${names[chain.id]} ($${chain.symbol})` };
+    return { dataset: { cryptoWallet: chain.id }, label, attributes: {}, disabled: true,
+      querySelector: () => label, setAttribute(name, value) { this.attributes[name] = value; } };
   });
   return { buttons, status, root: { ownerDocument: {}, querySelectorAll: () => buttons, querySelector: () => status } };
 }
@@ -29,12 +30,14 @@ test('each crypto button copies its exact existing recipient and briefly confirm
     assert.match(button.attributes['aria-label'], /^Copy /);
     await button.onclick();
     assert.equal(copied.at(-1), config.chains[i].address);
-    assert.equal(button.small.textContent, 'Copied ✓');
-    assert.equal(app.status.textContent, `${config.chains[i].name} address copied.`);
+    assert.equal(button.dataset.copyState, 'copied');
+    assert.equal(app.status.textContent, `${button.label.textContent} address copied.`);
+    assert.match(button.label.textContent, /\(\$[A-Z]+\)$/);
     resets.at(-1)();
-    assert.equal(button.small.textContent, config.chains[i].symbol);
+    assert.equal(button.dataset.copyState, undefined);
+    assert.match(button.label.textContent, /\(\$[A-Z]+\)$/);
   }
-  assert.equal(copied.length, 7);
+  assert.equal(copied.length, 8);
 });
 
 test('unavailable or invalid wallet data never enables copying', async () => {
@@ -43,7 +46,7 @@ test('unavailable or invalid wallet data never enables copying', async () => {
     const app = fixture();
     await mountDonations(app.root, { fetcher: async () => response });
     assert.ok(app.buttons.every(button => button.disabled && !button.onclick));
-    assert.ok(app.buttons.every(button => button.small.textContent === 'Unavailable'));
+    assert.ok(app.buttons.every(button => /\(\$[A-Z]+\)$/.test(button.label.textContent)));
   }
 });
 
@@ -63,13 +66,14 @@ test('user-activated copy fallback cleans up and restores focus; denial never re
   assert.deepEqual([removed, focused, selected], [2, 2, 2]);
 });
 
-test('copy failure gives an error label, not a false Copied confirmation', async () => {
+test('copy failure gives an error state, not a false Copied confirmation or changed label', async () => {
   const { mountDonations } = await import('../assets/donations.mjs');
   const app = fixture();
   app.root.ownerDocument = { createElement: () => { throw Error('Copy blocked'); } };
   await mountDonations(app.root, { fetcher: async () => ({ ok: true, json: async () => config }),
     clipboard: { writeText: async () => { throw Error('Denied'); } }, schedule: () => {}, cancel: () => {} });
   await app.buttons[0].onclick();
-  assert.equal(app.buttons[0].small.textContent, 'Copy unavailable');
+  assert.equal(app.buttons[0].dataset.copyState, 'error');
+  assert.equal(app.buttons[0].label.textContent, 'Bitcoin ($BTC)');
   assert.match(app.status.textContent, /Could not copy/);
 });
