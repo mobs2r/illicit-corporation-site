@@ -160,23 +160,18 @@
     .cost-readout strong { font-size:clamp(15px,1.6vw,20px); font-weight:400; letter-spacing:-.03em; line-height:1.15; text-wrap:balance; }
     .cost-readout span { color:var(--muted); font-size:12px; line-height:1.3; }
     .donut-slice { transition:opacity .2s ease, filter .2s ease; }
-    .cost-chart.is-active a .donut-slice { opacity:.38; }
-    .cost-chart.is-active a.is-hot .donut-slice { opacity:1; filter:brightness(1.14); }
-    .cost-chart a:focus-visible .donut-slice { outline:2px solid var(--blue); outline-offset:2px; }
+    .cost-chart.is-active [data-slice] .donut-slice { opacity:.38; }
+    .cost-chart.is-active [data-slice].is-hot .donut-slice { opacity:1; filter:brightness(1.14); }
+    .cost-chart [data-slice]:focus-visible .donut-slice { outline:2px solid var(--blue); outline-offset:2px; }
     .cost-list { margin:0; padding:0; list-style:none; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#1c2229,#15191f); }
     .cost-list li + li { border-top:1px solid var(--line); }
-    .cost-list a { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 16px; color:inherit; text-decoration:none; }
-    .cost-list a:hover, .cost-list a.is-hot { background:rgba(136,188,240,.16); }
-    .cost-list.is-active a { opacity:.55; }
-    .cost-list.is-active a.is-hot, .cost-list.is-active a:hover { opacity:1; }
-    .cost-name { display:flex; align-items:center; gap:10px; min-width:0; }
-    .cost-swatch { width:9px; height:9px; flex:0 0 auto; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }
-    .cost-name img { width:20px; height:20px; flex:0 0 auto; border-radius:5px; }
-    .cost-name .cost-mark { width:20px; height:20px; flex:0 0 auto; display:block; color:var(--text); }
+    .cost-list li { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 16px; }
+    .cost-list li:hover, .cost-list li.is-hot { background:rgba(136,188,240,.16); }
+    .cost-list.is-active li { opacity:.55; }
+    .cost-list.is-active li.is-hot, .cost-list.is-active li:hover { opacity:1; }
+    .cost-name { min-width:0; overflow-wrap:anywhere; }
     .cost-amount { color:var(--text); text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
     .cost-total { display:flex; justify-content:space-between; gap:16px; margin:12px 0 0; padding:12px 16px; border:1px solid var(--line); border-radius:14px; background:#ffffff08; }
-    .cost-basis { display:block; font-size:11px; font-weight:400; color:var(--muted); line-height:1.45; margin-top:4px; }
-    .cost-name > span:last-child { min-width:0; }
     .support-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0 0; padding:0; list-style:none; }
     .support-grid .pill { display:flex; align-items:center; gap:12px; min-height:76px; padding:14px 16px; border-radius:16px; font-size:18px; text-decoration:none; }
     .support-grid .pill:hover { transform:translateY(-2px); }
@@ -399,7 +394,7 @@
       .site-nav a.is-current { background:rgba(136,188,240,.22); }
     }
     @media (prefers-reduced-motion:reduce) {
-      .nav-indicator, .product, .world, .mod-grid a, .product::after, .world::after, .mod-grid a::after, .site-nav, .tilt, .donut-slice, .cost-list a { transition:none; }
+      .nav-indicator, .product, .world, .mod-grid a, .product::after, .world::after, .mod-grid a::after, .site-nav, .tilt, .donut-slice, .cost-list li { transition:none; }
       .product:hover::after, .world:hover::after, .mod-grid a:hover::after { transform:none; }
       .tilt, .tilt:hover, .action:active { transform:none; }
     }
@@ -781,18 +776,6 @@
       };
       watchSlices(costChart);
       watchSlices(costList);
-      const wallstreetMark = () => {
-        const mark = document.createElementNS(svgNS, 'svg');
-        mark.setAttribute('class', 'cost-mark');
-        mark.setAttribute('viewBox', '0 0 100 122');
-        mark.setAttribute('aria-hidden', 'true');
-        mark.setAttribute('focusable', 'false');
-        const shape = document.createElementNS(svgNS, 'path');
-        shape.setAttribute('fill', 'currentColor');
-        shape.setAttribute('d', 'M0 0H99V99H71L50 121L40 112L66 85H85V14H14V85H32V99H0Z');
-        mark.append(shape);
-        return mark;
-      };
       const renderFunds = () => {
         if (!fundsData) return;
         for (const button of currencySwitch.querySelectorAll('button')) {
@@ -802,34 +785,10 @@
         const slices = [];
         let rawTotal = 0;
         fundsData.costs.forEach((cost, index) => {
-          const supports = cost.supports || {};
           const row = document.createElement('li');
-          const link = document.createElement('a');
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          if (supports.url) link.href = supports.url;
           const name = document.createElement('span');
           name.className = 'cost-name';
-          const swatch = document.createElement('span');
-          swatch.className = 'cost-swatch';
-          swatch.style.background = chartColors[index % chartColors.length];
-          let icon;
-          if (cost.icon === 'assets/icons/wallstreet.svg') {
-            icon = wallstreetMark();
-          } else {
-            icon = document.createElement('img');
-            icon.alt = '';
-            icon.width = 20;
-            icon.height = 20;
-            icon.src = `./${cost.icon}`;
-          }
-          const label = document.createElement('span');
-          label.textContent = cost.name;
-          name.append(swatch, icon, label);
-          const basis = document.createElement('small');
-          basis.className = 'cost-basis';
-          basis.textContent = cost.amount == null ? 'Invoice amount unconfirmed' : `${formatMoney(cost.amount, cost.currency)} / year · ${cost.basis || 'owner estimate; invoice unconfirmed'}`;
-          label.append(basis);
+          name.textContent = cost.name;
           const amount = document.createElement('span');
           amount.className = 'cost-amount';
           if (cost.amount == null) {
@@ -843,27 +802,17 @@
             slices.push({
               name: cost.name,
               value: shown,
-              color: chartColors[index % chartColors.length],
-              href: supports.url || '',
-              supportsLabel: supports.label || cost.name
+              color: chartColors[index % chartColors.length]
             });
-            link.dataset.slice = String(sliceIndexValue);
+            row.dataset.slice = String(sliceIndexValue);
           }
-          link.append(name, amount);
-          row.append(link);
+          row.append(name, amount);
           costList.append(row);
         });
         const total = displayRound(rawTotal);
         const chartTotal = slices.reduce((sum, slice) => sum + slice.value, 0);
         costTotal.textContent = formatMoney(total, fundsCurrency);
         const shareText = value => `${(chartTotal ? (value / chartTotal) * 100 : 0).toFixed(1)}%`;
-        for (const link of costList.querySelectorAll('[data-slice]')) {
-          const slice = slices[Number(link.dataset.slice)];
-          const note = document.createElement('span');
-          note.className = 'sr-only';
-          note.textContent = `, ${shareText(slice.value)}, ${slice.supportsLabel}`;
-          link.append(note);
-        }
         const svg = document.createElementNS(svgNS, 'svg');
         svg.setAttribute('viewBox', '0 0 200 200');
         svg.setAttribute('role', 'group');
@@ -901,14 +850,11 @@
           const [x2, y2] = point(end, outer);
           const [x3, y3] = point(end, inner);
           const [x4, y4] = point(start, inner);
-          const link = document.createElementNS(svgNS, 'a');
-          if (slice.href) {
-            link.setAttribute('href', slice.href);
-            link.setAttribute('target', '_blank');
-            link.setAttribute('rel', 'noopener noreferrer');
-          }
+          const link = document.createElementNS(svgNS, 'g');
+          link.setAttribute('role', 'img');
+          link.setAttribute('tabindex', '0');
           link.setAttribute('data-slice', String(index));
-          link.setAttribute('aria-label', `${slice.name}, ${formatMoney(slice.value, fundsCurrency)}, ${shareText(slice.value)}, ${slice.supportsLabel}`);
+          link.setAttribute('aria-label', `${slice.name}, ${formatMoney(slice.value, fundsCurrency)}, ${shareText(slice.value)}`);
           const wedge = document.createElementNS(svgNS, 'path');
           wedge.setAttribute('class', 'donut-slice');
           wedge.setAttribute('d', `M ${x1} ${y1} A ${outer} ${outer} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${inner} ${inner} 0 ${large} 0 ${x4} ${y4} Z`);
@@ -946,9 +892,7 @@
           }
           title.textContent = hot.name;
           detail.textContent = `${formatMoney(hot.value, fundsCurrency)} · ${shareText(hot.value)}`;
-          const where = document.createElement('span');
-          where.textContent = hot.supportsLabel;
-          costReadout.append(title, detail, where);
+          costReadout.append(title, detail);
         };
         showSlice = paintSlice;
         paintSlice(null);

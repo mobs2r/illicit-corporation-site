@@ -51,6 +51,16 @@ test('contact contains direct contact details without the scrapped support ticke
   assert.doesNotMatch(html, /Conversions are indicative\. Taxes, card fees and metered usage may differ\. Source amounts and pricing basis appear beside each cost\./);
 });
 
+test('annual cost breakdown renders only service name and right-aligned amount with no links', () => {
+  const render = html.slice(html.indexOf('const renderFunds = () => {'), html.indexOf('const partnerCodes = ['));
+  assert.match(render, /name\.textContent = cost\.name/);
+  assert.match(render, /row\.append\(name, amount\)/);
+  assert.match(render, /amount\.textContent = formatMoney\(shown, fundsCurrency\)/);
+  assert.doesNotMatch(render, /createElement\('a'\)|createElementNS\(svgNS, 'a'\)|cost-basis|cost-swatch|createElement\('small'\)|createElement\('img'\)|supportsLabel|setAttribute\('href'/);
+  assert.match(html, /\.cost-list li \{ display:flex; align-items:center; justify-content:space-between/);
+  assert.match(html, /\.cost-amount \{[^}]*text-align:right/);
+});
+
 test('all seven migrated recipients validate and bad or duplicated networks fail closed', async () => {
   const { validateWallets } = await import('../assets/donations.mjs');
   const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/donation-wallets.json')));
