@@ -32,7 +32,11 @@ test('public embed has one viewport scroll owner and matching favicon', () => {
   app.location.hash = '#contact'; app.events.hashchange();
   assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/#contact');
   app.location.hash = '#untrusted'; app.events.hashchange();
-  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/');
+  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/#home');
+});
+test('root visits force the initial navigation after the iframe is reparented', () => {
+  const app = run('https://illicit.page/');
+  assert.equal(app.src(), 'https://mobs2r.github.io/illicit-page/#home');
 });
 test('editor preview is never covered or scroll-locked by the public embed', () => {
   const app = run('https://mmm.page/mobs2r?editing');

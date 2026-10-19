@@ -23,7 +23,7 @@ test('annual display restores upward tens/hundreds without adding public explana
   assert.equal(roundBudgetMoney(convertMoney(18.99, 'USD', 'CAD', data.rates)), 30);
   assert.equal(formatMoney(roundBudgetMoney(18.99), 'USD'), 'US$20');
   for (const amount of [NaN, -1, Infinity]) assert.throws(() => roundBudgetMoney(amount));
-  assert.match(html, /const displayRound = roundBudgetMoney/);
+  assert.match(html, /const grouped = groupAnnualCosts/);
   assert.match(html, /const total = rawTotal/);
   const section = html.slice(html.indexOf('id="funds"'), html.indexOf('id="donate"'));
   assert.doesNotMatch(section, /disclaimer|indicative|round|invoice|estimate|group-note|rates-as-of/i);
@@ -133,4 +133,50 @@ test('manifest and touch icon use the same corporate favicon', () => {
   assert.match(html, /rel="apple-touch-icon" href="\.\/assets\/favicon\.png"/);
   assert.ok(manifest.icons.some(i => i.src === './assets/favicon.png' && i.sizes === '512x512'));
   assert.equal(fs.readFileSync(path.join(__dirname, '../assets/favicon.png')).subarray(1, 4).toString(), 'PNG');
+});
+
+test('remaining button palettes and current USDC mark match their audited sources', () => {
+  for (const [brand, color] of Object.entries({kofi:'ff6433',patreon:'000',twitch:'9146ff',paypal:'002991',streamlabs:'80f5d2',bmc:'ffdd00',throne:'7065f2',rampage:'f8c705',redcross:'cc0000',usdc:'0b53bf'})) {
+    assert.ok(html.includes(`data-brand="${brand}"] { background:#${color};`), brand);
+  }
+  const usdc = fs.readFileSync(path.join(__dirname, '../assets/icons/usdc.svg'), 'utf8');
+  assert.match(usdc, /#0B53BF/);
+  assert.doesNotMatch(html, /data-brand="usdc"\] img \{ filter/);
+  assert.match(html, /src="\.\/assets\/icons\/streamlabs.png"/);
+});
+
+test('domain categories combine into exactly one wheel chunk in every currency', async () => {
+  const { groupAnnualCosts } = await import('../assets/scale-groups.mjs');
+  const { convertMoney, roundBudgetMoney } = await import('../assets/scale-pricing.mjs');
+  for (const currency of ['USD', 'CAD', 'EUR', 'GBP']) {
+    const grouped = groupAnnualCosts(data.costs, currency, data.rates, ['#123456', '#abcdef']);
+    assert.deepEqual(grouped.sections.map(section => section.name), ['Domains', 'Services']);
+    assert.equal(grouped.sections[0].rows.length, 9);
+    assert.equal(grouped.sections[1].rows.length, 9);
+    assert.equal(grouped.slices.filter(slice => slice.name === 'Domains').length, 1);
+    assert.equal(grouped.slices.length, 10);
+    assert.ok(grouped.sections[0].rows.every(row => row.sliceIndex === 0));
+    assert.ok(grouped.sections[1].rows.every(row => row.sliceIndex > 0));
+    const expected = data.costs.reduce((sum, cost) => sum + roundBudgetMoney(convertMoney(cost.amount, cost.currency, currency, data.rates)), 0);
+    assert.equal(grouped.total, expected);
+    assert.equal(grouped.slices.reduce((sum, slice) => sum + slice.value, 0), expected);
+    assert.equal(grouped.slices[0].value, grouped.sections[0].rows.reduce((sum, row) => sum + row.shown, 0));
+    if (currency === 'CAD') { assert.equal(grouped.total, 10150); assert.equal(grouped.slices[0].value, 500); }
+  }
+  const tbd = groupAnnualCosts([{name:'example.test',category:'domain',amount:null}], 'USD', data.rates, ['#123456']);
+  assert.equal(tbd.total, 0); assert.equal(tbd.slices.length, 0); assert.equal(tbd.sections[0].rows[0].sliceIndex, null);
+});
+
+test('wheel segments use their complete share with matching strokes to close antialias seams', () => {
+  assert.match(html, /const length = full;/);
+  assert.doesNotMatch(html, /full - gap|Math.max\(full|const gap = full/);
+  assert.match(html, /wedge.setAttribute\('stroke', slice.color\)/);
+  assert.match(html, /wedge.setAttribute\('stroke-width', '\.35'\)/);
+});
+
+test('the bottom profile link is removed while the top profile and sponsor buttons remain', () => {
+  const contact = html.slice(html.indexOf('id="contact"'), html.indexOf('</main>'));
+  assert.doesNotMatch(contact, /github.com/);
+  assert.equal([...html.matchAll(/href="https:\/\/github.com\/mobs2r"/g)].length, 1);
+  assert.match(html, /href="https:\/\/github.com\/sponsors\/mobs2r"/);
 });

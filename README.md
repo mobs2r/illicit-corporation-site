@@ -1,5 +1,38 @@
 # Illicit Corporation
 
+October 19 button audit: current local favicons for Ko-fi, Patreon, PayPal,
+Streamlabs, Throne, Cinch, Rampage, Lis-Skins, XPlay, Red Cross and WWF.
+Twitch and Buy Me a Coffee retain their matching purple/yellow favicons. The
+GitHub button uses the GitHub mark; crypto uses token marks, not exchange logos.
+The bottom profile link is removed; the top-right GitHub link remains.
+
+Brand sources: https://more.ko-fi.com/brand-assets (orange #ff6433),
+https://www.patreon.com/brand (current monochrome identity and rebrand favicon),
+https://streamlabs.com/about (mint #80f5d2 and the linked social-avatar favicon),
+https://rampagecoffee.com/ (site theme yellow #f8c705), and the current site
+favicons linked by Cinch and WWF. PayPal's current favicon retains the
+#002991 deep blue. Throne's purple #7065f2 and Red Cross #cc0000 match their
+favicon pixels. Ko-fi/Patreon/Streamlabs/Cinch/Rampage/WWF were downloaded from
+their own published asset links; PayPal/Throne/Red Cross are cached site favicons
+from Google's s2 service. All are served locally, not requested by visitors.
+USDC uses Circle's unmodified token SVG from the official pressroom brand kit:
+https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/Pressroom/brandkit/logo-downloads/usdc.zip.
+Tether uses the CC0 cryptocurrency-icons color variant.
+
+Scale groups explicit domain rows separately from services in the same board.
+The wheel has one Domains segment; it sums the displayed per-domain budgets
+without re-rounding. Wheel colors meet edge-to-edge, with matching small strokes
+to cover antialias hairlines. Currency conversion and the annual total are
+unchanged. No pricing disclaimers or per-service subtext were restored.
+
+The header gear opens a native, keyboard-accessible server picker and links to
+the existing Illicit account/billing screen. Core choices use the actual game
+icons (Garry's Mod, GTA V and San Andreas from Steam Community; ThreeJS and
+Minecraft cached site favicons). Extra adapters are discovery entries, not
+promises of tested hosting. Setup remains manual: no Tebex store exists yet and
+no customer deployment or API secret is issued by this public page. See
+[the hosting boundary](support/HOSTING-PLAN.md) before enabling paid provisioning.
+
 Source for [illicit.page](https://illicit.page), the home of Illicit Corporation and the worlds it runs: Omerta Chat, Atlantis Chat, cod.city and gKnuckle.
 
 All code lives on GitHub under [@mobs2r](https://github.com/mobs2r).

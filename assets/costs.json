@@ -9,6 +9,7 @@
   "costs": [
     {
       "name": "illicit.page",
+      "category": "domain",
       "amount": 18.99,
       "currency": "USD",
       "icon": "assets/icons/illicit.svg",
@@ -20,6 +21,7 @@
     },
     {
       "name": "omerta.chat",
+      "category": "domain",
       "amount": 64.99,
       "currency": "USD",
       "icon": "assets/icons/omerta.svg",
@@ -31,6 +33,7 @@
     },
     {
       "name": "resupply.locker",
+      "category": "domain",
       "amount": 49.99,
       "currency": "USD",
       "icon": "assets/icons/resupply.svg",
@@ -42,6 +45,7 @@
     },
     {
       "name": "vandambash.com",
+      "category": "domain",
       "amount": 18.99,
       "currency": "USD",
       "icon": "assets/icons/vandambash.svg",
@@ -53,6 +57,7 @@
     },
     {
       "name": "vandamebash.com",
+      "category": "domain",
       "amount": 18.99,
       "currency": "USD",
       "icon": "assets/icons/vandamebash.svg",
@@ -64,6 +69,7 @@
     },
     {
       "name": "faked.cc",
+      "category": "domain",
       "amount": 29.99,
       "currency": "USD",
       "icon": "assets/icons/faked.svg",
@@ -75,6 +81,7 @@
     },
     {
       "name": "crab.quest",
+      "category": "domain",
       "amount": 21.99,
       "currency": "USD",
       "icon": "assets/icons/crab.svg",
@@ -86,6 +93,7 @@
     },
     {
       "name": "cod.city",
+      "category": "domain",
       "amount": 41.99,
       "currency": "USD",
       "icon": "assets/icons/cod.svg",
@@ -97,6 +105,7 @@
     },
     {
       "name": "gk.style",
+      "category": "domain",
       "amount": 54.99,
       "currency": "USD",
       "icon": "assets/icons/gk.svg",

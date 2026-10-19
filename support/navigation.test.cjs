@@ -16,7 +16,7 @@ test('homepage navigation reaches real sections and documentation instead of reo
     assert.match(html, new RegExp(`href="#${id}"( aria-current="page")?>${label}`));
     assert.ok(html.includes(`id="${id}"`));
   }
-  assert.match(html, /href="https:\/\/github\.com\/mobs2r" target="_blank" rel="noopener noreferrer">GitHub/);
+  assert.match(html, /href="https:\/\/github\.com\/mobs2r" target="_blank" rel="noopener noreferrer" aria-label="GitHub"/);
   assert.doesNotMatch(html, />Docs </);
   assert.match(html, /href="https:\/\/illicit\.up\.railway\.app\/support\/distribution" target="_blank" rel="noopener noreferrer">Build/);
 });
