@@ -42,12 +42,13 @@ node --test support/*.test.cjs
 ## Scale and donations
 
 `assets/costs.json` stores annual amounts in their original billing currency.
-Exchange rates are units per USD; convert once and round only the displayed
-cents. Do not round budgets upward to tens or hundreds. Claude Max and
-SoundCloud use owner-confirmed CAD bills; other rows distinguish public list
-prices, plan minimums and unconfirmed estimates. Hover publishes USD prices;
-individual renewal invoices may differ. Rate dates remain in source metadata,
-not a dated banner on the page.
+Exchange rates are units per USD; convert once, then restore the owner's
+requested budget display: round upward to the next 10 below 1,000 and the
+next 100 from 1,000 onward. Exact source amounts stay unchanged. The total
+equals the displayed line items. Public rows show only name and annual amount,
+without links, subtext or a rounding disclaimer. Claude Max and SoundCloud use
+owner-confirmed CAD bills; source metadata retains the pricing basis for the
+other rows. Rate dates remain in source metadata, not a banner on the page.
 
 `assets/donation-wallets.json` is a snapshot of the existing public recipients,
 not credentials or donor records. It avoids requiring Omerta login or widening

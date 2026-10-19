@@ -5,7 +5,7 @@ const path = require('node:path');
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/costs.json')));
 const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
 
-test('conversion uses each source currency once and never inflates to tens or hundreds', async () => {
+test('conversion uses each source currency once before presentation rounding', async () => {
   const { convertMoney, roundMoney, formatMoney } = await import('../assets/scale-pricing.mjs');
   assert.equal(convertMoney(100, 'CAD', 'CAD', data.rates), 100);
   assert.equal(roundMoney(convertMoney(100, 'USD', 'CAD', data.rates)), 141.54);
@@ -15,6 +15,18 @@ test('conversion uses each source currency once and never inflates to tens or hu
   assert.equal(roundMoney(2400), 2400);
   for (const amount of [NaN, -1, Infinity]) assert.throws(() => convertMoney(amount, 'USD', 'CAD', data.rates));
   assert.throws(() => convertMoney(20, 'AUD', 'CAD', data.rates));
+});
+
+test('annual display restores upward tens/hundreds without adding public explanatory text', async () => {
+  const { roundBudgetMoney, formatMoney, convertMoney } = await import('../assets/scale-pricing.mjs');
+  for (const [amount, expected] of [[0, 0], [18.99, 20], [26.88, 30], [125, 130], [999.99, 1000], [1000, 1000], [1000.01, 1100], [1864.8, 1900], [2400, 2400], [3396.96, 3400]]) assert.equal(roundBudgetMoney(amount), expected);
+  assert.equal(roundBudgetMoney(convertMoney(18.99, 'USD', 'CAD', data.rates)), 30);
+  assert.equal(formatMoney(roundBudgetMoney(18.99), 'USD'), 'US$20');
+  for (const amount of [NaN, -1, Infinity]) assert.throws(() => roundBudgetMoney(amount));
+  assert.match(html, /const displayRound = roundBudgetMoney/);
+  assert.match(html, /const total = rawTotal/);
+  const section = html.slice(html.indexOf('id="funds"'), html.indexOf('id="donate"'));
+  assert.doesNotMatch(section, /disclaimer|indicative|round|invoice|estimate|group-note|rates-as-of/i);
 });
 
 test('confirmed invoices retain CAD; domains and published USD subscriptions are not relabelled', () => {

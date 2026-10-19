@@ -218,7 +218,7 @@
     .support-grid .partner-pill .code-copy.is-copied { opacity:1; text-decoration:underline; text-underline-offset:2px; }
     .support-grid .pill[data-brand="lis-skins"] { background:#f6ad62; color:#291507; }
     .support-grid .pill[data-brand="xplay"] { background:#1c2b42; color:#f5d77b; }
-    .support-grid .partner-pill.has-no-icon .pill-link { grid-template-columns:minmax(0,1fr); }
+    .support-grid .partner-pill.has-no-icon { grid-template-columns:minmax(0,1fr); }
     .support-grid .partner-pill.has-no-icon .pill-name,.support-grid .partner-pill.has-no-icon .code-copy { grid-column:1; }
     .mod-frame { overflow:hidden; border-radius:10px; background:#0c1016; }
     .mod-shot { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .45s ease; }
@@ -540,7 +540,7 @@
     </div>
   </footer>
   <script type="module">
-    import { convertMoney, roundMoney, formatMoney } from './assets/scale-pricing.mjs';
+    import { convertMoney, roundBudgetMoney, formatMoney } from './assets/scale-pricing.mjs?v=annual-budget-2';
     import { mountDonations } from './assets/donations.mjs?v=copy-wallets-2';
     (() => {
       const openingHash = location.hash;
@@ -759,7 +759,7 @@
       // Annual native-currency source amounts are not preconverted or rounded
       // up. Only the final display rounds to cents; totals sum displayed cents.
       const convertedAmount = (amount, from, to) => convertMoney(amount, from, to, fundsData.rates);
-      const displayRound = roundMoney;
+      const displayRound = roundBudgetMoney;
       const svgNS = 'http://www.w3.org/2000/svg';
       let showSlice = () => {};
       const sliceIndex = node => {
@@ -817,7 +817,7 @@
           row.append(name, amount);
           costList.append(row);
         });
-        const total = displayRound(rawTotal);
+        const total = rawTotal;
         const chartTotal = slices.reduce((sum, slice) => sum + slice.value, 0);
         costTotal.textContent = formatMoney(total, fundsCurrency);
         const shareText = value => `${(chartTotal ? (value / chartTotal) * 100 : 0).toFixed(1)}%`;
