@@ -64,7 +64,9 @@ receipt plus ownership of its linked email, expiring single-use verification
 tokens, replay-safe receipt/account binding and server-side reward idempotency.
 The shared API already has a Resend recovery-mail transport, but its sender,
 domain and production configuration must be verified before reusing it. The
-public contact address is mobs2r@illicit.page; its inbox is not set up yet.
+public contact addresses are biz@illicit.page and promo@illicit.page. The
+support ticket embed and standalone link have been removed from this site;
+existing private ticket records are preserved in Illicit API.
 
 The three world icons reuse their actual marks from the world cards. Avalanche's
 mark comes from https://www.avalanche.com/favicon-light.svg and ApeCoin's from

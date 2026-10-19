@@ -140,7 +140,7 @@
     .site-nav a { color:var(--muted); font-size:14px; text-decoration:none; padding-bottom:3px; border-bottom:2px solid transparent; }
     .site-nav a:hover { color:var(--text); }
     .site-nav a.is-current { color:var(--text); border-bottom-color:var(--gold); }
-    section[id] { scroll-margin-top:92px; }
+    section[id] { scroll-margin-top:var(--section-offset,92px); }
     .section-head { max-width:44rem; margin-bottom:28px; }
     .section-head h2 { margin:0 0 10px; font-size:clamp(32px,4vw,48px); font-weight:400; letter-spacing:-.03em; }
     .lede { margin:0; color:var(--copy); font-size:18px; line-height:1.5; }
@@ -229,12 +229,6 @@
     .contact-list li + li { margin-top:8px; }
     .contact-list a { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
     .contact-list a:hover { color:var(--text); }
-    #contact { padding-bottom:72px; }
-    .contact-list { font-size:18px; margin-bottom:30px; }
-    .support-desk-frame { display:block; width:100%; height:760px; border:1px solid var(--line); border-radius:18px; background:#10151c; }
-    .support-desk-link { margin:14px 0 0; font-size:14px; }
-    .support-desk-link a { color:var(--blue); text-underline-offset:3px; }
-    @media (max-width:650px) { .contact-list { font-size:16px; } .support-desk-frame { height:970px; border-radius:12px; } }
     .site-footer { padding:8px 0 48px; }
     .illicit-footer { --if-ink:#f2f0eb; --if-dim:#c7cdd3; --if-soft:#aab2bc; --if-line:#ffffff1a; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 28px; padding:18px 22px; border:1px solid var(--if-line); border-radius:18px; color:var(--if-ink); font:14px/1.5 var(--sans); }
     .illicit-footer a { color:inherit; text-decoration:none; }
@@ -376,7 +370,7 @@
     .support-grid .pill::before { content:""; position:absolute; inset:0 auto auto 0; width:100%; height:46%; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.28), transparent); }
     .support-grid .pill img, .support-grid .pill .pill-mark, .support-grid .pill span, .support-grid .pill .code-copy { position:relative; z-index:1; }
     .site-nav { position:relative; align-items:center; gap:2px; padding:4px; border:1px solid var(--glass-line); border-radius:999px; background:var(--glass); box-shadow:inset 0 1px 0 rgba(255,255,255,.28); }
-    .nav-indicator { position:absolute; z-index:0; top:4px; left:0; height:calc(100% - 8px); width:0; border-radius:999px; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.1)); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 8px 18px rgba(90,150,220,.28); transition:transform .5s cubic-bezier(.18,1.15,.32,1), width .5s cubic-bezier(.18,1.15,.32,1); }
+    .nav-indicator { position:absolute; z-index:0; top:0; left:0; height:0; width:0; border-radius:999px; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.1)); box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 8px 18px rgba(90,150,220,.28); transition:transform .2s ease, width .2s ease, height .2s ease; }
     .site-nav a { position:relative; z-index:1; padding:8px 12px; border:0; border-radius:999px; overflow:hidden; }
     .site-nav a.is-current { border-bottom-color:transparent; color:var(--text); text-shadow:0 0 12px rgba(170,210,255,.35); }
     .site-nav a::after { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; background:radial-gradient(70px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.4), transparent 62%); transition:opacity .2s ease; }
@@ -476,7 +470,6 @@
         <ul class="cost-list" id="cost-list"></ul>
       </div>
       <p class="cost-total" id="cost-total"><strong>Annual total</strong><span class="cost-amount"></span></p>
-      <p class="group-note">Conversions are indicative. Taxes, card fees and metered usage may differ. Source amounts and pricing basis appear beside each cost.</p>
     </section>
     <section class="section shell" id="donate" aria-labelledby="donate-title">
       <header class="section-head"><h2 id="donate-title">Donations</h2></header>
@@ -535,8 +528,6 @@
         <li>Illicit, 310 Wall Street, Saskatoon, Saskatchewan S7K 1N7, Canada</li>
         <li><a href="https://github.com/mobs2r" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></li>
       </ul>
-      <iframe class="support-desk-frame" title="Illicit private support chat and tickets" src="https://illicit.up.railway.app/support/desk" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <p class="support-desk-link"><a href="https://illicit.up.railway.app/support/desk" target="_blank" rel="noopener noreferrer">Open support in its own window ↗</a></p>
     </section>
   </main>
   <footer class="site-footer">
@@ -1057,11 +1048,19 @@
       const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
       const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
       const navIndicator = document.querySelector('.nav-indicator');
+      const header = document.querySelector('.site-header');
+      const nav = document.getElementById('site-nav');
+      let navAnchor = navSections.some(section => `#${section.id}` === location.hash) ? location.hash.slice(1) : null;
       const placeNavPill = () => {
         const current = document.querySelector('.site-nav a.is-current');
-        if (!navIndicator || !current) return;
-        navIndicator.style.width = `${current.offsetWidth}px`;
-        navIndicator.style.transform = `translateX(${current.offsetLeft}px)`;
+        if (!navIndicator) return;
+        navIndicator.hidden = !current;
+        if (!current) return;
+        const bounds = current.getBoundingClientRect();
+        const parent = nav.getBoundingClientRect();
+        navIndicator.style.width = `${bounds.width}px`;
+        navIndicator.style.height = `${bounds.height}px`;
+        navIndicator.style.transform = `translate(${bounds.left - parent.left - nav.clientLeft + nav.scrollLeft}px, ${bounds.top - parent.top - nav.clientTop + nav.scrollTop}px)`;
       };
       const setCurrentNav = id => {
         for (const link of navLinks) {
@@ -1072,19 +1071,20 @@
         }
         placeNavPill();
       };
-      if ('IntersectionObserver' in window && navSections.length) {
+      if (navSections.length) {
         const pickCurrentNav = () => {
-          const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+          if (navAnchor) { setCurrentNav(navAnchor); return; }
+          const atBottom = document.documentElement.scrollHeight > window.innerHeight + 1 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
           if (atBottom) {
             setCurrentNav(navSections[navSections.length - 1].id);
             return;
           }
-          const probe = 96;
-          let current = navSections[0];
+          const probe = header.getBoundingClientRect().bottom + 16;
+          let current = null;
           for (const section of navSections) {
             if (section.getBoundingClientRect().top <= probe) current = section;
           }
-          setCurrentNav(current.id);
+          setCurrentNav(current?.id || null);
         };
         let navFrame = 0;
         const queueCurrentNav = () => {
@@ -1095,17 +1095,43 @@
         // pixels of a smooth anchor scroll. Track scrolling once per frame.
         window.addEventListener('scroll', queueCurrentNav, { passive: true });
         window.addEventListener('resize', queueCurrentNav);
-        const navObserver = new IntersectionObserver(queueCurrentNav, {
-          rootMargin: '-12% 0px -70% 0px',
-          threshold: [0, 0.2, 0.6]
+        const releaseAnchor = () => { navAnchor = null; queueCurrentNav(); };
+        window.addEventListener('wheel', releaseAnchor, { passive: true });
+        window.addEventListener('touchstart', releaseAnchor, { passive: true });
+        window.addEventListener('pointerdown', releaseAnchor, { passive: true });
+        document.addEventListener('keydown', event => {
+          if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) releaseAnchor();
         });
-        navSections.forEach(section => navObserver.observe(section));
+        document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+          navAnchor = navSections.some(section => `#${section.id}` === link.hash) ? link.hash.slice(1) : null;
+          if (navAnchor) setCurrentNav(navAnchor);
+          else queueCurrentNav();
+        }));
+        const syncNavLayout = () => {
+          document.documentElement.style.setProperty('--section-offset', `${Math.ceil(header.getBoundingClientRect().height) + 12}px`);
+          queueCurrentNav();
+        };
+        if ('ResizeObserver' in window) {
+          const layoutObserver = new ResizeObserver(syncNavLayout);
+          [header, nav, ...navLinks, ...navSections].forEach(element => layoutObserver.observe(element));
+        }
+        if ('IntersectionObserver' in window) {
+          const navObserver = new IntersectionObserver(queueCurrentNav, { threshold: [0, 0.2, 0.6] });
+          navSections.forEach(section => navObserver.observe(section));
+        }
+        window.addEventListener('load', syncNavLayout);
+        window.addEventListener('resize', syncNavLayout);
+        window.addEventListener('hashchange', () => {
+          navAnchor = navSections.some(section => `#${section.id}` === location.hash) ? location.hash.slice(1) : null;
+          queueCurrentNav();
+        });
+        document.fonts?.ready?.then(syncNavLayout);
+        syncNavLayout();
         pickCurrentNav();
       }
       placeNavPill();
       window.addEventListener('resize', placeNavPill);
       document.fonts?.ready?.then(placeNavPill);
-      const header = document.querySelector('.site-header');
       const navToggle = document.getElementById('nav-toggle');
       const setMenu = open => {
         header.classList.toggle('is-menu-open', open);

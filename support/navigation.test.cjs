@@ -65,10 +65,21 @@ test('active navigation follows scrolling through long Scale sections and the fo
   const window = { innerHeight: 900, scrollY: 2800 };
   const document = { documentElement: { scrollHeight: 6000 } };
   const navSections = [{ id: 'mods', getBoundingClientRect: () => ({ top: -300 }) }, { id: 'funds', getBoundingClientRect: () => ({ top: 80 }) }, { id: 'contact', getBoundingClientRect: () => ({ top: 2500 }) }];
-  const pick = vm.runInNewContext(source + '; pickCurrentNav', { window, document, navSections, setCurrentNav: id => { active = id; } });
+  const context = { window, document, navSections, navAnchor: null, header: { getBoundingClientRect: () => ({ bottom: 83 }) }, setCurrentNav: id => { active = id; } };
+  const pick = vm.runInNewContext(source + '; pickCurrentNav', context);
   pick(); assert.equal(active, 'funds');
   window.scrollY = 5100;
   pick(); assert.equal(active, 'contact');
+  context.navAnchor = 'about';
+  pick(); assert.equal(active, 'about', 'short anchor destinations keep their bubble even when the browser clamps scrolling at the footer');
+  context.navAnchor = null;
+  window.scrollY = 0;
+  navSections.forEach(section => { section.getBoundingClientRect = () => ({ top: 500 }); });
+  pick(); assert.equal(active, null, 'hero has no incorrectly selected section');
+  navSections[0].getBoundingClientRect = () => ({ top: -10 });
+  navSections[1].getBoundingClientRect = () => ({ top: 130 });
+  context.header.getBoundingClientRect = () => ({ bottom: 125 });
+  pick(); assert.equal(active, 'funds', 'probe follows the actual header rather than a fixed desktop offset');
   const scheduler = html.slice(html.indexOf('let navFrame = 0;'), html.indexOf('// Intersection thresholds alone'));
   const frames = [];
   let updates = 0;
@@ -81,4 +92,24 @@ test('active navigation follows scrolling through long Scale sections and the fo
   frames[0]();
   assert.equal(updates, 1);
   queue(); assert.equal(frames.length, 2);
+});
+
+test('navigation bubble uses the exact link box, including its row, border and fractional width', () => {
+  const source = html.slice(html.indexOf('const placeNavPill = () => {'), html.indexOf('const setCurrentNav = id => {'));
+  const navIndicator = { style: {} };
+  let current = { getBoundingClientRect: () => ({ left: 152.5, top: 48.25, width: 68.75, height: 34.5 }) };
+  const document = { querySelector: () => current };
+  const nav = { clientLeft: 1, clientTop: 1, scrollLeft: 0, scrollTop: 0, getBoundingClientRect: () => ({ left: 100, top: 10 }) };
+  const place = vm.runInNewContext(source + '; placeNavPill', { navIndicator, document, nav });
+  place();
+  assert.equal(navIndicator.style.width, '68.75px');
+  assert.equal(navIndicator.style.height, '34.5px');
+  assert.equal(navIndicator.style.transform, 'translate(51.5px, 37.25px)');
+  assert.equal(navIndicator.hidden, false);
+  current = null; place(); assert.equal(navIndicator.hidden, true);
+  assert.match(html, /new ResizeObserver\(syncNavLayout\)/);
+  assert.match(html, /document\.fonts\?\.ready\?\.then\(syncNavLayout\)/);
+  assert.match(html, /--section-offset/);
+  assert.match(html, /addEventListener\('wheel', releaseAnchor/);
+  assert.match(html, /if \(navSections.length\)/);
 });

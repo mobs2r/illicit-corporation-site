@@ -44,11 +44,11 @@ test('requested copy is removed, Scale is visible and donations stay on the corp
   assert.doesNotMatch(html, /mobs2@waifu\.club/);
 });
 
-test('contact embeds isolated private support without corporate-page auth or credentialed API calls', () => {
-  assert.match(html, /title="Illicit private support chat and tickets" src="https:\/\/illicit.up.railway.app\/support\/desk" loading="lazy"/);
-  assert.match(html, /Open support in its own window/);
-  assert.match(html, /support-desk-frame[^}]+height:760px/);
-  assert.doesNotMatch(html, /crabcoin_token|X-Support-Guest|api\/support/);
+test('contact contains direct contact details without the scrapped support ticket area', () => {
+  assert.match(html, /mailto:biz@illicit.page/);
+  assert.match(html, /mailto:promo@illicit.page/);
+  assert.doesNotMatch(html, /support-desk|support\/desk|Illicit private support chat|Open support in its own window|crabcoin_token|X-Support-Guest|api\/support/);
+  assert.doesNotMatch(html, /Conversions are indicative\. Taxes, card fees and metered usage may differ\. Source amounts and pricing basis appear beside each cost\./);
 });
 
 test('all seven migrated recipients validate and bad or duplicated networks fail closed', async () => {
